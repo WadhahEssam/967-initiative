@@ -78,7 +78,7 @@ Empty platform links intentionally do not show social links; fill verified platf
 
 ## 5. GitHub + deployment
 
-The repository already exists at `https://github.com/AihamAnter/967-initiative`. Work on a focused branch, run the required checks, and open a pull request to `main`. The production site is hosted by Vercel through an external repository integration; review the Vercel deployment and `https://967ye.com` after merging. See [the GitHub, CI, and deployment workflow](PROJECT_GUIDE_AR.md#13-github-وci-والنشر).
+The repository lives at `https://github.com/WadhahEssam/967-initiative` (it moved from `AihamAnter/967-initiative` in November 2026; the old repository is read-only history). Work on a focused branch, run the required checks, and open a pull request to `main`. Production `https://967ye.com` runs on Coolify and deploys automatically on every push to `main` of this repository, so merging a pull request deploys production; check the Coolify deployment and `https://967ye.com` after merging. See [the GitHub, CI, and deployment workflow](PROJECT_GUIDE_AR.md#13-github-وci-والنشر).
 
 ## Editorial responsibility
 
