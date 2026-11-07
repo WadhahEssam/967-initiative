@@ -137,3 +137,10 @@ test('unreadable section settings never turn into 404: pages throw a temporary e
   for (const route of ['app/api/debates/route.js', 'app/api/figures/route.js', 'app/api/map-profiles/route.js', 'app/api/rankings/route.js']) assert.match(read(route), /gate==='hidden'\?/);
   assert.match(read('app/sitemap.js'), /if\(settings\.pageVisibilityUnavailable\)throw/);
 });
+
+test('health endpoint for the host is ready only when section settings are readable', () => {
+  const route = read('app/api/health/route.js');
+  assert.match(route, /const ready=!settings\.pageVisibilityUnavailable;/);
+  assert.match(route, /status:ready\?200:503/);
+  assert.ok(!/SUPABASE|process\.env/.test(route), 'no secrets or env values in the response');
+});
