@@ -144,3 +144,11 @@ test('health endpoint for the host is ready only when section settings are reada
   assert.match(route, /status:ready\?200:503/);
   assert.ok(!/SUPABASE|process\.env/.test(route), 'no secrets or env values in the response');
 });
+
+test('a failed settings read reuses the last good settings for 15 minutes before failing closed', () => {
+  const data = read('lib/data.js');
+  assert.match(data, /const SETTINGS_STALE_LIMIT_MS=15\*60\*1000;/);
+  assert.match(data, /if\(lastGood&&now-lastGood\.at<=SETTINGS_STALE_LIMIT_MS\)return \{\.\.\.lastGood\.value,settingsStale:true\};/);
+  assert.match(data, /lastGoodSettings=\{value,at:Date\.now\(\)\};/);
+  assert.match(data, /pageVisibilityUnavailable:true\};/);
+});
