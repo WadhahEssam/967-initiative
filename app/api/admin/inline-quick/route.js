@@ -2,6 +2,7 @@ import {authorizeEditorRequest} from '@/lib/adminAuthorization';
 import {taskRequestDb} from '@/lib/taskServer';
 import {readJsonObject,RequestValidationError} from '@/lib/requestSecurity';
 import {safeExternalUrl} from '@/lib/media';
+import {invalidateStatCatalog} from '@/lib/data';
 
 export const runtime='nodejs';
 export const dynamic='force-dynamic';
@@ -84,6 +85,7 @@ async function execute(request,writing){
    const {data,error}=await db.from('stat_indicators').update(patch).eq('id',id).eq('updated_at',body.revision).select(config.select).maybeSingle();
    if(error)throw new RequestValidationError('تعذر حفظ المؤشر عبر صلاحيات التحرير.',503);
    if(!data)throw new RequestValidationError('تغير المؤشر خلال الحفظ. أعد التحميل.',409);
+   invalidateStatCatalog();
    return json({ok:true,item:data});
   }
   // The existing directory RPC enforces the editor role and revision atomically.
