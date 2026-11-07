@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {notFound} from 'next/navigation';
 import {ArrowLeft,BookOpen,ChevronLeft,Orbit,CloudSun,Mountain,Stars,FlaskConical} from 'lucide-react';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {pageMetadata} from '@/lib/seo';
 import {serverDb} from '@/lib/supabase-server';
 import {publishedSchoolCatalog,publishedSchoolStages} from '@/lib/schoolContentServer';
@@ -18,7 +18,7 @@ const TRACKS=[
 ];
 export default async function SchoolNaturePage(){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('school',settings.pageVisibility))notFound();
+ if(!sectionGate('school',settings))notFound();
  const db=serverDb(),courses=db?await publishedSchoolCatalog(db):[];
  const tracks=await Promise.all(TRACKS.map(async track=>{
   const course=courses.find(c=>c.slug===track.slug);

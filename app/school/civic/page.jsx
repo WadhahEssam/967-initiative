@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {notFound} from 'next/navigation';
 import {ArrowLeft,ChevronLeft,Landmark,Scale,ChartNoAxesCombined,Wallet,Banknote} from 'lucide-react';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {pageMetadata} from '@/lib/seo';
 import {civicCrossLinks} from '@/lib/knowledgeConnections';
 import CrossSectionPaths from '@/components/knowledge/CrossSectionPaths';
@@ -21,7 +21,7 @@ const TRACKS=[
 ];
 export default async function SchoolCivicPage(){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('school',settings.pageVisibility))notFound();
+ if(!sectionGate('school',settings))notFound();
  const db=serverDb(),courses=db?await publishedSchoolCatalog(db):[];
  const tracks=await Promise.all(TRACKS.map(async t=>{
   const course=courses.find(c=>c.slug===t.slug&&c.category==='السياسة والاقتصاد');

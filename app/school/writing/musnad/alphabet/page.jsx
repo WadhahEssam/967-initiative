@@ -2,14 +2,14 @@ import Link from 'next/link';
 import {notFound} from 'next/navigation';
 import {ArrowLeft,ChevronLeft,ExternalLink,PenTool} from 'lucide-react';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {pageMetadata} from '@/lib/seo';
 import {MUSNAD_ALPHABET,MUSNAD_NAMES} from '@/lib/schoolMusnad';
 import styles from '../../../school.module.css';
 export const metadata=pageMetadata({title:'أبجدية المسند كاملة | مدرسة 967',description:'دليل الحروف الـ29 لخط المسند، والمقابلات العربية والنقل الصوتي اللاتيني.',path:'/school/writing/musnad/alphabet'});
 export default async function MusnadAlphabetPage(){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('school',settings.pageVisibility))notFound();
+ if(!sectionGate('school',settings))notFound();
  return <div className={styles.root}><section className={styles.innerHero}><div className="container">
   <div className={styles.breadcrumb}><Link href="/school">مدرسة 967</Link><ChevronLeft size={14}/><Link href="/school/writing/musnad">خط المسند</Link><ChevronLeft size={14}/> دليل الأبجدية</div>
   <span className={styles.eyebrow}><PenTool size={16}/> مرجع تعليمي</span><h1>حروف المسند <em>الـ29.</em></h1>

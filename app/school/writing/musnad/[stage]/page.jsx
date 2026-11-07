@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {notFound} from 'next/navigation';
 import {ChevronLeft} from 'lucide-react';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {musnadStage} from '@/lib/schoolMusnad';
 import SchoolLesson from '@/components/school/SchoolLesson';
 import {serverDb} from '@/lib/supabase-server';
@@ -13,7 +13,7 @@ export const dynamic='force-dynamic';
 export const metadata=pageMetadata({title:'مراحل خط المسند | مدرسة 967',path:'/school/writing/musnad'});
 export default async function StagePage({params}){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('school',settings.pageVisibility))notFound();
+ if(!sectionGate('school',settings))notFound();
  const {stage:raw}=await params;
  if(!/^[1-9][0-9]*$/.test(raw))notFound();
  const original=musnadStage(Number(raw)-1);

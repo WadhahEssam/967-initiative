@@ -66,7 +66,7 @@ test('private API filters by verified account and never exposes raw attempts',()
  assert.ok(client.includes('auth.getSession()'));
  assert.ok(client.includes('role="progressbar"'));
  assert.ok(page.includes('noindex:true,nofollow:true'));
- assert.ok(page.includes("sectionIsVisible('school'"));
+ assert.ok(page.includes("sectionGate('school'"));
  assert.equal(pageIsVisible('/school/dashboard',{school:false}),false);
  assert.equal(sectionIsVisible('school',{school:false}),false);
 });

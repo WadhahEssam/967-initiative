@@ -120,6 +120,20 @@ test('server-side section layouts protect public nested routes without changing 
   assert.ok(source.includes('PublicPageBoundary')||source.includes('InteriorLayout'),path);
   if(source.includes('PublicPageBoundary'))assert.ok(source.includes('section="'+section+'"'),path);
  }
- assert.match(read('components/design/PublicPageBoundary.jsx'),/sectionIsVisible\(section,settings\.pageVisibility\)/);
+ assert.match(read('components/design/PublicPageBoundary.jsx'),/sectionGate\(section,settings\)/);
  assert.match(read('app/school/studio/page.jsx'),/SchoolStudio/); // Editor access continues through authenticated APIs.
+});
+
+test('unreadable section settings never turn into 404: pages throw a temporary error, APIs answer 503', async () => {
+  const {sectionStatus, sectionGate, SectionsUnavailableError} = await import('../lib/pageVisibility.js');
+  assert.equal(sectionStatus('school', {pageVisibility: {}}), 'visible');
+  assert.equal(sectionStatus('school', {pageVisibility: {school: false}}), 'hidden');
+  assert.equal(sectionStatus('school', {pageVisibility: {school: false}, pageVisibilityUnavailable: true}), 'unavailable');
+  assert.equal(sectionGate('school', {pageVisibility: {school: false}}), false);
+  assert.throws(() => sectionGate('school', {pageVisibility: {school: false}, pageVisibilityUnavailable: true}), SectionsUnavailableError);
+  const data = read('lib/data.js');
+  assert.match(data, /for\(let attempt=0;attempt<2;attempt\+\+\)/);
+  assert.match(read('components/design/PublicPageBoundary.jsx'), /if\(!sectionGate\(section,settings\)\)notFound\(\);/);
+  for (const route of ['app/api/debates/route.js', 'app/api/figures/route.js', 'app/api/map-profiles/route.js', 'app/api/rankings/route.js']) assert.match(read(route), /gate==='hidden'\?/);
+  assert.match(read('app/sitemap.js'), /if\(settings\.pageVisibilityUnavailable\)throw/);
 });

@@ -2,7 +2,7 @@ import KnowledgeTheme from '@/components/knowledge/KnowledgeTheme';
 import KnowledgeNavigation from '@/components/knowledge/KnowledgeNavigation';
 import {notFound} from 'next/navigation';
 import {getSiteSettings,getYemeniFigures} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {toFigureDirectoryCard,yemenGovernorates} from '@/lib/yemeniFigures';
 import {pageMetadata} from '@/lib/seo';
 import YemeniFiguresExplorer from '@/components/yemen-map/YemeniFiguresExplorer';
@@ -19,7 +19,7 @@ export const metadata=pageMetadata({
 
 export default async function YemeniFiguresPage({searchParams}){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('figures',settings.pageVisibility))notFound();
+ if(!sectionGate('figures',settings))notFound();
  const params=await searchParams;
  const region=yemenGovernorates.some(item=>item.id===params?.region)?params.region:null;
  const figures=(await getYemeniFigures()).map(toFigureDirectoryCard);

@@ -5,7 +5,7 @@ import ArcadeIntro from '@/components/games/ArcadeIntro';
 import ExtraArcadeChallenge from '@/components/games/ExtraArcadeChallenge';
 import {extraGameTypes} from '@/lib/extraGames';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {pageMetadata} from '@/lib/seo';
 import {dailyGameForDate,utcDay,dailyGameUrl} from '@/lib/dailyGame';
 import styles from '../games.module.css';
@@ -13,7 +13,7 @@ export const dynamic='force-dynamic';
 export const metadata=pageMetadata({title:'من أنا؟ | ألعاب 967',description:'شخصيات يمنية معروفة وثلاثة تلميحات متدرجة قبل الإجابة. جولات وتحديات يومية موثقة.',path:'/games/who'});
 export default async function Page({searchParams}){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('games',settings.pageVisibility))notFound();
+ if(!sectionGate('games',settings))notFound();
  const params=await searchParams;
  const date=utcDay();
  if(params?.mode==='daily'&&dailyGameForDate(date)!=='who')redirect(dailyGameUrl(date));

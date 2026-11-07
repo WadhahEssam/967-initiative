@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {notFound} from 'next/navigation';
 import {ChevronLeft,ExternalLink,GraduationCap,ScrollText} from 'lucide-react';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionIsVisible,sectionGate} from '@/lib/pageVisibility';
 import {pageMetadata} from '@/lib/seo';
 import {serverDb} from '@/lib/supabase-server';
 import {readHistoryCatalog} from '@/lib/historyRepository';
@@ -15,7 +15,7 @@ export const dynamic='force-dynamic';
 export const metadata=pageMetadata({title:'خط المسند | مدرسة 967',description:'رحلة تعليمية تفاعلية لتعرّف حروف خط المسند وقراءتها وكتابتها عبر مراحل مع تقييم وحفظ التقدم.',path:'/school/writing/musnad'});
 export default async function MusnadPage(){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('school',settings.pageVisibility))notFound();
+ if(!sectionGate('school',settings))notFound();
  const entries=sectionIsVisible('history',settings.pageVisibility)
   ?await readHistoryCatalog(serverDb()).then(result=>result.entries).catch(()=>[]):[];
  const crossLinks=musnadCrossLinks(entries,settings.pageVisibility);

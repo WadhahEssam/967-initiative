@@ -4,7 +4,7 @@ import JumpNav from '@/components/knowledge/JumpNav';
 import Link from '@/components/SiteLink';
 import {notFound} from 'next/navigation';
 import {getSiteSettings,getYemeniFigures} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionIsVisible,sectionGate} from '@/lib/pageVisibility';
 import {publicDb} from '@/lib/supabase';
 import {serverDb} from '@/lib/supabase-server';
 import {readHistoryCatalog} from '@/lib/historyRepository';
@@ -43,7 +43,7 @@ export default async function GovernorateProfilePage({params}){
   const {id}=await params;
   if(!isGovernorateId(id))notFound();
   const settings=await getSiteSettings();
-  if(!sectionIsVisible('atlas',settings.pageVisibility))notFound();
+  if(!sectionGate('atlas',settings))notFound();
   const [boundaries,profiles]=await Promise.all([getMapBoundaries(),readPublicMapProfiles(publicDb())]);
   const region=boundaries.governorates.find(item=>item.id===id);
   const profile=profiles[id];

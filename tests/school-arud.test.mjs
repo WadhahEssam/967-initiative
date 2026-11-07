@@ -161,7 +161,7 @@ test('Arud is independent, searchable, responsive, keyboard-accessible and respe
  assert.ok(catalog.includes('<SchoolTrackTrail'));
  assert.ok(footer.includes("['/school/writing/arud', 'تعلم علم العروض']"));
  assert.ok(searchPages.some(p=>p.href==='/school/writing/arud'));
- assert.ok(course.includes("sectionIsVisible('school'"));
+ assert.ok(course.includes("sectionGate('school'"));
  assert.ok(lesson.includes("aria-pressed={selection===i}"));
  assert.ok(lesson.includes('aria-label="حذف آخر رمز"'));
  assert.ok(lesson.includes('styles.patternKeys'));

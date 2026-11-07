@@ -20,7 +20,7 @@ import {
   Youtube,
 } from 'lucide-react';
 import {getYemeniFigure, getYemeniFigures, getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionIsVisible,sectionGate} from '@/lib/pageVisibility';
 import {detailPath, pageMetadata} from '@/lib/seo';
 import {breadcrumbSchema, figureSchema, JsonLd} from '@/lib/seo-schema';
 import FigureDossier from '@/components/FigureDossier';
@@ -53,7 +53,7 @@ function socialLinks(figure) {
 export async function generateMetadata({params}) {
   const {slug} = await params;
   const figure = await getYemeniFigure(slug);
-  if (!figure || !sectionIsVisible('figures',(await getSiteSettings()).pageVisibility)) notFound();
+  if (!figure || !sectionGate('figures',await getSiteSettings())) notFound();
 
   const title = `${figure.fullName} | شخصيات يمنية`;
   const description = toLatinDigits(figure.shortBio || figure.knownFor);
@@ -70,7 +70,7 @@ function ProfileFact({icon: Icon, label, value, ltr = false}) {
 export default async function YemeniFigureProfilePage({params}) {
   const {slug} = await params;
   const [figure, figures, settings] = await Promise.all([getYemeniFigure(slug), getYemeniFigures(relatedProjections.figures),getSiteSettings()]);
-  if (!figure || !sectionIsVisible('figures',settings.pageVisibility)) notFound();
+  if (!figure || !sectionGate('figures',settings)) notFound();
 
   const historyEntries=sectionIsVisible('history',settings.pageVisibility)
     ?await readHistoryCatalog(serverDb()).then(result=>result.entries).catch(()=>[]):[];

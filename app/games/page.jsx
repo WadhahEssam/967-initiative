@@ -6,7 +6,7 @@ import GamesHomeStatus from '@/components/games/GamesHomeStatus';
 import GameAchievementGallery from '@/components/games/GameAchievementGallery';
 import WeeklyArcade from '@/components/games/WeeklyArcade';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {pageMetadata} from '@/lib/seo';
 import styles from './games.module.css';
 import {dailyGameUrl,utcDay} from '@/lib/dailyGame';
@@ -30,7 +30,7 @@ const games=[
 
 export default async function GamesPage(){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('games',settings.pageVisibility))notFound();
+ if(!sectionGate('games',settings))notFound();
  const date=utcDay();
  const todayGame=dailyGameUrl(date);
  return <div className={styles.root}>
