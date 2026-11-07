@@ -4,7 +4,7 @@ import {notFound} from 'next/navigation';
 import Link from '@/components/SiteLink';
 import {ArrowUpLeft,BookOpenText,CalendarDays,Clock3,ExternalLink,MapPinned,ScrollText} from 'lucide-react';
 import {getSiteSettings,getYemeniFigures} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionIsVisible,sectionGate} from '@/lib/pageVisibility';
 import {serverDb} from '@/lib/supabase-server';
 import {readHistoryCatalog} from '@/lib/historyRepository';
 import {relatedProjections} from '@/lib/relatedContent';
@@ -33,7 +33,7 @@ export async function generateMetadata({params}){
 export default async function YemenHistoryDetail({params}){
  const {slug}=await params;
  const settings=await getSiteSettings();
- if(!sectionIsVisible('history',settings.pageVisibility))notFound();
+ if(!sectionGate('history',settings))notFound();
  const catalog=await readHistoryCatalog(serverDb());
  const item=catalog.entries.find(e=>e.slug===slug&&e.isPublished!==false);
  if(!item)notFound();

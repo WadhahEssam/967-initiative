@@ -3,7 +3,7 @@ import Link from 'next/link';
 import {ArrowRight,Gamepad2} from 'lucide-react';
 import ArcadeIntro from '@/components/games/ArcadeIntro';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {serverDb} from '@/lib/supabase-server';
 import {readGameCatalog} from '@/lib/gameRepository';
 import {officialQuizIdsToday} from '@/lib/dailyOfficialSeed';
@@ -17,7 +17,7 @@ export const dynamic='force-dynamic';
 export const metadata=pageMetadata({title:'اختبر معرفتك باليمن | ألعاب 967',description:'10 أسئلة تفاعلية عن اليمن مع نقاط وشروحات ومصادر موثقة، دون الحاجة إلى التسجيل.',path:'/games/quiz'});
 export default async function QuizPage({searchParams}){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('games',settings.pageVisibility))notFound();
+ if(!sectionGate('games',settings))notFound();
  const params=await searchParams;
  const date=utcDay();
  const mode=params?.mode==='daily'?'daily':'practice';

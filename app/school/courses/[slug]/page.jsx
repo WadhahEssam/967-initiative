@@ -7,7 +7,7 @@ import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {serverDb} from '@/lib/supabase-server';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {publishedSchoolCatalog,publishedSchoolStages} from '@/lib/schoolContentServer';
 import {pageMetadata} from '@/lib/seo';
 import styles from '../../studio/studio.module.css';
@@ -23,7 +23,7 @@ async function fixtureCourse(name){
 const stageMeta=s=>({index:s.index,title:s.title,subtitle:s.subtitle||'',format:s.format===2?2:1,template:s.template||null,minutes:Number.isInteger(s.minutes)?s.minutes:null});
 export default async function CoursePage({params,searchParams}){
  const {slug}=await params,settings=await getSiteSettings(),db=serverDb();
- if(!sectionIsVisible('school',settings.pageVisibility)||!db||slug==='musnad')notFound();
+ if(!sectionGate('school',settings)||!db||slug==='musnad')notFound();
  const course=(await publishedSchoolCatalog(db)).find(x=>x.slug===slug);
  if(!course)notFound();
  const stages=await publishedSchoolStages(db,slug);

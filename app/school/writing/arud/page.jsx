@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {notFound,redirect} from 'next/navigation';
 import {ChevronLeft,ExternalLink,Feather} from 'lucide-react';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {pageMetadata} from '@/lib/seo';
 import {serverDb} from '@/lib/supabase-server';
 import {publishedSchoolStages} from '@/lib/schoolContentServer';
@@ -14,7 +14,7 @@ export const dynamic='force-dynamic';
 export const metadata=pageMetadata({title:'علم العروض | مدرسة 967',description:'ابدأ تعلم الوزن الشعري من الأصوات إلى التفعيلات في 12 محطة تفاعلية مع حفظ التقدم وتصحيح الإجابات.',path:'/school/writing/arud'});
 export default async function ArudPage(){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('school',settings.pageVisibility))notFound();
+ if(!sectionGate('school',settings))notFound();
  // بعد نشر دروس البطاقات للعروض ينتقل المسار إلى صفحة المسارات العامة (خريطة الرحلة الجديدة).
  const db=serverDb();
  if(db&&(await publishedSchoolStages(db,'arud')).some(s=>s.format===2))redirect('/school/courses/arud');

@@ -4,7 +4,7 @@ import {ArrowRight} from 'lucide-react';
 import ArcadeIntro from '@/components/games/ArcadeIntro';
 import ArcadeChallenge from '@/components/games/ArcadeChallenge';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {pageMetadata} from '@/lib/seo';
 import styles from '../games.module.css';
 import {dailyGameForDate,utcDay,dailyGameUrl} from '@/lib/dailyGame';
@@ -14,7 +14,7 @@ export const dynamic='force-dynamic';
 export const metadata=pageMetadata({title:'خمن المكان | ألعاب 967',description:'لعبة خمن المكان عن اليمن مع عشر مهام ونظام نقاط ومؤقت اختياري وتحدٍ يومي موحد.',path:'/games/place'});
 export default async function GamePage({searchParams}){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('games',settings.pageVisibility))notFound();
+ if(!sectionGate('games',settings))notFound();
  const params=await searchParams;
  const date=utcDay();
  if(params?.mode==='daily'&&dailyGameForDate(date)!=='place')redirect(dailyGameUrl(date));

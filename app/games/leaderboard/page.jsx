@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {notFound} from 'next/navigation';
 import {ArrowLeft,Trophy,ShieldCheck} from 'lucide-react';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {pageMetadata} from '@/lib/seo';
 import Leaderboard from '@/components/games/Leaderboard';
 import styles from '../games.module.css';
@@ -11,7 +11,7 @@ export const dynamic='force-dynamic';
 export const metadata=pageMetadata({title:'لوحة المتصدرين | ألعاب 967',description:'الترتيب الرسمي الموحد لألعاب 967: أبطال اليوم والأسبوع والشهر وكل الوقت، مع نتائج موثقة.',path:'/games/leaderboard'});
 export default async function Page(){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('games',settings.pageVisibility))notFound();
+ if(!sectionGate('games',settings))notFound();
  return <div className={styles.root} dir="rtl">
   <header className={board.hero}>
    <div className="container">

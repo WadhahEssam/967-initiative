@@ -4,14 +4,14 @@ import {ArrowLeft,ChevronLeft,GraduationCap,Layers,Sparkles,Star} from 'lucide-r
 import SchoolWorldMap from '@/components/school/SchoolWorldMap';
 import SchoolContinueCard from '@/components/school/v2/SchoolContinueCard';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {pageMetadata} from '@/lib/seo';
 import styles from './school.module.css';
 export const dynamic='force-dynamic';
 export const metadata=pageMetadata({title:'مدرسة 967',description:'مدرسة 967: الكتابة والأدب والفلك والطبيعة والمنطق والتفكير؛ 15 مسارًا و180 محطة تفاعلية',path:'/school'});
 export default async function SchoolPage(){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('school',settings.pageVisibility))notFound();
+ if(!sectionGate('school',settings))notFound();
  return <div className={styles.root}>
   <div className={styles.schoolHero}><div className="container">
    <div className={styles.breadcrumb}><Link href="/">الرئيسية</Link><ChevronLeft size={14}/> مدرسة 967</div>

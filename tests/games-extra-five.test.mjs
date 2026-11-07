@@ -98,7 +98,7 @@ test('new routes participate in nine-game UTC daily rotation with a backward-com
  assert.equal(new Set(dates.map(dailyGameForDate)).size,9);
  for(const id of ids){
   const route=read('app/games/'+id+'/page.jsx');
-  assert.ok(route.includes('sectionIsVisible'));
+  assert.ok(route.includes('sectionGate'));
   assert.ok(route.includes('redirect(dailyGameUrl(date))'));
   assert.ok(read('app/games/page.jsx').includes("id:'"+id+"'"));
  }

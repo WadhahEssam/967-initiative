@@ -2,7 +2,7 @@ import Link from 'next/link';
 import {notFound} from 'next/navigation';
 import {ArrowLeft,BookOpen,ChevronLeft,Feather,GraduationCap,PenTool} from 'lucide-react';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {pageMetadata} from '@/lib/seo';
 import styles from '../school.module.css';
 import {serverDb} from '@/lib/supabase-server';
@@ -12,7 +12,7 @@ export const dynamic='force-dynamic';
 export const metadata=pageMetadata({title:'الكتابة والأدب | مدرسة 967',description:'خط المسند وعلم العروض والخط العربي ضمن المدرسة التفاعلية.',path:'/school/writing'});
 export default async function WritingPage(){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('school',settings.pageVisibility))notFound();
+ if(!sectionGate('school',settings))notFound();
  const db=serverDb();
  const published=db?await publishedSchoolCatalog(db):[];
  const authored=published.filter(c=>c.category==='الكتابة والأدب'&&!['musnad','arud'].includes(c.slug));

@@ -106,7 +106,7 @@ test('all three new pages are linked and indexed, hidden when games publication 
   const page=read('app/games/'+name+'/page.jsx');
   assert.ok(page.includes('<ArcadeIntro'));
   assert.ok(page.includes('<ArcadeChallenge game="'+name+'"'));
-  assert.ok(page.includes("sectionIsVisible('games'"));
+  assert.ok(page.includes("sectionGate('games'"));
  }
  const urls=buildSitemap({},{VERCEL_ENV:'production'}).map(x=>x.url);
  for(const name of gameUrls)assert.ok(urls.includes(DEFAULT_SITE_ORIGIN+'/games/'+name));

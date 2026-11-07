@@ -59,7 +59,7 @@ test('Quiz play still uses scoring, explanation, sharing, persistence and mobile
   assert.ok(code.includes(codeToken),codeToken);
  }
  assert.ok(route.includes('<QuizGame'));
- assert.ok(route.includes('sectionIsVisible(\'games\''));
+ assert.ok(route.includes("sectionGate('games'"));
  assert.ok(css.includes('.playScore'));
  assert.ok(css.includes('.option.right'));
  assert.ok(css.includes('.option.wrong'));

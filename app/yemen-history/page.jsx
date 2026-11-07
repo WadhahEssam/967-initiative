@@ -4,7 +4,7 @@ import {notFound} from 'next/navigation';
 import {BookOpenText,Clock3,Landmark} from 'lucide-react';
 import Link from '@/components/SiteLink';
 import {getSiteSettings} from '@/lib/data';
-import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionGate} from '@/lib/pageVisibility';
 import {serverDb} from '@/lib/supabase-server';
 import {readHistoryCatalog} from '@/lib/historyRepository';
 import {yemenGovernorates} from '@/lib/yemeniFigures';
@@ -22,7 +22,7 @@ export const metadata=pageMetadata({
 });
 export default async function YemenHistoryPage({searchParams}){
  const settings=await getSiteSettings();
- if(!sectionIsVisible('history',settings.pageVisibility))notFound();
+ if(!sectionGate('history',settings))notFound();
  const params=await searchParams;
  let catalog;
  try{catalog=await readHistoryCatalog(serverDb());}

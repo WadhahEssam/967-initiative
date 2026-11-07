@@ -26,6 +26,8 @@ export default async function sitemap() {
     const result=await getDebateCatalog();if(!result.available)throw new Error('Unavailable');return result.debates;
   }},{onUnavailable:source=>recordOperationalEvent('source_unavailable',{source,area:'sitemap'})});
   const settings=await getSiteSettings();
+  // لا تُنشر خريطة موقع ناقصة حين تتعذر قراءة إعدادات الأقسام: الفشل المؤقت (5xx) يجعل محركات البحث تعود لاحقًا.
+  if(settings.pageVisibilityUnavailable)throw new Error('Section settings unavailable; refusing to publish an incomplete sitemap.');
   let history=[];try{history=(await readHistoryCatalog(serverDb())).entries;}catch{recordOperationalEvent('source_unavailable',{source:'pages',area:'sitemap'});}
   return buildSitemap({...data,history,pageVisibility:settings.pageVisibility});
 }
