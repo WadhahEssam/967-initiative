@@ -4,6 +4,7 @@ import {authorizeEditorRequest} from '@/lib/adminAuthorization';
 import {readJsonObject,RequestValidationError} from '@/lib/requestSecurity';
 import {fetchAllRows} from '@/lib/pagination';
 import {readFigureProfile,saveFigureProfile,deleteFigureProfile} from '@/lib/figureProfileRepository';
+import {invalidateDirectoryLists} from '@/lib/data';
 import {emptyFigureProfile} from '@/lib/figureProfiles';
 export const runtime='nodejs';export const dynamic='force-dynamic';
 const json=(body,status=200)=>NextResponse.json(body,{status,headers:{'Cache-Control':'no-store'}});
@@ -18,10 +19,11 @@ async function handle(request,method){
   }
   const body=await readJsonObject(request,700000);
   if(!Object.hasOwn(body,'revision'))throw new RequestValidationError('نسخة الشخصية مطلوبة.');
-  if(method==='DELETE')return json(await deleteFigureProfile(db,{id:body.id,revision:body.revision,role:auth.role,actorId:auth.user.id}));
+  if(method==='DELETE'){const result=await deleteFigureProfile(db,{id:body.id,revision:body.revision,role:auth.role,actorId:auth.user.id});invalidateDirectoryLists();return json(result);}
   if(method==='PUT'&&!body.record?.id)throw new RequestValidationError('معرّف الشخصية مطلوب للتعديل.');
   if(method==='POST'&&body.record?.id)throw new RequestValidationError('طلب إنشاء الشخصية غير صالح.');
-  return json(await saveFigureProfile(db,{...body,role:auth.role,actorId:auth.user.id}),method==='POST'?201:200);
+  const saved=await saveFigureProfile(db,{...body,role:auth.role,actorId:auth.user.id});invalidateDirectoryLists();
+  return json(saved,method==='POST'?201:200);
  }catch(error){if(error instanceof RequestValidationError)return json({error:error.message},error.status);console.error('figure profile service:',error?.code||error?.name||'service');return json({error:'تعذر تنفيذ العملية حاليًا. أعد تحميل المحفوظ قبل المحاولة.'},503);}
 }
 export const GET=request=>handle(request,'GET');export const POST=request=>handle(request,'POST');export const PUT=request=>handle(request,'PUT');export const DELETE=request=>handle(request,'DELETE');

@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import {canOptimizeImage} from '@/lib/media';
 import Link from '@/components/SiteLink';
 import {useEffect, useMemo, useState} from 'react';
 import {ArrowUpLeft, AtSign, Facebook, Globe2, MapPinned, Search, Youtube} from 'lucide-react';
@@ -85,7 +86,7 @@ export default function YemeniFiguresDirectory({figures, selectedGovernorateId,o
           return <article className="yfigure-card" key={figure.id}>
             <Link className="yfigure-card-hitarea" href={'/yemeni-figures/'+figure.slug+'?from='+encodeURIComponent(returnTo)} aria-label={`عرض صفحة ${figure.fullName}`}><span className="sr-only">عرض صفحة {figure.fullName}</span></Link>
             <div className="yfigure-image">
-              {hasFigureImageProvenance(figure) ? <Image src={figure.imageUrl} alt={figure.imageKind==='context'?figure.imageCredit:`صورة ${figure.fullName}`} fill sizes="88px" unoptimized={figure.imageUrl.startsWith('http')} /> : <span className="yfigure-initials">{figureInitials(figure.fullName)}</span>}
+              {hasFigureImageProvenance(figure) ? <Image src={figure.imageUrl} alt={figure.imageKind==='context'?figure.imageCredit:`صورة ${figure.fullName}`} fill sizes="88px" unoptimized={!canOptimizeImage(figure.imageUrl)} /> : <span className="yfigure-initials">{figureInitials(figure.fullName)}</span>}
             </div>
             <div className="yfigure-content">
               <div className="yfigure-meta"><span className="yfigure-era">{figure.era}</span><span>{figure.field}</span>{lifeYears(figure) && <span dir="ltr">{lifeYears(figure)}</span>}</div>

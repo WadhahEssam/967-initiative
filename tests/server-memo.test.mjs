@@ -27,6 +27,6 @@ test('heavy public catalogs and settings are memoized in lib/data.js', () => {
   const data = readFileSync(new URL('../lib/data.js', import.meta.url), 'utf8');
   assert.match(data, /const statIndicatorsMemo=createMemo\(\{ttlMs:5\*60\*1000,staleMs:60\*60\*1000\}\);/);
   assert.match(data, /export const getStatIndicators = publicList\('statistics',async\(\)=>copyList\(await statIndicatorsMemo\(loadStatIndicators\)\)\);/);
-  assert.match(data, /const data=await settingsMemo\(\(\)=>readSiteSettingsRows\(db\)\);/);
+  assert.match(data, /const data=await settingsMemo\(\{\n\s*version:async\(\)=>settingsRowsVersion\(await readSiteSettingsRows\(db,'key,updated_at'\)\),/);
   assert.match(readFileSync(new URL('../app/api/admin/inline-quick/route.js', import.meta.url), 'utf8'), /invalidateStatCatalog\(\);/);
 });

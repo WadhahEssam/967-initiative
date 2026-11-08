@@ -34,7 +34,7 @@ test('history: explorer first, pinned eras, list mode is a vertical chronology w
   const page = read('app/yemen-history/page.jsx');
   assert.ok(page.indexOf('<HistoryExplorer') < page.indexOf('<KnowledgeReadingGuide kind="history"/>'));
   const explorer = read('components/history/HistoryExplorer.jsx');
-  for (const token of ['data-history-kind={entry.kind}', 'variant="thumbnail"', 'historyEntryPath(entry.slug)', "entry.sources?.length||0", 'entry.location', 'entry.period', 'entry.summary', 'className={styles.cardThumb}', 'القائمة</button>'])
+  for (const token of ['data-history-kind={entry.kind}', 'variant="thumbnail"', 'historyEntryPath(entry.slug)', 'historySourceCount(entry)', 'entry.location', 'entry.period', 'entry.summary', 'className={styles.cardThumb}', 'القائمة</button>'])
     assert.ok(explorer.includes(token), token);
   const css = read('components/history/HistoryExplorer.module.css');
   assert.ok(css.includes('.eras{position:sticky;top:var(--header-h,54px)'));

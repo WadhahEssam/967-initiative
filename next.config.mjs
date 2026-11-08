@@ -21,7 +21,10 @@ const nextConfig = {
     '/api/rankings': ['./data/rankings/*.json'],
     '/api/admin/rankings': ['./data/rankings/*.json'],
   },
-  images: {remotePatterns, qualities: [60, 75]},
+  // Optimised images are kept for 7 days (default 60 s, then the source's own max-age, 1 h on
+  // Supabase Storage). Uploads never overwrite a path, so a stored image does not change; this
+  // stops refetching every image from Supabase hourly and lets phones keep them a week.
+  images: {remotePatterns, qualities: [60, 75], minimumCacheTTL: 7 * 24 * 60 * 60},
   // Keep route CSS in per-route files (in import order) instead of merging CSS
   // modules from many routes into shared chunks that every page then downloads.
   experimental: {cssChunking: 'strict'},
@@ -39,7 +42,13 @@ const nextConfig = {
       ...(process.env.VERCEL_ENV && process.env.VERCEL_ENV !== 'production' ? [{key: 'X-Robots-Tag', value: 'noindex, nofollow'}] : []),
     ]}, ...['/admin/:path*', '/api/:path*', '/demo/:path*','/account/:path*','/login','/register','/forgot-password','/update-password','/auth/:path*'].map(source => ({source, headers: [
       {key: 'X-Robots-Tag', value: 'noindex, nofollow'},
-    ]}))];
+    ]})),
+    // Files in /public are served with max-age=0, so phones re-ask for every font and map file on
+    // each visit (one round trip each on slow networks). Their names rarely change; when one must
+    // change, give it a new file name.
+    {source: '/fonts/:path*', headers: [{key: 'Cache-Control', value: 'public, max-age=2592000'}]},
+    {source: '/images/:path*', headers: [{key: 'Cache-Control', value: 'public, max-age=604800'}]},
+    {source: '/data/:path*', headers: [{key: 'Cache-Control', value: 'public, max-age=86400'}]}];
   },
 };
 export default nextConfig;

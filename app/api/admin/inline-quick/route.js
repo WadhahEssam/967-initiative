@@ -2,7 +2,7 @@ import {authorizeEditorRequest} from '@/lib/adminAuthorization';
 import {taskRequestDb} from '@/lib/taskServer';
 import {readJsonObject,RequestValidationError} from '@/lib/requestSecurity';
 import {safeExternalUrl} from '@/lib/media';
-import {invalidateStatCatalog} from '@/lib/data';
+import {invalidateStatCatalog,invalidateDirectoryLists} from '@/lib/data';
 
 export const runtime='nodejs';
 export const dynamic='force-dynamic';
@@ -104,6 +104,7 @@ async function execute(request,writing){
    throw new RequestValidationError('تعذر حفظ الملف. راجع المراجع والحقول أو افتح المحرر الكامل.',503);
   }
   if(!data?.id)throw new RequestValidationError('لم يؤكد الخادم نتيجة الحفظ. أعد التحميل قبل المحاولة.',503);
+  invalidateDirectoryLists();
   return json({ok:true,item:data});
  }catch(error){
   return json({error:error instanceof RequestValidationError?error.message:'تعذر تنفيذ عملية التحرير. أعد تحميل الصفحة للتحقق.'},error instanceof RequestValidationError?error.status:503);

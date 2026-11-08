@@ -4,6 +4,7 @@ import ContextBackLink from '@/components/ContextBackLink';
 import JumpNav from '@/components/knowledge/JumpNav';
 import ContentReadingAction from '@/components/reading/ContentReadingAction';
 import Image from 'next/image';
+import {canOptimizeImage} from '@/lib/media';
 import {toLatinDigits} from '@/lib/format';
 import Link from '@/components/SiteLink';
 import {notFound} from 'next/navigation';
@@ -119,7 +120,7 @@ export default async function YemeniFigureProfilePage({params}) {
 
         <div className="figure-profile-portrait" data-kind={portrait?.kind||'portrait'}>
           {hasAttributedPortrait
-            ? <Image src={figure.imageUrl} alt={figure.profile?.gallery.find(photo=>photo.url===figure.imageUrl)?.alt||`صورة ${figure.fullName}`} fill priority sizes="(max-width: 850px) 100vw, 42vw" unoptimized={figure.imageUrl.startsWith('http')}/>
+            ? <Image src={figure.imageUrl} alt={figure.profile?.gallery.find(photo=>photo.url===figure.imageUrl)?.alt||`صورة ${figure.fullName}`} fill priority sizes="(max-width: 850px) 100vw, 42vw" unoptimized={!canOptimizeImage(figure.imageUrl)}/>
             : <span className="figure-profile-initials" aria-hidden="true">{figureInitials(figure.fullName)}</span>}
           <div><span>{{context:'صورة سياقية مرتبطة بالسيرة',artwork:'تصوير فني',document:'وثيقة تاريخية'}[portrait?.kind]||figure.field}</span><strong>{figure.fullName}</strong>{figure.imageSourceUrl&&<a href={figure.imageSourceUrl} title={figure.imageCredit} target="_blank" rel="noopener noreferrer">مصدر الصورة وحقوقها</a>}</div>
         </div>

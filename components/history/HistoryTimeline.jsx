@@ -3,7 +3,7 @@ import {useEffect,useMemo,useRef,useState} from 'react';
 import Link from '@/components/SiteLink';
 import {ArrowLeft,ArrowUpLeft,BookOpen,CalendarDays,ChevronLeft,ChevronRight,MapPin,MoveHorizontal} from 'lucide-react';
 import {chronologicalHistory,boundedTimelineIndex,timelineAdjacentIndex} from '@/lib/historyTimeline';
-import {historyEras,historyKinds,historyEntryPath,historyYear} from '@/lib/yemenHistory';
+import {historyEras,historyKinds,historyEntryPath,historyYear,historySourceCount} from '@/lib/yemenHistory';
 import styles from './HistoryTimeline.module.css';
 import HistoryMedia from './HistoryMedia';
 
@@ -92,7 +92,7 @@ export default function HistoryTimeline({entries}){
     <div className={styles.spotlightMeta}><span>{activeEra?.title}</span><span>{historyKinds[selected?.kind]}</span><span>{historyYear(selected?.year)}</span></div>
     <h4>{selected?.title}</h4>
     <p>{selected?.summary}</p>
-    <div className={styles.spotlightFacts}><span><CalendarDays size={15}/>{selected?.period}</span>{selected?.location&&<span><MapPin size={15}/>{selected.location}</span>}<span><BookOpen size={15}/>{selected?.sources?.length||0} مصادر</span></div>
+    <div className={styles.spotlightFacts}><span><CalendarDays size={15}/>{selected?.period}</span>{selected?.location&&<span><MapPin size={15}/>{selected.location}</span>}<span><BookOpen size={15}/>{historySourceCount(selected)} مصادر</span></div>
    </div>
    <Link className={styles.readButton} href={historyEntryPath(selected.slug)}>اقرأ الملف التاريخي <ArrowUpLeft size={18}/></Link>
   </article>

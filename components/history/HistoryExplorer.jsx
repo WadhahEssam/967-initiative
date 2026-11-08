@@ -2,7 +2,7 @@
 import {useMemo,useState,useEffect} from 'react';
 import Link from '@/components/SiteLink';
 import {ArrowUpLeft,BookOpen,CalendarDays,MapPinned,Search,ScrollText,SlidersHorizontal,ListOrdered} from 'lucide-react';
-import {historyEras,historyKinds,historyEntryPath,historyYear} from '@/lib/yemenHistory';
+import {historyEras,historyKinds,historyEntryPath,historyYear,historySourceCount} from '@/lib/yemenHistory';
 import styles from './HistoryExplorer.module.css';
 import HistoryTimeline from './HistoryTimeline';
 import HistoryMedia from './HistoryMedia';
@@ -48,7 +48,7 @@ export default function HistoryExplorer({entries,initialEra='',initialType=''}) 
      <div className={styles.cardTop}><span className={styles.kind}>{historyKinds[entry.kind]}</span><small className={styles.period}>{entry.period}</small></div>
      <h3><Link href={historyEntryPath(entry.slug)}>{entry.title}</Link></h3>
      <p>{entry.summary}</p>
-     <div className={styles.cardBottom}><span><BookOpen size={14}/> {entry.sources?.length||0} مصادر</span>{entry.location&&<span><MapPinned size={14}/>{entry.location}</span>}<Link href={historyEntryPath(entry.slug)} aria-label={'قراءة '+entry.title}>اقرأ الملف <ArrowUpLeft size={15}/></Link></div>
+     <div className={styles.cardBottom}><span><BookOpen size={14}/> {historySourceCount(entry)} مصادر</span>{entry.location&&<span><MapPinned size={14}/>{entry.location}</span>}<Link href={historyEntryPath(entry.slug)} aria-label={'قراءة '+entry.title}>اقرأ الملف <ArrowUpLeft size={15}/></Link></div>
     </div>
     <div className={styles.cardThumb}><HistoryMedia entry={entry} variant="thumbnail"/></div>
    </article>)}</div>}
