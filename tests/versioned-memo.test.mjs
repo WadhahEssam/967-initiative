@@ -104,8 +104,8 @@ test('public readers use the caches and admin saves clear them', () => {
   assert.match(read('app/api/admin/pages/route.js'), /invalidateSiteSettings\(\);/);
   assert.match(read('app/api/admin/page-visibility/route.js'), /invalidateSiteSettings\(\);/);
   assert.match(read('app/api/admin/figures/route.js'), /invalidateDirectoryLists\(\);[^]*invalidateDirectoryLists\(\);/);
-  assert.match(read('app/api/admin/inline-quick/route.js'), /invalidateDirectoryLists\(\);\n\s*return json\(\{ok:true,item:data\}\);/);
+  assert.match(read('app/api/admin/inline-quick/route.js'), /invalidateDirectoryLists\(\);\r?\n\s*return json\(\{ok:true,item:data\}\);/);
   const map = read('lib/mapProfileRepository.js');
-  assert.match(map, /publicMapProfilesMemo\.clear\(\);\n return \{\.\.\.current,item,revision:result\.revision\};/);
+  assert.match(map, /publicMapProfilesMemo\.clear\(\);\r?\n return \{\.\.\.current,item,revision:result\.revision\};/);
   assert.match(read('components/Header.jsx'), /const cached = readEditorFlag\(session\.user\.id\);/);
 });

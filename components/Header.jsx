@@ -12,20 +12,7 @@ import {appBarPlace} from '@/lib/appBar';
 import {messageBadgeCount,messageBadgeLabel} from '@/lib/messageBadge';
 import NotificationBell from './notifications/NotificationBell';
 import {advanceMessageAlert,playMessageChime} from '@/lib/messageSound';
-
-// Whether the signed-in account may edit, remembered for this browser tab for 10 minutes.
-const EDITOR_FLAG_KEY = '967:can-edit';
-const EDITOR_FLAG_MS = 10 * 60 * 1000;
-function readEditorFlag(userId) {
-  try {
-    const saved = JSON.parse(window.sessionStorage.getItem(EDITOR_FLAG_KEY) || 'null');
-    if (saved?.userId === userId && typeof saved.canEdit === 'boolean' && Date.now() - saved.at < EDITOR_FLAG_MS) return saved.canEdit;
-  } catch {}
-  return null;
-}
-function writeEditorFlag(userId, canEdit) {
-  try { window.sessionStorage.setItem(EDITOR_FLAG_KEY, JSON.stringify({userId, canEdit, at: Date.now()})); } catch {}
-}
+import {readEditorFlag, writeEditorFlag} from './editorFlag';
 
 // Masthead: one row on wide screens, a menu sheet below 1100px.
 // Sections come from lib/navigation.js, shared with the footer and home doors.

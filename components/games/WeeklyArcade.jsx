@@ -5,6 +5,7 @@ import Link from 'next/link';
 import {ArrowUpLeft,CalendarDays,CheckCircle2,Clock3,Crown,Flame,LockKeyhole,Medal,Puzzle,RefreshCw,ShieldCheck,Target,Trophy,Zap} from 'lucide-react';
 import {browserDb} from '@/lib/supabase';
 import {officialGameWeek} from '@/lib/gameWeeklyMissions';
+import {createAccountWatch,shouldReloadOnAuth,createRefreshThrottle} from '@/lib/authEvents';
 import styles from './WeeklyArcade.module.css';
 
 const iconMap={calendar:CalendarDays,target:Target,puzzle:Puzzle,zap:Zap};
@@ -21,17 +22,18 @@ export default function WeeklyArcade(){
 
  useEffect(()=>{
   let alive=true,serial=0,authTimer=null;
-  const db=browserDb();
+  const db=browserDb(),throttle=createRefreshThrottle(),account=createAccountWatch();
   async function refresh(){
-   const id=++serial;
+   const id=++serial;throttle.mark();
    setMissions(empty);setLeaders(empty);
    let token='';
    try{
     if(db){
      const {data}=await db.auth.getSession();
+     account.seen(data?.session);
      token=data?.session?.access_token||'';
     }
-   }catch{/* Guest missions and public weekly rankings remain available. */}
+   }catch{account.seen(null);/* Guest missions and public weekly rankings remain available. */}
    if(!alive||id!==serial)return;
    const [missionRequest,leaderRequest]=await Promise.allSettled([
     fetch('/api/games/weekly',{cache:'no-store',headers:requestHeaders(token)}),
@@ -56,12 +58,15 @@ export default function WeeklyArcade(){
    }else setLeaders({kind:'error',data:null});
   }
   refresh();
-  const subscription=db?.auth.onAuthStateChange(()=>{
+  // Reload when the account changes, not on the initial event or hourly token refreshes.
+  const subscription=db?.auth.onAuthStateChange((event,session)=>{
+   if(!shouldReloadOnAuth(account,event,session))return;
    clearTimeout(authTimer);
    authTimer=setTimeout(()=>{if(alive)refresh();},0);
   }).data?.subscription;
-  const onVisible=()=>{if(document.visibilityState==='visible')refresh();};
-  const onFocus=()=>refresh();
+  // Returning to the tab fires focus and visibilitychange together: reload once a minute at most.
+  const onVisible=()=>{if(document.visibilityState==='visible'&&throttle.due())refresh();};
+  const onFocus=()=>{if(throttle.due())refresh();};
   const checkWeek=()=>{
    const week=officialGameWeek().start;
    if(week!==currentWeek.current){currentWeek.current=week;refresh();}
