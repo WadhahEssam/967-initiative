@@ -1,3 +1,4 @@
+import {shareCardPath} from '@/lib/shareCard';
 import {notFound} from 'next/navigation';
 import {serverDb} from '@/lib/supabase-server';
 import {getSiteSettings} from '@/lib/data';
@@ -20,7 +21,7 @@ export async function generateMetadata({params}){
  const [catalog,list]=await Promise.all([publishedSchoolCatalog(db).catch(()=>[]),publishedSchoolStageList(db,slug).catch(()=>[])]);
  const course=catalog.find(x=>x.slug===slug),lesson=list.find(x=>x.index===Number(raw)-1);
  if(!course||!lesson)return pageMetadata({title:'درس في مدرسة 967',path,noindex:true});
- return pageMetadata({title:lesson.title+' — '+course.title,description:lesson.subtitle||course.description,path});
+ return pageMetadata({title:lesson.title+' — '+course.title,description:lesson.subtitle||course.description,path,image:shareCardPath('course',slug,course.title,course.description)});
 }
 // Local-only preview of card lessons from data/school-v2/fixtures (never in production: needs SCHOOL_V2_FIXTURES=1).
 async function fixtureLesson(name){

@@ -23,8 +23,8 @@ test('every course and lesson has its own title and canonical address', () => {
     assert.match(source, /export async function generateMetadata\(\{params\}\)/);
     assert.doesNotMatch(source, /path:'\/school\/courses'\}\)/, 'no canonical pointing at /school/courses');
   }
-  assert.match(lesson, /pageMetadata\(\{title:lesson\.title\+' — '\+course\.title,description:lesson\.subtitle\|\|course\.description,path\}\)/);
-  assert.match(course, /pageMetadata\(\{title:course\.title\+' — مدرسة 967',description:course\.description,path\}\)/);
+  assert.match(lesson, /pageMetadata\(\{title:lesson\.title\+' — '\+course\.title,description:lesson\.subtitle\|\|course\.description,path,image:shareCardPath\('course',slug,/);
+  assert.match(course, /pageMetadata\(\{title:course\.title\+' — مدرسة 967',description:course\.description,path,image:shareCardPath\('course',slug,/);
   // The lesson page reads one lesson and the lesson list, not the whole course.
   assert.match(lesson, /publishedSchoolStageList\(db,slug\),fixture\?null:publishedSchoolStage\(db,slug,index\)/);
 });
