@@ -163,6 +163,7 @@ export default async function DistrictProfilePage({params}){
      <details className={base.districtDisclosure}><summary>عرض {formatNumber(siblings.length)} مديرية أخرى</summary><ul>{siblings.map(item=><li key={item.id}><Link href={districtPath(item.id)}>{nameOf(item)}</Link></li>)}</ul></details>
     </section>
     <Link className={base.figureLink} href={governorateHref}>الملف الكامل لمحافظة {govName}</Link>
+    <Link className={base.figureLink} href={'/yemen-map/compare?a='+encodeURIComponent(id)}>قارن مديرية {name} بمكان آخر</Link>
    </aside>
   </div>
  </div></KnowledgeTheme>;
