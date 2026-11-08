@@ -1,6 +1,7 @@
 node_modules/
 .next/
 .next-validation/
+.next-preview/
 .env.local
 .env.*.local
 .vercel/

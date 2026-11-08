@@ -349,12 +349,19 @@ npm run dev
 
 ### 10.2 بناء إنتاج محلي
 
+لتجربة الموقع كما سيعمل في الإنتاج، لكن على القاعدة المحلية فقط:
+
 ```powershell
 npm test
 npm run lint
-npm run build
-npm start
+npm run preview                 # يبني ثم يشغّل على http://localhost:3080
+npm run preview -- --no-build   # يعيد تشغيل آخر بناء دون بنائه من جديد
 ```
+
+- يقرأ `npm run preview` الملف `.env.development.local`، ويرفض العمل إن كان أي إعداد لـSupabase أو للقاعدة يشير إلى غير الجهاز المحلي.
+- يفرّغ كل قيمة أخرى في `.env.local` (مثل كلمة مرور حساب الإدارة)، فلا يصل البناء التجريبي إلى الإنتاج.
+- يبني في `.next-preview`، فلا يتعارض مع `npm run dev`.
+- `npm run build` و`npm start` بدون preview ما زالا يقرآن `.env.local` ويتصلان بالإنتاج؛ لا تستعملهما للتجربة.
 
 لا تشغّل `next dev` و`next build` على مجلد `.next` نفسه بالتوازي. إذا احتجت بناء تحقق منفصل أثناء بقاء التطوير مفتوحًا:
 
@@ -381,7 +388,10 @@ npm run dev
 ```
 
 - يقرأ `npm run dev` الملف `.env.development.local` قبل `.env.local`، فيتصل بالنسخة المحلية على `http://127.0.0.1:54321`. مفاتيح هذا الملف هي مفاتيح العرض الثابتة في Supabase CLI، وليست أسرارًا.
+- `npm run preview` يبني نسخة إنتاج على القاعدة المحلية (انظر 10.2).
 - `npm run build` و`npm start`، والسكربتات التي تقرأ `.env.local` مباشرة (مثل نشر دروس المدرسة)، تبقى متصلة بالإنتاج.
+- يمكن تسجيل الدخول في النسخة المحلية بحساب اختبار محلي، لأن الكتابة تذهب إلى القاعدة المحلية فقط.
+- `node scripts/local-test-account.mjs` ينشئ حسابين في القاعدة المحلية فقط: `editor@967.test` (دور الإدارة) و`member@967.test` (عضو عادي)، ويضع كلمتي المرور في `.env.test-accounts.local` (لا يُرفع إلى Git). أعد تشغيله بعد كل استرجاع للقاعدة المحلية.
 - يحتاج `restore-local-db.sh` الملف `.env.backup.local`، وفيه `B2_KEY_ID` و`B2_APPLICATION_KEY` و`BACKUP_ENCRYPTION_PASSPHRASE`. يكفي مفتاح Backblaze بصلاحية قراءة فقط. السكربت:
   - لا يتصل بالإنتاج أبدًا.
   - يستبدل بيانات `public` و`auth.users` و`auth.identities` المحلية.
@@ -455,13 +465,24 @@ npm run dev
 
 ### 13.1 سير التطوير
 
-المسار المفضل:
+يوجد فرعان دائمان:
+
+- `develop`: يُجمع فيه العمل ويُختبر. الدمج فيه لا ينشر شيئًا.
+- `main`: هو الموقع الحي. كل دمج فيه ينشر 967ye.com عبر Coolify.
+
+المسار:
 
 ```text
-فرع واضح → تعديل محدود → اختبارات محلية → Pull Request → مراجعة CI والبشر → دمج → نشر Coolify → فحص ما بعد النشر
+فرع من develop → تعديل → اختبارات + npm run preview على القاعدة المحلية → Pull Request إلى develop → CI → دمج
+… تتجمع التغييرات وتُختبر معًا على develop …
+الإطلاق: Pull Request من develop إلى main → CI → دمج → نشر Coolify → فحص ما بعد النشر
 ```
 
-- Pull Request إلى `main` يشغّل Workflow `pr-validation.yml`: `npm ci` ثم الاختبارات وLint والبناء.
+- يكون الإطلاق دفعة واحدة لعدة تغييرات، فيقلّ عدد إعادات تشغيل الموقع. كل نشر يفرّغ الذاكرة المؤقتة في الخادم ويعيد تحميل البيانات من Supabase.
+- بعد الإطلاق يجب أن يطابق `develop` الفرع `main` (ادمج `main` في `develop` إن اختلفا).
+- إصلاح عاجل للإنتاج: فرع من `main` → Pull Request إلى `main`، ثم ادمج `main` في `develop`.
+
+- Pull Request إلى `main` أو `develop` يشغّل Workflow `pr-validation.yml`: `npm ci` ثم الاختبارات وLint والبناء.
 - توجد Workflows إضافية لفحص الوضع الداكن وإعادة التصميم والاستجابة، وتعمل حسب المسارات أو التشغيل اليدوي المحدد داخل كل ملف.
 - Push إلى `main` لا يشغّل بالضرورة كل Workflow لكل ملف؛ افحص شروط `paths` بدل افتراض التغطية.
 - النشر التلقائي يتم عبر Coolify مع كل دفع إلى `main`، وليس Workflow في هذا المستودع. لذلك لا تدفع مباشرة إلى `main`، فكل دفع إليه ينشر الإنتاج.
