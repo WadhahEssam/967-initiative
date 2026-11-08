@@ -7,6 +7,7 @@ import {sectionGate} from '@/lib/pageVisibility';
 import {serverDb} from '@/lib/supabase-server';
 import {readGameCatalog} from '@/lib/gameRepository';
 import {officialQuizIdsToday} from '@/lib/dailyOfficialSeed';
+import {generatedPracticeQuestions} from '@/lib/generatedQuestionsServer';
 import {recordOperationalEvent} from '@/lib/operationalEvents';
 import {pageMetadata} from '@/lib/seo';
 import QuizGame from '@/components/games/QuizGame';
@@ -34,6 +35,8 @@ export default async function QuizPage({searchParams}){
  let practice=catalog.questions.filter(q=>q.isPublished);
  try{const official=new Set(await officialQuizIdsToday(null,date,catalog.questions));practice=practice.filter(q=>!official.has(q.id));}
  catch{recordOperationalEvent('source_unavailable',{source:'games',area:'quiz-daily'});}
+ // Free play also gets questions generated from the site's own data (40 a day, practice only).
+ if(mode==='practice')practice=[...practice,...await generatedPracticeQuestions(date).catch(()=>[])];
  return <div className={styles.root}>
   <ArcadeIntro compact description="أربع اختيارات. إجابة واحدة صحيحة. عشر محطات تفصلك عن نتيجة تستحق أن تفتخر بها.">
    <Link href="/games" className={styles.heroSecondary}><ArrowRight size={17}/> جميع الألعاب</Link>
