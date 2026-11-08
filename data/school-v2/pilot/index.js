@@ -129,6 +129,19 @@ import morse_code_09 from './morse-code/09.json';
 import morse_code_10 from './morse-code/10.json';
 import morse_code_11 from './morse-code/11.json';
 import morse_code_12 from './morse-code/12.json';
+import musnad_course from './musnad/course.json';
+import musnad_01 from './musnad/01.json';
+import musnad_02 from './musnad/02.json';
+import musnad_03 from './musnad/03.json';
+import musnad_04 from './musnad/04.json';
+import musnad_05 from './musnad/05.json';
+import musnad_06 from './musnad/06.json';
+import musnad_07 from './musnad/07.json';
+import musnad_08 from './musnad/08.json';
+import musnad_09 from './musnad/09.json';
+import musnad_10 from './musnad/10.json';
+import musnad_11 from './musnad/11.json';
+import musnad_12 from './musnad/12.json';
 import political_systems_course from './political-systems/course.json';
 import political_systems_01 from './political-systems/01.json';
 import political_systems_02 from './political-systems/02.json';
@@ -193,6 +206,7 @@ export const PILOT_COURSES = [
   {course: logical_thinking_course, lessons: [logical_thinking_01, logical_thinking_02, logical_thinking_03, logical_thinking_04, logical_thinking_05, logical_thinking_06, logical_thinking_07, logical_thinking_08, logical_thinking_09, logical_thinking_10, logical_thinking_11, logical_thinking_12]},
   {course: money_banks_inflation_course, lessons: [money_banks_inflation_01, money_banks_inflation_02, money_banks_inflation_03, money_banks_inflation_04, money_banks_inflation_05, money_banks_inflation_06, money_banks_inflation_07, money_banks_inflation_08, money_banks_inflation_09, money_banks_inflation_10, money_banks_inflation_11, money_banks_inflation_12]},
   {course: morse_code_course, lessons: [morse_code_01, morse_code_02, morse_code_03, morse_code_04, morse_code_05, morse_code_06, morse_code_07, morse_code_08, morse_code_09, morse_code_10, morse_code_11, morse_code_12]},
+  {course: musnad_course, lessons: [musnad_01, musnad_02, musnad_03, musnad_04, musnad_05, musnad_06, musnad_07, musnad_08, musnad_09, musnad_10, musnad_11, musnad_12]},
   {course: political_systems_course, lessons: [political_systems_01, political_systems_02, political_systems_03, political_systems_04, political_systems_05, political_systems_06, political_systems_07, political_systems_08, political_systems_09, political_systems_10, political_systems_11, political_systems_12]},
   {course: solar_system_course, lessons: [solar_system_01, solar_system_02, solar_system_03, solar_system_04, solar_system_05, solar_system_06, solar_system_07, solar_system_08, solar_system_09, solar_system_10, solar_system_11, solar_system_12]},
   {course: universe_mysteries_course, lessons: [universe_mysteries_01, universe_mysteries_02, universe_mysteries_03, universe_mysteries_04, universe_mysteries_05, universe_mysteries_06, universe_mysteries_07, universe_mysteries_08, universe_mysteries_09, universe_mysteries_10, universe_mysteries_11, universe_mysteries_12]},

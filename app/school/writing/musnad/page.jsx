@@ -1,11 +1,12 @@
 import Link from 'next/link';
-import {notFound} from 'next/navigation';
+import {notFound,redirect} from 'next/navigation';
 import {ChevronLeft,ExternalLink,GraduationCap,ScrollText} from 'lucide-react';
 import {getSiteSettings} from '@/lib/data';
 import {sectionIsVisible,sectionGate} from '@/lib/pageVisibility';
 import {pageMetadata} from '@/lib/seo';
 import {serverDb} from '@/lib/supabase-server';
 import {readPublicHistoryCatalog} from '@/lib/historyRepository';
+import {publishedSchoolStages} from '@/lib/schoolContentServer';
 import {musnadCrossLinks} from '@/lib/knowledgeConnections';
 import CrossSectionPaths from '@/components/knowledge/CrossSectionPaths';
 import {MUSNAD_SOURCE,MUSNAD_STAGES} from '@/lib/schoolMusnad';
@@ -16,8 +17,11 @@ export const metadata=pageMetadata({title:'خط المسند | مدرسة 967',d
 export default async function MusnadPage(){
  const settings=await getSiteSettings();
  if(!sectionGate('school',settings))notFound();
+ // Once the card lessons are published, the course lives on the shared journey map.
+ const db=serverDb();
+ if(db&&(await publishedSchoolStages(db,'musnad')).some(s=>s.format===2))redirect('/school/courses/musnad');
  const entries=sectionIsVisible('history',settings.pageVisibility)
-  ?await readPublicHistoryCatalog(serverDb()).then(result=>result.entries).catch(()=>[]):[];
+  ?await readPublicHistoryCatalog(db).then(result=>result.entries).catch(()=>[]):[];
  const crossLinks=musnadCrossLinks(entries,settings.pageVisibility);
  return <div className={styles.root}>
   <section className={styles.innerHero}><div className="container">

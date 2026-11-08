@@ -10,6 +10,7 @@ import {getSiteSettings} from '@/lib/data';
 import {sectionGate} from '@/lib/pageVisibility';
 import {publishedSchoolCatalog,publishedSchoolStages} from '@/lib/schoolContentServer';
 import {pageMetadata} from '@/lib/seo';
+import {SCHOOL_COURSE_TOOLS} from '@/lib/schoolCourseTools';
 import styles from '../../studio/studio.module.css';
 export const dynamic='force-dynamic';
 export const metadata=pageMetadata({title:'مسارات مدرسة 967',path:'/school/courses'});
@@ -23,10 +24,12 @@ async function fixtureCourse(name){
 const stageMeta=s=>({index:s.index,title:s.title,subtitle:s.subtitle||'',format:s.format===2?2:1,template:s.template||null,minutes:Number.isInteger(s.minutes)?s.minutes:null});
 export default async function CoursePage({params,searchParams}){
  const {slug}=await params,settings=await getSiteSettings(),db=serverDb();
- if(!sectionGate('school',settings)||!db||slug==='musnad')notFound();
+ if(!sectionGate('school',settings)||!db)notFound();
  const course=(await publishedSchoolCatalog(db)).find(x=>x.slug===slug);
  if(!course)notFound();
  const stages=await publishedSchoolStages(db,slug);
+ // Musnad still runs on its built-in pages until its card lessons are published.
+ if(slug==='musnad'&&!stages.some(s=>s.format===2))notFound();
  const back=course.category==='السياسة والاقتصاد'?'/school/civic':course.category==='الفلك والطبيعة'?'/school/nature':course.category==='المنطق والتفكير'?'/school/logic':'/school/writing';
  const preview=await fixtureCourse((await searchParams)?.fixture);
  const journey=stages.map(s=>{const f=preview?.lessons?.[s.index];return stageMeta(f?{...f.lesson,index:s.index}:s);});
@@ -34,6 +37,7 @@ export default async function CoursePage({params,searchParams}){
  if(preview||course.format===2||journey.some(s=>s.format===2))return <div className={styles.root}><section className={styles.workspace}><div className="container">
   <CourseJourney backHref={back} slug={slug} title={course.title} description={course.description} units={preview?.units||course.units} capstone={preview?.capstone??course.capstone}
    stages={journey} fixtures={preview?Object.fromEntries(Object.entries(preview.lessons).map(([i,f])=>[i,f.name])):null}/>
+  {SCHOOL_COURSE_TOOLS[slug]&&<nav className={styles.courseTools} aria-label="أدوات المسار"><h2>أدوات تساعدك</h2><div>{SCHOOL_COURSE_TOOLS[slug].map(t=><Link key={t.href} href={t.href}><strong>{t.title}</strong><span>{t.description}</span></Link>)}</div></nav>}
  </div></section></div>;
  return <div className={styles.root}><header className={styles.hero}><div className="container">
   <Link className={styles.back} href={course.category==='السياسة والاقتصاد'?'/school/civic':course.category==='الفلك والطبيعة'?'/school/nature':course.category==='المنطق والتفكير'?'/school/logic':'/school/writing'}><ArrowRight size={16}/> جميع المسارات</Link>

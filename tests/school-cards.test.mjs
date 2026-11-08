@@ -63,7 +63,8 @@ test('every interaction kind grades correctly', () => {
   g({kind: 'type', answer: ['صنعاء']}, ' صَنعاء ', 'عدن');
   g({kind: 'lab', lab: {kind: 'gates', gate: 'AND'}}, {kind: 'gates', visited: ['0:0', '0:1', '1:0', '1:1']}, true);
   assert.equal(gradeCard({kind: 'lab'}, true), false, 'lab without a known lab never passes');
-  assert.equal(TASK_KINDS.length, 12);
+  g({kind: 'compose', answer: ['m', 'l', 'sep', 'w']}, ['m', 'l', 'sep', 'w'], ['m', 'l', 'w']);
+  assert.equal(TASK_KINDS.length, 13);
 });
 
 test('stars and the score stay compatible with attempts (0..6) and the first-pass XP trigger (5–6)', () => {
@@ -71,4 +72,21 @@ test('stars and the score stay compatible with attempts (0..6) and the first-pas
   assert.equal(lessonResult(4, 5).stars, 2);
   assert.equal(lessonResult(1, 5).stars, 1);
   for (const n of [0, 1, 2, 3, 4, 5]) { const r = lessonResult(n, 5); assert.ok(r.score >= 5 && r.score <= 6 && r.passed); }
+});
+
+test('musnad compose: palette and answer are checked, "all" expands to the full keyboard, keys stay on the server', () => {
+  const card = task => ({id: 'hook', role: 'hook', visual: {kind: 'glyphs', letters: ['m', 'l'], alt: 'حرفا الميم واللام في المسند'}, task});
+  const withTask = task => { const l = lesson(); l.cards[0] = card(task); return l; };
+  const base = {kind: 'compose', prompt: 'اكتب هذا التسلسل بحروف المسند:', target: 'ميم ← لام', explain: 'الميم أولًا ثم اللام من اليمين.'};
+  const {lesson: pub, keys} = validateCardLesson(withTask({...base, palette: ['m', 'l', 'w'], answer: ['m', 'l']}));
+  assert.deepEqual(pub.cards[0].task.palette, ['m', 'l', 'w']);
+  assert.equal(pub.cards[0].task.labels, false, 'letter names are hidden unless the lesson asks for them');
+  assert.equal(validateCardLesson(withTask({...base, labels: true, palette: ['m', 'l'], answer: ['m', 'l']})).lesson.cards[0].task.labels, true);
+  assert.equal(pub.cards[0].task.answer, undefined, 'the answer never reaches the browser');
+  assert.deepEqual(keys.hook.answer, ['m', 'l']);
+  const all = validateCardLesson(withTask({...base, palette: 'all', answer: ['m', 'sep', 'zz']})).lesson.cards[0].task.palette;
+  assert.equal(all.length, 30); assert.equal(all.at(-1), 'sep');
+  assert.throws(() => validateCardLesson(withTask({...base, palette: ['m', 'x9'], answer: ['m']})), /palette/);
+  assert.throws(() => validateCardLesson(withTask({...base, palette: ['m', 'l'], answer: ['w']})), /answer/);
+  assert.throws(() => validateCardLesson(withTask({...base, palette: ['m', 'm'], answer: ['m']})), /palette/);
 });

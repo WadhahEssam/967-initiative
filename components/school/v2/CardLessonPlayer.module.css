@@ -93,3 +93,7 @@
 :global(:root[data-ed-theme="dark"]) .revealNote{color:#7fd3a8}
 @media (prefers-reduced-motion:reduce){.stage,.sheet{animation:none}.segments span{transition:none}}
 :global(:root[data-ed-theme="dark"]) .primary:not(:disabled),:global(:root[data-ed-theme="dark"]) .option[aria-checked="true"] .optionMark{color:#0f1c1a}
+
+/* Musnad letters can appear anywhere in a lesson (options, text, buttons). The site fonts have no glyphs
+   for them, so the Musnad web font (loaded on course pages) is appended as a fallback for those characters only. */
+.shell,.shell button,.shell input,.shell textarea{font-family:'IBM Plex Sans Arabic','Tahoma','Noto Sans Old South Arabian','Segoe UI Historic',sans-serif}
