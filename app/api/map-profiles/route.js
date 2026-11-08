@@ -7,6 +7,7 @@ export async function GET(){
  const headers={'Cache-Control':'no-store'};
  const gate=sectionStatus('atlas',await getSiteSettings());
  if(gate!=='visible')return Response.json({error:gate==='hidden'?'القسم غير متاح حاليًا.':'تعذر التحقق من إتاحة القسم مؤقتًا. حاول بعد قليل.'},{status:gate==='hidden'?404:503,headers});
- try{return Response.json({profiles:await readPublicMapProfiles(publicDb())},{headers});}
+ // About 1.2 MB: let the browser reuse it for 5 minutes instead of downloading it on every map visit.
+ try{return Response.json({profiles:await readPublicMapProfiles(publicDb())},{headers:{'Cache-Control':'private, max-age=300'}});}
  catch{return Response.json({error:'تعذر تحميل معلومات الأماكن الموسعة. حاول مجددًا.'},{status:503,headers});}
 }

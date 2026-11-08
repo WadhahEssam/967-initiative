@@ -13,6 +13,20 @@ import {messageBadgeCount,messageBadgeLabel} from '@/lib/messageBadge';
 import NotificationBell from './notifications/NotificationBell';
 import {advanceMessageAlert,playMessageChime} from '@/lib/messageSound';
 
+// Whether the signed-in account may edit, remembered for this browser tab for 10 minutes.
+const EDITOR_FLAG_KEY = '967:can-edit';
+const EDITOR_FLAG_MS = 10 * 60 * 1000;
+function readEditorFlag(userId) {
+  try {
+    const saved = JSON.parse(window.sessionStorage.getItem(EDITOR_FLAG_KEY) || 'null');
+    if (saved?.userId === userId && typeof saved.canEdit === 'boolean' && Date.now() - saved.at < EDITOR_FLAG_MS) return saved.canEdit;
+  } catch {}
+  return null;
+}
+function writeEditorFlag(userId, canEdit) {
+  try { window.sessionStorage.setItem(EDITOR_FLAG_KEY, JSON.stringify({userId, canEdit, at: Date.now()})); } catch {}
+}
+
 // Masthead: one row on wide screens, a menu sheet below 1100px.
 // Sections come from lib/navigation.js, shared with the footer and home doors.
 export default function Header({actionLabel = 'ساهم معنا', contentLinks = []}) {
@@ -72,6 +86,10 @@ export default function Header({actionLabel = 'ساهم معنا', contentLinks 
       setSessionUserId(session?.user?.id || null);
       setCanEdit(false);
       if (!session?.user) return;
+      // The edit link only decides what the menu shows (every editing API checks the role on the
+      // server), so a recent answer is reused instead of querying the editors table on every page.
+      const cached = readEditorFlag(session.user.id);
+      if (cached !== null) { setCanEdit(cached); return; }
       // Run database calls after Supabase has released its auth event lock.
       const timer = window.setTimeout(async () => {
         timers.delete(timer);
@@ -84,7 +102,9 @@ export default function Header({actionLabel = 'ساهم معنا', contentLinks 
             data = legacy.data ? {...legacy.data, role: 'admin'} : null;
             error = legacy.error;
           }
-          if (active && currentRequest === requestId) setCanEdit(!error && Boolean(data) && ['admin', 'management'].includes(data.role));
+          const allowed = !error && Boolean(data) && ['admin', 'management'].includes(data.role);
+          if (!error) writeEditorFlag(session.user.id, allowed);
+          if (active && currentRequest === requestId) setCanEdit(allowed);
         } catch {
           if (active && currentRequest === requestId) setCanEdit(false);
         }

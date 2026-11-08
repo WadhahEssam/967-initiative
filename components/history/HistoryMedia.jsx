@@ -10,13 +10,13 @@ export default function HistoryMedia({entry,variant='gallery'}){
  if(variant==='thumbnail'){
   const photo=pictures[0];
   return <div className={styles.thumbnail}>
-   <Image unoptimized src={historyPhotoSource(photo)} alt={photo.alt||photo.caption||entry.title} width={480} height={300} loading="lazy"/>
+   <Image unoptimized src={historyPhotoSource(photo,480)} alt={photo.alt||photo.caption||entry.title} width={480} height={300} loading="lazy"/>
    <span className={styles.thumbLabel}>{photo.kind==='direct'?'صورة للموقع':'صورة سياقية'}</span>
   </div>;
  }
  if(variant==='spotlight'){
   const photo=pictures[0];
-  return <figure className={styles.spotlight}><Image unoptimized src={historyPhotoSource(photo)} alt={photo.alt||photo.caption||entry.title} width={600} height={360} loading="lazy"/><figcaption>صورة سياقية · <a href={historyPhotoPage(photo)} target="_blank" rel="noopener noreferrer">المصدر</a></figcaption></figure>;
+  return <figure className={styles.spotlight}><Image unoptimized src={historyPhotoSource(photo,800)} alt={photo.alt||photo.caption||entry.title} width={600} height={360} loading="lazy"/><figcaption>صورة سياقية · <a href={historyPhotoPage(photo)} target="_blank" rel="noopener noreferrer">المصدر</a></figcaption></figure>;
  }
  return <section className={styles.gallery} aria-label={'صور ووثائق مرتبطة بموضوع '+entry.title}>
   <div className={styles.heading}><Images size={20}/><h2>صور من المكان والسياق التاريخي</h2></div>
