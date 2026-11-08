@@ -80,7 +80,7 @@ test('phase 8: arud and musnad are regular card courses; stale attempts of the o
   assert.match(arudStage, /if\(!sectionGate\('school',settings\)\)notFound\(\);[^]*permanentRedirect\('\/school\/courses\/arud\/'\+raw\);/);
   // The course page lists only card lessons and hides a course until its card lessons are published.
   const coursePage = read('app/school/courses/[slug]/page.jsx');
-  assert.match(coursePage, /const stages=\(await publishedSchoolStages\(db,slug\)\)\.filter\(s=>s\.format===2\);/);
+  assert.match(coursePage, /const stages=\(await publishedSchoolStageList\(db,slug\)\)\.filter\(s=>s\.format===2\);/);
   assert.match(coursePage, /if\(!stages\.length&&!preview\)notFound\(\);/);
   assert.doesNotMatch(read('app/school/courses/[slug]/[stage]/page.jsx'), /slug==='musnad'/);
 });

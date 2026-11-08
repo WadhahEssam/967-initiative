@@ -3,6 +3,7 @@ import {useEffect,useRef,useState} from 'react';
 import Link from 'next/link';
 import {browserDb} from '@/lib/supabase';
 import {dailyGameUrl} from '@/lib/dailyGame';
+import {createAccountWatch,shouldReloadOnAuth} from '@/lib/authEvents';
 import styles from './DailyAttempt.module.css';
 import DailyCountdown from './DailyCountdown';
 
@@ -14,12 +15,13 @@ export default function useDailyAttempt(mode,game,date){
  useEffect(()=>{
   if(mode!=='daily'){setState({kind:'free',message:''});return;}
   let alive=true;
-  const db=browserDb();
+  const db=browserDb(),account=createAccountWatch();
   if(!db){setState({kind:'error',message:'خدمة الحسابات غير مفعّلة. تحدي اليوم غير متاح حالياً.'});return;}
   const read=async()=>{
    if(alive)setState({kind:'loading',message:''});
    try{
     const {data,error}=await db.auth.getSession();
+    account.seen(error?null:data?.session);
     if(error||!data?.session){if(alive)setState({kind:'login',message:''});return;}
     const res=await fetch('/api/games/daily',{headers:{Authorization:'Bearer '+data.session.access_token},cache:'no-store'});
     const json=await res.json();
@@ -35,7 +37,8 @@ export default function useDailyAttempt(mode,game,date){
   // Never call Supabase auth methods synchronously inside onAuthStateChange:
   // that event can hold an auth lock; defer follow-up reads to the next tick.
   let authTimer=null;
-  const {data:{subscription}}=db.auth.onAuthStateChange(()=>{
+  const {data:{subscription}}=db.auth.onAuthStateChange((event,session)=>{
+   if(!shouldReloadOnAuth(account,event,session))return;
    clearTimeout(authTimer);
    authTimer=setTimeout(()=>{if(alive&&!pending.current)read();},0);
   });

@@ -2,7 +2,7 @@ name: Phase 5 responsive browser smoke
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, develop]
     paths:
       - 'components/Header.jsx'
       - 'components/Footer.jsx'

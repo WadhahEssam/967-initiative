@@ -3,6 +3,7 @@ import {createContext,useCallback,useContext,useEffect,useMemo,useRef,useState} 
 import dynamic from 'next/dynamic';
 import {usePathname} from 'next/navigation';
 import useSessionDb from '@/components/useSessionDb';
+import {readEditorFlag,writeEditorFlag} from '@/components/editorFlag';
 
 const Runtime=dynamic(()=>import('./InlineEditorRuntime'),{ssr:false});
 const noop=()=>{};
@@ -24,16 +25,31 @@ export default function InlineEditorProvider({children}){
  useEffect(()=>{
   if(!db)return;
   let live=true;const timers=new Set(),epoch=generation;
+  // Opening a page triggers two checks at once (the initial session and the auth event); they
+  // share one request. Each check costs the server a Supabase Auth call and an editors query.
+  let shared=null;
+  const checkSession=session=>{
+   if(shared&&shared.userId===session.user.id&&Date.now()-shared.at<3000)return shared.promise;
+   const promise=fetch('/api/admin/inline?view=session',{headers:{Authorization:'Bearer '+session.access_token},cache:'no-store',signal:AbortSignal.timeout(15000)})
+    .then(async response=>({ok:response.ok,status:response.status,data:response.ok?await response.json():null}));
+   shared={userId:session.user.id,at:Date.now(),promise};
+   promise.catch(()=>{if(shared?.promise===promise)shared=null;});
+   return promise;
+  };
   const verify=async session=>{
    const current=++generation.current;
    if(!session){owner.current=null;clear();return;}
    if(owner.current!==session.user.id){clear('');owner.current=session.user.id;}
+   // Most signed-in visitors are not editors: once the server has said so, stop asking every
+   // minute for 10 minutes (the header shares this answer).
+   if(!actorRef.current&&readEditorFlag(session.user.id)===false)return;
    try{
-    const response=await fetch('/api/admin/inline?view=session',{headers:{Authorization:'Bearer '+session.access_token},cache:'no-store',signal:AbortSignal.timeout(15000)});
-    if(!response.ok){if([401,403].includes(response.status)){if(live&&current===generation.current)clear(actorRef.current?'لم تعد جلسة التحرير أو صلاحياتها متاحة. أُزيلت أدوات الإدارة.':'');return;}throw Error('Unavailable');}
-    const data=await response.json();
+    const response=await checkSession(session);
+    if(!response.ok){if(response.status===403)writeEditorFlag(session.user.id,false);if([401,403].includes(response.status)){if(live&&current===generation.current)clear(actorRef.current?'لم تعد جلسة التحرير أو صلاحياتها متاحة. أُزيلت أدوات الإدارة.':'');return;}throw Error('Unavailable');}
+    const data=response.data;
     if(!live||current!==generation.current||owner.current!==session.user.id)return;
     if(data.actor?.id!==session.user.id||!['admin','management'].includes(data.actor.role)){clear('تعذر تأكيد هوية المحرر. أُزيلت أدوات الإدارة.');return;}
+    writeEditorFlag(session.user.id,true);
     const previous=actorRef.current;actorRef.current=data.actor;setActor(data.actor);setPermissionNotice('');
     if(previous?.id!==data.actor.id){let value=false;try{value=localStorage.getItem(preference(data.actor.id))==='1';}catch{}setEnabledState(value);}
    }catch{if(live&&current===generation.current){if(actorRef.current?.id===session.user.id)setPermissionNotice('تعذر تحديث صلاحيات التحرير مؤقتاً. بقيت مسودتك محفوظة؛ تحقق من الاتصال قبل الحفظ.');else clear();}}

@@ -2,6 +2,7 @@
 // مدرسة 967 — مراجعة اليوم: 5 بطاقات من دروس أنهيتها، محاولة واحدة لكل بطاقة ثم الشرح. لا نقاط ولا أثر على التقدم.
 import {useCallback, useEffect, useState} from 'react';
 import {createPortal} from 'react-dom';
+import useFullScreenDialog from './useFullScreenDialog';
 import Link from 'next/link';
 import {X, Check, RotateCcw, CalendarCheck2} from 'lucide-react';
 import {browserDb} from '@/lib/supabase';
@@ -78,34 +79,34 @@ function Review() {
   const primary = fb ? {label: index === items.length - 1 ? 'أنهِ المراجعة' : 'التالية', action: next, enabled: true}
     : {label: 'تحقق', action: check, enabled: !busy && taskReady(item.card.task, values[key])};
   return <div className={styles.shell} dir="rtl">
-    <header className={styles.top}>
+    <div className={styles.top}>
       <Link href="/school" className={styles.iconButton} aria-label="إغلاق المراجعة"><X size={22} aria-hidden="true"/></Link>
       <div className={styles.segments} role="progressbar" aria-label="تقدم المراجعة" aria-valuemin={0} aria-valuemax={items.length} aria-valuenow={index + 1}>
         {items.map((it, i) => <span key={i} data-state={i < index || results[it.slug + ':' + it.stage + ':' + it.cardId] ? 'done' : i === index ? 'current' : undefined}/>)}
       </div>
       <span className={styles.iconSpacer}/>
-    </header>
-    <main className={styles.stage} key={key}>
+    </div>
+    <section className={styles.stage} key={key} aria-label={'السؤال ' + (index + 1) + ' من ' + items.length}>
       <span className={styles.tag}>{REASON[item.reason] || 'مراجعة'} · {item.lessonTitle}</span>
       {item.card.title && <h1 className={styles.cardTitle}>{item.card.title}</h1>}
       <CardVisual visual={item.card.visual} task={item.card.task} value={values[key]}/>
       <CardTask task={item.card.task} value={values[key]} onChange={v => setValues(s => ({...s, [key]: v}))} locked={Boolean(fb || busy)} feedback={fb}/>
       {error && <p className={styles.error} role="alert">{error}</p>}
-    </main>
+    </section>
     {fb && <section className={styles.sheet} data-tone={fb.correct ? 'right' : 'reveal'} role="status" aria-live="polite">
       <strong>{fb.correct ? <><Check size={22} aria-hidden="true"/> أحسنت، ثبّتّها!</> : <><RotateCcw size={20} aria-hidden="true"/> هذه الإجابة الصحيحة</>}</strong>
       {fb.explain && <p>{fb.explain}</p>}
       {!fb.correct && item.again && <p>ستعود إليك هذه البطاقة بعد {item.again} {item.again === 1 ? 'يوم' : 'أيام'}.</p>}
     </section>}
-    <footer className={styles.bottom}>
+    <div className={styles.bottom}>
       <button type="button" className={styles.primary} disabled={!primary.enabled} onClick={primary.action}>{busy ? '…' : primary.label}</button>
-    </footer>
+    </div>
   </div>;
 }
 
+// Full-screen modal dialog, like the lesson player (useFullScreenDialog).
 export default function ReviewPlayer() {
-  const [host, setHost] = useState(null);
-  useEffect(() => setHost(document.body), []);
+  const host = useFullScreenDialog('مراجعة اليوم');
   if (!host) return <div className={styles.shell}><p className={styles.center}>جارٍ تحضير مراجعة اليوم…</p></div>;
   return createPortal(<Review/>, host);
 }

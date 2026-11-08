@@ -85,7 +85,7 @@ test('department pages, editor and migration link to the existing learning syste
  assert.ok(index.includes('<SchoolWorldMap/>'));
  assert.ok(read('components/school/SchoolWorldMap.jsx').includes("href:'/school/civic'"));
  assert.match(department,/publishedSchoolCatalog/);
- assert.match(department,/publishedSchoolStages/);
+ assert.match(department,/publishedSchoolStageList/);
  assert.match(guide,/CivicLab/);
  assert.match(editor,/CIVIC_LABS/);
  assert.match(migration,/on conflict \(slug\) do nothing/i);

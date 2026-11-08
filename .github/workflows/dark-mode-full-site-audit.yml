@@ -2,7 +2,7 @@ name: Whole-site dark theme browser audit
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, develop]
     paths:
       - 'scripts/audit-dark-all-pages.mjs'
       - '.github/workflows/dark-mode-full-site-audit.yml'

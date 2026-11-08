@@ -9,7 +9,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const remotePatterns = imageRemotePatterns(process.env.NEXT_PUBLIC_SUPABASE_URL);
 
 const nextConfig = {
-  distDir: process.env.NEXT_TEAM_PREVIEW === '1' ? '.audit-tools/team-preview' : process.env.NEXT_PHASE4_PREVIEW === '1' ? '.audit-tools/phase4-preview' : process.env.NEXT_PRELAUNCH_DEBATES === '1' ? '.audit-tools/prelaunch-debates' : process.env.NEXT_TASK_PREVIEW === '1' ? '.audit-tools/task-preview' : process.env.NEXT_VALIDATION_BUILD === '1' ? '.next-validation' : '.next',
+  distDir: process.env.NEXT_PREVIEW_LOCAL === '1' ? '.next-preview' : process.env.NEXT_TEAM_PREVIEW === '1' ? '.audit-tools/team-preview' : process.env.NEXT_PHASE4_PREVIEW === '1' ? '.audit-tools/phase4-preview' : process.env.NEXT_PRELAUNCH_DEBATES === '1' ? '.audit-tools/prelaunch-debates' : process.env.NEXT_TASK_PREVIEW === '1' ? '.audit-tools/task-preview' : process.env.NEXT_VALIDATION_BUILD === '1' ? '.next-validation' : '.next',
   reactStrictMode: true,
   poweredByHeader: false,
   // Extend the installed Next.js defaults, since assigning this option replaces

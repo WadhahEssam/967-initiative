@@ -4,6 +4,7 @@ import Link from 'next/link';
 import {ArrowUpLeft,CalendarDays,CheckCircle2,Compass,Crosshair,Crown,Flame,Flag,Gem,LockKeyhole,Map,Medal,RefreshCw,ScrollText,Shapes,Shield,ShieldCheck,Star,Target,Trophy,UsersRound} from 'lucide-react';
 import {browserDb} from '@/lib/supabase';
 import {GAME_ACHIEVEMENTS} from '@/lib/gameAchievements';
+import {createAccountWatch,shouldReloadOnAuth} from '@/lib/authEvents';
 import styles from './GameAchievementGallery.module.css';
 
 const icons={flag:Flag,compass:Compass,shield:Shield,crown:Crown,target:Target,star:Star,
@@ -47,13 +48,14 @@ export default function GameAchievementGallery({preview=false}){
  const [retry,setRetry]=useState(0);
 
  useEffect(()=>{
-  const db=browserDb();
+  const db=browserDb(),account=createAccountWatch();
   let alive=true,sequence=0,authTimer=null;
   if(!db){setState('unavailable');return;}
   async function load(){
    const id=++sequence;
    try{
     const {data:auth,error}=await db.auth.getSession();
+    account.seen(error?null:auth?.session);
     if(!alive||id!==sequence)return;
     if(error)throw Error('Could not read login');
     const token=auth?.session?.access_token;
@@ -73,7 +75,9 @@ export default function GameAchievementGallery({preview=false}){
   }
   load();
   // Avoid reading the auth client inside the synchronous auth-state callback.
-  const {data:{subscription}}=db.auth.onAuthStateChange(()=>{
+  // Reload when the account changes, not on the initial event, token refreshes or a same-account SIGNED_IN.
+  const {data:{subscription}}=db.auth.onAuthStateChange((event,session)=>{
+   if(!shouldReloadOnAuth(account,event,session))return;
    clearTimeout(authTimer);
    authTimer=setTimeout(()=>{if(alive)load();},0);
   });
