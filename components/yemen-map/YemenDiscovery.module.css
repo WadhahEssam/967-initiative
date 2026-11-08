@@ -81,3 +81,6 @@
 @media(max-width:1020px){.governorateGrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:680px){.governorateGrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.governorateGrid a{min-height:44px;padding:6px 8px;gap:6px}.governorateGrid a strong{font-size:13px}.governorateNumber{width:22px;height:22px}}
 @media(max-width:360px){.governorateGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.compareLink{display:inline-flex;align-items:center;min-height:42px;padding:6px 14px;border:1px solid var(--c-accent);border-radius:999px;color:var(--c-accent);font-size:14px;font-weight:600;white-space:nowrap}
+.compareLink:hover{background:var(--c-accent-soft)}

@@ -16,6 +16,7 @@
     "data:figures": "node --env-file=.env.local scripts/seed-yemeni-figures.mjs"
   },
   "dependencies": {
+    "@resvg/resvg-wasm": "^2.6.2",
     "@supabase/supabase-js": "^2.57.0",
     "lucide-react": "^0.468.0",
     "next": "^15.5.28",

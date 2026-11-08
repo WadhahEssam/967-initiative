@@ -55,6 +55,7 @@ export default function YemenDiscovery({showFigures=true, initialGovernorateId =
       <div className={styles.catalogToolbar}>
         <label className={styles.catalogSearch}><Search size={19} aria-hidden="true"/><span className="sr-only">ابحث عن محافظة</span><input type="search" placeholder="ابحث عن محافظة بالاسم..." value={governorateSearch} onChange={event=>setGovernorateSearch(event.target.value)} aria-label="بحث في محافظات اليمن"/>{governorateSearch&&<button type="button" aria-label="مسح بحث المحافظات" onClick={()=>setGovernorateSearch('')}><X size={16}/></button>}</label>
         <span role="status">{visibleGovernorates.length} من أصل {yemenGovernorates.length} محافظة</span>
+        <a className={styles.compareLink} href="/yemen-map/compare">قارن بين محافظتين أو مديريتين</a>
       </div>
       {visibleGovernorates.length?
       <div className={styles.governorateGrid}>{visibleGovernorates.map(item=><a key={item.id} href={'/yemen-map/governorates/'+item.id}><span className={styles.governorateNumber} aria-hidden="true">{String(yemenGovernorates.indexOf(item)+1).padStart(2,'0')}</span><strong>{item.name}</strong><ArrowUpLeft size={14} aria-hidden="true"/></a>)}</div>:

@@ -15,6 +15,7 @@ import {getMapBoundaries,readPublicMapProfiles} from '@/lib/mapProfileRepository
 import {yemenGovernorates} from '@/lib/yemeniFigures';
 import {governorateHeritageSources,governorateProfileSections,isGovernorateId} from '@/lib/governorateEditorial';
 import {pageMetadata} from '@/lib/seo';
+import {shareCardPath} from '@/lib/shareCard';
 import {displayPlaceName,districtPath} from '@/lib/districtPages';
 import {formatNumber} from '@/lib/format';
 import styles from './GovernorateProfile.module.css';
@@ -30,6 +31,7 @@ export async function generateMetadata({params}) {
     title:item.name+' | خريطة اليمن',
     description:'ملف موسع عن محافظة '+item.name+' يشمل التاريخ والجغرافيا والاقتصاد والمعالم والمديريات، ضمن أطلس مبادرة 967.',
     path:'/yemen-map/governorates/'+id,
+    image:shareCardPath('governorate',id,item.name),
   });
 }
 
@@ -102,6 +104,7 @@ export default async function GovernorateProfilePage({params}){
           <p>لكل مديرية صفحة بملفها الكامل، وفق حدود الخريطة الإدارية في 967.</p>
           <details className={styles.districtDisclosure}><summary>عرض {formatNumber(districts.length)} مديرية</summary><ul>{districts.map(d=><li key={d.id}><Link href={districtPath(d.id)}>{displayPlaceName(d.nameAr,[profiles[d.id]?.description,profiles[d.id]?.history])}</Link></li>)}</ul></details>
         </section>
+        <Link className={styles.figureLink} href={'/yemen-map/compare?a='+encodeURIComponent(id)}>قارن محافظة {heading} بمكان آخر</Link>
         {sectionIsVisible('figures',settings.pageVisibility)&&<Link className={styles.figureLink} href={'/yemeni-figures?region='+encodeURIComponent(id)}>تصفح الشخصيات المرتبطة بمحافظة {heading}</Link>}
       </aside>
     </div>

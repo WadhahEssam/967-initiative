@@ -29,6 +29,7 @@ import InlineTarget from '@/components/inline/InlineTarget';
 import CorrectionLink from '@/components/CorrectionLink';
 import {relatedProjections} from '@/lib/relatedContent';
 import {readPublicHistoryCatalog} from '@/lib/historyRepository';
+import {shareCardPath} from '@/lib/shareCard';
 import {serverDb} from '@/lib/supabase-server';
 import {figureCrossLinks} from '@/lib/knowledgeConnections';
 import CrossSectionPaths from '@/components/knowledge/CrossSectionPaths';
@@ -58,7 +59,7 @@ export async function generateMetadata({params}) {
 
   const title = `${figure.fullName} | شخصيات يمنية`;
   const description = toLatinDigits(figure.shortBio || figure.knownFor);
-  return pageMetadata({title, description, path:detailPath('yemeni-figures', figure.slug), noindex:figure.isDemo, image:hasFigureImageProvenance(figure,figure.profile?.gallery?.find(photo=>photo.url===figure.imageUrl))?figure.imageUrl:null, type:'profile'});
+  return pageMetadata({title, description, path:detailPath('yemeni-figures', figure.slug), noindex:figure.isDemo, image:shareCardPath('figure',figure.slug,figure.fullName,figure.knownFor,figure.shortBio,figure.birthYear,figure.deathYear), type:'profile'});
 }
 
 function ProfileFact({icon: Icon, label, value, ltr = false}) {

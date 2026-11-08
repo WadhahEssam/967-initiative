@@ -1,3 +1,4 @@
+import {shareCardPath} from '@/lib/shareCard';
 import ContextBackLink from '@/components/ContextBackLink';
 import Image from 'next/image';
 import Link from '@/components/SiteLink';
@@ -46,7 +47,7 @@ export async function generateMetadata({params}) {
     description: company.summary,
     path:detailPath('yemeni-products', company.id),
     noindex:company.isDemo,
-    image:company.imageUrl,
+    image:shareCardPath('company',company.id,company.name,company.summary,company.productDetails?.length),
   });
 }
 
