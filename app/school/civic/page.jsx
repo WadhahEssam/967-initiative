@@ -7,7 +7,7 @@ import {pageMetadata} from '@/lib/seo';
 import {civicCrossLinks} from '@/lib/knowledgeConnections';
 import CrossSectionPaths from '@/components/knowledge/CrossSectionPaths';
 import {serverDb} from '@/lib/supabase-server';
-import {publishedSchoolCatalog,publishedSchoolStages} from '@/lib/schoolContentServer';
+import {publishedSchoolCatalog,publishedSchoolStageList} from '@/lib/schoolContentServer';
 import school from '../school.module.css';
 import styles from './civic.module.css';
 import SchoolTrackTrail from '@/components/school/SchoolTrackTrail';
@@ -25,7 +25,7 @@ export default async function SchoolCivicPage(){
  const db=serverDb(),courses=db?await publishedSchoolCatalog(db):[];
  const tracks=await Promise.all(TRACKS.map(async t=>{
   const course=courses.find(c=>c.slug===t.slug&&c.category==='السياسة والاقتصاد');
-  return course?{...t,course,count:(await publishedSchoolStages(db,t.slug)).length}:null;
+  return course?{...t,course,count:(await publishedSchoolStageList(db,t.slug)).length}:null;
  }));
  return <div className={school.root}>
   <header className={styles.hero}><div className="container">

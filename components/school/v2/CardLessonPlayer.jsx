@@ -4,6 +4,7 @@
 // الزائر: الدرس الأول فقط، يُصحح في المتصفح ويُحفظ محليًا، بلا نقاط.
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {createPortal} from 'react-dom';
+import useFullScreenDialog from './useFullScreenDialog';
 import Link from 'next/link';
 import {X, Lightbulb, Check, RotateCcw, Star, ArrowLeft} from 'lucide-react';
 import {browserDb} from '@/lib/supabase';
@@ -163,15 +164,15 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
       <p>أنشئ حسابًا لتحفظ تقدمك وتجمع النقاط وتتابع بقية الدروس.</p>
       <Link className={styles.primary} href={'/register?next=' + encodeURIComponent(mapHref)}>أنشئ حسابًا مجانًا</Link>
     </section>}
-    <footer className={styles.doneActions}>
+    <div className={styles.doneActions}>
       {preview && <button type="button" className={styles.primary} onClick={onClose}>{closeLabel}</button>}
       {!preview && hasNext && !result.guest && <Link className={styles.primary} href={'/school/courses/' + slug + '/' + (stageIndex + 2)}>الدرس التالي <ArrowLeft size={18} aria-hidden="true"/></Link>}
       {!preview && <Link className={styles.secondary} href={mapHref}>العودة إلى خريطة المسار</Link>}
-    </footer>
+    </div>
   </div>;
 
   return <div className={styles.shell} dir="rtl" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-    <header className={styles.top}>
+    <div className={styles.top}>
       {preview
         ? <button type="button" className={styles.iconButton} style={{border: 0, background: 'transparent', cursor: 'pointer'}} aria-label="إغلاق المعاينة" onClick={onClose}><X size={22} aria-hidden="true"/></button>
         : <Link href={mapHref} className={styles.iconButton} aria-label={'إغلاق الدرس والعودة إلى ' + courseTitle}><X size={22} aria-hidden="true"/></Link>}
@@ -179,9 +180,9 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
         {cards.map((c, i) => <span key={c.id} data-state={i < index || progress[c.id]?.done ? 'done' : i === index ? 'current' : undefined}/>)}
       </div>
       {card?.task?.hint && !cardDone ? <button type="button" className={styles.hintButton} aria-pressed={hint} aria-label="تلميح" onClick={() => setHint(v => !v)}><Lightbulb size={20} aria-hidden="true"/></button> : <span className={styles.iconSpacer}/>}
-    </header>
+    </div>
 
-    <main className={styles.stage} key={card.id}>
+    <section className={styles.stage} key={card.id} aria-label={'البطاقة ' + (index + 1) + ' من ' + cards.length}>
       {card.role === 'hook' && <span className={styles.tag}>تحدٍّ</span>}
       {card.title && <h1 className={styles.cardTitle}>{card.title}</h1>}
       {card.text && <p className={styles.cardText}>{card.text}</p>}
@@ -189,7 +190,7 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
       <CardTask task={card.task} value={values[card.id]} onChange={v => setValues(s => ({...s, [card.id]: v}))} locked={Boolean(cardDone || (fb && !fb.correct && !fb.done) || busy)} feedback={fb}/>
       {hint && card.task?.hint && !cardDone && <p className={styles.hint} role="note"><Lightbulb size={16} aria-hidden="true"/> {card.task.hint}</p>}
       {error && <p className={styles.error} role="alert">{error}</p>}
-    </main>
+    </section>
 
     {fb && <section className={styles.sheet} data-tone={fb.correct ? 'right' : fb.done ? 'reveal' : 'wrong'} role="status" aria-live="polite">
       <strong>{fb.correct ? <><Check size={22} aria-hidden="true"/> أحسنت!</> : fb.done ? 'لا بأس، هذه الإجابة الصحيحة' : <><RotateCcw size={20} aria-hidden="true"/> ليست هذه. فكّر مرة أخرى</>}</strong>
@@ -197,16 +198,16 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
       {!fb.correct && !fb.done && card.task?.hint && <p>تلميح: {card.task.hint}</p>}
     </section>}
 
-    <footer className={styles.bottom}>
+    <div className={styles.bottom}>
       <button type="button" className={styles.primary} disabled={!primary?.enabled} onClick={() => primary?.action()}>{busy ? '…' : primary?.label}</button>
-    </footer>
+    </div>
   </div>;
 }
 
 // يُرسم المشغّل داخل body مباشرة: عنصر main في الموقع يعزل الطبقات (isolation)، فيبقى الرأس فوق أي طبقة ثابتة داخله.
+// المشغّل نافذة حوارية تملأ الشاشة (useFullScreenDialog): ما خلفه من الموقع يصبح inert ما دام مفتوحًا.
 export default function CardLessonPlayer(props) {
-  const [host, setHost] = useState(null);
-  useEffect(() => setHost(document.body), []);
+  const host = useFullScreenDialog(props.lesson?.title ? 'درس: ' + props.lesson.title : 'درس');
   if (!host) return <div className={styles.shell}><p className={styles.center}>جارٍ تحضير الدرس…</p></div>;
   return createPortal(<Player {...props}/>, host);
 }

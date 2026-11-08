@@ -5,7 +5,7 @@ import {getSiteSettings} from '@/lib/data';
 import {sectionGate} from '@/lib/pageVisibility';
 import {pageMetadata} from '@/lib/seo';
 import {serverDb} from '@/lib/supabase-server';
-import {publishedSchoolCatalog,publishedSchoolStages} from '@/lib/schoolContentServer';
+import {publishedSchoolCatalog,publishedSchoolStageList} from '@/lib/schoolContentServer';
 import styles from '../school.module.css';
 import SchoolTrackTrail from '@/components/school/SchoolTrackTrail';
 export const dynamic='force-dynamic';
@@ -23,7 +23,7 @@ export default async function SchoolNaturePage(){
  const tracks=await Promise.all(TRACKS.map(async track=>{
   const course=courses.find(c=>c.slug===track.slug);
   if(!course||course.category!=='الفلك والطبيعة')return null;
-  const stages=await publishedSchoolStages(db,track.slug);
+  const stages=await publishedSchoolStageList(db,track.slug);
   return {...track,course,stageCount:stages.length};
  }));
  return <div className={styles.root}>

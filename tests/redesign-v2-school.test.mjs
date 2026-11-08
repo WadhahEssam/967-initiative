@@ -10,7 +10,17 @@ const read = path => readFileSync(new URL('../' + path, import.meta.url), 'utf8'
 test('card lesson player: segmented progress, pinned action bar and reduced motion', () => {
   const player = read('components/school/v2/CardLessonPlayer.jsx');
   assert.ok(player.includes('role="progressbar" aria-label="تقدم الدرس" aria-valuemin={0} aria-valuemax={cards.length} aria-valuenow={index + 1}'));
-  assert.ok(player.includes('<footer className={styles.bottom}>'));
+  assert.ok(player.includes('<div className={styles.bottom}>'));
+  // A modal dialog: the site behind the full-screen player is inert while it is open.
+  const dialog = read('components/school/v2/useFullScreenDialog.js');
+  assert.ok(dialog.includes("dialog.setAttribute('aria-modal', 'true');"));
+  assert.ok(dialog.includes('behind.forEach(node => { node.inert = true; });'));
+  assert.ok(dialog.includes('return () => { behind.forEach(node => { node.inert = false; }); dialog.remove(); };'));
+  for (const file of ['components/school/v2/CardLessonPlayer.jsx', 'components/school/v2/ReviewPlayer.jsx']) {
+    const source = read(file);
+    assert.match(source, /const host = useFullScreenDialog\(/, file);
+    assert.doesNotMatch(source, /<main |<header |<footer /, file + ': no second main/banner/contentinfo inside the dialog');
+  }
   const css = read('components/school/v2/CardLessonPlayer.module.css');
   assert.ok(css.includes('.shell{position:fixed;inset:0'));
   assert.ok(css.includes('env(safe-area-inset-bottom)'));

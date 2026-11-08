@@ -10,12 +10,18 @@ import {sectionGate,sectionIsVisible} from '@/lib/pageVisibility';
 import {readPublicHistoryCatalog} from '@/lib/historyRepository';
 import {musnadCrossLinks} from '@/lib/knowledgeConnections';
 import CrossSectionPaths from '@/components/knowledge/CrossSectionPaths';
-import {publishedSchoolCatalog,publishedSchoolStages} from '@/lib/schoolContentServer';
+import {publishedSchoolCatalog,publishedSchoolStageList} from '@/lib/schoolContentServer';
 import {pageMetadata} from '@/lib/seo';
 import {SCHOOL_COURSE_TOOLS,SCHOOL_COURSE_SOURCES} from '@/lib/schoolCourseTools';
 import styles from '../../studio/studio.module.css';
 export const dynamic='force-dynamic';
-export const metadata=pageMetadata({title:'مسارات مدرسة 967',path:'/school/courses'});
+// Each course has its own title, description and canonical address.
+export async function generateMetadata({params}){
+ const {slug}=await params,db=serverDb(),path='/school/courses/'+slug;
+ const course=db?(await publishedSchoolCatalog(db).catch(()=>[])).find(x=>x.slug===slug):null;
+ if(!course)return pageMetadata({title:'مسار في مدرسة 967',path,noindex:true});
+ return pageMetadata({title:course.title+' — مدرسة 967',description:course.description,path});
+}
 // Local-only preview of a card course (needs SCHOOL_V2_FIXTURES=1): units plus fixture lessons for the first stages.
 async function fixtureCourse(name){
  if(process.env.SCHOOL_V2_FIXTURES!=='1'||!/^course-[a-z0-9-]{3,60}$/.test(name||''))return null;
@@ -30,7 +36,7 @@ export default async function CoursePage({params,searchParams}){
  const course=(await publishedSchoolCatalog(db)).find(x=>x.slug===slug);
  if(!course)notFound();
  // Every course is a card course now (phase 8): only card lessons are listed and playable.
- const stages=(await publishedSchoolStages(db,slug)).filter(s=>s.format===2);
+ const stages=(await publishedSchoolStageList(db,slug)).filter(s=>s.format===2);
  const preview=await fixtureCourse((await searchParams)?.fixture);
  if(!stages.length&&!preview)notFound();
  const back=course.category==='السياسة والاقتصاد'?'/school/civic':course.category==='الفلك والطبيعة'?'/school/nature':course.category==='المنطق والتفكير'?'/school/logic':'/school/writing';
