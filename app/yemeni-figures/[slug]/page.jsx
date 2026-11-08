@@ -27,7 +27,7 @@ import FigureDossier from '@/components/FigureDossier';
 import InlineTarget from '@/components/inline/InlineTarget';
 import CorrectionLink from '@/components/CorrectionLink';
 import {relatedProjections} from '@/lib/relatedContent';
-import {readHistoryCatalog} from '@/lib/historyRepository';
+import {readPublicHistoryCatalog} from '@/lib/historyRepository';
 import {serverDb} from '@/lib/supabase-server';
 import {figureCrossLinks} from '@/lib/knowledgeConnections';
 import CrossSectionPaths from '@/components/knowledge/CrossSectionPaths';
@@ -73,7 +73,7 @@ export default async function YemeniFigureProfilePage({params}) {
   if (!figure || !sectionGate('figures',settings)) notFound();
 
   const historyEntries=sectionIsVisible('history',settings.pageVisibility)
-    ?await readHistoryCatalog(serverDb()).then(result=>result.entries).catch(()=>[]):[];
+    ?await readPublicHistoryCatalog(serverDb()).then(result=>result.entries).catch(()=>[]):[];
   const crossLinks=figureCrossLinks(figure,{visibility:settings.pageVisibility,historyEntries,figures});
   const links = socialLinks(figure);
   const hasDossier=figure.profile&&['sections','facts','timeline','works','gallery','notes'].some(key=>figure.profile[key]?.length);

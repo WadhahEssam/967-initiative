@@ -7,7 +7,7 @@ import {getSiteSettings,getYemeniFigures} from '@/lib/data';
 import {sectionIsVisible,sectionGate} from '@/lib/pageVisibility';
 import {publicDb} from '@/lib/supabase';
 import {serverDb} from '@/lib/supabase-server';
-import {readHistoryCatalog} from '@/lib/historyRepository';
+import {readPublicHistoryCatalog} from '@/lib/historyRepository';
 import {relatedProjections} from '@/lib/relatedContent';
 import {governorateCrossLinks} from '@/lib/knowledgeConnections';
 import CrossSectionPaths from '@/components/knowledge/CrossSectionPaths';
@@ -51,7 +51,7 @@ export default async function GovernorateProfilePage({params}){
   const districts=boundaries.districts.filter(item=>item.governorateId===id);
   const [historical,people]=await Promise.all([
    sectionIsVisible('history',settings.pageVisibility)
-    ?readHistoryCatalog(serverDb()).then(result=>result.entries).catch(()=>[]):Promise.resolve([]),
+    ?readPublicHistoryCatalog(serverDb()).then(result=>result.entries).catch(()=>[]):Promise.resolve([]),
    sectionIsVisible('figures',settings.pageVisibility)
     ?getYemeniFigures(relatedProjections.figures).catch(()=>[]):Promise.resolve([])
   ]);
