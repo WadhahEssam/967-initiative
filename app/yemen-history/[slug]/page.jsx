@@ -7,6 +7,7 @@ import {getSiteSettings,getYemeniFigures} from '@/lib/data';
 import {sectionIsVisible,sectionGate} from '@/lib/pageVisibility';
 import {serverDb} from '@/lib/supabase-server';
 import {readPublicHistoryCatalog} from '@/lib/historyRepository';
+import {shareCardPath} from '@/lib/shareCard';
 import {relatedProjections} from '@/lib/relatedContent';
 import {historyCrossLinks} from '@/lib/knowledgeConnections';
 import CrossSectionPaths from '@/components/knowledge/CrossSectionPaths';
@@ -28,7 +29,7 @@ export async function generateMetadata({params}){
  if(!sectionIsVisible('history',settings.pageVisibility))return {};
  const catalog=await readPublicHistoryCatalog(serverDb());
  const entry=catalog.entries.find(e=>e.slug===slug&&e.isPublished!==false);
- return entry?pageMetadata({title:entry.title+' | تاريخ اليمن',description:entry.summary,path:historyEntryPath(entry.slug)}):{};
+ return entry?pageMetadata({title:entry.title+' | تاريخ اليمن',description:entry.summary,path:historyEntryPath(entry.slug),image:shareCardPath('history',entry.slug,entry.title,entry.summary,entry.period,entry.year)}):{};
 }
 export default async function YemenHistoryDetail({params}){
  const {slug}=await params;

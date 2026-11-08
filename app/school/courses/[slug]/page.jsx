@@ -1,3 +1,4 @@
+import {shareCardPath} from '@/lib/shareCard';
 import Link from 'next/link';
 import {notFound} from 'next/navigation';
 import {ExternalLink} from 'lucide-react';
@@ -20,7 +21,7 @@ export async function generateMetadata({params}){
  const {slug}=await params,db=serverDb(),path='/school/courses/'+slug;
  const course=db?(await publishedSchoolCatalog(db).catch(()=>[])).find(x=>x.slug===slug):null;
  if(!course)return pageMetadata({title:'مسار في مدرسة 967',path,noindex:true});
- return pageMetadata({title:course.title+' — مدرسة 967',description:course.description,path});
+ return pageMetadata({title:course.title+' — مدرسة 967',description:course.description,path,image:shareCardPath('course',slug,course.title,course.description)});
 }
 // Local-only preview of a card course (needs SCHOOL_V2_FIXTURES=1): units plus fixture lessons for the first stages.
 async function fixtureCourse(name){
