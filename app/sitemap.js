@@ -17,6 +17,7 @@ import {collectPublicSources} from '@/lib/publicSourceCollection';
 import {recordOperationalEvent} from '@/lib/operationalEvents';
 import {readPublicHistoryCatalog} from '@/lib/historyRepository';
 import {serverDb} from '@/lib/supabase-server';
+import {getMapBoundaries} from '@/lib/mapProfileRepository';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,5 +30,7 @@ export default async function sitemap() {
   // لا تُنشر خريطة موقع ناقصة حين تتعذر قراءة إعدادات الأقسام: الفشل المؤقت (5xx) يجعل محركات البحث تعود لاحقًا.
   if(settings.pageVisibilityUnavailable)throw new Error('Section settings unavailable; refusing to publish an incomplete sitemap.');
   let history=[];try{history=(await readPublicHistoryCatalog(serverDb())).entries;}catch{recordOperationalEvent('source_unavailable',{source:'pages',area:'sitemap'});}
-  return buildSitemap({...data,history,pageVisibility:settings.pageVisibility});
+  // Governorate and district pages come from the boundary file shipped with the site.
+  let places=[];try{const boundaries=await getMapBoundaries();places=[...boundaries.governorates.map(item=>'/yemen-map/governorates/'+item.id),...boundaries.districts.map(item=>'/yemen-map/districts/'+item.id)];}catch{recordOperationalEvent('source_unavailable',{source:'places',area:'sitemap'});}
+  return buildSitemap({...data,history,places,pageVisibility:settings.pageVisibility});
 }
