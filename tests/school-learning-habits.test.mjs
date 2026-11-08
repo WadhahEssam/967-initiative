@@ -48,16 +48,16 @@ test('review builds explanations only from finished graded submissions',()=>{
  const record={course_slug:'arud',stage_index:0,status:'failed',questions,submission:[bad,...answers.slice(1)]};
  const review=schoolMistakeReview([{...record,status:'active'},record]);
  assert.equal(review.length,1);
- assert.equal(review[0].href,'/school/writing/arud/1');
+ assert.equal(review[0].href,'/school/courses/arud/1');
  assert.ok(review[0].explanation.length>0);
  assert.ok(review[0].answer);
  assert.equal(schoolMistakeReview([{...record,status:'passed',submission:answers},record]).length,0,'later correction removes a mistake');
 });
 test('draft API is authenticated, restricted to active attempts, and protected against stale writes',()=>{
- const musnad=read('app/api/school/musnad/route.js');
- const arud=read('app/api/school/arud/route.js');
+ // The Musnad and Arud routes are retired; drafts of every course are saved through the shared custom route.
+ const custom=read('app/api/school/custom/route.js');
  const server=read('lib/schoolDraftServer.js');
- for(const source of [musnad,arud]){assert.ok(source.includes("body.action==='save'"));assert.ok(source.includes('isSameOrigin(request)'));assert.ok(source.includes('schoolUser(request,db)'));}
+ for(const source of [custom]){assert.ok(source.includes("body.action==='save'"));assert.ok(source.includes('isSameOrigin(request)'));assert.ok(source.includes('schoolUser(request,db)'));}
  assert.ok(server.includes(".eq('user_id',user.id)"));
  assert.ok(server.includes(".eq('status','active').lt('draft_version',revision)"));
  assert.ok(server.includes('validateSchoolDraft(row.questions,draft)'));

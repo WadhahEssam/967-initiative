@@ -84,7 +84,7 @@ export default function MusnadWritingStudio(){
     <div className={styles.writingLetters} role="group" aria-label="اختيار حرف المسند">
       {MUSNAD_ALPHABET.map((c,i)=><button key={c.id} type="button" aria-label={'الحرف '+c.name} aria-pressed={i===selected} className={i===selected?styles.writingLetterActive:styles.writingLetter} onClick={()=>setSelected(i)}><span lang="und">{c.glyph}</span><small>{c.name}</small></button>)}
     </div>
-    <Link className={styles.writingBack} href="/school/writing/musnad">العودة لمراحل المسند <ArrowLeft size={17}/></Link>
+    <Link className={styles.writingBack} href="/school/courses/musnad">العودة إلى دروس المسند <ArrowLeft size={17}/></Link>
   </aside>
   </div>
  </div></section>;

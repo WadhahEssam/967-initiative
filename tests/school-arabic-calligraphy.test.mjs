@@ -78,16 +78,14 @@ test('typed Arabic is diacritic/whitespace tolerant but strict about the answer'
 });
 test('real hand-drawing pad is explicitly ungraded, accessible with touch and export',()=>{
  const ui=read('components/school/CalligraphyPracticePad.jsx');
- const lesson=read('components/school/GenericSchoolLesson.jsx');
+ // The v1 lesson players were retired; the pad now appears as a card visual of the card player.
  assert.ok(ui.includes('onPointerDown={start}'));
  assert.ok(ui.includes('onPointerMove={move}'));
  assert.ok(ui.includes("output.toDataURL('image/png')"));
  assert.ok(ui.includes('لا تُحتسب جودة الرسم ضمن درجة الاختبار'));
- assert.ok(lesson.includes('SchoolGuidedLesson'));
- assert.ok(read('components/school/SchoolGuidedLesson.jsx').includes('CalligraphyPracticePad'));
- assert.ok(lesson.includes("task.kind==='order'"));
- assert.ok(lesson.includes("task.kind==='type'"));
- assert.ok(lesson.includes('draft.save({answers:all,selection:null})'));
+ const visual=read('components/school/v2/CardVisual.jsx');
+ assert.ok(visual.includes("import CalligraphyPracticePad from '../CalligraphyPracticePad';"));
+ assert.ok(visual.includes("case 'pad': return")&&visual.includes('<CalligraphyPracticePad practice={{model: visual.model'));
  assert.ok(read('lib/schoolGenericServer.js').includes('gradeSchoolChoice(attempt.questions,answers)'));
 });
 test('migration seeds the full course in private published studio tables without editing historic progress',()=>{

@@ -80,12 +80,6 @@ test('every introductory theory question shows a concrete example without giving
  const legacy=allIds.map(id=>({...snapshot[0],id,example:undefined}));
  const recovered=publicArudQuestions(legacy);
  assert.ok(recovered.every(q=>typeof q.example==='string'&&q.example.length>=30),'older open attempts receive examples');
- const lesson=read('components/school/ArudLesson.jsx');
- assert.ok(lesson.includes('task.example&&<aside className={styles.questionExample}'));
- assert.ok(lesson.includes('مثال يساعدك على الفهم'));
- const style=read('app/school/writing/arud/arud.module.css');
- assert.ok(style.includes('.questionExample'));
- assert.ok(style.includes('@media(max-width:540px)'));
 });
 
 test('movement, rest and syllable exercises use interactive sequences, not answer-disclosing choices',()=>{
@@ -130,12 +124,13 @@ test('server grading requires 5 out of 6, handles incomplete attempts, and refus
 });
 
 test('Arud API uses the same verified account and staff preview rules without mixing course records',()=>{
- const api=read('app/api/school/arud/route.js');
+ // The Arud route is retired; card lessons of every course (Arud included) go through the shared custom route.
+ const api=read('app/api/school/custom/route.js');
  const server=read('lib/schoolArudServer.js');
  const migration=read('supabase/migrations/20261029141931_school_arud_course_enable.sql');
  assert.ok(api.includes('schoolUser(request,db)'));
  assert.ok(api.includes('isSameOrigin(request)'));
- assert.ok(api.includes("readJsonObject(request,14500)"));
+ assert.ok(api.includes("readJsonObject(request,8500)"));
  assert.ok(server.includes("const COURSE='arud'"));
  assert.ok(server.includes(".eq('course_slug',COURSE)"));
  assert.ok(server.includes('schoolStaffPreview(db,user)'));
@@ -153,26 +148,20 @@ test('Arud API uses the same verified account and staff preview rules without mi
 test('Arud is independent, searchable, responsive, keyboard-accessible and respects school visibility',()=>{
  const catalog=read('app/school/writing/page.jsx');
  const course=read('app/school/writing/arud/page.jsx');
- const lesson=read('components/school/ArudLesson.jsx');
- const journey=read('components/school/ArudJourney.jsx');
- const css=read('app/school/writing/arud/arud.module.css');
  const footer=read('components/Footer.jsx'); // footer-only school links stay in Footer.jsx extras
- assert.ok(catalog.includes("href:'/school/writing/arud'"));
+ assert.ok(catalog.includes("href:'/school/courses/arud'"));
  assert.ok(catalog.includes('<SchoolTrackTrail'));
- assert.ok(footer.includes("['/school/writing/arud', 'تعلم علم العروض']"));
- assert.ok(searchPages.some(p=>p.href==='/school/writing/arud'));
- assert.ok(course.includes("sectionGate('school'"));
- assert.ok(lesson.includes("aria-pressed={selection===i}"));
- assert.ok(lesson.includes('aria-label="حذف آخر رمز"'));
- assert.ok(lesson.includes('styles.patternKeys'));
- assert.ok(journey.includes('progress?.staffPreview'));
- assert.ok(css.includes('@media(max-width:540px)'));
- assert.ok(css.includes('@media(prefers-reduced-motion:reduce)'));
+ assert.ok(footer.includes("['/school/courses/arud', 'تعلم علم العروض']"));
+ assert.ok(searchPages.some(p=>p.href==='/school/courses/arud'));
+ // The old address redirects to the card course only after the school visibility gate.
+ assert.ok(course.includes("if(!sectionGate('school',settings))notFound();"));
+ assert.ok(course.indexOf("sectionGate('school'")<course.indexOf("permanentRedirect('/school/courses/arud')"));
  assert.equal(sectionIsVisible('school',{school:false}),false);
  assert.equal(pageIsVisible('/school/writing/arud/4',{school:false}),false);
+ assert.equal(pageIsVisible('/school/courses/arud/4',{school:false}),false);
  assert.equal(pageIsVisible('/school/writing/musnad',{school:false}),false);
  assert.equal(pageIsVisible('/games',{school:false}),true);
- for(const text of [catalog,course,lesson,journey])assert.equal(/[\u0660-\u0669\u06F0-\u06F9]/u.test(text),false);
+ for(const text of [catalog,course])assert.equal(/[\u0660-\u0669\u06F0-\u06F9]/u.test(text),false);
 });
 
 test('authentic verse stages use server-graded complete feet and four correctly attributed meters',()=>{
@@ -192,11 +181,9 @@ test('authentic verse stages use server-graded complete feet and four correctly 
  assert.ok(meters.every(q=>q.target?.length>15&&q.attribution&&q.kind==='choice'));
  assert.ok(publicArudQuestions(meters).every(q=>!Object.hasOwn(q,'answer')));
  const page=read('app/school/writing/arud/[stage]/page.jsx');
- assert.ok(page.includes('arudStage(Number(raw)-1)'),'numeric route is resolved through the curriculum');
  assert.ok(page.includes('1[0-2]'),'the route includes the final three stations');
- const lesson=read('components/school/ArudLesson.jsx');
- assert.ok(lesson.includes('selection.length===task.steps'));
- assert.ok(lesson.includes('styles.footKeys'));
+ assert.ok(page.includes("permanentRedirect('/school/courses/arud/'+raw)"),'old station addresses open the same card lesson');
+ assert.ok(read('app/school/courses/[slug]/[stage]/page.jsx').includes('index=Number(raw)-1'),'numeric route is resolved to the zero-based stage');
  const migration=read('supabase/migrations/20261029124719_school_musnad_full_alphabet_stages.sql');
  assert.ok(migration.includes('stage_index between 0 and 11'),'current database constraint supports stages 0 through 5');
 });

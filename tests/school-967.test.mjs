@@ -74,7 +74,7 @@ test('server grading requires 5/6 and rejects malformed answers and mismatched q
 });
 
 test('composition questions show only Musnad glyphs and never leak names or semantic IDs during assessment',()=>{
- const view=read('components/school/SchoolLesson.jsx');
+ const view=read('components/school/v2/CardInteractions.jsx');
  const server=read('lib/schoolMusnadQuestions.js');
  const styles=read('app/school/school.module.css');
  let seen=0;
@@ -100,11 +100,10 @@ test('composition questions show only Musnad glyphs and never leak names or sema
   }
  }
  assert.ok(seen>6,'composition questions should be covered across different stages');
- assert.ok(view.includes('task.options.map((o,index)=>'));
- assert.ok(view.includes('task.options[index]?.glyph'));
- assert.ok(!view.includes('<small>{o.name}</small>'));
- assert.ok(!view.includes("aria-label={'إضافة حرف '+o.name}"));
- assert.ok(view.includes("aria-label={'اختيار رمز المسند رقم '"));
+ // Card compose task: keys show glyphs only; names appear (also to screen readers) only when the card sets labels.
+ assert.ok(view.includes("aria-label={task.labels || id === 'sep' ? 'أضف ' + MUSNAD_KEYS[id].name : 'الرمز ' + (i + 1)}"));
+ assert.ok(view.includes("{(task.labels || id === 'sep') && <small>{MUSNAD_KEYS[id].name}</small>}"));
+ assert.ok(view.includes("const said = task.labels ? line.map(id => MUSNAD_KEYS[id]?.name).join('، ') : line.length + ' رموز';"));
  assert.ok(server.includes("['compose','sentence'].includes(q.kind)?q.options.map(({glyph})=>({glyph})):q.options"));
  assert.ok(styles.includes('Composition tests show only Musnad symbols'));
 });
@@ -128,13 +127,15 @@ test('composition grade rejects forged tile positions but accepts sessions opene
 });
 
 test('the school API grades on the server and private tables deny browser access',()=>{
- const api=read('app/api/school/musnad/route.js');
+ // The Musnad route is retired; card lessons of every course go through the shared custom route.
+ const api=read('app/api/school/custom/route.js');
  const server=read('lib/schoolServer.js');
  const sql=read('supabase/migrations/20261029122247_school_967_musnad_attempts.sql');
  const extension=read('supabase/migrations/20261029124719_school_musnad_full_alphabet_stages.sql');
  assert.ok(api.includes('schoolUser(request,db)'));
  assert.ok(api.includes('isSameOrigin(request)'));
- assert.ok(api.includes("readJsonObject(request,14500)"));
+ assert.ok(api.includes("readJsonObject(request,8500)"));
+ assert.ok(api.includes('checkGenericCard(db,user,body.slug,body.attemptId,body.cardId,body.answer)'));
  assert.ok(server.includes('gradeSchoolQuestions(row.questions,answers)'));
  assert.ok(server.includes("eq('user_id',user.id)"));
  assert.ok(server.includes("eq('status','active')"));
@@ -142,16 +143,18 @@ test('the school API grades on the server and private tables deny browser access
  assert.ok(!api.includes('SUPABASE_SERVICE_ROLE_KEY'));
  assert.ok(sql.includes('enable row level security'));
  assert.ok(extension.includes('stage_index between 0 and 11'));
- assert.ok(api.includes('body.stage>=MUSNAD_STAGES.length'));
  assert.ok(sql.includes('revoke all on table public.school_stage_attempts from public, anon, authenticated'));
  assert.ok(sql.includes('grant select,insert,update,delete on table public.school_stage_attempts to service_role'));
 });
 
 test('the advanced course offers verified museum inscriptions without presenting fabricated texts as originals',()=>{
- const course=read('app/school/writing/musnad/page.jsx');
- assert.ok(course.includes('https://www.britishmuseum.org/collection/object/W_1862-1028-9'));
- assert.ok(course.includes('https://doi.org/10.82194/dasi-epi-1085'));
- assert.ok(course.includes('لا ندّعي أن التمارين المركبة'));
+ const sources=read('lib/schoolCourseTools.js'),course=read('app/school/courses/[slug]/page.jsx');
+ assert.ok(sources.includes('https://www.britishmuseum.org/collection/object/W_1862-1028-9'));
+ assert.ok(sources.includes('https://doi.org/10.82194/dasi-epi-1085'));
+ assert.ok(sources.includes('تمارين الدروس مُنشأة للتعلّم وليست منقولة منها'));
+ assert.ok(course.includes('sources=SCHOOL_COURSE_SOURCES[slug]'));
+ assert.ok(course.includes('<p className={styles.courseToolsNote}>{sources.note}</p>'));
+ assert.ok(course.includes('target="_blank" rel="noopener noreferrer"'));
  const quiz=read('lib/schoolMusnadQuestions.js');
  assert.ok(quiz.includes('تدريب مُنشأ وليس نقشًا أثريًا'));
 });
@@ -159,25 +162,29 @@ test('the advanced course offers verified museum inscriptions without presenting
 test('School 967 is a distinct searchable, visible site section and responsive classroom',()=>{
  const header=read('lib/navigation.js'),footer=read('components/Footer.jsx');
  const home=read('app/page.jsx'),css=read('app/school/school.module.css');
- const board=read('components/school/SchoolLesson.jsx'),journey=read('components/school/SchoolJourney.jsx');
+ const course=read('app/school/courses/[slug]/page.jsx');
  assert.ok(publicSections.some(x=>x.id==='school'&&x.path==='/school'));
  assert.equal(sectionIsVisible('school',{school:false}),false);
  assert.equal(pageIsVisible('/school/writing/musnad',{school:false}),false);
+ assert.equal(pageIsVisible('/school/courses/musnad',{school:false}),false);
  assert.equal(pageIsVisible('/games',{school:false}),true);
  assert.ok(header.includes("id: 'school', label: 'مدرسة 967'"));
  assert.ok(header.includes('standalone: true'));
  assert.ok(footer.includes('<FooterGroup key={section.id} title={section.label}>'));
  assert.ok(home.includes("{visible('school')&&<section"));
- assert.ok(searchPages.some(x=>x.href==='/school/writing/musnad'));
+ assert.ok(searchPages.some(x=>x.href==='/school/courses/musnad'));
  assert.ok(css.includes('@media(max-width:760px)')&&css.includes('@media(max-width:550px)'));
  assert.ok(css.includes('prefers-reduced-motion:reduce'));
- assert.ok(board.includes('stage.letters.map(({glyph,name,latin})'));
- assert.ok(board.includes("href=\"/login\""));
- assert.ok(journey.includes('record?.locked'));
- assert.ok(journey.includes('MUSNAD_CHAPTERS.map'));
- assert.ok(read('app/school/writing/musnad/[stage]/page.jsx').includes('/^[1-9][0-9]*$/'));
+ // The course is a card course on the shared journey; old addresses redirect only after the visibility gate.
+ assert.ok(course.includes("if(!sectionGate('school',settings)||!db)notFound();"));
+ assert.ok(course.includes('<CourseJourney '));
+ const oldCourse=read('app/school/writing/musnad/page.jsx'),oldStage=read('app/school/writing/musnad/[stage]/page.jsx');
+ assert.ok(oldCourse.indexOf("if(!sectionGate('school',settings))notFound();")<oldCourse.indexOf("permanentRedirect('/school/courses/musnad')"));
+ assert.ok(oldCourse.includes("if(!sectionGate('school',settings))notFound();"));
+ assert.ok(oldStage.includes('/^(?:[1-9]|1[0-2])$/'));
+ assert.ok(oldStage.indexOf("if(!sectionGate('school',settings))notFound();")>0&&oldStage.indexOf("if(!sectionGate('school',settings))notFound();")<oldStage.indexOf("permanentRedirect('/school/courses/musnad/'+raw)"));
  assert.ok(read('components/school/MusnadWritingStudio.jsx').includes('onPointerDown={down}'));
  assert.ok(read('app/school/writing/musnad/alphabet/page.jsx').includes('MUSNAD_ALPHABET.map'));
  assert.ok(searchPages.some(x=>x.href==='/school/writing/musnad/practice'));
- for(const content of [header,home,board,journey])assert.equal(/[\u0660-\u0669\u06F0-\u06F9]/u.test(content),false);
+ for(const content of [header,home,course])assert.equal(/[\u0660-\u0669\u06F0-\u06F9]/u.test(content),false);
 });

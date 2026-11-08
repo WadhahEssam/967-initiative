@@ -55,7 +55,7 @@ test('clear() forces a full fetch; saving from the editor clears the public cach
   assert.deepEqual(db.calls,['key,value,updated_at','key,value,updated_at']);
   const source=readFileSync(new URL('../lib/historyRepository.js',import.meta.url),'utf8');
   assert.match(source,/invalidatePublicHistoryCatalog\(\);\r?\n return \{entries:mergeHistoryCatalog/);
-  for(const page of ['app/yemen-history/page.jsx','app/yemen-history/[slug]/page.jsx','app/yemeni-figures/[slug]/page.jsx','app/yemen-map/governorates/[id]/page.jsx','app/school/writing/musnad/page.jsx','app/sitemap.js','lib/searchData.js']){
+  for(const page of ['app/yemen-history/page.jsx','app/yemen-history/[slug]/page.jsx','app/yemeni-figures/[slug]/page.jsx','app/yemen-map/governorates/[id]/page.jsx','app/school/courses/[slug]/page.jsx','app/sitemap.js','lib/searchData.js']){
     const text=readFileSync(new URL('../'+page,import.meta.url),'utf8');
     assert.ok(text.includes('readPublicHistoryCatalog')&&!/\breadHistoryCatalog\b/.test(text),page+' must use the cached public reader');
   }

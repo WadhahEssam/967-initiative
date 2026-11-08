@@ -57,7 +57,8 @@ test('units text: one line per unit, stage numbers 1–12', () => {
 
 test('publishing a card lesson skips the six-question bank; preview never calls the server or saves', () => {
   const server = read('lib/schoolContentServer.js'), player = read('components/school/v2/CardLessonPlayer.jsx'), studio = read('components/school/SchoolStudio.jsx');
-  assert.match(server, /if\(current\.draft\?\.format!==2\)\{/);
+  // Since phase 8 only card lessons are playable, so an old-format stage cannot be published at all.
+  assert.match(server, /if\(current\.draft\?\.format!==2\)error\('انشر المحطة بصيغة البطاقات/);
   assert.match(player, /if \(preview\) \{ setProgress\(\{\}\); setIndex\(0\); setMode\('playing'\); return; \}/);
   assert.match(player, /if \(!preview\) writeLocal\(/);
   assert.match(studio, /form\.format===2&&<CardLessonEditor/);
@@ -70,13 +71,16 @@ test('phase 8: arud and musnad are regular card courses; stale attempts of the o
   const arud = read('app/school/writing/arud/page.jsx'), arudStage = read('app/school/writing/arud/[stage]/page.jsx');
   assert.match(content, /SCHOOL_FIXED_SLUGS=\[\];/);
   const musnad = read('app/school/writing/musnad/page.jsx'), musnadStage = read('app/school/writing/musnad/[stage]/page.jsx');
-  assert.match(musnad, /\.some\(s=>s\.format===2\)\)redirect\('\/school\/courses\/musnad'\)/);
-  assert.match(musnadStage, /if\(overlay\?\.format===2\)redirect\('\/school\/courses\/musnad\/'\+raw\);/);
+  // The old v1 addresses permanently redirect to the card course, after the school visibility gate.
+  assert.match(musnad, /if\(!sectionGate\('school',settings\)\)notFound\(\);\s*permanentRedirect\('\/school\/courses\/musnad'\);/);
+  assert.match(musnadStage, /if\(!sectionGate\('school',settings\)\)notFound\(\);[^]*permanentRedirect\('\/school\/courses\/musnad\/'\+raw\);/);
   assert.match(generic, /const sameFormat=isCardSnapshot\(current\.questions\)===\(activeStage\.format===2\);/);
   assert.match(generic, /if\(sameFormat&&Date\.now\(\)-Date\.parse\(current\.created_at\)<3600000\)return publicAttempt\(current\);/);
-  assert.match(arud, /\.some\(s=>s\.format===2\)\)redirect\('\/school\/courses\/arud'\)/);
-  assert.match(arudStage, /if\(overlay\?\.format===2\)redirect\('\/school\/courses\/arud\/'\+raw\);/);
-  // The course page hides musnad only until its card lessons are published.
-  assert.match(read('app/school/courses/[slug]/page.jsx'), /if\(slug==='musnad'&&!stages\.some\(s=>s\.format===2\)\)notFound\(\);/);
+  assert.match(arud, /if\(!sectionGate\('school',settings\)\)notFound\(\);\s*permanentRedirect\('\/school\/courses\/arud'\);/);
+  assert.match(arudStage, /if\(!sectionGate\('school',settings\)\)notFound\(\);[^]*permanentRedirect\('\/school\/courses\/arud\/'\+raw\);/);
+  // The course page lists only card lessons and hides a course until its card lessons are published.
+  const coursePage = read('app/school/courses/[slug]/page.jsx');
+  assert.match(coursePage, /const stages=\(await publishedSchoolStages\(db,slug\)\)\.filter\(s=>s\.format===2\);/);
+  assert.match(coursePage, /if\(!stages\.length&&!preview\)notFound\(\);/);
   assert.doesNotMatch(read('app/school/courses/[slug]/[stage]/page.jsx'), /slug==='musnad'/);
 });

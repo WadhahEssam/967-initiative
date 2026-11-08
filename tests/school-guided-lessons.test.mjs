@@ -36,23 +36,6 @@ test('bad instructional content is rejected in School Studio rather than silentl
  assert.throws(()=>validateSchoolEditorial('stage',{...stage,lessons:stage.lessons.map((x,i)=>i===0?{...x,example:''}:x)}));
  assert.doesNotThrow(()=>validateSchoolEditorial('stage',{title:'المحطة الأولى',subtitle:'',intro:'مقدمة تعليمية واضحة في مجال آخر.',tips:[]}));
 });
-test('UI follows overview -> teaching slides -> freehand workshop -> quiz',()=>{
- const guided=read('components/school/SchoolGuidedLesson.jsx');
- const lesson=read('components/school/GenericSchoolLesson.jsx');
- assert.ok(guided.includes("const total=1+lessons.length+(hasPractice?1:0)"));
- assert.ok(guided.includes('const last=step===total-1'));
- assert.ok(guided.includes("last?<button"));
- assert.ok(guided.includes("onClick={()=>onStart(labProof)}"));
- assert.ok(guided.includes("onClick={()=>setStep(n=>Math.min(total-1,n+1))}"));
- assert.ok(guided.includes('lesson.body'));
- assert.ok(guided.includes('lesson.example'));
- assert.ok(guided.includes('CalligraphyPracticePad'));
- assert.ok(lesson.includes("useState('learn')"));
- assert.ok(lesson.includes("phase==='learn'&&<SchoolGuidedLesson"));
- assert.ok(lesson.includes('onStart={start}'));
- assert.ok(lesson.includes('العودة إلى شرح الدرس'));
- assert.ok(lesson.includes('draft.save({answers,selection})'));
-});
 test('published lessons are versioned atomically and do not alter learner progress',()=>{
  const migration=read('supabase/migrations/20261030020711_school_calligraphy_teaching_before_quiz.sql');
  assert.ok(migration.includes('s.version=1 and s.published_version=1'));

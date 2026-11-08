@@ -45,14 +45,12 @@ test('48 unique civic stations use content-specific scenes and multiple interact
  }
 });
 test('the global school example changes with material and all learners can practice without blind guesses',()=>{
- const guide=read('components/school/SchoolGuidedLesson.jsx');
+ // The v1 guided lesson was retired; examples and labs now live in the card player.
+ const visual=read('components/school/v2/CardVisual.jsx'),card=read('components/school/v2/CardInteractions.jsx');
  const science=read('components/school/ScienceLab.jsx');
  const civic=read('components/school/CivicLab.jsx');
- assert.match(guide,/learningSteps/);
- assert.match(guide,/learningTerm/);
- assert.match(guide,/learningStory/);
- assert.match(guide,/CalligraphyExample/);
- assert.match(guide,/slug={slug} index={stage.index}/);
+ assert.ok(visual.includes('<CalligraphyExample text={visual.text} script={visual.script}'));
+ assert.ok(card.includes('<CivicLab lab={lab} slug="" index={-1} onComplete={complete}/>'));
  assert.match(science,/كيف تستخدم المختبر/);
  assert.match(science,/onComplete\?\.\(\{kind:'science'/);
  assert.doesNotMatch(science,/يزداد.*ينخفض/);

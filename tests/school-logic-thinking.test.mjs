@@ -79,12 +79,11 @@ test('Boolean gate simulation matches standard truth tables and half-adder arith
  assert.throws(()=>evaluateGate('AND',2,1));
  for(const stage of courses[3].stages)assert.doesNotThrow(()=>gateTruthTable(stage.lab.gate));
 });
-test('Morse and gates are practical ungraded labs only after three teaching panels',()=>{
- const guided=read('components/school/SchoolGuidedLesson.jsx');
- assert.ok(guided.includes('stage.lab'));
- assert.ok(guided.includes('MorseLab'));
- assert.ok(guided.includes('LogicGatesLab'));
- assert.ok(guided.includes('last?<button'));
+test('Morse and gates are practical labs played as card tasks',()=>{
+ // The v1 guided lesson was retired; labs are card tasks whose proof the server verifies.
+ const card=read('components/school/v2/CardInteractions.jsx');
+ assert.ok(card.includes("{lab.kind === 'morse' && <MorseLab sample={lab.sample} onComplete={complete}/>}"));
+ assert.ok(card.includes("{lab.kind === 'gates' && <LogicGatesLab gate={lab.gate} onComplete={complete}/>}"));
  const morse=read('components/school/MorseLab.jsx');
  assert.ok(morse.includes('AudioContext'));
  assert.ok(morse.includes('encodeMorse'));

@@ -42,7 +42,7 @@ test('figure related content is explicit while geographic suggestions are clearl
  assert.equal(links.some(x=>x.href==='/yemen-map?region=YE15#map'),true);
  assert.equal(figureCrossLinks({...arwa,isDemo:true},{historyEntries:entries,figures:[arwa]}).length,0);
  const poet=figureCrossLinks({...arwa,field:'الأدب والشعر'},{visibility:{school:true},historyEntries:[],figures:[arwa]});
- assert.equal(poet.some(x=>x.href==='/school/writing/arud'),true);
+ assert.equal(poet.some(x=>x.href==='/school/courses/arud'),true);
  assert.equal(poet.find(x=>x.kind==='مدرسة 967').description.includes('ليس تحليلًا'),true);
 });
 
@@ -62,7 +62,7 @@ test('Musnad and history link both ways only to relevant published topics',()=>{
  assert.deepEqual(musnad.map(x=>x.href),['/yemen-history/ancient-inscriptions','/yemen-history/saba']);
  assert.equal(musnadCrossLinks(entries,{history:false}).length,0);
  const history=historyCrossLinks(entries[2]);
- assert.equal(history.some(x=>x.href==='/school/writing/musnad'),true);
+ assert.equal(history.some(x=>x.href==='/school/courses/musnad'),true);
  assert.equal(historyCrossLinks(entries[2],{visibility:{school:false}}).length,0);
 });
 
@@ -70,7 +70,7 @@ test('real page integrations use shared component, retain existing sections and 
  const history=read('app/yemen-history/[slug]/page.jsx');
  const figure=read('app/yemeni-figures/[slug]/page.jsx');
  const governorate=read('app/yemen-map/governorates/[id]/page.jsx');
- const school=read('app/school/writing/musnad/page.jsx');
+ const school=read('app/school/courses/[slug]/page.jsx');
  const view=read('components/knowledge/CrossSectionPaths.jsx');
  const css=read('components/knowledge/CrossSectionPaths.module.css');
  for(const [page,fn] of [[history,'historyCrossLinks('],[figure,'figureCrossLinks('],[governorate,'governorateCrossLinks('],[school,'musnadCrossLinks(']]){
@@ -80,13 +80,15 @@ test('real page integrations use shared component, retain existing sections and 
  assert.ok(history.includes('styles.references'));
  assert.ok(figure.includes('related.length > 0'));
  assert.ok(governorate.includes('<ContentSections profile={profile}/>'));
- assert.ok(school.includes('<SchoolJourney/>'));
+ assert.ok(school.includes('<CourseJourney '));
+ assert.ok(school.includes("slug==='musnad'&&sectionIsVisible('history',settings.pageVisibility)"));
  assert.ok(view.includes('if(!items.length)return null'));
  assert.ok(view.includes('aria-labelledby={id}'));
  assert.ok(css.includes('@media(max-width:760px)'));
  assert.ok(css.includes(':focus-visible'));
  assert.equal(pageIsVisible('/yemen-history/saba',{history:false}),false);
  assert.equal(pageIsVisible('/school/writing/musnad',{school:false}),false);
+ assert.equal(pageIsVisible('/school/courses/musnad',{school:false}),false);
 });
 
 test('statistics and civic courses connect in both directions without exposing hidden sections',()=>{

@@ -1,16 +1,18 @@
 import Link from 'next/link';
 import {notFound} from 'next/navigation';
-import {ArrowRight} from 'lucide-react';
-import SchoolCourseMap from '@/components/school/SchoolCourseMap';
+import {ExternalLink} from 'lucide-react';
 import CourseJourney from '@/components/school/v2/CourseJourney';
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import {serverDb} from '@/lib/supabase-server';
 import {getSiteSettings} from '@/lib/data';
-import {sectionGate} from '@/lib/pageVisibility';
+import {sectionGate,sectionIsVisible} from '@/lib/pageVisibility';
+import {readPublicHistoryCatalog} from '@/lib/historyRepository';
+import {musnadCrossLinks} from '@/lib/knowledgeConnections';
+import CrossSectionPaths from '@/components/knowledge/CrossSectionPaths';
 import {publishedSchoolCatalog,publishedSchoolStages} from '@/lib/schoolContentServer';
 import {pageMetadata} from '@/lib/seo';
-import {SCHOOL_COURSE_TOOLS} from '@/lib/schoolCourseTools';
+import {SCHOOL_COURSE_TOOLS,SCHOOL_COURSE_SOURCES} from '@/lib/schoolCourseTools';
 import styles from '../../studio/studio.module.css';
 export const dynamic='force-dynamic';
 export const metadata=pageMetadata({title:'مسارات مدرسة 967',path:'/school/courses'});
@@ -27,25 +29,21 @@ export default async function CoursePage({params,searchParams}){
  if(!sectionGate('school',settings)||!db)notFound();
  const course=(await publishedSchoolCatalog(db)).find(x=>x.slug===slug);
  if(!course)notFound();
- const stages=await publishedSchoolStages(db,slug);
- // Musnad still runs on its built-in pages until its card lessons are published.
- if(slug==='musnad'&&!stages.some(s=>s.format===2))notFound();
- const back=course.category==='السياسة والاقتصاد'?'/school/civic':course.category==='الفلك والطبيعة'?'/school/nature':course.category==='المنطق والتفكير'?'/school/logic':'/school/writing';
+ // Every course is a card course now (phase 8): only card lessons are listed and playable.
+ const stages=(await publishedSchoolStages(db,slug)).filter(s=>s.format===2);
  const preview=await fixtureCourse((await searchParams)?.fixture);
+ if(!stages.length&&!preview)notFound();
+ const back=course.category==='السياسة والاقتصاد'?'/school/civic':course.category==='الفلك والطبيعة'?'/school/nature':course.category==='المنطق والتفكير'?'/school/logic':'/school/writing';
  const journey=stages.map(s=>{const f=preview?.lessons?.[s.index];return stageMeta(f?{...f.lesson,index:s.index}:s);});
- // Card courses (format 2) use the journey map; other courses keep the station map until they are rebuilt.
- if(preview||course.format===2||journey.some(s=>s.format===2))return <div className={styles.root}><section className={styles.workspace}><div className="container">
+ const tools=SCHOOL_COURSE_TOOLS[slug],sources=SCHOOL_COURSE_SOURCES[slug];
+ // Musnad keeps the history links of its old course page.
+ const crossLinks=slug==='musnad'&&sectionIsVisible('history',settings.pageVisibility)
+  ?musnadCrossLinks(await readPublicHistoryCatalog(db).then(r=>r.entries).catch(()=>[]),settings.pageVisibility):[];
+ return <div className={styles.root}><section className={styles.workspace}><div className="container">
   <CourseJourney backHref={back} slug={slug} title={course.title} description={course.description} units={preview?.units||course.units} capstone={preview?.capstone??course.capstone}
    stages={journey} fixtures={preview?Object.fromEntries(Object.entries(preview.lessons).map(([i,f])=>[i,f.name])):null}/>
-  {SCHOOL_COURSE_TOOLS[slug]&&<nav className={styles.courseTools} aria-label="أدوات المسار"><h2>أدوات تساعدك</h2><div>{SCHOOL_COURSE_TOOLS[slug].map(t=><Link key={t.href} href={t.href}><strong>{t.title}</strong><span>{t.description}</span></Link>)}</div></nav>}
- </div></section></div>;
- return <div className={styles.root}><header className={styles.hero}><div className="container">
-  <Link className={styles.back} href={course.category==='السياسة والاقتصاد'?'/school/civic':course.category==='الفلك والطبيعة'?'/school/nature':course.category==='المنطق والتفكير'?'/school/logic':'/school/writing'}><ArrowRight size={16}/> جميع المسارات</Link>
-  <h1>{course.title}</h1><p>{course.description}</p>
-  <p>{course.category} · {stages.length} محطة منشورة</p>
- </div></header><section className={styles.workspace}><div className="container">
-  <div className={styles.report}><h2>محطات هذا المسار</h2><p>أكمل المحطات بالترتيب؛ تحتاج إلى 5 إجابات صحيحة من 6 لفتح المحطة التالية.</p>
-   <SchoolCourseMap slug={slug} stages={stages}/>
-  </div>
+  {tools&&<nav className={styles.courseTools} aria-label="أدوات المسار"><h2>أدوات تساعدك</h2><div>{tools.map(t=><Link key={t.href} href={t.href}><strong>{t.title}</strong><span>{t.description}</span></Link>)}</div></nav>}
+  {sources&&<section className={styles.courseTools} aria-labelledby="course-sources"><h2 id="course-sources">{sources.title}</h2><p className={styles.courseToolsNote}>{sources.note}</p><div>{sources.links.map(l=><a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer"><strong>{l.title} <ExternalLink size={14} aria-hidden="true"/></strong><span>{l.label}</span></a>)}</div></section>}
+  {crossLinks.length>0&&<div className={styles.courseExtra}><CrossSectionPaths items={crossLinks} id="musnad-cross-paths" title="من حروف المسند إلى تاريخ النقوش"/></div>}
  </div></section></div>;
 }

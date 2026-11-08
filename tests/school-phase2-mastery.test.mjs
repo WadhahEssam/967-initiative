@@ -150,17 +150,18 @@ test('diversified attempts protect answer keys and keep historical scoring uncha
 test('a station can display a single published activity and the editor can revise it',()=>{
  const civic=read('components/school/CivicLab.jsx');
  const science=read('components/school/ScienceLab.jsx');
- const guide=read('components/school/SchoolGuidedLesson.jsx');
+ // The v1 guided lesson was retired; the card lab task hands the lab's proof to the server as its answer.
+ const guide=read('components/school/v2/CardInteractions.jsx');
  const studio=read('components/school/SchoolStudio.jsx');
  assert.match(civic,/lab\?\.activity\|\|getCivicActivity/);
  assert.match(civic,/visited\.length===activity\.choices\.length/);
  assert.match(civic,/i===activity\.correctIndex/);
  assert.match(civic,/metricIndex,observed:after/);
  assert.match(science,/confirmObservation/);
- assert.match(guide,/onComplete=\{setLabProof\}/);
- assert.match(guide,/onStart\(labProof\)/);
- assert.match(guide,/MorseLab sample=\{stage\.lab\.sample\} onComplete=\{setLabProof\}/);
- assert.match(guide,/LogicGatesLab gate=\{stage\.lab\.gate\} onComplete=\{setLabProof\}/);
+ assert.match(guide,/const complete = proof => \{ if \(!locked\) onChange\(proof\); \};/);
+ assert.match(guide,/CivicLab lab=\{lab\} slug="" index=\{-1\} onComplete=\{complete\}/);
+ assert.match(guide,/MorseLab sample=\{lab\.sample\} onComplete=\{complete\}/);
+ assert.match(guide,/LogicGatesLab gate=\{lab\.gate\} onComplete=\{complete\}/);
  assert.match(studio,/تخصيص النشاط العملي لهذه المحطة/);
  assert.match(studio,/correctIndex/);
 });

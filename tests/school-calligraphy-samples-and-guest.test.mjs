@@ -48,15 +48,15 @@ test('School Studio rejects unknown scripts and preserves optional script metada
  assert.ok(studio.includes('الخط المستخدم في نموذج التدريب'));
 });
 test('guest receives sign-up/login prompt not a misleading progression lock',()=>{
- const map=read('components/school/SchoolCourseMap.jsx');
- assert.ok(map.includes('authRequired:true'));
- assert.ok(map.includes('قم بإنشاء حساب أو تسجيل الدخول للتعلم'));
+ // SchoolCourseMap was retired in phase 8; the card journey shows the guest prompt.
+ const map=read('components/school/v2/CourseJourney.jsx');
+ assert.ok(map.includes('if (!token) { if (alive) setProgress({loading: false, guest: true'));
+ assert.ok(map.includes('أنشئ حسابًا لتحفظ تقدمك ونجومك وتفتح بقية الدروس.'));
  assert.ok(map.includes('إنشاء حساب'));
  assert.ok(map.includes('تسجيل الدخول'));
- assert.ok(map.includes("'/login?next='+encodeURIComponent(returnPath)"));
- assert.ok(map.includes("'/register?next='+encodeURIComponent(returnPath)"));
- assert.ok(map.includes("locked?'مقفلة — أكمل السابقة أولًا'"));
- assert.ok(map.includes('if(error)throw error;'),'unexpected session errors are not treated as guest state');
+ assert.ok(map.includes("'/login?next=' + encodeURIComponent(back)"));
+ assert.ok(map.includes("'/register?next=' + encodeURIComponent(back)"));
+ assert.ok(map.includes("progress.guest ? 'يحتاج حسابًا' : 'يُفتح بعد إكمال الدرس السابق'"));
 });
 test('login/register redirect back to School URL, not another origin or privileged dashboard',()=>{
  assert.equal(safeAccountReturn('/school/courses/arabic-calligraphy'),'/school/courses/arabic-calligraphy');

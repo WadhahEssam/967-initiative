@@ -51,15 +51,15 @@ test('complete sentences are server-graded with partial mistakes counted as wron
  assert.throws(()=>gradeSchoolQuestions(bank,forged));
 });
 
-test('full-sentence UI retains old composition exercises and shows no Arabic hints on keys',()=>{
- const ui=read('components/school/SchoolLesson.jsx');
- const styles=read('app/school/school.module.css');
- assert.ok(ui.includes("['compose','sentence'].includes(task.kind)"));
- assert.ok(ui.includes("task?.kind==='sentence'?80:0"));
- assert.ok(ui.includes("styles.sentenceKeyboard"));
- assert.ok(!ui.includes('<small>{o.name}</small>'));
- assert.ok(styles.includes('.sentenceKeyboard'));
- assert.ok(styles.includes('@media(max-width:470px)'));
+test('full-sentence composition lives on as the card compose task and shows no Arabic hints on keys',()=>{
+ // The v1 Musnad lesson was retired; composition is the card task «compose».
+ const ui=read('components/school/v2/CardInteractions.jsx');
+ const styles=read('components/school/v2/CardInteractions.module.css');
+ assert.ok(ui.includes('compose: ComposeTask'));
+ assert.ok(ui.includes('const COMPOSE_MAX = 80;'));
+ assert.ok(ui.includes('disabled={locked || line.length >= COMPOSE_MAX}'));
+ assert.ok(ui.includes("{(task.labels || id === 'sep') && <small>{MUSNAD_KEYS[id].name}</small>}"));
+ assert.ok(styles.includes('.composeKeys{'));
  assert.ok(makeSchoolQuestions(10,1).every(q=>q.kind==='compose'));
  assert.ok(makeSchoolQuestions(2,1).every(q=>q.kind==='compose'));
 });

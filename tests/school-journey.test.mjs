@@ -59,7 +59,9 @@ test('course page: card courses use the journey and only lesson metadata reaches
   assert.match(page, /stages=\{journey\}/);
   assert.ok(!/stages=\{stages\}[^]*CourseJourney/.test(page.split('<CourseJourney')[1] || ''), 'full stages never passed to the journey');
   assert.match(page, /process\.env\.SCHOOL_V2_FIXTURES!=='1'/);
-  assert.match(page, /<SchoolCourseMap slug=\{slug\} stages=\{stages\}\/>/, 'other courses keep the station map');
+  // Phase 8: every course is a card course; the v1 station map is gone.
+  assert.doesNotMatch(page, /SchoolCourseMap/);
+  assert.match(page, /\.filter\(s=>s\.format===2\)/, 'only card lessons are listed');
 });
 
 test('school home shows the continue card for signed-in learners only', () => {

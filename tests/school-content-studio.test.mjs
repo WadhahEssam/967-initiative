@@ -65,7 +65,7 @@ test('editor and student route enforce staff permissions, version control and se
  assert.ok(studio.includes('schoolStaffPreview(db,user)'));
  assert.ok(studio.includes("current.version!==version"));
  assert.ok(studio.includes('published:current.draft'));
- assert.ok(studio.includes("if(count<6)"));
+ assert.ok(studio.includes("if(current.draft?.format!==2)error("),'only card lessons can be published');
  assert.ok(studio.includes("if(count<1)"));
  assert.ok(studio.includes("updated_by:user.id"));
  assert.ok(api.includes('schoolUser(request,db)'));
