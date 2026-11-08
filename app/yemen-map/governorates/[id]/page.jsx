@@ -15,6 +15,7 @@ import {getMapBoundaries,readPublicMapProfiles} from '@/lib/mapProfileRepository
 import {yemenGovernorates} from '@/lib/yemeniFigures';
 import {governorateHeritageSources,governorateProfileSections,isGovernorateId} from '@/lib/governorateEditorial';
 import {pageMetadata} from '@/lib/seo';
+import {shareCardPath} from '@/lib/shareCard';
 import {displayPlaceName,districtPath} from '@/lib/districtPages';
 import {formatNumber} from '@/lib/format';
 import styles from './GovernorateProfile.module.css';
@@ -30,6 +31,7 @@ export async function generateMetadata({params}) {
     title:item.name+' | خريطة اليمن',
     description:'ملف موسع عن محافظة '+item.name+' يشمل التاريخ والجغرافيا والاقتصاد والمعالم والمديريات، ضمن أطلس مبادرة 967.',
     path:'/yemen-map/governorates/'+id,
+    image:shareCardPath('governorate',id,item.name),
   });
 }
 

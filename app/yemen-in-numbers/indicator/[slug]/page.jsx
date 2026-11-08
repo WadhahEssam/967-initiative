@@ -13,6 +13,7 @@ import CorrectionLink from '@/components/CorrectionLink';
 import Sparkline from '@/components/numbers/Sparkline';
 import JumpNav from '@/components/knowledge/JumpNav';
 import {getStatIndicator} from '@/lib/data';
+import {shareCardPath} from '@/lib/shareCard';
 import {formatArabicDate, formatNumber, formatYear} from '@/lib/format';
 import {directionLabels, statusLabels, valueStatusLabels} from '@/lib/yemenNumbers';
 import {detailPath, hasIndexableIndicator, pageMetadata} from '@/lib/seo';
@@ -29,7 +30,7 @@ export async function generateMetadata({params}) {
   const {slug} = await params;
   const indicator = await getStatIndicator(slug);
   if (!indicator) notFound();
-  return pageMetadata({title:indicator.name, description:indicator.short_description || indicator.definition, path:detailPath('yemen-in-numbers/indicator', indicator.slug), noindex:!hasIndexableIndicator(indicator)});
+  return pageMetadata({title:indicator.name, description:indicator.short_description || indicator.definition, path:detailPath('yemen-in-numbers/indicator', indicator.slug), noindex:!hasIndexableIndicator(indicator), image:shareCardPath('indicator',indicator.slug,indicator.name,indicator.latestValue?.value,indicator.latestValue?.year,indicator.values?.length)});
 }
 
 export default async function IndicatorPage({params}) {

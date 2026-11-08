@@ -20,6 +20,7 @@ import {DISTRICT_ID_PATTERN,displayPlaceName,districtOutline,districtPath,distri
 import {yemenGovernorates} from '@/lib/yemeniFigures';
 import {canOptimizeImage,safeExternalUrl,safeImageUrl} from '@/lib/media';
 import {detailPath,pageMetadata} from '@/lib/seo';
+import {shareCardPath} from '@/lib/shareCard';
 import {formatNumber} from '@/lib/format';
 import base from '../../governorates/[id]/GovernorateProfile.module.css';
 import styles from './DistrictProfile.module.css';
@@ -59,7 +60,7 @@ export async function generateMetadata({params}){
   title:'مديرية '+names.name+' — محافظة '+names.governorateName+' | خريطة اليمن',
   description:districtSummary(profile,names),
   path:districtPath(id),
-  image:safeImageUrl(profile.image_url)&&profile.image_credit?profile.image_url:undefined,
+  image:shareCardPath('district',id,names.name,profile.description,profile.population,profile.area_km2),
  });
 }
 
