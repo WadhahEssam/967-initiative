@@ -6,7 +6,7 @@ import {ArrowUpLeft,BookOpenText,CalendarDays,Clock3,ExternalLink,MapPinned,Scro
 import {getSiteSettings,getYemeniFigures} from '@/lib/data';
 import {sectionIsVisible,sectionGate} from '@/lib/pageVisibility';
 import {serverDb} from '@/lib/supabase-server';
-import {readHistoryCatalog} from '@/lib/historyRepository';
+import {readPublicHistoryCatalog} from '@/lib/historyRepository';
 import {relatedProjections} from '@/lib/relatedContent';
 import {historyCrossLinks} from '@/lib/knowledgeConnections';
 import CrossSectionPaths from '@/components/knowledge/CrossSectionPaths';
@@ -26,7 +26,7 @@ export async function generateMetadata({params}){
  const {slug}=await params;
  const settings=await getSiteSettings();
  if(!sectionIsVisible('history',settings.pageVisibility))return {};
- const catalog=await readHistoryCatalog(serverDb());
+ const catalog=await readPublicHistoryCatalog(serverDb());
  const entry=catalog.entries.find(e=>e.slug===slug&&e.isPublished!==false);
  return entry?pageMetadata({title:entry.title+' | تاريخ اليمن',description:entry.summary,path:historyEntryPath(entry.slug)}):{};
 }
@@ -34,7 +34,7 @@ export default async function YemenHistoryDetail({params}){
  const {slug}=await params;
  const settings=await getSiteSettings();
  if(!sectionGate('history',settings))notFound();
- const catalog=await readHistoryCatalog(serverDb());
+ const catalog=await readPublicHistoryCatalog(serverDb());
  const item=catalog.entries.find(e=>e.slug===slug&&e.isPublished!==false);
  if(!item)notFound();
  const visible=catalog.entries.filter(e=>e.isPublished!==false);

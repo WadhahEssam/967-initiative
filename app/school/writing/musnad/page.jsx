@@ -5,7 +5,7 @@ import {getSiteSettings} from '@/lib/data';
 import {sectionIsVisible,sectionGate} from '@/lib/pageVisibility';
 import {pageMetadata} from '@/lib/seo';
 import {serverDb} from '@/lib/supabase-server';
-import {readHistoryCatalog} from '@/lib/historyRepository';
+import {readPublicHistoryCatalog} from '@/lib/historyRepository';
 import {musnadCrossLinks} from '@/lib/knowledgeConnections';
 import CrossSectionPaths from '@/components/knowledge/CrossSectionPaths';
 import {MUSNAD_SOURCE,MUSNAD_STAGES} from '@/lib/schoolMusnad';
@@ -17,7 +17,7 @@ export default async function MusnadPage(){
  const settings=await getSiteSettings();
  if(!sectionGate('school',settings))notFound();
  const entries=sectionIsVisible('history',settings.pageVisibility)
-  ?await readHistoryCatalog(serverDb()).then(result=>result.entries).catch(()=>[]):[];
+  ?await readPublicHistoryCatalog(serverDb()).then(result=>result.entries).catch(()=>[]):[];
  const crossLinks=musnadCrossLinks(entries,settings.pageVisibility);
  return <div className={styles.root}>
   <section className={styles.innerHero}><div className="container">

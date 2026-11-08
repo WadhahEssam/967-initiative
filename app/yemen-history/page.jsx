@@ -6,7 +6,7 @@ import Link from '@/components/SiteLink';
 import {getSiteSettings} from '@/lib/data';
 import {sectionGate} from '@/lib/pageVisibility';
 import {serverDb} from '@/lib/supabase-server';
-import {readHistoryCatalog} from '@/lib/historyRepository';
+import {readPublicHistoryCatalog} from '@/lib/historyRepository';
 import {yemenGovernorates} from '@/lib/yemeniFigures';
 import {pageMetadata} from '@/lib/seo';
 import HistoryExplorer from '@/components/history/HistoryExplorer';
@@ -25,7 +25,7 @@ export default async function YemenHistoryPage({searchParams}){
  if(!sectionGate('history',settings))notFound();
  const params=await searchParams;
  let catalog;
- try{catalog=await readHistoryCatalog(serverDb());}
+ try{catalog=await readPublicHistoryCatalog(serverDb());}
  catch{return <div className="container" style={{padding:'80px 0'}}><h1>تعذر تحميل تاريخ اليمن</h1><p role="alert">حاول تحديث الصفحة لاحقاً؛ لا نعرض نسخة قديمة إذا تعذر التحقق من آخر التعديلات.</p></div>;}
  const locations=[...new Map(catalog.entries.filter(x=>x.isPublished!==false&&x.governorate).map(x=>[x.governorate,x])).values()].map(x=>({...x,governorateName:yemenGovernorates.find(g=>g.id===x.governorate)?.name})).filter(x=>x.governorateName);
  return <KnowledgeTheme area="history"><div>
