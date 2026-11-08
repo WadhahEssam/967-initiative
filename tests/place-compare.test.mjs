@@ -71,6 +71,7 @@ test('the headline names the biggest difference in plain Arabic',()=>{
  assert.equal(comparisonHeadline({title:'أ',population:110},{title:'ب',population:100}),'أ أكثر سكانًا من ب بنحو 10%.');
  assert.equal(comparisonHeadline({title:'أ',area:21},{title:'ب',area:10}),'أ أكبر مساحة من ب بنحو الضعف.');
  assert.equal(comparisonHeadline({title:'أ',population:null},{title:'ب',population:5}),'');
+ assert.equal(comparisonHeadline({title:'مديرية أ',population:1000},{title:'مديرية ب',population:1020}),'مديرية أ ومديرية ب متقاربتان في عدد السكان.');
 });
 
 test('the compare page is gated by the atlas, linked from places and listed in the sitemap',()=>{
