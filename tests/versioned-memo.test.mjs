@@ -109,3 +109,10 @@ test('public readers use the caches and admin saves clear them', () => {
   assert.match(map, /publicMapProfilesMemo\.clear\(\);\r?\n return \{\.\.\.current,item,revision:result\.revision\};/);
   assert.match(read('components/Header.jsx'), /const cached = readEditorFlag\(session\.user\.id\);/);
 });
+
+test('the home page latest indicators are cached and cleared with the statistics catalog', () => {
+  const data = read('lib/data.js');
+  assert.match(data, /export const getRecentIndicators=publicList\('statistics',cachedRecentIndicators\);/);
+  assert.match(data, /if\(!memo\)\{memo=createMemo\(\{ttlMs:5\*60\*1000,staleMs:60\*60\*1000\}\);recentIndicatorsMemos\.set\(key,memo\);\}/);
+  assert.match(data, /export function invalidateStatCatalog\(\)\{statIndicatorsMemo\.clear\(\);statSectionsMemo\.clear\(\);recentIndicatorsMemos\.clear\(\);\}/);
+});
