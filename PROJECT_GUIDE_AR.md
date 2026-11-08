@@ -391,6 +391,7 @@ npm run dev
 - `npm run preview` يبني نسخة إنتاج على القاعدة المحلية (انظر 10.2).
 - `npm run build` و`npm start`، والسكربتات التي تقرأ `.env.local` مباشرة (مثل نشر دروس المدرسة)، تبقى متصلة بالإنتاج.
 - يمكن تسجيل الدخول في النسخة المحلية بحساب اختبار محلي، لأن الكتابة تذهب إلى القاعدة المحلية فقط.
+- `node scripts/local-test-account.mjs` ينشئ حسابين في القاعدة المحلية فقط: `editor@967.test` (دور الإدارة) و`member@967.test` (عضو عادي)، ويضع كلمتي المرور في `.env.test-accounts.local` (لا يُرفع إلى Git). أعد تشغيله بعد كل استرجاع للقاعدة المحلية.
 - يحتاج `restore-local-db.sh` الملف `.env.backup.local`، وفيه `B2_KEY_ID` و`B2_APPLICATION_KEY` و`BACKUP_ENCRYPTION_PASSPHRASE`. يكفي مفتاح Backblaze بصلاحية قراءة فقط. السكربت:
   - لا يتصل بالإنتاج أبدًا.
   - يستبدل بيانات `public` و`auth.users` و`auth.identities` المحلية.
