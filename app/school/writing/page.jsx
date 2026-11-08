@@ -18,8 +18,8 @@ export default async function WritingPage(){
  const authored=published.filter(c=>c.category==='الكتابة والأدب'&&!['musnad','arud'].includes(c.slug));
  const musnad=published.find(c=>c.slug==='musnad'),arud=published.find(c=>c.slug==='arud');
  const tracks=[
-  {href:'/school/writing/musnad',title:musnad?.title||'خط المسند',description:musnad?.description||'رحلة من رموز المسند إلى قراءة النصوص وكتابة جمل كاملة.',glyph:'𐩣𐩡',icon:PenTool,count:12,label:'الكتابة القديمة'},
-  {href:'/school/writing/arud',title:arud?.title||'علم العروض',description:arud?.description||'تعلّم الإيقاع والتفعيلات والبحور من خلال تجارب وتقطيع الأبيات.',glyph:'♫',icon:Feather,count:12,label:'إيقاع الشعر'},
+  {href:'/school/courses/musnad',title:musnad?.title||'خط المسند',description:musnad?.description||'رحلة من رموز المسند إلى قراءة النصوص وكتابة جمل كاملة.',glyph:'𐩣𐩡',icon:PenTool,count:12,label:'الكتابة القديمة'},
+  {href:'/school/courses/arud',title:arud?.title||'علم العروض',description:arud?.description||'تعلّم الإيقاع والتفعيلات والبحور من خلال تجارب وتقطيع الأبيات.',glyph:'♫',icon:Feather,count:12,label:'إيقاع الشعر'},
   ...authored.map(course=>({slug:course.slug,href:'/school/courses/'+course.slug,title:course.title,description:course.description,glyph:'✒',icon:BookOpen,label:'الخط والفنون الكتابية'}))
  ];
  return <div className={styles.root}><section className={styles.innerHero}><div className="container">

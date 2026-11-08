@@ -11,7 +11,7 @@ export default async function MusnadAlphabetPage(){
  const settings=await getSiteSettings();
  if(!sectionGate('school',settings))notFound();
  return <div className={styles.root}><section className={styles.innerHero}><div className="container">
-  <div className={styles.breadcrumb}><Link href="/school">مدرسة 967</Link><ChevronLeft size={14}/><Link href="/school/writing/musnad">خط المسند</Link><ChevronLeft size={14}/> دليل الأبجدية</div>
+  <div className={styles.breadcrumb}><Link href="/school">مدرسة 967</Link><ChevronLeft size={14}/><Link href="/school/courses/musnad">خط المسند</Link><ChevronLeft size={14}/> دليل الأبجدية</div>
   <span className={styles.eyebrow}><PenTool size={16}/> مرجع تعليمي</span><h1>حروف المسند <em>الـ29.</em></h1>
   <p>أشكال الحروف ومقابلاتها التقريبية في العربية ورموز نقلها اللاتيني. لا تخلط بين معرفة الخط وترجمة اللغات القديمة التي كُتبت به.</p>
   <div className={styles.heroPills}><span>29 حرفًا</span><span>مصدر يونيكود</span><span>مراجعة مفتوحة بلا اختبار</span></div>

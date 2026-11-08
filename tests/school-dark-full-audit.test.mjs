@@ -7,15 +7,14 @@ const modules={
  school:read('app/school/school.module.css'),
  studio:read('app/school/studio/studio.module.css'),
  civic:read('app/school/civic/civic.module.css'),
- arud:read('app/school/writing/arud/arud.module.css'),
  dashboard:read('app/school/dashboard/dashboard.module.css'),
  worlds:read('components/school/SchoolWorldMap.module.css'),
  tracks:read('components/school/SchoolTrackTrail.module.css'),
- map:read('components/school/SchoolCourseMap.module.css'),
+ journey:read('components/school/v2/CourseJourney.module.css'),
 };
 const dark=':global(:root[data-ed-theme="dark"])';
 
-test('all 8 school stylesheet modules include scoped dark-mode rules',()=>{
+test('all 7 school stylesheet modules include scoped dark-mode rules',()=>{
  for(const [name,css] of Object.entries(modules)){
   assert.ok(css.includes(dark),name+' has no dark theme');
   assert.equal(css.split('{').length,css.split('}').length,name+' has mismatched CSS braces');
@@ -23,7 +22,7 @@ test('all 8 school stylesheet modules include scoped dark-mode rules',()=>{
 });
 
 test('Musnad stage cards use dedicated backgrounds and readable labels in dark mode',()=>{
- const css=modules.school,markup=read('components/school/SchoolJourney.jsx');
+ const css=modules.school;
  for(const cls of ['.stationTop .done','.stationTop .open','.stationTop .locked','.stationTop .staffOpen']){
   assert.ok(css.includes(cls),cls+' missing');
  }
@@ -31,20 +30,14 @@ test('Musnad stage cards use dedicated backgrounds and readable labels in dark m
  for(const fg of ['#d5f9dc','#d4fff0','#f0f5f4','#e4f6ff'])assert.ok(css.includes('color:'+fg),fg);
  assert.ok(css.includes('.staffPreviewNotice'));
  assert.ok(css.includes('.reviewCorrect,.reviewWrong,.lessonError'));
- assert.ok(markup.includes('completed?styles.done:locked?styles.locked:staffPreview?styles.staffOpen:styles.open'));
- assert.ok(markup.includes('className={styles.stationTop}'));
 });
 
-test('Arud and generic lessons cover answer states and feedback surfaces',()=>{
- const arud=modules.arud,studio=modules.studio;
- for(const cls of ['.answerActive','.optionIndex','.wordTarget','.outcomeRetry','.lessonError','.stationStatus']){
-  assert.ok(arud.includes(cls),cls);
- }
+test('generic lessons cover answer states and feedback surfaces',()=>{
+ const studio=modules.studio;
  for(const cls of ['.guidedTips','.learningIllustration','.guidedReady','.guidedCaution',
   '.calligraphyPractice','.courseAuthBox','.practiceCanvas','.scienceObservation','.scienceCaveat']){
   assert.ok(studio.includes(cls),cls);
  }
- assert.ok(arud.includes('background:var(--c-caution-soft)'));
  assert.ok(studio.includes('background:var(--c-surface)'));
  assert.ok(studio.includes('background-color:#f5faf4'));
 });
@@ -70,8 +63,8 @@ test('adventure map, trail and real-progress map include readable dark badges',(
  assert.ok(modules.worlds.includes('.futureTag'));
  assert.ok(modules.tracks.includes('.questMeta .isOpen'));
  assert.ok(modules.tracks.includes('.trailCount strong'));
- assert.ok(modules.map.includes('.routeHead>div>span'));
- assert.ok(modules.map.includes('.courseMap .error'));
+ assert.ok(modules.journey.includes(':global(:root[data-ed-theme="dark"]) .item[data-status="done"] .node'));
+ assert.ok(modules.journey.includes(':global(:root[data-ed-theme="dark"]) .error'));
 });
 
 test('dark-mode paper preserves stroke visibility in both writing workshops',()=>{

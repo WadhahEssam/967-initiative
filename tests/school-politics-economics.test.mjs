@@ -79,7 +79,7 @@ test('department pages, editor and migration link to the existing learning syste
  const read=path=>readFileSync(new URL('../'+path,import.meta.url),'utf8');
  const index=read('app/school/page.jsx');
  const department=read('app/school/civic/page.jsx');
- const guide=read('components/school/SchoolGuidedLesson.jsx');
+ const guide=read('components/school/v2/CardInteractions.jsx'); // the card lab task replaced the v1 guided lesson
  const editor=read('components/school/SchoolStudio.jsx');
  const migration=read('supabase/migrations/20261030193358_school_politics_economics_phase1.sql');
  assert.ok(index.includes('<SchoolWorldMap/>'));

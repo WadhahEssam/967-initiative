@@ -59,17 +59,17 @@ test('staff can access any stage while a normal student can only access a passed
 });
 
 test('school GET and POST enforce the same server-derived staff role without counting preview as completion',()=>{
- const server=read('lib/schoolServer.js'),api=read('app/api/school/musnad/route.js');
- const journey=read('components/school/SchoolJourney.jsx');
- const styles=read('app/school/school.module.css');
+ // The Musnad route and its journey were retired; every course goes through the custom route and the card journey.
+ const server=read('lib/schoolServer.js'),api=read('app/api/school/custom/route.js');
+ const generic=read('lib/schoolGenericServer.js'),journey=read('components/school/v2/CourseJourney.jsx');
  assert.ok(server.includes('Promise.all([history(db,user),schoolStaffPreview(db,user)])'));
  assert.ok(server.includes('locked:!canStartSchoolStage(s.index,progress.unlocked,staffPreview)'));
  assert.ok(server.includes('if(!canStartSchoolStage(index,musnadPublicProgress(records).unlocked,staffPreview))'));
  assert.ok(server.includes('staffPreview,stages'));
  assert.ok(server.includes('completed:progress.completed.includes(s.index)'),'preview must not mark incomplete lessons done');
  assert.ok(!api.includes('body.role')&&!api.includes('body.staffPreview'),'untrusted roles must not be accepted from requests');
- assert.ok(journey.includes('progress?.staffPreview'));
- assert.ok(journey.includes('معاينة الإدارة'));
- assert.ok(styles.includes('.staffPreviewNotice'));
- assert.ok(styles.includes('.staffOpen'));
+ assert.ok(generic.includes('const staff=await schoolStaffPreview(db,user);'));
+ assert.ok(generic.includes('locked:!staff&&progress.next!==null&&item.index>progress.next'));
+ assert.ok(generic.includes("if(!staff&&state.next!==null&&index>state.next)fail("));
+ assert.ok(journey.includes('staff: Boolean(json.staffPreview)'));
 });

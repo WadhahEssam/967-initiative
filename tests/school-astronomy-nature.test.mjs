@@ -104,17 +104,16 @@ test('scientific source links are allowlisted and arbitrary model identifiers ar
 });
 test('science learning sequence mandates prediction and at least one real slider interaction before starting a fresh test',()=>{
  const lab=read('components/school/ScienceLab.jsx');
- const guided=read('components/school/SchoolGuidedLesson.jsx');
+ // The v1 guided lesson was retired; the lab is a card task whose proof is the answer, verified on the server.
+ const card=read('components/school/v2/CardInteractions.jsx');
  assert.ok(lab.includes('كيف تستخدم المختبر؟'));
  assert.ok(lab.includes('راقب الرسم والأرقام'));
  assert.ok(!lab.includes("['increase','يزداد']"));
  assert.ok(lab.includes("onComplete?.({kind:'science'"));
  assert.ok(lab.includes('SCIENCE_LABS'));
- assert.ok(guided.includes("stage.lab?.kind==='science'"));
- assert.ok(guided.includes('!labComplete&&!hasActiveAttempt'));
- assert.ok(guided.includes("['science','civic','morse','gates'].includes(stage.lab?.kind)"));
- assert.ok(guided.includes('ScienceLab'));
- assert.ok(guided.includes('source={stage.source}'));
+ assert.ok(card.includes("{lab.kind === 'science' && <ScienceLab lab={lab} source={lab.source} onComplete={complete}/>}"));
+ assert.ok(card.includes("case 'lab': return Boolean(value && typeof value === 'object');"));
+ assert.ok(read('lib/schoolCards.js').includes("case 'lab': return ['morse', 'gates', 'science', 'civic'].includes(key.lab?.kind) && verifySchoolLabEvidence(key.lab, '', -1, answer);"));
  assert.ok(read('components/school/SchoolStudio.jsx').includes('SCIENCE_MODEL_IDS'));
 });
 test('public section, protected progression and migration remain compatible with existing school courses',()=>{

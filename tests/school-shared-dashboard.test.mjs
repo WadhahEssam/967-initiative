@@ -12,7 +12,7 @@ const record=(course_slug,stage_index,status,day=1)=>({
 test('catalog shares two existing courses and 24 stages without rewriting their progress',()=>{
  assert.deepEqual(SCHOOL_COURSE_SLUGS,['musnad','arud']);
  assert.deepEqual(SCHOOL_COURSES.map(x=>x.stages.length),[12,12]);
- assert.equal(SCHOOL_COURSES.every(x=>x.href.startsWith('/school/writing/')),true);
+ assert.deepEqual(SCHOOL_COURSES.map(x=>x.href),['/school/courses/musnad','/school/courses/arud']);
  assert.ok(read('lib/schoolServer.js').includes("const TABLE='school_stage_attempts'"));
  assert.ok(read('lib/schoolArudServer.js').includes("const TABLE='school_stage_attempts'"));
 });

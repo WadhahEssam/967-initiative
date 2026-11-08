@@ -34,8 +34,8 @@ test('suspended account gets 403 until the ban expires',()=>{
 test('every school API route authenticates through the shared guard',()=>{
  const server=readFileSync(new URL('../lib/schoolServer.js',import.meta.url),'utf8');
  assert.match(server,/return assertSchoolUser\(data\?\.user,error\);/);
- for(const route of ['arud','custom','dashboard','leaderboard','musnad','studio']){
+ for(const route of ['custom','dashboard','leaderboard','pilot','review','studio']){
   const source=readFileSync(new URL('../app/api/school/'+route+'/route.js',import.meta.url),'utf8');
-  assert.match(source,/schoolUser\(request,db\)/,route+' must call schoolUser');
+  assert.match(source,/schoolUser\(request, ?db\)/,route+' must call schoolUser');
  }
 });

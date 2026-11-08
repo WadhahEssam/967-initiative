@@ -596,8 +596,11 @@
 /* Course tools under the journey map (e.g. the Musnad alphabet guide and tracing board) */
 .courseTools{max-width:720px;margin:4px auto 0}
 .courseTools h2{margin:0 0 10px;font-size:16px}
-.courseTools div{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.courseTools>div{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 .courseTools a{display:flex;flex-direction:column;gap:3px;padding:14px 16px;border-radius:16px;border:1.5px solid var(--c-line,#e4ddd2);background:var(--c-surface,#fff);color:inherit;text-decoration:none;transition:border-color .15s}
 .courseTools a:hover{border-color:var(--c-accent,#11695f)}
 .courseTools strong{font-size:15px}
 .courseTools span{font-size:13px;line-height:1.7;color:var(--c-ink-2,#5c554c)}
+.courseToolsNote{margin:-4px 0 10px;font-size:13px;line-height:1.7;color:var(--c-ink-2,#5c554c)}
+.courseExtra{max-width:720px;margin:22px auto 0}
+.courseTools+.courseTools{margin-top:22px}

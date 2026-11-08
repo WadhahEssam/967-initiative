@@ -42,8 +42,8 @@ test('every department uses a connected expedition trail and preserves its publi
  assert.ok(read('app/school/nature/page.jsx').includes('publishedSchoolStages'));
  assert.ok(read('app/school/logic/page.jsx').includes('publishedSchoolStages'));
  assert.ok(read('app/school/civic/page.jsx').includes('publishedSchoolStages'));
- assert.ok(read('app/school/writing/page.jsx').includes("href:'/school/writing/musnad'"));
- assert.ok(read('app/school/writing/page.jsx').includes("href:'/school/writing/arud'"));
+ assert.ok(read('app/school/writing/page.jsx').includes("href:'/school/courses/musnad'"));
+ assert.ok(read('app/school/writing/page.jsx').includes("href:'/school/courses/arud'"));
  assert.ok(trail.includes('tracks.map((track,index)'));
  assert.ok(trail.includes('track.href||'));
  assert.ok(trail.includes('اختر أي مسار')||trail.includes('يمكنك اختيار أي مسار منشور'));
@@ -55,27 +55,17 @@ test('every department uses a connected expedition trail and preserves its publi
  assert.equal(css.split('{').length,css.split('}').length);
 });
 
-test('course station map uses true API progress and never unlocks a station cosmetically',()=>{
- const map=read('components/school/SchoolCourseMap.jsx');
- const css=read('components/school/SchoolCourseMap.module.css');
- assert.ok(map.includes("Authorization:'Bearer '+auth.session.access_token"));
- assert.ok(map.includes("const completed=Boolean(info?.completed)"));
- assert.ok(map.includes("const locked=!info||info.locked"));
- assert.ok(map.includes("const available=!state.loading&&!state.error&&!guest&&!locked"));
- assert.ok(map.includes("available?<Link href={'/school/courses/'+slug+'/'+(stage.index+1)}"));
- assert.ok(map.includes("const nextInfo=summary?.stages.find(item=>!item.completed&&!item.locked)"));
- assert.ok(map.includes("const nextStage=stages.find(item=>item.index===nextInfo?.index)"));
- assert.ok(map.includes('summary?.stages.filter(s=>s.completed)'));
- assert.ok(map.includes('summary.staffPreview'));
- assert.ok(map.includes('state.authRequired&&'));
- assert.ok(map.includes('aria-valuenow={done}'));
- assert.ok(map.includes('styles.timelineNode'));
- assert.ok(map.includes('styles.timelineDone'));
- assert.ok(map.includes('styles.timelineOpen'));
- for(const cls of ['.courseTimeline','.timelineStage','.timelineNode','.timelineDone','.timelineOpen','.courseProgress','.courseContinue'])assert.ok(css.includes(cls),cls);
- assert.ok(css.includes('max-width:630px'));
- assert.ok(css.includes('max-width:375px'));
- assert.ok(css.includes(':global(:root[data-ed-theme="dark"])'));
+test('course journey map uses true API progress and never unlocks a station cosmetically',()=>{
+ // SchoolCourseMap was retired in phase 8; every course uses the card journey.
+ const map=read('components/school/v2/CourseJourney.jsx');
+ const css=read('components/school/v2/CourseJourney.module.css');
+ assert.ok(map.includes("fetch('/api/school/custom?slug=' + encodeURIComponent(slug), {cache: 'no-store', headers: {Authorization: 'Bearer ' + token}})"));
+ assert.ok(map.includes('staff: Boolean(json.staffPreview)'));
+ assert.ok(map.includes('const state = useMemo(() => journeyState(stages, progress), [stages, progress]);'));
+ assert.ok(map.includes("{st.status === 'locked' || st.status === 'pending'"));
+ assert.ok(map.includes('<div className={styles.link} aria-disabled="true">{inner}</div>'));
+ assert.ok(map.includes("const st = state.byIndex[s.index] || {status: 'locked', stars: 0};"));
+ assert.ok(map.includes('aria-valuenow={state.done}'));
  assert.ok(css.includes('prefers-reduced-motion:reduce'));
  assert.equal(css.split('{').length,css.split('}').length);
 });

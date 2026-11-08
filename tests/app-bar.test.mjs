@@ -13,7 +13,8 @@ test('home has no place; section roots show their name without a back link', () 
 test('detail pages link back to the list they belong to', () => {
   assert.deepEqual(appBarPlace('/yemen-in-numbers/indicator/gdp'), {label: 'اليمن بالأرقام', href: '/yemen-in-numbers', isRoot: false});
   assert.equal(appBarPlace('/yemen-in-numbers/timeline').label, 'المؤشرات عبر الزمن');
-  assert.equal(appBarPlace('/school/writing/musnad/3').href, '/school/writing/musnad');
+  assert.deepEqual(appBarPlace('/school/courses/musnad'), {label: 'خط المسند', href: '/school/courses/musnad', isRoot: true});
+  assert.equal(appBarPlace('/school/courses/musnad/3').href, '/school/courses/musnad');
   assert.deepEqual(appBarPlace('/school/courses/logic-basics/2'), {label: 'خريطة المسار', href: '/school/courses/logic-basics', isRoot: false});
   assert.equal(appBarPlace('/games/quiz').href, '/games');
   assert.equal(appBarPlace('/debates/some-debate').href, '/debates');

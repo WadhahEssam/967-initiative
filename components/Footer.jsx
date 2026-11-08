@@ -17,7 +17,7 @@ function FooterGroup({title, children}) {
 
 // Footer-only additions to the shared vocabulary.
 const extras = {
-  school: [['/school/writing/musnad', 'تعلم خط المسند'], ['/school/writing/arud', 'تعلم علم العروض']],
+  school: [['/school/courses/musnad', 'تعلم خط المسند'], ['/school/courses/arud', 'تعلم علم العروض']],
   initiative: [['/contribute?type=تصحيح%20معلومة', 'أرسل تصحيحاً'], ['/admin', 'دخول المحررين']],
 };
 
