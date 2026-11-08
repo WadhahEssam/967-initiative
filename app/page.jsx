@@ -4,6 +4,8 @@ import SearchForm from '@/components/SearchForm';
 import HomeSmartStart from '@/components/home/HomeSmartStart';
 import Resilient from '@/components/front/Resilient';
 import TodayFeed from '@/components/home/TodayFeed';
+import OnThisDay from '@/components/home/OnThisDay';
+import {onThisDay} from '@/lib/onThisDayServer';
 import {buildTodayFeed} from '@/lib/todayFeed';
 import {Shortcuts, SectionLauncher, BlockHead, GamesStrip, SchoolStrip, KnowledgeRail, NumbersRail, CommunityRows, InviteBanner} from '@/components/home/HomeBlocks';
 import {formatCompact} from '@/lib/format';
@@ -28,13 +30,15 @@ const settle = promise => promise.then(data => ({data, failed:false}), () => ({d
 
 export default async function Home() {
   const settings = await getSiteSettings();
-  const [works, issues, indicators, debates, companies, professionals] = await Promise.all([
+  const visibleHistory = sectionIsVisible('history', settings.pageVisibility);
+  const [works, issues, indicators, debates, companies, professionals, historyDay] = await Promise.all([
     settle(getLatestWorks(homeProjections.works, 8)),
     settle(getLatestIssues(homeProjections.issues, 2)),
     settle(getRecentIndicators(4)),
     getDebateCatalog().then(result => ({data:result.debates, failed:!result.available}), () => ({data:null, failed:true})),
     settle(getRecentCompanies(homeProjections.companies, 6)),
     settle(getRecentProfessionals(homeProjections.professionals, 6)),
+    visibleHistory ? onThisDay().catch(() => null) : null,
   ]);
   const content = selectHomeContent({works:works.data||[], issues:issues.data||[], indicators:indicators.data||[], debates:debates.data||[], companies:companies.data||[], professionals:professionals.data||[]});
   const visible = id => sectionIsVisible(id, settings.pageVisibility);
@@ -69,6 +73,9 @@ export default async function Home() {
       <div className={home.search}><SearchForm compact placeholder={settings.searchPlaceholder}/></div>
       {settings.pageVisibilityUnavailable && <p className="ed-unavailable" role="status">تعذر تحميل أقسام المنصة مؤقتًا. أعد تحديث الصفحة للمحاولة.</p>}
     </div></section>
+
+    {/* «في مثل هذا اليوم»: a dated event from the history texts */}
+    {historyDay && <div className={`ed-wrap ${home.block}`}><Resilient name="home-on-this-day" label="تعذّر عرض حدث اليوم." quiet><OnThisDay result={historyDay}/></Resilient></div>}
 
     {/* 2 · الآن: one-tap shortcuts */}
     <div className={`ed-wrap ${home.block}`}><Shortcuts items={shortcuts}/></div>
