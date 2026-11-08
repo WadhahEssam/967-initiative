@@ -31,3 +31,31 @@ test('the inline editor shares one session check and skips known non-editors', (
   assert.match(header, /import \{readEditorFlag, writeEditorFlag\} from '\.\/editorFlag';/);
   assert.doesNotMatch(header, /function readEditorFlag/);
 });
+
+test('auth events that keep the same account do not reload; tab returns reload once a minute', async () => {
+  const {authEventChangesAccount, createRefreshThrottle} = await import('../lib/authEvents.js');
+  for (const event of ['INITIAL_SESSION', 'TOKEN_REFRESHED']) assert.equal(authEventChangesAccount(event), false, event);
+  for (const event of ['SIGNED_IN', 'SIGNED_OUT', 'USER_UPDATED']) assert.equal(authEventChangesAccount(event), true, event);
+  let t = 0;
+  const throttle = createRefreshThrottle(60000, () => t);
+  assert.equal(throttle.due(), true);
+  throttle.mark();
+  t = 59999; assert.equal(throttle.due(), false);
+  t = 60000; assert.equal(throttle.due(), true);
+  for (const file of ['components/games/WeeklyArcade.jsx', 'components/games/GamesHomeStatus.jsx', 'components/games/useDailyAttempt.js', 'components/games/GameAchievementGallery.jsx'])
+    assert.match(read(file), /if\(!shouldReloadOnAuth\(account,event,session\)\)return;/, file);
+});
+
+test('a same-account SIGNED_IN (token refreshed on page open) does not reload; a new account does', async () => {
+  const {createAccountWatch, shouldReloadOnAuth} = await import('../lib/authEvents.js');
+  const watch = createAccountWatch();
+  const me = {user: {id: 'me'}}, other = {user: {id: 'other'}};
+  assert.equal(shouldReloadOnAuth(watch, 'SIGNED_IN', me), false, 'first load still running');
+  watch.seen(me);
+  assert.equal(shouldReloadOnAuth(watch, 'SIGNED_IN', me), false);
+  assert.equal(shouldReloadOnAuth(watch, 'TOKEN_REFRESHED', me), false);
+  assert.equal(shouldReloadOnAuth(watch, 'SIGNED_IN', other), true);
+  assert.equal(shouldReloadOnAuth(watch, 'SIGNED_OUT', null), true);
+  watch.seen(null);
+  assert.equal(shouldReloadOnAuth(watch, 'SIGNED_IN', me), true, 'guest signs in');
+});

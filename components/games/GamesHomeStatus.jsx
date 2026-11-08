@@ -4,6 +4,7 @@ import Link from 'next/link';
 import {ArrowUpLeft,CircleCheck,Flame,Medal,ShieldCheck,Trophy,UserRound,CalendarCheck2} from 'lucide-react';
 import {browserDb} from '@/lib/supabase';
 import {utcDay} from '@/lib/dailyGame';
+import {createAccountWatch,shouldReloadOnAuth,createRefreshThrottle} from '@/lib/authEvents';
 import DailyCountdown from './DailyCountdown';
 import styles from './GamesHomeStatus.module.css';
 
@@ -14,12 +15,13 @@ export default function GamesHomeStatus({initialDate}){
 
  useEffect(()=>{
   let alive=true,sequence=0,authTimer=null,lastDate=utcDay();
-  const db=browserDb();
+  const db=browserDb(),throttle=createRefreshThrottle(),account=createAccountWatch();
   if(!db){setState({kind:'unavailable',overview:null,rank:null,ranking:false});return;}
   const refresh=async()=>{
-   const id=++sequence;
+   const id=++sequence;throttle.mark();
    try{
     const {data,error}=await db.auth.getSession();
+    account.seen(error?null:data?.session);
     if(!alive||id!==sequence)return;
     if(error){setState({kind:'unavailable',overview:null,rank:null,ranking:false});return;}
     const token=data?.session?.access_token;
@@ -51,12 +53,15 @@ export default function GamesHomeStatus({initialDate}){
   };
   refresh();
   // Supabase auth callbacks run while the auth lock is held. Defer reads.
-  const {data:{subscription}}=db.auth.onAuthStateChange(()=>{
+  // Reload when the account changes, not on the initial event or hourly token refreshes.
+  const {data:{subscription}}=db.auth.onAuthStateChange((event,session)=>{
+   if(!shouldReloadOnAuth(account,event,session))return;
    clearTimeout(authTimer);
    authTimer=setTimeout(()=>{if(alive)refresh();},0);
   });
-  const onVisible=()=>{if(document.visibilityState==='visible')refresh();};
-  const onFocus=()=>refresh();
+  // Returning to the tab fires focus and visibilitychange together: reload once a minute at most.
+  const onVisible=()=>{if(document.visibilityState==='visible'&&throttle.due())refresh();};
+  const onFocus=()=>{if(throttle.due())refresh();};
   const interval=setInterval(()=>{
    const today=utcDay();
    if(today!==lastDate){lastDate=today;refresh();}
