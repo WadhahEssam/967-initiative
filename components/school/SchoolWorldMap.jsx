@@ -20,7 +20,7 @@ export default function SchoolWorldMap(){
     const Icon=world.icon;
     return <li className={styles.worldItem} key={world.id} data-tone={world.tone}>
      <div className={styles.roadNode} aria-hidden="true"><span>{world.number}</span></div>
-     <Link href={world.href} className={styles.world} aria-label={'استكشف '+world.name+'، '+world.tracks}>
+     <Link href={world.href} className={styles.world}>
       <div className={styles.scene} aria-hidden="true">
        <span className={styles.sceneGrid}/>
        <span className={styles.sceneHalo}/>

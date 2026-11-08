@@ -39,9 +39,9 @@ test('every department uses a connected expedition trail and preserves its publi
   assert.ok(src.includes('publishedSchoolCatalog'),p);
   assert.ok(src.includes('href="/school/dashboard"')||src.includes("href='/school/dashboard'"),p);
  }
- assert.ok(read('app/school/nature/page.jsx').includes('publishedSchoolStages'));
- assert.ok(read('app/school/logic/page.jsx').includes('publishedSchoolStages'));
- assert.ok(read('app/school/civic/page.jsx').includes('publishedSchoolStages'));
+ assert.ok(read('app/school/nature/page.jsx').includes('publishedSchoolStageList'));
+ assert.ok(read('app/school/logic/page.jsx').includes('publishedSchoolStageList'));
+ assert.ok(read('app/school/civic/page.jsx').includes('publishedSchoolStageList'));
  assert.ok(read('app/school/writing/page.jsx').includes("href:'/school/courses/musnad'"));
  assert.ok(read('app/school/writing/page.jsx').includes("href:'/school/courses/arud'"));
  assert.ok(trail.includes('tracks.map((track,index)'));
