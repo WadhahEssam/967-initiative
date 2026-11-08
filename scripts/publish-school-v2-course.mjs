@@ -1,7 +1,9 @@
 // مدرسة 967 — نشر مسار بطاقات (الإصدار الثاني) من المستودع إلى قاعدة البيانات.
-// الاستخدام: node scripts/publish-school-v2-course.mjs <slug> [--write] [--actor-email=…]
+// الاستخدام: node scripts/publish-school-v2-course.mjs <slug> [--write] [--actor-email=…] [--local]
 // بلا --write: يتحقق ويطبع الخطة فقط. مع --write: يحفظ نسخة احتياطية من الصفوف الحالية في
 // data/school-v2/archive/ ثم يحفظ كل محطة مسودةً وينشرها بالترتيب (0 ← 11)، ثم المسار نفسه.
+// --local: publishes to the local Supabase in Docker (.env.development.local) instead of production,
+// to try a course in the real player first. It refuses any address that is not local and keeps no archive.
 // يتبع منطق الاستوديو نفسه: المدقق نفسه، وزيادة النسخة مع شرط النسخة السابقة، وسجل التعديلات (trigger) يحفظ ما قبل وما بعد.
 import {readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync} from 'node:fs';
 import path from 'node:path';
@@ -16,8 +18,8 @@ const args = process.argv.slice(2);
 const slug = args.find(a => !a.startsWith('--'));
 const write = args.includes('--write');
 const actorEmail = (args.find(a => a.startsWith('--actor-email=')) || '').split('=')[1] || '';
+const local = args.includes('--local');
 if (!slug || !/^[a-z][a-z0-9-]{2,39}$/.test(slug)) throw Error('اكتب معرّف المسار.');
-if (slug === 'musnad') throw Error('المسند مبني في الكود ولا يُنشر بهذا السكربت.');
 
 const dir = path.join(root, 'data/school-v2/pilot', slug);
 const config = JSON.parse(readFileSync(path.join(dir, 'course.json'), 'utf8'));
@@ -25,8 +27,10 @@ const files = readdirSync(dir).filter(f => /^\d{2}\.json$/.test(f)).sort();
 const lessons = files.map(f => validateSchoolEditorial('stage', JSON.parse(readFileSync(path.join(dir, f), 'utf8'))));
 if (lessons.length < 1 || lessons.length > 12) throw Error('من درس إلى 12 درسًا.');
 
-const env = Object.fromEntries(readFileSync(path.join(root, '.env.local'), 'utf8').split(/\r?\n/)
+const env = Object.fromEntries(readFileSync(path.join(root, local ? '.env.development.local' : '.env.local'), 'utf8').split(/\r?\n/)
   .filter(l => /^[A-Z_]+=/.test(l)).map(l => { const i = l.indexOf('='); return [l.slice(0, i), l.slice(i + 1).replace(/^"|"$/g, '')]; }));
+if (local && !/^http:\/\/(127\.0\.0\.1|localhost):\d+$/.test(env.NEXT_PUBLIC_SUPABASE_URL || '')) throw Error('--local: .env.development.local must point to the local Supabase.');
+console.log(local ? 'الهدف: Supabase المحلي (Docker).' : 'الهدف: قاعدة الإنتاج.');
 const db = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY, {auth: {persistSession: false}});
 const must = (r, what) => { if (r.error) throw Error(what + ': ' + r.error.message); return r.data; };
 
@@ -51,13 +55,15 @@ if (actorEmail) {
   if (!actor) throw Error('لم أجد حساب الكاتب.');
 }
 
-// نسخة احتياطية قبل أي كتابة.
+// نسخة احتياطية قبل أي كتابة (للإنتاج فقط؛ النسخة المحلية تُستعاد من النسخ الاحتياطية).
+if (!local) {
 const archive = path.join(root, 'data/school-v2/archive');
 if (!existsSync(archive)) mkdirSync(archive, {recursive: true});
 const stamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-');
 const backup = path.join(archive, `${stamp}-${slug}.json`);
 writeFileSync(backup, JSON.stringify({slug, takenAt: new Date().toISOString(), course, stages}, null, 1));
 console.log('النسخة الاحتياطية:', path.relative(root, backup));
+}
 
 const now = () => new Date().toISOString();
 for (const [i, doc] of lessons.entries()) {

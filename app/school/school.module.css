@@ -17,7 +17,7 @@
 .heroPills span{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:#d2e5e0}
 .heroArtifact{position:relative;min-height:340px;display:grid;place-items:center}
 .artifactRing{width:300px;height:300px;border:1px solid #95cfb359;border-radius:50%;box-shadow:0 0 0 25px #6a9b8740,0 0 0 52px #f4e5b614;position:absolute}
-.artifactGlyph,.categoryGlyph,.courseVisual,.glyph,.questionGlyph{font-family:'Segoe UI Historic','Noto Sans Old South Arabian','Noto Sans',serif}
+.artifactGlyph,.categoryGlyph,.courseVisual,.glyph,.questionGlyph{font-family:'Noto Sans Old South Arabian','Segoe UI Historic','Noto Sans',serif}
 .artifactGlyph{font-size:clamp(135px,19vw,220px);color:#e4d19f;position:relative;text-shadow:0 15px 45px #0006;line-height:1.4}
 .artifactTag{position:absolute;bottom:0;left:5%;border:1px solid #e3c7a56b;color:#fbdfb6;background:#1c4038bd;padding:10px 14px;font-size:11px;letter-spacing:.09em}
 .catalogSection{padding:clamp(45px,6vw,75px) 0}
@@ -191,7 +191,7 @@
 .alphabetGrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
 .alphabetCard{display:flex;align-items:center;flex-direction:column;gap:8px;background:#fff;border:1px solid #d4ddcf;border-radius:13px;padding:14px 8px;min-width:0}
 .alphabetIndex{color:#628078;font-size:10px;font-weight:750;align-self:flex-start}
-.alphabetGlyph{font-family:'Segoe UI Historic','Noto Sans Old South Arabian','Noto Sans',serif;font-size:clamp(35px,5vw,62px);font-weight:500;line-height:1.5;color:#1d6053;min-height:86px;display:grid;place-items:center}
+.alphabetGlyph{font-family:'Noto Sans Old South Arabian','Segoe UI Historic','Noto Sans',serif;font-size:clamp(35px,5vw,62px);font-weight:500;line-height:1.5;color:#1d6053;min-height:86px;display:grid;place-items:center}
 .alphabetName{font-size:13px;font-weight:800;text-align:center;line-height:1.5}
 .alphabetLatin{font-size:12px;color:#5f756e}
 .alphabetNotes{margin-top:25px;background:#eef1e6;border:1px solid #ccd8c6;border-radius:12px;padding:20px 24px}
@@ -204,11 +204,11 @@
 .writingPanelTop>div>span{font-size:12px;color:#617970}
 .writingPanelTop h3{font-size:24px;margin:3px 0;color:#244f47}
 .writingPanelTop h3 small{font-size:12px;margin-inline-start:8px;color:#54736b}
-.writingSelectedGlyph{font-family:'Segoe UI Historic','Noto Sans Old South Arabian',serif;color:#1b6254;font-size:54px;font-weight:400;line-height:1.5}
+.writingSelectedGlyph{font-family:'Noto Sans Old South Arabian','Segoe UI Historic',serif;color:#1b6254;font-size:54px;font-weight:400;line-height:1.5}
 .writingBoard{position:relative;overflow:hidden;border:2px dashed #91ae9c;border-radius:12px;height:330px;background:repeating-linear-gradient(0deg,transparent 0 81px,#d7e6d6 82px),#f7faf4}
 .writingBoard:before{content:'';position:absolute;top:50%;left:0;right:0;border-top:1px dashed #d6e1d4;pointer-events:none}
 .writingBoard canvas{display:block;position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair;z-index:2}
-.writingGhost{position:absolute;inset:0;display:grid;place-items:center;font-family:'Segoe UI Historic','Noto Sans Old South Arabian','Noto Sans',serif;color:#82b39f5c;font-size:clamp(170px,18vw,245px);line-height:1;pointer-events:none;user-select:none}
+.writingGhost{position:absolute;inset:0;display:grid;place-items:center;font-family:'Noto Sans Old South Arabian','Segoe UI Historic','Noto Sans',serif;color:#82b39f5c;font-size:clamp(170px,18vw,245px);line-height:1;pointer-events:none;user-select:none}
 .writingHint{position:absolute;bottom:13px;left:0;right:0;text-align:center;font-size:12px;color:#6b8277;pointer-events:none;z-index:1}
 .writingControls{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .writingControls button{display:flex;align-items:center;justify-content:center;gap:7px;min-height:43px;padding:9px 13px;border-radius:8px;background:#e4f2e9;color:#205748;font-weight:750;font-size:12px;border:1px solid #b9d5c2}
@@ -219,7 +219,7 @@
 .writingLetters{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
 .writingLetter,.writingLetterActive{display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0;min-height:73px;border-radius:9px;border:1px solid #d0dcd2;background:#f9faf7;color:#20574c;padding:8px 4px}
 .writingLetterActive{border-color:#1f8b6f;background:#e1f3e7;box-shadow:inset 0 0 0 1px #1f8b6f}
-.writingLetters button>span{font-family:'Segoe UI Historic','Noto Sans Old South Arabian','Noto Sans',serif;font-size:28px;line-height:1.4}
+.writingLetters button>span{font-family:'Noto Sans Old South Arabian','Segoe UI Historic','Noto Sans',serif;font-size:28px;line-height:1.4}
 .writingLetters button>small{font-size:10px;line-height:1.5;color:#48665c;overflow-wrap:anywhere}
 .writingBack{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:#176456;font-weight:800;margin-top:19px;min-height:43px}
 @media(max-width:1040px){.alphabetGrid{grid-template-columns:repeat(5,minmax(0,1fr))}.writingLayout{grid-template-columns:1fr}.writingLetters{grid-template-columns:repeat(8,minmax(0,1fr))}}

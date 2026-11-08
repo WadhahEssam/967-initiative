@@ -3,7 +3,8 @@
 // كل التفاعلات تعمل بالنقر (تناسب اللمس ولوحة المفاتيح وقارئ الشاشة)، وتعرض الصواب بعد انتهاء المحاولتين.
 import {useState} from 'react';
 import dynamic from 'next/dynamic';
-import {Check, FlaskConical, ArrowDown} from 'lucide-react';
+import {Check, FlaskConical, ArrowDown, Delete, RotateCcw} from 'lucide-react';
+import {MUSNAD_ALPHABET} from '@/lib/schoolMusnad';
 import CardVisual from './CardVisual';
 import styles from './CardInteractions.module.css';
 
@@ -202,6 +203,36 @@ export function LabTask({task, value, onChange, locked}) {
   </div>;
 }
 
+// Musnad keys: the 29 letters and the word separator 𐩽.
+const MUSNAD_KEYS = Object.fromEntries([...MUSNAD_ALPHABET.map(l => [l.id, l]), ['sep', {id: 'sep', glyph: '𐩽', name: 'فاصل'}]]);
+const musnadLine = ids => ids.map(id => MUSNAD_KEYS[id]?.glyph || '').join('');
+const COMPOSE_MAX = 80;
+
+// Hands-on composition: tap letters in order to write the requested line in Musnad.
+// Musnad is a right-to-left script, so the line grows to the left like Arabic.
+export function ComposeTask({task, value, onChange, locked, feedback}) {
+  const line = Array.isArray(value) ? value : [];
+  const reveal = revealOf(feedback);
+  // Without labels the letter names stay hidden (also from screen readers) until the answer is checked.
+  const said = task.labels ? line.map(id => MUSNAD_KEYS[id]?.name).join('، ') : line.length + ' رموز';
+  return <div className={styles.block} data-noswipe>
+    <p className={styles.composeTarget}><span>اكتب بالمسند</span><strong>{task.target}</strong></p>
+    <div className={styles.composeLine} dir="rtl" role="status" aria-live="polite" aria-label={line.length ? 'ما كتبته: ' + said : 'لم تكتب شيئًا بعد'}>
+      {line.length ? <span lang="und">{musnadLine(line)}</span> : <span className={styles.slotEmpty}>اضغط الحروف أدناه بالترتيب</span>}
+    </div>
+    <div className={styles.composeTools}>
+      <button type="button" className={styles.chip} disabled={locked || !line.length} onClick={() => onChange(line.slice(0, -1))}><Delete size={16} aria-hidden="true"/> احذف آخر حرف</button>
+      <button type="button" className={styles.chip} disabled={locked || !line.length} onClick={() => onChange([])}><RotateCcw size={16} aria-hidden="true"/> امسح السطر</button>
+      <span className={styles.composeCount}>{line.length} {line.length === 1 ? 'رمز' : 'رموز'}</span>
+    </div>
+    <div className={styles.composeKeys} role="group" aria-label="لوحة حروف المسند">
+      {task.palette.map((id, i) => <button type="button" key={id} className={styles.composeKey} data-sep={id === 'sep' || undefined} disabled={locked || line.length >= COMPOSE_MAX}
+        onClick={() => onChange([...line, id])} aria-label={task.labels || id === 'sep' ? 'أضف ' + MUSNAD_KEYS[id].name : 'الرمز ' + (i + 1)}><span lang="und">{MUSNAD_KEYS[id].glyph}</span>{(task.labels || id === 'sep') && <small>{MUSNAD_KEYS[id].name}</small>}</button>)}
+    </div>
+    {Array.isArray(reveal) && <div className={styles.reveal}><strong>الكتابة الصحيحة</strong><p className={styles.composeReveal} dir="rtl" lang="und">{musnadLine(reveal)}</p><p>{reveal.map(id => MUSNAD_KEYS[id]?.name).join(' ← ')}</p></div>}
+  </div>;
+}
+
 export const HOW_MORE = {
   order: 'اضغط العناصر بالترتيب: الأول ثم الثاني وهكذا. لإزالة عنصر من ترتيبك اضغط عليه.',
   match: 'اضغط عنصرًا من العمود الأول، ثم اضغط ما يناسبه في العمود الثاني. يظهر الرقم نفسه على الطرفين.',
@@ -211,6 +242,7 @@ export const HOW_MORE = {
   fix: 'اضغط الكلمة أو الجزء الخاطئ في الجملة، ثم اختر التصحيح من الخيارات التي تظهر.',
   gap: 'اضغط كلمة من البنك لتملأ أول فراغ. لإفراغ فراغ اضغط عليه.',
   lab: 'نفّذ التجربة كما هو مطلوب داخل المختبر. حين تكتمل يظهر زر «تحقق».',
+  compose: 'اضغط حروف المسند بالترتيب نفسه الذي تُكتب به العربية: الحرف الأول ثم الثاني. بين الكلمات اضغط الفاصل 𐩽. أخطأت؟ اضغط «احذف آخر حرف».',
 };
 
 export function interactionReady(task, value) {
@@ -223,8 +255,9 @@ export function interactionReady(task, value) {
     case 'fix': return Number.isInteger(value?.index) && Number.isInteger(value?.replacement);
     case 'gap': return Array.isArray(value) && value.length === task.text.split('___').length - 1 && value.every(v => typeof v === 'string' && v.trim());
     case 'lab': return Boolean(value && typeof value === 'object');
+    case 'compose': return Array.isArray(value) && value.length > 0;
     default: return false;
   }
 }
 
-export const INTERACTIONS = {order: OrderTask, match: MatchTask, buckets: BucketsTask, slider: SliderTask, hotspot: HotspotTask, fix: FixTask, gap: GapTask, lab: LabTask};
+export const INTERACTIONS = {order: OrderTask, match: MatchTask, buckets: BucketsTask, slider: SliderTask, hotspot: HotspotTask, fix: FixTask, gap: GapTask, lab: LabTask, compose: ComposeTask};

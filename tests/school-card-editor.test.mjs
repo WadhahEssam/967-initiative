@@ -61,17 +61,22 @@ test('publishing a card lesson skips the six-question bank; preview never calls 
   assert.match(player, /if \(preview\) \{ setProgress\(\{\}\); setIndex\(0\); setMode\('playing'\); return; \}/);
   assert.match(player, /if \(!preview\) writeLocal\(/);
   assert.match(studio, /form\.format===2&&<CardLessonEditor/);
-  // العروض صار مسار بطاقات عاديًا؛ المسند وحده مبني في الكود.
-  assert.match(studio, /slug!=='musnad'&&<CourseUnitsEditor/);
+  // Every course, musnad included, is a regular card course with units.
+  assert.match(studio, /\n\s*<CourseUnitsEditor key=\{slug\}/);
 });
 
-test('phase 8: arud is a regular card course; stale attempts of the other format are closed', () => {
+test('phase 8: arud and musnad are regular card courses; stale attempts of the other format are closed', () => {
   const content = read('lib/schoolContent.js'), generic = read('lib/schoolGenericServer.js');
   const arud = read('app/school/writing/arud/page.jsx'), arudStage = read('app/school/writing/arud/[stage]/page.jsx');
-  assert.match(content, /SCHOOL_FIXED_SLUGS=\['musnad'\]/);
+  assert.match(content, /SCHOOL_FIXED_SLUGS=\[\];/);
+  const musnad = read('app/school/writing/musnad/page.jsx'), musnadStage = read('app/school/writing/musnad/[stage]/page.jsx');
+  assert.match(musnad, /\.some\(s=>s\.format===2\)\)redirect\('\/school\/courses\/musnad'\)/);
+  assert.match(musnadStage, /if\(overlay\?\.format===2\)redirect\('\/school\/courses\/musnad\/'\+raw\);/);
   assert.match(generic, /const sameFormat=isCardSnapshot\(current\.questions\)===\(activeStage\.format===2\);/);
   assert.match(generic, /if\(sameFormat&&Date\.now\(\)-Date\.parse\(current\.created_at\)<3600000\)return publicAttempt\(current\);/);
   assert.match(arud, /\.some\(s=>s\.format===2\)\)redirect\('\/school\/courses\/arud'\)/);
   assert.match(arudStage, /if\(overlay\?\.format===2\)redirect\('\/school\/courses\/arud\/'\+raw\);/);
-  for (const page of ['app/school/courses/[slug]/page.jsx', 'app/school/courses/[slug]/[stage]/page.jsx']) assert.match(read(page), /slug==='musnad'/);
+  // The course page hides musnad only until its card lessons are published.
+  assert.match(read('app/school/courses/[slug]/page.jsx'), /if\(slug==='musnad'&&!stages\.some\(s=>s\.format===2\)\)notFound\(\);/);
+  assert.doesNotMatch(read('app/school/courses/[slug]/[stage]/page.jsx'), /slug==='musnad'/);
 });

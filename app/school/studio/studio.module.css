@@ -592,3 +592,12 @@
 :global(:root[data-ed-theme="dark"]) .cardScript .scriptHistoricalImage{background:#fbf8f2;border-radius:8px}
 :global(:root[data-ed-theme="dark"]) .cardScript .calligraphyPractice{background:var(--c-surface);border-color:var(--c-line)}
 :global(:root[data-ed-theme="dark"]) .cardScript .practiceCanvas{background-color:#f5faf4;border:1px solid #7ea995;background-image:linear-gradient(to bottom,transparent 0,transparent 31%,#b8d1c0 31.5%,transparent 32%,transparent 64%,#b8d1c0 64.5%,transparent 65%,transparent 96%,#b8d1c0 96.5%);color:#153d2f}
+
+/* Course tools under the journey map (e.g. the Musnad alphabet guide and tracing board) */
+.courseTools{max-width:720px;margin:4px auto 0}
+.courseTools h2{margin:0 0 10px;font-size:16px}
+.courseTools div{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.courseTools a{display:flex;flex-direction:column;gap:3px;padding:14px 16px;border-radius:16px;border:1.5px solid var(--c-line,#e4ddd2);background:var(--c-surface,#fff);color:inherit;text-decoration:none;transition:border-color .15s}
+.courseTools a:hover{border-color:var(--c-accent,#11695f)}
+.courseTools strong{font-size:15px}
+.courseTools span{font-size:13px;line-height:1.7;color:var(--c-ink-2,#5c554c)}

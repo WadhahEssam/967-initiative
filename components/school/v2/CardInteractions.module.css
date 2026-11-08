@@ -98,3 +98,24 @@
 :global(:root[data-ed-theme="dark"]) .spot[data-right]{background:#1e8a5a;color:#fff}
 :global(:root[data-ed-theme="dark"]) .labStatus[data-done]{color:#7fd3a8}
 @media (prefers-reduced-motion:reduce){.chip,.matchItem,.bucket,.bucketHead{transition:none}.bucket[data-armed]{animation:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--c-accent,#11695f) 25%,transparent)}}
+
+/* Musnad composition: a line that grows to the left and a keyboard of glyphs */
+.composeTarget{margin:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;font-size:14px;color:var(--c-ink-2,#5c554c)}
+.composeTarget strong{font-size:17px;color:var(--c-ink,#1d1a16)}
+.composeLine{min-height:72px;display:flex;align-items:center;justify-content:flex-start;padding:10px 14px;border-radius:16px;background:var(--c-surface-2,#f6f2ea);border:1.5px solid var(--c-line,#e4ddd2);overflow-wrap:anywhere}
+.composeLine span[lang],.composeReveal,.composeKey span{font-family:'Noto Sans Old South Arabian','Segoe UI Historic',sans-serif}
+.composeLine span[lang]{font-size:34px;line-height:1.5;letter-spacing:2px;color:#a3402b}
+.composeTools{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.composeTools .chip{min-height:40px;font-size:13.5px;padding:6px 12px}
+.composeTools .chip:disabled{opacity:.5}
+.composeCount{margin-inline-start:auto;font-size:12.5px;color:var(--c-ink-3,#8b8378)}
+.composeKeys{display:grid;grid-template-columns:repeat(auto-fill,minmax(58px,1fr));gap:6px}
+.composeKey{min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:4px 2px;border-radius:12px;border:1.5px solid var(--c-line,#e4ddd2);background:var(--c-surface,#fff);color:inherit;font:inherit;cursor:pointer;transition:border-color .15s,background .15s}
+.composeKey span{font-size:24px;line-height:1.3;color:#a3402b}
+.composeKey small{font-size:11px;color:var(--c-ink-3,#8b8378);white-space:nowrap}
+.composeKey:hover:not(:disabled){border-color:var(--c-accent,#11695f)}
+.composeKey:active:not(:disabled){background:var(--c-accent-soft,#dcefe9)}
+.composeKey[data-sep]{background:var(--c-surface-2,#f6f2ea)}
+.composeKey:disabled{opacity:.55;cursor:default}
+.composeReveal{font-size:28px;line-height:1.5;color:#a3402b;margin:4px 0}
+:global(:root[data-ed-theme="dark"]) .composeLine span[lang],:global(:root[data-ed-theme="dark"]) .composeKey span,:global(:root[data-ed-theme="dark"]) .composeReveal{color:#f0a48c}

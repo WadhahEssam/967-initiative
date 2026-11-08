@@ -139,3 +139,16 @@
 .sceneLabel{position:absolute;transform:translate(-50%,-50%);padding:3px 9px;border-radius:999px;background:var(--v-paper);color:var(--v-ink);font-size:12px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.15);white-space:nowrap}
 
 @media (prefers-reduced-motion:reduce){.shifted,.barFill{transition:none}.skeleton{animation:none}}
+
+/* Tracing board for one Musnad letter (trace visual) */
+.trace{display:flex;flex-direction:column;gap:8px;padding:12px}
+.traceHead{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--v-muted)}
+.traceHead strong{font-family:'Noto Sans Old South Arabian','Segoe UI Historic',sans-serif;font-size:30px;font-weight:400;line-height:1.2;color:var(--v-red)}
+.traceHead small{font-size:12px}
+.traceBoard{position:relative;height:220px;border-radius:14px;border:2px dashed var(--v-line);background:repeating-linear-gradient(0deg,transparent 0 54px,color-mix(in srgb,var(--v-accent) 14%,transparent) 55px),var(--v-paper);overflow:hidden;color:var(--v-accent)}
+.traceBoard canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:crosshair;z-index:2}
+.traceGhost{position:absolute;inset:0;display:grid;place-items:center;font-family:'Noto Sans Old South Arabian','Segoe UI Historic',sans-serif;font-size:170px;line-height:1;color:color-mix(in srgb,var(--v-red) 22%,transparent);pointer-events:none;user-select:none}
+.traceHint{position:absolute;bottom:10px;inset-inline:0;text-align:center;font-size:12px;color:var(--v-muted);pointer-events:none;z-index:1}
+.traceTools{display:flex;flex-wrap:wrap;gap:8px}
+.traceTools button{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:6px 10px;border-radius:12px;border:1.5px solid var(--v-line);background:var(--v-paper);color:inherit;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.traceTools button[aria-pressed="true"]{border-color:var(--v-accent);color:var(--v-accent)}

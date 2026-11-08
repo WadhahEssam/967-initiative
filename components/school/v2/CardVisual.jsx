@@ -8,6 +8,7 @@ import YemenMapVisual from './visuals/YemenMapVisual';
 import Scene from './visuals/Scenes';
 import CalligraphyExample from '../CalligraphyExample';
 import CalligraphyPracticePad from '../CalligraphyPracticePad';
+import TracePad from './visuals/TracePad';
 import studio from '@/app/school/studio/studio.module.css';
 import styles from './visuals/Visuals.module.css';
 
@@ -62,6 +63,7 @@ function Body({visual, task, value}) {
     case 'script': return <div className={styles.scriptBox + ' ' + studio.cardScript}><CalligraphyExample text={visual.text} script={visual.script} label="نموذج الخط" hideName={visual.blind === true}/></div>;
     // لوح التدريب للكتابة الحرة: لا يُصحَّح ولا يُحفظ، ولا يقلب البطاقة عند السحب عليه.
     case 'pad': return <div className={styles.scriptBox + ' ' + studio.cardScript} data-noswipe><CalligraphyPracticePad practice={{model: visual.model, focus: visual.focus, instructions: visual.instructions, script: visual.script}} script={visual.script} stageKey={'card-' + visual.script}/></div>;
+    case 'trace': return <TracePad letter={visual.letter}/>;
     // eslint-disable-next-line @next/next/no-img-element -- صور كومنز خارجية بحجمها الأصلي؛ لا حاجة لمحسّن الصور هنا.
     case 'image': return <img className={styles.image} src={visual.src} alt="" loading="lazy" decoding="async" width={visual.width} height={visual.height}/>;
     default: return null;

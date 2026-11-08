@@ -25,7 +25,7 @@ async function fixtureLesson(name){
 export default async function CourseStagePage({params,searchParams}){
  const {slug,stage:raw}=await params,settings=await getSiteSettings(),db=serverDb();
  const fixture=await fixtureLesson((await searchParams)?.fixture);
- if(!sectionGate('school',settings)||!db||slug==='musnad'||!/^(?:[1-9]|1[0-2])$/.test(raw))notFound();
+ if(!sectionGate('school',settings)||!db||!/^(?:[1-9]|1[0-2])$/.test(raw))notFound();
  const course=(await publishedSchoolCatalog(db)).find(x=>x.slug===slug);
  if(!course)notFound();
  const stages=await publishedSchoolStages(db,slug),index=Number(raw)-1,stage=fixture?{...fixture,index}:stages.find(x=>x.index===index);

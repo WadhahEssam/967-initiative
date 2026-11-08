@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import {notFound} from 'next/navigation';
+import {notFound,redirect} from 'next/navigation';
 import {ChevronLeft} from 'lucide-react';
 import {getSiteSettings} from '@/lib/data';
 import {sectionGate} from '@/lib/pageVisibility';
@@ -20,6 +20,8 @@ export default async function StagePage({params}){
  if(!original)notFound();
  const db=serverDb();
  const overlay=db?await publishedSchoolStage(db,'musnad',original.index):null;
+ // A published card lesson for this stage opens in the card player instead of the old lesson.
+ if(overlay?.format===2)redirect('/school/courses/musnad/'+raw);
  const stage=overlay?{...original,...overlay}:original;
  return <div className={styles.root}>
   <div className={styles.lessonPage}><div className="container"><div className={styles.breadcrumb}><Link href="/school">مدرسة 967</Link><ChevronLeft size={14}/><Link href="/school/writing/musnad">خط المسند</Link><ChevronLeft size={14}/> المرحلة {raw}</div>

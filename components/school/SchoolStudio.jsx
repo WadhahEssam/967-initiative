@@ -131,10 +131,10 @@ export default function SchoolStudio(){
       <label>اسم المسار<input value={form.title||''} maxLength={90} onChange={e=>setForm(v=>({...v,title:e.target.value}))}/></label>
       <label>القسم<input value={form.category||''} maxLength={60} onChange={e=>setForm(v=>({...v,category:e.target.value}))}/></label>
       <label>وصف المسار<textarea value={form.description||''} rows={3} maxLength={700} onChange={e=>setForm(v=>({...v,description:e.target.value}))}/></label>
-      {slug!=='musnad'&&<CourseUnitsEditor key={slug} value={form} onChange={setForm}/>}
+      <CourseUnitsEditor key={slug} value={form} onChange={setForm}/>
      </>}
      {kind==='stage'&&form.format===2&&<CardLessonEditor key={slug+':'+stage} value={form} onChange={setForm} slug={slug||'preview'}/>}
-     {kind==='stage'&&form.format!==2&&slug!=='musnad'&&<button type="button" className={styles.secondary}
+     {kind==='stage'&&form.format!==2&&<button type="button" className={styles.secondary}
       onClick={()=>{if(window.confirm('سيُستبدل محتوى هذه المحطة بدرس بطاقات جديد (لن يتغير المنشور حتى تنشر). هل تتابع؟'))setForm(starterLesson(form.title&&form.title.length>=3?form.title:'عنوان الدرس'));}}>
       تحويل إلى درس بطاقات (الإصدار الثاني)</button>}
      {kind==='stage'&&form.format!==2&&<>
