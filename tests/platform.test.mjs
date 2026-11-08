@@ -82,7 +82,7 @@ test('all content categories and public detail text are searchable without conta
   });
   assert.equal(new Set(items.map(x=>x.type)).size,9);
   for(const term of ['ثقافة','موضوع الفهرس','التعريف التفصيلي','منهجية القياس','إنجاز معروف','قصة المنشأة','وصف المنتج التفصيلي','سيئون','الألمانية','وصف المجال','تاريخ المنطقة','رؤية ورسالة'])assert.ok(items.some(x=>matchesSearchResult(term,x)),term);
-  assert.ok(items.find(x=>x.type==='places').href.includes('district=YE1704'));
+  assert.equal(items.find(x=>x.type==='places').href,'/yemen-map/districts/YE1704');
   for(const term of ['private@example.com','SECRET-PHONE','مجال خاص'])assert.ok(!items.some(x=>matchesSearchResult(term,x)),term);
 });
 test('reserved example email triggers review without mutating the source record', () => {

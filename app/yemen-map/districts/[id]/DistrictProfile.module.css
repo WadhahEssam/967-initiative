@@ -1,0 +1,27 @@
+/* District page: reuses the governorate dossier styles and adds the outline map,
+   the photo, neighbour chips and the facility list. */
+.heroGrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,280px);gap:clamp(16px,3vw,40px);align-items:center}
+.heroGrid a{color:inherit;text-underline-offset:4px}
+.outline{margin:0;display:grid;gap:6px;justify-items:center}
+.outline svg{width:100%;height:auto;max-height:220px}
+.governorateShape{fill:var(--c-surface-2);stroke:var(--c-line-2);stroke-width:1;stroke-linejoin:round}
+.districtShape{fill:var(--c-accent);fill-opacity:.85;stroke:var(--c-accent);stroke-width:1.2;stroke-linejoin:round}
+.outline figcaption{font-size:12px;line-height:1.7;color:var(--c-ink-3);text-align:center}
+.outline figcaption a{color:var(--c-accent)}
+.photo{margin:0 0 15px;border-radius:16px;overflow:hidden;border:1px solid var(--c-line-2);background:var(--c-surface)}
+.photo img{display:block;width:100%;height:auto;max-height:420px;object-fit:cover}
+.photo figcaption{font-size:12px;line-height:1.7;color:var(--c-ink-3);padding:8px 14px}
+.photo figcaption a{color:var(--c-accent)}
+.pending{font-size:13px;color:var(--c-ink-3);line-height:1.8;margin:0 0 15px}
+.facilityList{list-style:none;padding:0;margin:12px 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.facilityList a{display:grid;gap:2px;padding:10px 12px;border:1px solid var(--c-line);border-radius:10px;background:var(--c-surface-2);color:var(--c-ink);min-height:44px}
+.facilityList a:hover{border-color:var(--c-accent)}
+.facilityList strong{font-size:14px;font-weight:600;line-height:1.6;overflow-wrap:anywhere}
+.facilityList span{font-size:12px;color:var(--c-ink-3)}
+.chips{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px}
+.chips a{display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:6px 12px;border-radius:999px;border:1px solid var(--c-line);background:var(--c-surface-2);color:var(--c-ink);font-size:13px}
+.chips a:hover{border-color:var(--c-accent);color:var(--c-accent)}
+.chips small{font-size:11px;color:var(--c-ink-3)}
+@media(max-width:760px){.heroGrid{grid-template-columns:minmax(0,1fr)}.outline{max-width:240px;justify-self:center}.facilityList{grid-template-columns:minmax(0,1fr)}}
+@media(prefers-reduced-motion:no-preference){.chips a,.facilityList a{transition:border-color .15s,color .15s}}
+.marker{fill:none;stroke:var(--c-accent);stroke-width:2.5}
