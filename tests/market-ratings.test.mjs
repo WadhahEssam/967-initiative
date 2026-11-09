@@ -67,7 +67,8 @@ test('ratings are private to the server; one per buyer and listing; hidden ones 
  assert.match(sql,/l\.status='sold' or c\.created_at<now\(\)-interval '3 days'/,'the request follows the same rule');
  const server=read('lib/market/ratingsServer.js');
  assert.match(server,/\.eq\('seller_id',user\.id\)\.is\('reply',null\)/,'one reply, by the seller');
- assert.match(server,/\.eq\('seller_id',user\.id\)\.is\('reported_at',null\)/);
+ assert.match(server,/if\(rating\.reported_at\)throw new MarketActionError\('NOT_ALLOWED'/,'one report per rating, by its seller');
+ assert.match(server,/fileReport\(db,user,\{target:'rating',ratingId,reason,note\}\)/,'it reaches the team\'s report list');
  assert.match(server,/if\(blocker\)throw new MarketActionError\('NOT_ALLOWED',blocker\)/);
  const page=read('app/market/seller/[id]/page.jsx');
  assert.match(page,/initial=\{stats\.ratings>=MIN_RATINGS_SHOWN\?ratings:\[\]\}/,'visitors get the ratings only from three on');

@@ -5,6 +5,7 @@ import {Clock,Eye,MapPin} from 'lucide-react';
 import ListingGallery from '@/components/market/ListingGallery';
 import ListingContactBar from '@/components/market/ListingContactBar';
 import ListingCard from '@/components/market/ListingCard';
+import {ReportButton} from '@/components/market/SafetyDialogs';
 import {conditionLabel,findCategory,findSubcategory} from '@/lib/market/catalog';
 import {attributeText,listingHighlights} from '@/lib/market/listing';
 import {formatPrice,listingPath,timeAgo} from '@/lib/market/format';
@@ -70,7 +71,7 @@ export default async function ListingPage({params}){
  // «معدّل» beside what the seller changed after publishing, and the old price after a drop.
  const edited=(part,force=false)=>(force||(listing.edited_fields||[]).includes(part))?<span className={styles.edited}>معدّل</span>:null;
  const dropped=Number(listing.previous_price)>Number(listing.price);
- return <div className={styles.listing}>
+ return <div className={styles.listing} data-seller={listing.seller.id} data-seller-page="">
   <div className={styles.layout}>
    <ListingGallery images={listing.images} title={listing.title}/>
    <div className={styles.summary}>
@@ -95,7 +96,7 @@ export default async function ListingPage({params}){
    <h2>المواصفات{(listing.edited_fields||[]).some(part=>['details','condition'].includes(part))&&edited('details',true)}</h2>
    <dl className={styles.specs}>{specs.map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
    <p className={styles.safety}>قابل البائع في مكان عام، ولا تحوّل أي مبلغ قبل المعاينة.</p>
-   <div className={styles.facts}><span>رقم الإعلان {listing.number}</span><span><Eye size={13} aria-hidden="true"/> {listing.views} مشاهدة</span>{listing.saves>0&&<span>حفظه {listing.saves}</span>}</div>
+   <div className={styles.facts}><span>رقم الإعلان {listing.number}</span><span><Eye size={13} aria-hidden="true"/> {listing.views} مشاهدة</span>{listing.saves>0&&<span>حفظه {listing.saves}</span>}<ReportButton target="listing" ids={{listingId:listing.id}} ownerId={listing.seller.id} label="إبلاغ عن الإعلان"/></div>
    {similar.length>0&&<><h2>إعلانات مشابهة</h2><div className={styles.grid}>{similar.map(item=><ListingCard key={item.id} listing={item}/>)}</div></>}
   </section>
   <ListingContactBar listingId={listing.id} sellerId={listing.seller.id} title={listing.title} price={price} amount={listing.price} currency={listing.currency} closed={listing.status==='sold'}

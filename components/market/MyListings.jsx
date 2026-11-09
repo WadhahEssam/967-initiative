@@ -50,7 +50,7 @@ export default function MyListings(){
       {item.publishedAt?'نُشر '+timeAgo(item.publishedAt):'أُنشئ '+timeAgo(item.createdAt)}
       {['active','reserved','sold'].includes(item.status)&&<><span><Eye size={13} aria-hidden="true"/> {item.views}</span><span><Heart size={13} aria-hidden="true"/> {item.saves}</span></>}
      </span>
-     {item.status==='pending_review'&&<p className={styles.note}>يراجعه فريق 967 قبل ظهوره للناس.</p>}
+     {item.status==='pending_review'&&<p className={styles.note}>يراجعه فريق 967 قبل ظهوره للناس.{item.reviewReason?' السبب: '+item.reviewReason:''}</p>}
      {item.status==='active'&&daysLeft(item.expiresAt)!==null&&<p className={styles.note}>{daysLeft(item.expiresAt)>0?'يبقى ظاهرًا '+daysLeft(item.expiresAt)+' يومًا':'انتهت مدته، ويُخفى خلال 3 أيام إن لم تجدده'}</p>}
      {item.status==='expired'&&<p className={styles.note}>لم يعد يظهر في البحث. جدّده ليعود 30 يومًا.</p>}
      {item.askSold&&<div className={styles.question} role="group" aria-label="هل تم البيع؟">

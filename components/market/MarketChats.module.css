@@ -110,3 +110,10 @@
 .dialogHead h2{margin:0;font-size:17px}
 .dialogHead button{border:0;background:transparent;color:var(--c-ink-2);cursor:pointer}
 .dialogBox .offerForm{border:0}
+
+/* Chat options: report or block. */
+.menuWrap{position:relative;flex:none}
+.menu{position:absolute;top:calc(100% + 6px);inset-inline-end:0;z-index:5;display:grid;min-inline-size:190px;padding:6px;border:1px solid var(--c-line-2);border-radius:12px;background:var(--c-surface);box-shadow:var(--e-2)}
+.menu button{display:flex;align-items:center;gap:8px;min-height:42px;padding:0 10px;border:0;border-radius:8px;background:transparent;color:var(--c-ink);font:inherit;font-size:14px;text-align:start;cursor:pointer}
+.menu button:hover{background:var(--c-surface-2)}
+.menuButton{display:grid;place-items:center;inline-size:36px;block-size:36px;border:1px solid var(--c-line-2);border-radius:10px;background:var(--c-surface);color:var(--c-ink);cursor:pointer}
