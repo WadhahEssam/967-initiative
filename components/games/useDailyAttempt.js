@@ -1,7 +1,7 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
 import Link from 'next/link';
-import {browserDb} from '@/lib/supabase';
+import {browserMayBeSignedIn,currentSession,whenBrowserDb} from '@/lib/browserSession';
 import {dailyGameUrl} from '@/lib/dailyGame';
 import {createAccountWatch,shouldReloadOnAuth} from '@/lib/authEvents';
 import styles from './DailyAttempt.module.css';
@@ -14,9 +14,12 @@ export default function useDailyAttempt(mode,game,date){
  const pending=useRef(false);
  useEffect(()=>{
   if(mode!=='daily'){setState({kind:'free',message:''});return;}
-  let alive=true;
-  const db=browserDb(),account=createAccountWatch();
-  if(!db){setState({kind:'error',message:'خدمة الحسابات غير مفعّلة. تحدي اليوم غير متاح حالياً.'});return;}
+  let alive=true,authTimer=null;
+  const account=createAccountWatch();
+  // A visitor who never signed in sees the sign-in notice without loading the account client;
+  // signing in (here or in another tab) starts it.
+  if(!browserMayBeSignedIn())setState({kind:'login',message:''});
+  const stop=whenBrowserDb(db=>{
   const read=async()=>{
    if(alive)setState({kind:'loading',message:''});
    try{
@@ -36,13 +39,14 @@ export default function useDailyAttempt(mode,game,date){
   read();
   // Never call Supabase auth methods synchronously inside onAuthStateChange:
   // that event can hold an auth lock; defer follow-up reads to the next tick.
-  let authTimer=null;
   const {data:{subscription}}=db.auth.onAuthStateChange((event,session)=>{
    if(!shouldReloadOnAuth(account,event,session))return;
    clearTimeout(authTimer);
    authTimer=setTimeout(()=>{if(alive&&!pending.current)read();},0);
   });
-  return()=>{alive=false;clearTimeout(authTimer);subscription.unsubscribe();};
+  return()=>subscription.unsubscribe();
+  });
+  return()=>{alive=false;clearTimeout(authTimer);stop();};
  },[mode,game,date]);
  // Claims today's single attempt. The server draws the round and returns its
  // tasks without answers; resolves to that array, or null when not granted.
@@ -50,8 +54,9 @@ export default function useDailyAttempt(mode,game,date){
   if(mode!=='daily'||pending.current||state.kind!=='ready')return null;
   pending.current=true;setState(previous=>({...previous,kind:'reserving'}));
   try{
-   const db=browserDb(),{data,error}=await db.auth.getSession();
-   if(error||!data?.session){setState({kind:'login',message:''});return null;}
+   const session=await currentSession();
+   if(!session){setState({kind:'login',message:''});return null;}
+   const data={session};
    const res=await fetch('/api/games/daily',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+data.session.access_token},
     cache:'no-store',body:JSON.stringify({date,game})});
    const json=await res.json();
@@ -65,10 +70,9 @@ export default function useDailyAttempt(mode,game,date){
   finally{pending.current=false;}
  }
  async function progress(action,step,questionId,choice){
-  const db=browserDb();
-  if(!db)throw Error('خدمة الحسابات غير متاحة.');
-  const {data,error}=await db.auth.getSession();
-  if(error||!data?.session)throw Error('انتهت الجلسة. سجّل الدخول مجدداً.');
+  const session=await currentSession();
+  if(!session)throw Error('انتهت الجلسة. سجّل الدخول مجدداً.');
+  const data={session};
   const response=await fetch('/api/games/daily/round',{method:'POST',cache:'no-store',
    headers:{'Content-Type':'application/json',Authorization:'Bearer '+data.session.access_token},
    body:JSON.stringify({action,step,questionId,choice,date})});

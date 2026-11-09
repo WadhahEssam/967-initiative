@@ -2,7 +2,7 @@
 import {useEffect,useState} from 'react';
 import Link from 'next/link';
 import {ArrowUpLeft,CalendarDays,CheckCircle2,Compass,Crosshair,Crown,Flame,Flag,Gem,LockKeyhole,Map,Medal,RefreshCw,ScrollText,Shapes,Shield,ShieldCheck,Star,Target,Trophy,UsersRound} from 'lucide-react';
-import {browserDb} from '@/lib/supabase';
+import {browserMayBeSignedIn,whenBrowserDb} from '@/lib/browserSession';
 import {GAME_ACHIEVEMENTS} from '@/lib/gameAchievements';
 import {createAccountWatch,shouldReloadOnAuth} from '@/lib/authEvents';
 import styles from './GameAchievementGallery.module.css';
@@ -48,9 +48,12 @@ export default function GameAchievementGallery({preview=false}){
  const [retry,setRetry]=useState(0);
 
  useEffect(()=>{
-  const db=browserDb(),account=createAccountWatch();
+  // A visitor who never signed in sees the guest view without loading the account client;
+  // signing in (here or in another tab) starts it.
+  if(!browserMayBeSignedIn()){setData(null);setState('guest');}
+  return whenBrowserDb(db=>{
+  const account=createAccountWatch();
   let alive=true,sequence=0,authTimer=null;
-  if(!db){setState('unavailable');return;}
   async function load(){
    const id=++sequence;
    try{
@@ -88,6 +91,7 @@ export default function GameAchievementGallery({preview=false}){
    clearTimeout(authTimer);subscription.unsubscribe();
    document.removeEventListener('visibilitychange',onVisible);
   };
+  });
  },[retry]);
 
  const loaded=state==='ready'&&Array.isArray(data?.items);

@@ -1,6 +1,6 @@
 'use client';
 import Link from '@/components/SiteLink';
-import {browserDb} from '@/lib/supabase';
+import {browserMayBeSignedIn,currentSession,loadBrowserDb} from '@/lib/browserSession';
 import {useState,useEffect,useRef,useCallback} from 'react';
 import {Send,CheckCircle2,AlertCircle} from 'lucide-react';
 import {contributionTypes} from '@/lib/contributions';
@@ -40,8 +40,8 @@ export default function ContactForm({initialType='',initialReference=null,types=
  },[]);
   // Fill an empty contact form from the signed-in profile, without replacing
   // an existing draft or a deliberately changed contact email.
-  useEffect(()=>{let active=true;const db=browserDb();if(!db)return;
-   db.auth.getUser().then(({data,error})=>{
+  useEffect(()=>{let active=true;if(!browserMayBeSignedIn())return;
+   loadBrowserDb().then(db=>db?db.auth.getUser():{data:null}).then(({data,error})=>{
     if(!active||error||!data?.user||!formRef.current)return;
     const form=formRef.current;
     const email=form.elements.namedItem('email');
@@ -89,7 +89,7 @@ export default function ContactForm({initialType='',initialReference=null,types=
    // Optional account association. Never send the account id from the browser.
    // The server verifies the JWT and requires the email to match the account.
    let session=null;
-   try{const db=browserDb();if(db){const result=await db.auth.getSession();if(!result.error)session=result.data.session;}}catch{}
+   try{session=await currentSession();}catch{}
    const headers={'Content-Type':'application/json',...(session?{'Authorization':'Bearer '+session.access_token}:{})};
    const res=await fetch('/api/contact',{method:'POST',headers,body:JSON.stringify(payload),signal:controller.signal});
    const json=await res.json().catch(()=>null);
