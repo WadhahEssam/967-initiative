@@ -74,6 +74,8 @@
 .contactWhatsapp{flex:1;border:0;background:#1f9d55;color:#fff}
 .contactIcon{border:1px solid var(--c-line-2);background:var(--c-surface);color:var(--c-ink);padding:0 14px}
 .contactPrimary:disabled,.contactSecondary:disabled{opacity:.5;cursor:not-allowed}
+.contactClosed{flex:1;display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:12px;background:var(--c-surface-2);color:var(--c-ink-2);font-weight:600;font-size:14px}
+.reservedNote{margin:2px 0 0;padding:8px 12px;border-radius:10px;background:var(--c-amber-soft);font-size:13px}
 .toast{position:absolute;bottom:calc(100% + 8px);inset-inline-start:50%;transform:translateX(50%);padding:6px 14px;border-radius:999px;background:var(--c-ink);color:var(--c-bg);font-size:13px;white-space:nowrap}
 
 .terms{max-width:760px;margin:0 auto;padding:20px 16px 60px;line-height:2}
@@ -93,7 +95,7 @@
 .suggestions li{display:flex;align-items:baseline;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:10px;cursor:pointer}
 .suggestions li[aria-selected="true"],.suggestions li:hover{background:var(--c-surface-2)}
 .suggestions small{color:var(--c-ink-3);font-size:12px}
-.quickLinks{display:flex;gap:14px;margin:0 0 6px;font-size:13px}
+.quickLinks{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 6px;font-size:13px}
 .quickLinks a{display:inline-flex;align-items:center;gap:5px;color:var(--c-ink-2);text-decoration:none}
 .quickLinks a:hover{color:var(--c-accent)}
 .sectionHead{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}

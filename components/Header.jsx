@@ -173,7 +173,7 @@ export default function Header({actionLabel = 'ساهم معنا', contentLinks 
         if (response.ok) {
           const result = await response.json();
           if (active) {
-            setMessageCounts({unread:result.unread,requests:result.requests});
+            setMessageCounts({unread:result.unread,requests:result.requests,market:result.market});
             const decision=advanceMessageAlert(messageAlertRef.current,result,pathRef.current);
             messageAlertRef.current=decision.state;
             if(decision.play)playMessageChime(messageAudioRef.current);
