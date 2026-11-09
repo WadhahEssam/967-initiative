@@ -2,7 +2,8 @@
 /* eslint-disable @next/next/no-img-element -- chat photos are signed private links and listing covers are 480 px thumbnails; next/image would add nothing. */
 import {useCallback,useEffect,useRef,useState} from 'react';
 import Link from 'next/link';
-import {ArrowRight,Check,HandCoins,ImagePlus,Package,Send,ShieldCheck,Star,Store,X} from 'lucide-react';
+import {ArrowRight,Ban,Check,Flag,HandCoins,ImagePlus,MoreVertical,Package,Send,ShieldCheck,Star,Store,X} from 'lucide-react';
+import {BlockDialog,ReportDialog} from './SafetyDialogs';
 import OfferForm from './OfferForm';
 import {marketApi} from '@/lib/market/clientApi';
 import {compressForUpload} from '@/lib/market/clientImage';
@@ -99,6 +100,8 @@ function ChatThread({data=null,draft=null,onBack,reload,onStarted}){
  const [countering,setCountering]=useState(null);
  const [photo,setPhoto]=useState(null);
  const [safety,setSafety]=useState(false);
+ const [menu,setMenu]=useState(false);
+ const [dialog,setDialog]=useState(null);
  const end=useRef(null);
  const fileInput=useRef(null);
  const count=data?.messages.length||0;
@@ -108,7 +111,7 @@ function ChatThread({data=null,draft=null,onBack,reload,onStarted}){
  const target=data?{chatId:data.chat.id}:{listingId:draft.listingId};
  const act=async(body,after)=>{
   setBusy(true);setError('');
-  try{const result=await marketApi('/api/market/chats',{method:'POST',body});after?.(result);if(!data&&result.chatId)onStarted?.(result.chatId);else reload?.();window.dispatchEvent(new Event('967:messages-changed'));return true;}
+  try{const result=body.unblock?await marketApi('/api/market/blocks',{method:'POST',body:{action:'unblock',userId:body.unblock}}).then(result=>{window.dispatchEvent(new Event('967:market-blocks-changed'));return result;}):await marketApi('/api/market/chats',{method:'POST',body});after?.(result);if(!data&&result.chatId)onStarted?.(result.chatId);else reload?.();window.dispatchEvent(new Event('967:messages-changed'));return true;}
   catch(e){setError(e.message);return false;}
   finally{setBusy(false);}
  };
@@ -137,7 +140,17 @@ function ChatThread({data=null,draft=null,onBack,reload,onStarted}){
     <span><strong>{listing.title}</strong><small>{formatPrice(listing.price,listing.currency)}{status&&status!=='active'?' · '+(STATUS_LABELS[status]||status):''}</small></span>
    </Link>}
    <span className={styles.partner}>{data?.chat.partnerName||draft?.sellerName}</span>
+   {data?.chat.partnerId&&<div className={styles.menuWrap}>
+    <button type="button" className={styles.menuButton} onClick={()=>setMenu(open=>!open)} aria-expanded={menu} aria-label="خيارات المحادثة"><MoreVertical size={18}/></button>
+    {menu&&<div className={styles.menu} role="menu">
+     <button type="button" role="menuitem" onClick={()=>{setMenu(false);setDialog('report');}}><Flag size={15} aria-hidden="true"/> إبلاغ عن المحادثة</button>
+     {data.chat.blockedByMe?<button type="button" role="menuitem" onClick={()=>{setMenu(false);act({unblock:data.chat.partnerId});}}><Ban size={15} aria-hidden="true"/> إلغاء الحظر</button>
+      :<button type="button" role="menuitem" onClick={()=>{setMenu(false);setDialog('block');}}><Ban size={15} aria-hidden="true"/> حظر {data.chat.partnerName}</button>}
+    </div>}
+   </div>}
   </header>
+  {dialog==='report'&&<ReportDialog target="chat" ids={{chatId:data.chat.id}} onClose={()=>setDialog(null)}/>}
+  {dialog==='block'&&<BlockDialog userId={data.chat.partnerId} name={data.chat.partnerName} chatId={data.chat.id} onClose={()=>setDialog(null)} onDone={()=>{setDialog(null);reload?.();}}/>}
   {status==='sold'&&<p className={styles.banner}>تم البيع. تبقى المحادثة مقروءة.</p>}
   {data?.rating?.canRate&&<Link href={'/market/rate/'+data.chat.id} className={styles.rateBanner}><Star size={16} aria-hidden="true"/> قيّم تعاملك مع البائع</Link>}
   {status==='reserved'&&role==='buyer'&&(data?.listing.reservedForMe?<p className={styles.bannerGood}>البائع حجز الإعلان لك.</p>:<p className={styles.banner}>الإعلان محجوز حاليًا، ويمكنك مراسلة البائع أو تقديم عرض.</p>)}
@@ -165,7 +178,7 @@ function ChatThread({data=null,draft=null,onBack,reload,onStarted}){
   {error&&<p className={styles.formError} role="alert">{error}</p>}
   {offering?<OfferForm price={listing?.price} currency={listing?.currency} busy={busy} onCancel={()=>setOffering(false)}
     onSubmit={async(amount,note)=>{if(await act({action:'offer',...target,amount,note}))setOffering(false);}}/>
-  :data?.chat.closed?<p className={styles.closed}>لا يمكن مراسلة هذا المستخدم.</p>
+  :data?.chat.closed?<p className={styles.closed}>{data.chat.blockedByMe?'حظرت هذا المستخدم، فلا يمكنكما المراسلة.':'لا يمكن مراسلة هذا المستخدم.'}</p>
   :<form className={styles.composer} onSubmit={send}>
    {photo&&<span className={styles.pending}><img src={photo.preview} alt=""/>{photo.uploading?<small>جارٍ الرفع…</small>:<button type="button" onClick={()=>setPhoto(null)} aria-label="إزالة الصورة"><X size={14}/></button>}</span>}
    <button type="button" className={styles.icon} onClick={()=>fileInput.current?.click()} aria-label="إرسال صورة" disabled={busy||photo?.uploading}><ImagePlus size={19}/></button>

@@ -1,0 +1,43 @@
+/* Report and block dialogs, and the small «إبلاغ / حظر» links. */
+.dialog{position:fixed;inset:0;z-index:90;display:grid;align-items:end;justify-items:center;background:rgb(0 0 0 / .45)}
+@media(min-width:700px){.dialog{align-items:center}}
+.box{inline-size:min(100%,480px);max-block-size:90vh;overflow-y:auto;border-radius:18px 18px 0 0;background:var(--c-surface);color:var(--c-ink);padding:6px 16px calc(14px + env(safe-area-inset-bottom))}
+@media(min-width:700px){.box{border-radius:18px}}
+.head{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
+.head h2{margin:0;font-size:17px}
+.head button{display:grid;place-items:center;inline-size:36px;block-size:36px;border:0;border-radius:10px;background:transparent;color:var(--c-ink-2);cursor:pointer}
+.form{display:grid;gap:12px}
+.text{margin:0 0 8px;font-size:14px;line-height:1.8;color:var(--c-ink-2)}
+.hint{margin:0;font-size:12.5px;line-height:1.7;color:var(--c-ink-3)}
+.hint a{color:var(--c-accent)}
+.reasons{display:grid;gap:6px;margin:0;padding:0;border:0}
+.reasons legend{margin-bottom:6px;font-size:13px;font-weight:600;color:var(--c-ink-2)}
+.reason,.reasonOn{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 12px;border:1px solid var(--c-line-2);border-radius:12px;background:var(--c-bg);font-size:14.5px;cursor:pointer}
+.reasonOn{border-color:var(--c-accent);background:var(--c-accent-soft)}
+.reason input,.reasonOn input{inline-size:18px;block-size:18px;margin:0;accent-color:var(--c-accent)}
+.field{display:grid;gap:6px;font-size:13px;color:var(--c-ink-2)}
+.field textarea{min-height:64px;padding:8px 12px;border:1px solid var(--c-line-2);border-radius:12px;background:var(--c-bg);color:var(--c-ink);font:inherit;font-size:16px;resize:vertical}
+.check{display:flex;align-items:center;gap:8px;font-size:14px}
+.check input{inline-size:18px;block-size:18px;margin:0;accent-color:var(--c-accent)}
+.error{margin:0;padding:8px 12px;border-radius:10px;background:var(--c-danger-soft);color:var(--c-danger);font-size:13.5px}
+.actions{display:flex;gap:8px;margin-top:4px}
+.primary,.secondary,.danger{min-height:46px;padding:0 18px;border-radius:12px;font:inherit;font-weight:600;font-size:15px;cursor:pointer}
+.primary{flex:1;border:0;background:var(--c-accent);color:var(--c-bg)}
+.danger{flex:1;border:0;background:var(--c-danger);color:var(--c-bg)}
+.secondary{border:1px solid var(--c-line-2);background:var(--c-surface);color:var(--c-ink)}
+.primary:disabled,.danger:disabled{opacity:.5;cursor:not-allowed}
+.link{display:inline-flex;align-items:center;gap:4px;min-height:32px;padding:0;border:0;background:transparent;color:var(--c-ink-3);font:inherit;font-size:12.5px;cursor:pointer}
+.link:hover{color:var(--c-danger)}
+.memberActions{display:flex;gap:14px}
+/* Shown in place of a listing or a seller page the member may not see (a block either way). */
+.unavailable{max-width:520px;margin:40px auto;padding:28px 16px;text-align:center;display:grid;gap:10px;justify-items:center;color:var(--c-ink-2)}
+.unavailable h1{margin:0;font-size:20px;color:var(--c-ink)}
+.unavailable a{color:var(--c-accent)}
+/* /market/notices */
+.notices{display:grid;gap:8px;max-width:760px;margin:0;padding:0;list-style:none}
+.notice,.noticeNew{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid var(--c-line-2);border-radius:14px;background:var(--c-surface)}
+.noticeNew{border-color:var(--c-accent)}
+.notice>svg,.noticeNew>svg{flex:none;margin-top:2px;color:var(--c-accent)}
+.notice div,.noticeNew div{display:grid;gap:4px;min-width:0}
+.notice p,.noticeNew p{margin:0;font-size:14px;line-height:1.8;color:var(--c-ink-2);white-space:pre-wrap;overflow-wrap:anywhere}
+.notice small,.noticeNew small{font-size:12px;color:var(--c-ink-3)}

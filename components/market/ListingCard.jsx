@@ -5,7 +5,7 @@ import styles from './Market.module.css';
 
 // One listing in a grid: photo, price, title, place and age. Photos load only near the viewport.
 export default function ListingCard({listing}){
- return <Link href={listingPath(listing.number)} className={styles.card}>
+ return <Link href={listingPath(listing.number)} className={styles.card} data-seller={listing.sellerId||undefined}>
   <span className={styles.cardImage}>
    {/* Covers are already small WebP thumbnails (480 px), so next/image would add nothing. */}
    {/* eslint-disable-next-line @next/next/no-img-element */}

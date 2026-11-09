@@ -4,6 +4,7 @@ import {notFound} from 'next/navigation';
 import {CalendarDays,MapPin,MessageCircle,Package,ShoppingBag,Star} from 'lucide-react';
 import ListingCard from '@/components/market/ListingCard';
 import RatingList from '@/components/market/RatingList';
+import {MemberSafety} from '@/components/market/SafetyDialogs';
 import {getMarketPlaces} from '@/lib/market/places';
 import {RATING_CRITERIA,MIN_RATINGS_SHOWN,ratingSummary,responseText} from '@/lib/market/ratings';
 import {sellerProfile} from '@/lib/market/ratingsServer';
@@ -38,7 +39,7 @@ export default async function SellerPage({params,searchParams}){
  const {seller,stats,active,sold,ratings}=data;
  const summary=ratingSummary(stats);
  const response=responseText(stats);
- return <div className={market.page}>
+ return <div className={market.page} data-seller={seller.id} data-seller-page="">
   <header className={styles.profile}>
    <span className={styles.avatar}>{seller.avatar?<img src={seller.avatar} alt="" width={72} height={72}/>:seller.name.trim().charAt(0)}</span>
    <div>
@@ -50,6 +51,7 @@ export default async function SellerPage({params,searchParams}){
     </p>
     <p className={styles.headline}><Star size={16} aria-hidden="true"/>{summary.text}</p>
     {response&&<p className={styles.meta}><span><MessageCircle size={14} aria-hidden="true"/>{response}</span></p>}
+    <MemberSafety userId={seller.id} name={seller.name}/>
    </div>
   </header>
   {summary.shown&&<dl className={styles.breakdown}>{RATING_CRITERIA.map(item=><div key={item.key}>

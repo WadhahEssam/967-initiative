@@ -17,14 +17,14 @@ export async function GET(request){
 }
 
 // POST {action}: rate {chatId, scores:{accuracy,price,punctuality,manners,comment}}
-// · reply {ratingId, reply} (the seller, once) · report {ratingId, reason} (the seller).
+// · reply {ratingId, reply} (the seller, once) · report {ratingId, reason, note} (the seller).
 export async function POST(request){
  try{
   const {db,user}=await marketMember(request);
   const body=await readJsonObject(request,4000);
   if(body.action==='rate')return marketJson({rating:await submitRating(db,user,{chatId:body.chatId,scores:body.scores||{}})},201);
   if(body.action==='reply')return marketJson({rating:await replyToRating(db,user,{ratingId:body.ratingId,reply:body.reply})});
-  if(body.action==='report')return marketJson(await reportRating(db,user,{ratingId:body.ratingId,reason:body.reason}));
+  if(body.action==='report')return marketJson(await reportRating(db,user,{ratingId:body.ratingId,reason:body.reason,note:body.note}));
   throw new RequestValidationError('الإجراء غير مدعوم.',400);
  }catch(error){return marketFailure(error);}
 }

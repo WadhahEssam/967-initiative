@@ -26,7 +26,7 @@ export default function PrivateMessaging(){
  const market=useMarketChatCount(ready&&user?user.id:null);
  const [tab,setTab]=useState('inbox'),[items,setItems]=useState([]);
  // /messages?tab=market opens the market tab (links from listings and «إعلاناتي»).
- useEffect(()=>{if(new URLSearchParams(window.location.search).get('tab')==='market')setTab('market');},[]);
+ useEffect(()=>{const wanted=new URLSearchParams(window.location.search).get('tab');if(wanted==='market'||wanted==='settings')setTab(wanted);},[]);
  const [selected,setSelected]=useState(null),[thread,setThread]=useState(null);
  const [query,setQuery]=useState(''),[results,setResults]=useState([]);
  const [settings,setSettings]=useState(defaults),[blocked,setBlocked]=useState([]);
