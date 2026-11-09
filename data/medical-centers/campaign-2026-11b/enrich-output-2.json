@@ -1,0 +1,522 @@
+[
+ {
+  "slug": "osm-n4324756339",
+  "name_en": "Al-Waly Hospital",
+  "address": "عدن، المنصورة، خلف مطابع الكتاب المدرسي",
+  "phone": "+967 2 393399",
+  "email": "info@alwalyhospital.com",
+  "website": "https://alwalyhospital.com",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/AlwalyHospital.aden/"
+   }
+  ],
+  "specialties": [
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://alwalyhospital.com/"
+   },
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://alwalyhospital.com/"
+   },
+   {
+    "name": "الباطنية",
+    "source_url": "https://alwalyhospital.com/"
+   },
+   {
+    "name": "جراحة العظام",
+    "source_url": "https://alwalyhospital.com/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://alwalyhospital.com/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://alwalyhospital.com/"
+   },
+   {
+    "name": "جراحة المسالك البولية",
+    "source_url": "https://alwalyhospital.com/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://alwalyhospital.com/"
+   },
+   {
+    "name": "الأشعة",
+    "source_url": "https://alwalyhospital.com/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ",
+    "details": "",
+    "source_url": "https://alwalyhospital.com/"
+   },
+   {
+    "name": "العيادات الخارجية",
+    "details": "",
+    "source_url": "https://alwalyhospital.com/"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://alwalyhospital.com/"
+   },
+   {
+    "name": "التنويم",
+    "details": "",
+    "source_url": "https://alwalyhospital.com/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "Al-Waly Hospital — الموقع الرسمي",
+    "url": "https://alwalyhospital.com/",
+    "publisher": "مستشفى الوالي",
+    "source_type": "official_site"
+   },
+   {
+    "title": "مستشفى الوالي عدن Al-Waly Hospital Aden",
+    "url": "https://www.facebook.com/AlwalyHospital.aden/",
+    "publisher": "مستشفى الوالي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4647151089",
+  "name_en": "Aden German International Hospital",
+  "address": "عدن، المنصورة، حي السنافر، جوار مؤسسة الكهرباء",
+  "phone": "+967 2 329700",
+  "website": "https://adengih.com",
+  "booking_url": "https://adengih.com/contact/",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/adengih/"
+   }
+  ],
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "الجراحة العامة وجراحة المناظير",
+    "source_url": "https://adengih.com/"
+   },
+   {
+    "name": "الباطنية",
+    "source_url": "https://adengih.com/"
+   },
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://adengih.com/"
+   },
+   {
+    "name": "طب الأطفال وحديثي الولادة",
+    "source_url": "https://adengih.com/"
+   },
+   {
+    "name": "جراحة العظام",
+    "source_url": "https://adengih.com/"
+   },
+   {
+    "name": "الأمراض الجلدية والتجميل",
+    "source_url": "https://adengih.com/"
+   },
+   {
+    "name": "جراحة المخ والأعصاب",
+    "source_url": "https://adengih.com/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://adengih.com/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://adengih.com/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://adengih.com/"
+   },
+   {
+    "name": "القسطرة القلبية",
+    "details": "",
+    "source_url": "https://adengih.com/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://adengih.com/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://adengih.com/"
+   },
+   {
+    "name": "العلاج الطبيعي",
+    "details": "",
+    "source_url": "https://adengih.com/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://adengih.com/"
+   },
+   {
+    "label": "العيادات (الفترة الصباحية) السبت–الخميس",
+    "hours_text": "9:00–13:00",
+    "source_url": "https://adengih.com/"
+   },
+   {
+    "label": "العيادات (الفترة المسائية) السبت–الأربعاء",
+    "hours_text": "17:00–20:00",
+    "source_url": "https://adengih.com/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى عدن الألماني الدولي — الموقع الرسمي",
+    "url": "https://adengih.com/",
+    "publisher": "مستشفى عدن الألماني الدولي",
+    "source_type": "official_site"
+   },
+   {
+    "title": "مستشفى عدن الالماني الدولي Aden German International Hospital",
+    "url": "https://www.facebook.com/adengih/",
+    "publisher": "مستشفى عدن الألماني الدولي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n6308113385",
+  "name_en": "Gulf of Aden International Hospital",
+  "phone": "+967 777755410",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/p/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%AE%D9%84%D9%8A%D8%AC-%D8%B9%D8%AF%D9%86-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A-100054533256056/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى خليج عدن الدولي — صفحة فيسبوك",
+    "url": "https://www.facebook.com/p/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%AE%D9%84%D9%8A%D8%AC-%D8%B9%D8%AF%D9%86-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A-100054533256056/",
+    "publisher": "مستشفى خليج عدن الدولي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4323071920",
+  "address": "عدن، المنصورة، ريمي السكنية، بجوار مستشفى 22 مايو",
+  "phone": "+967 777552666",
+  "email": "lab.midena@gmail.com",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/almadenahcenter/"
+   }
+  ],
+  "services": [
+   {
+    "name": "العيادات التخصصية",
+    "details": "",
+    "source_url": "https://www.facebook.com/almadenahcenter/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://www.facebook.com/almadenahcenter/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مركز المدينة الطبي — صفحة فيسبوك",
+    "url": "https://www.facebook.com/almadenahcenter/",
+    "publisher": "مركز المدينة الطبي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4711817689",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/people/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%8A%D8%AF%D9%8A-%D8%A7%D9%84%D8%AA%D8%AE%D8%B5%D8%B5%D9%8A/100054200213887/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى السعيدي التخصصي — صفحة فيسبوك",
+    "url": "https://www.facebook.com/people/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%8A%D8%AF%D9%8A-%D8%A7%D9%84%D8%AA%D8%AE%D8%B5%D8%B5%D9%8A/100054200213887/",
+    "publisher": "مستشفى السعيدي التخصصي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "health-2402008",
+  "address": "عدن، الشيخ عثمان، شارع عمر المختار",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/p/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B5%D8%AF%D8%A7%D9%82%D8%A9-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B9%D8%AF%D9%86-61566968806782/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الصداقة التعليمي العام محافظة عدن — صفحة فيسبوك",
+    "url": "https://www.facebook.com/p/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B5%D8%AF%D8%A7%D9%82%D8%A9-%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85%D9%8A-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B9%D8%AF%D9%86-61566968806782/",
+    "publisher": "مستشفى الصداقة التعليمي العام",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4298023464",
+  "name_en": "Bin Zeela Modern Hospital",
+  "address": "سيئون، شارع الجزائر",
+  "phone": "+967 781946668",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/BinZeelaMH/"
+   }
+  ],
+  "emergency_available": true,
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://www.facebook.com/BinZeelaMH/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://www.facebook.com/BinZeelaMH/"
+   },
+   {
+    "label": "الحالات العادية",
+    "hours_text": "خلال الدوام الرسمي صباحاً ومساءً",
+    "source_url": "https://www.facebook.com/BinZeelaMH/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى بن زيلع الحديث — صفحة فيسبوك",
+    "url": "https://www.facebook.com/BinZeelaMH/",
+    "publisher": "مستشفى بن زيلع الحديث",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "health-1910021",
+  "name_en": "Seiyun General Hospital",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/p/Seiyun-general-hospital-100064060031322/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "Seiyun general hospital - هيئة مستشفى سيئون العام",
+    "url": "https://www.facebook.com/p/Seiyun-general-hospital-100064060031322/",
+    "publisher": "هيئة مستشفى سيئون العام",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4323054120",
+  "name_en": "Al-Buraihi Hospital",
+  "address": "عدن، المنصورة، دوار كالتكس",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/alburaihygroup/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى البريهي عدن — صفحة فيسبوك",
+    "url": "https://www.facebook.com/alburaihygroup/",
+    "publisher": "مجموعة مستشفيات البريهي الدولية",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4324756338",
+  "name_en": "Al-Naqib Hospital",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/NaqiebHospital/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى النقيب - Al-Naqib Hospital — صفحة فيسبوك",
+    "url": "https://www.facebook.com/NaqiebHospital/",
+    "publisher": "مستشفى النقيب",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4921476121",
+  "name_en": "Al Reyadah International Hospital",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/alreyadahaden/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الريادة الدولي - Al Reyadah International Hospital — صفحة فيسبوك",
+    "url": "https://www.facebook.com/alreyadahaden/",
+    "publisher": "مستشفى الريادة الدولي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n6014304085",
+  "name_en": "Saber Hospital",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/people/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%B5%D8%A7%D8%A8%D8%B1-saber-hospital/100057112703380/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى صابر saber hospital — صفحة فيسبوك",
+    "url": "https://www.facebook.com/people/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%B5%D8%A7%D8%A8%D8%B1-saber-hospital/100057112703380/",
+    "publisher": "مستشفى صابر",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4040613545",
+  "name_en": "Babel Model Hospital",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/BabelHosp/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى بابل النموذجي - Babel Model Hospital — صفحة فيسبوك",
+    "url": "https://www.facebook.com/BabelHosp/",
+    "publisher": "مستشفى بابل النموذجي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4336604421",
+  "name_en": "Haya Al-Yahya Eye Specialist Hospital",
+  "operator_name": "مؤسسة البصر الخيرية العالمية",
+  "specialties": [
+   {
+    "name": "طب العيون",
+    "source_url": "https://hu.edu.ye/en/details/2484/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "Signing an Agreement Between HU Family Medicine Center and Haya Alyahya Eye Specialist Hospital/ Mukalla",
+    "url": "https://hu.edu.ye/en/details/2484/",
+    "publisher": "جامعة حضرموت",
+    "source_type": "institutional"
+   },
+   {
+    "title": "صحيفة 14 أكتوبر — مؤسسة البصر الخيرية العالمية",
+    "url": "https://14october.com/uploads/content/1301/58Q7Q7MO-NBDRGS/09.pdf",
+    "publisher": "صحيفة 14 أكتوبر",
+    "source_type": "independent"
+   }
+  ]
+ },
+ {
+  "slug": "health-1927001",
+  "name_en": "National Oncology Center - Hadramawt",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/hcfyemen.NOCH/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "المركز الوطني لعلاج الاورام - حضرموت — صفحة فيسبوك",
+    "url": "https://www.facebook.com/hcfyemen.NOCH/",
+    "publisher": "المركز الوطني لعلاج الأورام - حضرموت",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n1218235660",
+  "address": "عدن، خور مكسر، بجانب كلية الطب",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/p/%D9%87%D9%8A%D8%A6%D8%A9-%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%AC%D9%85%D9%87%D9%88%D8%B1%D9%8A%D8%A9-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D8%A7%D9%84%D9%86%D9%85%D9%88%D8%B0%D8%AC%D9%8A-%D8%B9%D8%AF%D9%86-61558408996462/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "هيئة مستشفى الجمهورية العام النموذجي - عدن — صفحة فيسبوك",
+    "url": "https://www.facebook.com/p/%D9%87%D9%8A%D8%A6%D8%A9-%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%AC%D9%85%D9%87%D9%88%D8%B1%D9%8A%D8%A9-%D8%A7%D9%84%D8%B9%D8%A7%D9%85-%D8%A7%D9%84%D9%86%D9%85%D9%88%D8%B0%D8%AC%D9%8A-%D8%B9%D8%AF%D9%86-61558408996462/",
+    "publisher": "هيئة مستشفى الجمهورية العام النموذجي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4323071914",
+  "address": "عدن، المنصورة، ريمي",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/p/%D9%85%D8%B1%D9%83%D8%B2-22%D9%85%D8%A7%D9%8A%D9%88-%D8%A7%D9%84%D8%AC%D8%B1%D8%A7%D8%AD%D9%8A-%D8%A7%D9%84%D8%AA%D8%AE%D8%B5%D8%B5%D9%8A-%D8%B9%D8%AF%D9%86-100063768202185/"
+   }
+  ],
+  "specialties": [
+   {
+    "name": "الجراحة",
+    "source_url": "https://www.facebook.com/p/%D9%85%D8%B1%D9%83%D8%B2-22%D9%85%D8%A7%D9%8A%D9%88-%D8%A7%D9%84%D8%AC%D8%B1%D8%A7%D8%AD%D9%8A-%D8%A7%D9%84%D8%AA%D8%AE%D8%B5%D8%B5%D9%8A-%D8%B9%D8%AF%D9%86-100063768202185/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مركز 22مايو الجراحي التخصصي عدن — صفحة فيسبوك",
+    "url": "https://www.facebook.com/p/%D9%85%D8%B1%D9%83%D8%B2-22%D9%85%D8%A7%D9%8A%D9%88-%D8%A7%D9%84%D8%AC%D8%B1%D8%A7%D8%AD%D9%8A-%D8%A7%D9%84%D8%AA%D8%AE%D8%B5%D8%B5%D9%8A-%D8%B9%D8%AF%D9%86-100063768202185/",
+    "publisher": "مركز 22 مايو الجراحي التخصصي",
+    "source_type": "official_site"
+   }
+  ]
+ }
+]

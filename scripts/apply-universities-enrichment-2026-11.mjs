@@ -4,13 +4,16 @@
 //  add-output-*.json    — new institutions, published with their programmes, branches and sources.
 // The RPC replaces child lists atomically, so every call sends existing + new children. Add --write to save.
 import {createClient} from '@supabase/supabase-js';
-import {existsSync, readFileSync, writeFileSync} from 'node:fs';
+import {existsSync, readFileSync, readdirSync, writeFileSync} from 'node:fs';
+import {openDirectRpc} from './lib/directRpc.mjs';
 
 const write = process.argv.includes('--write');
-const dir = new URL('../data/universities/campaign-2026-11/', import.meta.url);
+// CAMPAIGN=campaign-2026-11b reads a later round of research from its own folder.
+const dir = new URL(`../data/universities/${process.env.CAMPAIGN || 'campaign-2026-11'}/`, import.meta.url);
 const read = name => existsSync(new URL(name, dir)) ? JSON.parse(readFileSync(new URL(name, dir), 'utf8')) : [];
-const enriched = [1, 2, 3, 4, 5, 6].flatMap(n => read(`enrich-output-${n}.json`));
-const added = [1, 2].flatMap(n => read(`add-output-${n}.json`));
+const outputs = prefix => existsSync(dir) ? readdirSync(dir).filter(name => name.startsWith(prefix) && name.endsWith('.json')).sort().flatMap(read) : [];
+const enriched = outputs('enrich-output-');
+const added = outputs('add-output-');
 const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {auth: {persistSession: false}});
 const today = new Date().toISOString().slice(0, 10);
 const arabicIndic = /[٠-٩۰-۹]/;
@@ -77,7 +80,10 @@ async function readChildren(id) {
   if (p.error || b.error || s.error) throw new Error((p.error || b.error || s.error).message);
   return {programs: p.data, branches: b.data, sources: s.data};
 }
+// DIRECT_DB=1 saves over a direct database connection (see scripts/lib/directRpc.mjs).
+const direct = write && process.env.DIRECT_DB === '1' ? await openDirectRpc() : null;
 async function save(id, revision, record, children, origin) {
+  if (direct) return direct.call('directory_save_university', {p_id: id, p_revision: revision, p_record: record, p_programs: children.programs, p_branches: children.branches, p_sources: children.sources, p_origin: origin}, {p_id: 'uuid', p_revision: 'bigint', p_record: 'jsonb', p_programs: 'jsonb', p_branches: 'jsonb', p_sources: 'jsonb', p_origin: 'text'});
   const {data, error: e} = await db.rpc('directory_save_university', {p_id: id, p_revision: revision, p_record: record, p_programs: children.programs, p_branches: children.branches, p_sources: children.sources, p_origin: origin});
   if (e) throw new Error(e.message);
   return data;
@@ -122,3 +128,4 @@ for (const item of added) {
 writeFileSync(new URL(`apply-report${write ? '' : '-dry-run'}.json`, dir), JSON.stringify({...done, problems}, null, 1));
 console.log(JSON.stringify(done), write ? 'written' : 'ready', `problems ${problems.length}`);
 for (const p of problems.slice(0, 25)) console.log(' - ' + p);
+await direct?.end();

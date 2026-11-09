@@ -1,0 +1,724 @@
+[
+ {
+  "slug": "socotra-community-college",
+  "name_ar": "كلية المجتمع – سقطرى",
+  "name_en": "Socotra Community College",
+  "type": "community_college",
+  "ownership": "government",
+  "governorate": "أرخبيل سقطرى",
+  "city": null,
+  "website": null,
+  "phone": null,
+  "social_links": [],
+  "source_urls": [
+   "https://moheye.net/?p=5523"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "edu-ea9d8e13bbab",
+  "name_ar": "كلية المجتمع ارض سبا",
+  "name_en": null,
+  "type": "community_college",
+  "ownership": "private",
+  "governorate": "عمران",
+  "city": "عمران",
+  "website": null,
+  "phone": "773775913",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatecs.php",
+   "https://tanseek.net/crgate.php?cg=149"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-dff36c373f93",
+  "name_ar": "كلية المجتمع الأكاديمية الحديثة",
+  "name_en": "Modern Academic College",
+  "type": "community_college",
+  "ownership": "private",
+  "governorate": "البيضاء",
+  "city": "البيضاء",
+  "website": null,
+  "phone": "733945106",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatecs.php",
+   "https://www.tanseek.net/crgate.php?cg=220"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "taiz-technical-community-college",
+  "name_ar": "كلية المجتمع التقنية – تعز",
+  "name_en": "Taiz Technical Community College",
+  "type": "community_college",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "تعز",
+  "website": null,
+  "phone": null,
+  "social_links": [],
+  "source_urls": [
+   "https://moheye.net/?p=2570",
+   "https://moheye.net/?p=8972"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "edu-ff61f0e0eff3",
+  "name_ar": "كلية المجتمع التكنولوجيا الحديثة",
+  "name_en": null,
+  "type": "community_college",
+  "ownership": "private",
+  "governorate": "أمانة العاصمة",
+  "city": "أمانة العاصمة",
+  "website": null,
+  "phone": "773680705",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatecs.php",
+   "https://tanseek.net/crgate.php?cg=142"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-541aba374f57",
+  "name_ar": "كلية المجتمع الخوارزمي للعلوم والتكنولوجيا",
+  "name_en": "Al-Khawarizmi College for Science and Technology",
+  "type": "community_college",
+  "ownership": "private",
+  "governorate": "إب",
+  "city": "إب",
+  "website": null,
+  "phone": "780730733",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatecs.php",
+   "https://www.tanseek.net/crgate.php?cg=246"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-61d7a8e630ad",
+  "name_ar": "كلية المجتمع الرائدة للعلوم الطبية والتكنولوجيا م/ الحديدة ( كلية المجتمع للعلوم الطبية والتكنولوجيا / سابقا )",
+  "name_en": null,
+  "type": "community_college",
+  "ownership": "private",
+  "governorate": "الحديدة",
+  "city": "الحديدة",
+  "website": null,
+  "phone": "783335075",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatecs.php",
+   "https://tanseek.net/crgate.php?cg=154"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-6a72192be2c2",
+  "name_ar": "كلية المجتمع الريادة",
+  "name_en": null,
+  "type": "community_college",
+  "ownership": "private",
+  "governorate": "المحويت",
+  "city": "المحويت",
+  "website": null,
+  "phone": "771424143",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatecs.php",
+   "https://www.tanseek.net/crgate.php?cg=162"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-8e5236707dcd",
+  "name_ar": "كلية المجتمع الطوارئ/ الامانة",
+  "name_en": null,
+  "type": "community_college",
+  "ownership": "private",
+  "governorate": "أمانة العاصمة",
+  "city": "أمانة العاصمة",
+  "website": null,
+  "phone": "775350953",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatecs.php",
+   "https://tanseek.net/crgate.php?cg=140"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-4439c11899a1",
+  "name_ar": "كلية المجتمع العصريه للعلوم الطبيه والتقنيه",
+  "name_en": "Modern Community College for Medical and Technical Sciences",
+  "type": "community_college",
+  "ownership": "private",
+  "governorate": "إب",
+  "city": "إب",
+  "website": null,
+  "phone": "770707160",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatecs.php",
+   "https://yemen-edu.com/university/71",
+   "https://www.tanseek.net/crgate.php?cg=209"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-0983b2964a1f",
+  "name_ar": "كلية المجتمع الوطنية",
+  "name_en": null,
+  "type": "community_college",
+  "ownership": "private",
+  "governorate": "عمران",
+  "city": "عمران",
+  "website": null,
+  "phone": "777848660",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatecs.php",
+   "https://tanseek.net/crgate.php?cg=170"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-ed3fa6bb0945",
+  "name_ar": "كلية المجتمع بلقيس اليمن للعلوم الصحية والتكنولوجيا",
+  "name_en": "Belqees College",
+  "type": "community_college",
+  "ownership": "private",
+  "governorate": "أمانة العاصمة",
+  "city": "أمانة العاصمة",
+  "website": null,
+  "phone": "774022260",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatecs.php",
+   "https://www.tanseek.net/crgate.php?cg=225"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-503d7666eac2",
+  "name_ar": "كلية المجتمع تهامة",
+  "name_en": null,
+  "type": "community_college",
+  "ownership": "private",
+  "governorate": "حجة",
+  "city": "حجة",
+  "website": null,
+  "phone": "775943563",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatecs.php",
+   "https://tanseek.net/crgate.php?cg=160"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-3c8ceaf09091",
+  "name_ar": "كلية المجتمع رواد النهضة للعلوم الطبيه والتقنيه",
+  "name_en": "Rowad Al-Nahda College of Medical and Applied Sciences",
+  "type": "community_college",
+  "ownership": "private",
+  "governorate": "أمانة العاصمة",
+  "city": "أمانة العاصمة",
+  "website": null,
+  "phone": "779168887",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatecs.php",
+   "https://www.tanseek.net/crgate.php?cg=254"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-c3d16d435e33",
+  "name_ar": "كلية المجتمع سنحان",
+  "name_en": null,
+  "type": "community_college",
+  "ownership": "government",
+  "governorate": "صنعاء",
+  "city": "صنعاء",
+  "website": null,
+  "phone": "772235557",
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gatecg.php",
+   "https://tanseek.net/crgate.php?cg=2"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "seiyun-community-college",
+  "name_ar": "كلية المجتمع سيئون",
+  "name_en": "Seiyun Community College",
+  "type": "community_college",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "سيئون",
+  "website": "https://www.syncc.edu.ye/",
+  "phone": "+967 5 400681",
+  "social_links": [],
+  "source_urls": [
+   "https://www.syncc.edu.ye/",
+   "https://www.syncc.edu.ye/newsArchive"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-894735307b73",
+  "name_ar": "كلية المجتمع علوم الطوارئ / الحديدة",
+  "name_en": null,
+  "type": "community_college",
+  "ownership": "private",
+  "governorate": "الحديدة",
+  "city": "الحديدة",
+  "website": null,
+  "phone": "775350953",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatecs.php",
+   "https://tanseek.net/crgate.php?cg=153"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-34dddab676af",
+  "name_ar": "كلية المجتمع معين للعلوم الصحيه والتقنيه",
+  "name_en": null,
+  "type": "community_college",
+  "ownership": "private",
+  "governorate": "أمانة العاصمة",
+  "city": "أمانة العاصمة",
+  "website": null,
+  "phone": "777990996",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatecs.php",
+   "https://www.tanseek.net/crgate.php?cg=210"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "higher-institute-teacher-training-amanat-al-asimah",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – أمانة العاصمة",
+  "name_en": "Higher Institute for Teacher Training – Sanaa City",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "أمانة العاصمة",
+  "city": "صنعاء",
+  "website": null,
+  "phone": "775454814",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=302"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-ibb",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – إب",
+  "name_en": "Higher Institute for Teacher Training – Ibb",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "إب",
+  "city": "إب",
+  "website": null,
+  "phone": "771564059",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=291"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-al-bayda",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – البيضاء",
+  "name_en": "Higher Institute for Teacher Training – Al-Bayda",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "البيضاء",
+  "city": null,
+  "website": null,
+  "phone": "777256405",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=306"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-al-jawf",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – الجوف",
+  "name_en": "Higher Institute for Teacher Training – Al-Jawf",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "الجوف",
+  "city": null,
+  "website": null,
+  "phone": "773059985",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=295"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-hodeidah",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – الحديدة",
+  "name_en": "Higher Institute for Teacher Training – Hodeidah",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "الحديدة",
+  "city": "الحديدة",
+  "website": null,
+  "phone": "773951000",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=294"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-al-zaydiyah",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – الزيدية",
+  "name_en": "Higher Institute for Teacher Training – Al-Zaydiyah",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "الحديدة",
+  "city": "الزيدية",
+  "website": null,
+  "phone": "734501774",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=297"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-shawkani",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – الشوكاني",
+  "name_en": "Al-Shawkani Higher Institute for Teacher Training",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "صنعاء",
+  "city": null,
+  "website": null,
+  "phone": "770267993",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=292"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-al-mahwit",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – المحويت",
+  "name_en": "Higher Institute for Teacher Training – Al-Mahwit",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "المحويت",
+  "city": "المحويت",
+  "website": null,
+  "phone": "777629988",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=299"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-bajil",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – باجل",
+  "name_en": "Higher Institute for Teacher Training – Bajil",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "الحديدة",
+  "city": "باجل",
+  "website": null,
+  "phone": "782778287",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=305"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-taiz",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – تعز",
+  "name_en": "Higher Institute for Teacher Training – Taiz",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": null,
+  "website": null,
+  "phone": "774878274",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=303"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-hajjah",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – حجة",
+  "name_en": "Higher Institute for Teacher Training – Hajjah",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "حجة",
+  "city": "حجة",
+  "website": null,
+  "phone": "777501886",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=304"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-dhamar",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – ذمار",
+  "name_en": "Higher Institute for Teacher Training – Dhamar",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "ذمار",
+  "city": "ذمار",
+  "website": null,
+  "phone": "773013530",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=293"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-raymah",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – ريمة",
+  "name_en": "Higher Institute for Teacher Training – Raymah",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "ريمة",
+  "city": null,
+  "website": null,
+  "phone": "777747012",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=298"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-zabid",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – زبيد",
+  "name_en": "Higher Institute for Teacher Training – Zabid",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "الحديدة",
+  "city": "زبيد",
+  "website": null,
+  "phone": "770914297",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=301"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-saada",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – صعدة",
+  "name_en": "Higher Institute for Teacher Training – Saada",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "صعدة",
+  "city": "صعدة",
+  "website": null,
+  "phone": "771766559",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=300"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-amran",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – عمران",
+  "name_en": "Higher Institute for Teacher Training – Amran",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "عمران",
+  "city": "عمران",
+  "website": null,
+  "phone": "774929379",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=296"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-lahj",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – لحج",
+  "name_en": "Higher Institute for Teacher Training – Lahj",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "لحج",
+  "city": null,
+  "website": null,
+  "phone": null,
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=307"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "higher-institute-teacher-training-marib",
+  "name_ar": "المعهد العالي لتأهيل المعلمين – مأرب",
+  "name_en": "Higher Institute for Teacher Training – Marib",
+  "type": "higher_institute",
+  "ownership": "government",
+  "governorate": "مأرب",
+  "city": null,
+  "website": null,
+  "phone": "771510318",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gatedevtetch.php",
+   "https://www.tanseek.net/crgate.php?cg=308"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "edu-f5069e0274b9",
+  "name_ar": "الكلية التطبيقية للعلوم والتكنولوجيا",
+  "name_en": null,
+  "type": "independent_college",
+  "ownership": "private",
+  "governorate": "عمران",
+  "city": "عمران",
+  "website": null,
+  "phone": "773049958",
+  "social_links": [
+   {
+    "url": "https://www.facebook.com/ACSTamran2017",
+    "label": "فيسبوك"
+   }
+  ],
+  "source_urls": [
+   "https://tanseek.net/crgate.php?cg=151",
+   "https://www.tanseek.net/gatecs.php"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-9fa647e33f29",
+  "name_ar": "الكلية التطبيقية للعلوم والتكنولوجيا- ذمار",
+  "name_en": "Applied College of Science & Technology",
+  "type": "independent_college",
+  "ownership": "private",
+  "governorate": "ذمار",
+  "city": "ذمار",
+  "website": null,
+  "phone": "776148242",
+  "social_links": [
+   {
+    "url": "https://www.facebook.com/acstthamar",
+    "label": "فيسبوك"
+   }
+  ],
+  "source_urls": [
+   "https://www.tanseek.net/crgate.php?cg=161",
+   "https://www.tanseek.net/gatecs.php"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-2e8d87b06d93",
+  "name_ar": "كلية الشفاء للعلوم الطبية",
+  "name_en": null,
+  "type": "independent_college",
+  "ownership": "private",
+  "governorate": "الحديدة",
+  "city": "الحديدة",
+  "website": null,
+  "phone": "781555435",
+  "social_links": [
+   {
+    "url": "https://www.facebook.com/alshifa.college",
+    "label": "فيسبوك"
+   }
+  ],
+  "source_urls": [
+   "https://tanseek.net/crgate.php?cg=152",
+   "https://www.tanseek.net/gatecs.php"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-61176a8e93ec",
+  "name_ar": "كلية صرح المستقبل للعلوم الطبيه والتقنيه",
+  "name_en": "College of the Future of Medical Sciences and Technology",
+  "type": "independent_college",
+  "ownership": "private",
+  "governorate": "حجة",
+  "city": "حجة",
+  "website": null,
+  "phone": "777560577",
+  "social_links": [
+   {
+    "url": "https://www.facebook.com/sarhalmostagbal",
+    "label": "فيسبوك"
+   }
+  ],
+  "source_urls": [
+   "https://www.tanseek.net/crgate.php?cg=157",
+   "https://www.tanseek.net/gatecs.php"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-998a5ca985cb",
+  "name_ar": "كلية مجتمع الرواد للعلوم الطبية والتقنية",
+  "name_en": null,
+  "type": "independent_college",
+  "ownership": "private",
+  "governorate": "أمانة العاصمة",
+  "city": "أمانة العاصمة",
+  "website": null,
+  "phone": "780994257",
+  "social_links": [
+   {
+    "url": "https://www.facebook.com/profile.php?id=100057526116837",
+    "label": "فيسبوك"
+   }
+  ],
+  "source_urls": [
+   "https://tanseek.net/crgate.php?cg=136",
+   "https://www.tanseek.net/gatecs.php"
+  ],
+  "researched_before": true
+ }
+]

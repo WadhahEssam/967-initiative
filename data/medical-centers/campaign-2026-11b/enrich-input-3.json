@@ -1,0 +1,1490 @@
+[
+ {
+  "slug": "osm-n8818156017",
+  "name_ar": "الوحدة اصحية اريان",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "القفر",
+  "district": "القفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/8818156017"
+  ]
+ },
+ {
+  "slug": "osm-n1219348030",
+  "name_ar": "الوحدة الصحية أنامر أسفل",
+  "name_en": "Al Wahdah as Sihhiyah Anamir Asfal",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "المشنه",
+  "district": "المشنه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1219348030"
+  ]
+ },
+ {
+  "slug": "osm-n1224315023",
+  "name_ar": "الوحدة الصحية الشعاور",
+  "name_en": "Al Wahdah as Sihhiyah ash Shaawar",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "حزم العدين",
+  "district": "حزم العدين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1224315023"
+  ]
+ },
+ {
+  "slug": "osm-n8818170118",
+  "name_ar": "الوحدة الصحية النخلة",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "القفر",
+  "district": "القفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/8818170118"
+  ]
+ },
+ {
+  "slug": "osm-n1223244428",
+  "name_ar": "الوحدة الصحية النقيلين",
+  "name_en": "Al Wahdah as Sihhiyah an Naqilin",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "السياني",
+  "district": "السياني",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1223244428"
+  ]
+ },
+ {
+  "slug": "osm-n1223290962",
+  "name_ar": "الوحدة الصحية الوادعي",
+  "name_en": "Al Wahdah as Sihhiyah al Wadai",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "القفر",
+  "district": "القفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1223290962"
+  ]
+ },
+ {
+  "slug": "osm-n1223244585",
+  "name_ar": "الوحدة الصحية بالسياني",
+  "name_en": "Al Wahdah as Sihhiyah bis Siyanah",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "السياني",
+  "district": "السياني",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1223244585"
+  ]
+ },
+ {
+  "slug": "osm-n1218216809",
+  "name_ar": "الوحدة الصحية بالمحفد",
+  "name_en": "Al Wahdah as Sihhiyah bil Mahfad",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "المخادر",
+  "district": "المخادر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1218216809"
+  ]
+ },
+ {
+  "slug": "osm-n1223293454",
+  "name_ar": "الوحدة الصحية بالمقهاية",
+  "name_en": "Al Wahdah as Sihhiyah bil Maqhayah",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "القفر",
+  "district": "القفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1223293454"
+  ]
+ },
+ {
+  "slug": "osm-n8818225617",
+  "name_ar": "الوحدة الصحية جمعة الرزع",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "القفر",
+  "district": "القفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/8818225617"
+  ]
+ },
+ {
+  "slug": "osm-n8818156618",
+  "name_ar": "الوحدة الصحية سطاح",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "القفر",
+  "district": "القفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/8818156618"
+  ]
+ },
+ {
+  "slug": "osm-n1223293076",
+  "name_ar": "الوحدة الصحية مدحجين",
+  "name_en": "Al Wahdah as Sihhiyah Mudahijin",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "القفر",
+  "district": "القفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1223293076"
+  ]
+ },
+ {
+  "slug": "osm-n1223291238",
+  "name_ar": "الوحدة الصحية نجد مور",
+  "name_en": "Al Wahdah as Sihhiyah Najd Mur",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "القفر",
+  "district": "القفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1223291238"
+  ]
+ },
+ {
+  "slug": "osm-n4905412621",
+  "name_ar": "الوحده الصحيه عزلة العبس",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "الشعر",
+  "district": "الشعر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4905412621"
+  ]
+ },
+ {
+  "slug": "osm-n8567854821",
+  "name_ar": "مركز الكدرة الصحي",
+  "name_en": "alkadara health center",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "فرع العدين",
+  "district": "فرع العدين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/8567854821"
+  ]
+ },
+ {
+  "slug": "osm-n4460562090",
+  "name_ar": "مركز جدابه الصحي مراد الهتار",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "السبره",
+  "district": "السبره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4460562090"
+  ]
+ },
+ {
+  "slug": "osm-n1223237722",
+  "name_ar": "مستشفى الثورة العام إب",
+  "name_en": "Mustashfa ath Thawrah al Am Ibb",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "الظهار",
+  "district": "الظهار",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1223237722"
+  ]
+ },
+ {
+  "slug": "osm-n5359072621",
+  "name_ar": "مستشفى الحمد التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "الظهار",
+  "district": "الظهار",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5359072621"
+  ]
+ },
+ {
+  "slug": "osm-n5056808228",
+  "name_ar": "مستشفى المجد",
+  "name_en": "Almajed Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "المشنه",
+  "district": "المشنه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5056808228"
+  ]
+ },
+ {
+  "slug": "osm-n5015696321",
+  "name_ar": "مستشفى النصر العام",
+  "name_en": "Al Nasr Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "المشنه",
+  "district": "المشنه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5015696321"
+  ]
+ },
+ {
+  "slug": "osm-n5359072421",
+  "name_ar": "مستشفى النور التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "الظهار",
+  "district": "الظهار",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5359072421"
+  ]
+ },
+ {
+  "slug": "osm-n4406569393",
+  "name_ar": "مستشفى دار الشفاء التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "المشنه",
+  "district": "المشنه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4406569393"
+  ]
+ },
+ {
+  "slug": "osm-n1223210722",
+  "name_ar": "مستشفى يحصب يريم",
+  "name_en": "Yahsab Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "يريم",
+  "district": "يريم",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1223210722"
+  ]
+ },
+ {
+  "slug": "osm-n7672799175",
+  "name_ar": "مستوصف السرايم",
+  "name_en": "Clinic",
+  "type": "medical_center",
+  "ownership": "government",
+  "governorate": "اب",
+  "city": "جبله",
+  "district": "جبله",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/7672799175"
+  ]
+ },
+ {
+  "slug": "osm-n4811814924",
+  "name_ar": "مستوصف القاعدة",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "ذي السفال",
+  "district": "ذي السفال",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4811814924"
+  ]
+ },
+ {
+  "slug": "osm-n1219347979",
+  "name_ar": "معهد جبله",
+  "name_en": "Bin Akil",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "جبله",
+  "district": "جبله",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1219347979"
+  ]
+ },
+ {
+  "slug": "osm-n1219347924",
+  "name_ar": "مكتبة جبلة",
+  "name_en": "Jiblah library",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "اب",
+  "city": "جبله",
+  "district": "جبله",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1219347924"
+  ]
+ },
+ {
+  "slug": "osm-n1224299614",
+  "name_ar": "الوحدة الصحية المقفورى بالسباخ",
+  "name_en": "Al Wahdah as Sihhiyah al Maqfawra bis Sibakh",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "البيضاء",
+  "city": "ولدربيع",
+  "district": "ولدربيع",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1224299614"
+  ]
+ },
+ {
+  "slug": "osm-n1224307583",
+  "name_ar": "الوحدة الصحية بقرية حبزة",
+  "name_en": "Al Wahdah as Sihhiyah bi Qaryat Habazah",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "البيضاء",
+  "city": "القريشيه",
+  "district": "القريشيه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1224307583"
+  ]
+ },
+ {
+  "slug": "osm-n12786165180",
+  "name_ar": "مستشفى السلام النموذجي",
+  "name_en": "Al Salam Model Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "البيضاء",
+  "city": "رداع",
+  "district": "رداع",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12786165180"
+  ]
+ },
+ {
+  "slug": "osm-n1224277121",
+  "name_ar": "مستشفى الشهيد العواضي",
+  "name_en": "Mustashfa ash Shahid al `Awwadi",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "البيضاء",
+  "city": "ردمان",
+  "district": "ردمان",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1224277121"
+  ]
+ },
+ {
+  "slug": "osm-n1225615703",
+  "name_ar": "مستشفى مكيراس",
+  "name_en": "Mustashfa Mukayras",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "البيضاء",
+  "city": "مكيراس",
+  "district": "مكيراس",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1225615703"
+  ]
+ },
+ {
+  "slug": "osm-n13812276307",
+  "name_ar": "مستوصف الصومعي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "البيضاء",
+  "city": "ذي ناعم",
+  "district": "ذي ناعم",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13812276307"
+  ]
+ },
+ {
+  "slug": "osm-n13812276306",
+  "name_ar": "مستوصف العمري",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "البيضاء",
+  "city": "ذي ناعم",
+  "district": "ذي ناعم",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13812276306"
+  ]
+ },
+ {
+  "slug": "osm-n1226363084",
+  "name_ar": "الحماميه",
+  "name_en": "Al homamia",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "الوازعيه",
+  "district": "الوازعيه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1226363084"
+  ]
+ },
+ {
+  "slug": "health-1517008",
+  "name_ar": "المستشفى الامراض الجلدية",
+  "name_en": "Dermatic Diseases H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "المظفر",
+  "district": "المظفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-1518017",
+  "name_ar": "المستشفى الجمهوري التعليمي العام",
+  "name_en": "Aljoumhri H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "القاهره",
+  "district": "القاهره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n1226349676",
+  "name_ar": "المستشفى الجمهوري تعز",
+  "name_en": "Al Mustashfa al Jumhuri Ta`izz",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "القاهره",
+  "district": "القاهره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1226349676"
+  ]
+ },
+ {
+  "slug": "health-1513006",
+  "name_ar": "المستشفى الريفي الثوره",
+  "name_en": "Althwrh H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "الصلو",
+  "district": "الصلو",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-1518009",
+  "name_ar": "المستشفى اليمني السويدي للأمومة والطفولة",
+  "name_en": "Yemeni swedish H For Maternity & Childhood",
+  "type": "specialized_hospital",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "القاهره",
+  "district": "القاهره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-1514047",
+  "name_ar": "المستشفي الريفي بني شيبه الشرق",
+  "name_en": "Bni Shiph Alshrq Rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "الشمايتين",
+  "district": "الشمايتين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-w464570895",
+  "name_ar": "الوحدة الصحية الميناء",
+  "name_en": "Port Health Unit",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "المخاء",
+  "district": "المخاء",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/464570895"
+  ]
+ },
+ {
+  "slug": "osm-n1226363289",
+  "name_ar": "الوحدة الصحية شعبو",
+  "name_en": "Al Wahdah as Sihhiyah Shabu",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "الوازعيه",
+  "district": "الوازعيه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1226363289"
+  ]
+ },
+ {
+  "slug": "osm-n7924258586",
+  "name_ar": "الوحدة الصحية في الأتيمة",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "موزع",
+  "district": "موزع",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/7924258586"
+  ]
+ },
+ {
+  "slug": "osm-n6937218357",
+  "name_ar": "مدينة النور - مستشفى الأمراض الجلدية",
+  "name_en": "Madinat an Nur - Mustashfa al Amrad al Jildiyah",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "صاله",
+  "district": "صاله",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6937218357"
+  ]
+ },
+ {
+  "slug": "osm-n695827917",
+  "name_ar": "مركز الأمل لمعالجة السرطان",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "القاهره",
+  "district": "القاهره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/695827917"
+  ]
+ },
+ {
+  "slug": "osm-n8176445217",
+  "name_ar": "مركز الشهيد علي سلطان",
+  "name_en": "Martyr Ali Sultan Health Center",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "جبل حبشي",
+  "district": "جبل حبشي",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/8176445217"
+  ]
+ },
+ {
+  "slug": "osm-n5482501224",
+  "name_ar": "مركز الطفل والأم",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "المظفر",
+  "district": "المظفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5482501224"
+  ]
+ },
+ {
+  "slug": "osm-n12460018140",
+  "name_ar": "مركز حنه الصحي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "الوازعيه",
+  "district": "الوازعيه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12460018140"
+  ]
+ },
+ {
+  "slug": "osm-n6404984687",
+  "name_ar": "مستشفى إبن سيناء التخصصي",
+  "name_en": "Ibn Sina Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "صاله",
+  "district": "صاله",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6404984687"
+  ]
+ },
+ {
+  "slug": "health-1517015",
+  "name_ar": "مستشفى الأمراض الجلدية والتناسلية",
+  "name_en": "Dermatology & Venereology H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "المظفر",
+  "district": "المظفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-1517003",
+  "name_ar": "مستشفى الامراض النفسية",
+  "name_en": "Psychatric H",
+  "type": "specialized_hospital",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "المظفر",
+  "district": "المظفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-1518008",
+  "name_ar": "مستشفى التعاون",
+  "name_en": "Altawn  H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "القاهره",
+  "district": "القاهره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n694536699",
+  "name_ar": "مستشفى الجبلي",
+  "name_en": "Algabaly Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "صاله",
+  "district": "صاله",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/694536699"
+  ]
+ },
+ {
+  "slug": "osm-n3029038602",
+  "name_ar": "مستشفى الجليل",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "تعز",
+  "district": "القاهره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/3029038602"
+  ]
+ },
+ {
+  "slug": "osm-n1226327866",
+  "name_ar": "مستشفى الراهدة",
+  "name_en": "Mustashfa ar Rahidah",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "خدير",
+  "district": "خدير",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1226327866"
+  ]
+ },
+ {
+  "slug": "health-1519014",
+  "name_ar": "مستشفى الشهيد عدنان الحمادي",
+  "name_en": "Al-Shahid Adnan Al-Hmmadi H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "صاله",
+  "district": "صاله",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n6580433185",
+  "name_ar": "مستشفى الصداقة التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "خدير",
+  "district": "خدير",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6580433185"
+  ]
+ },
+ {
+  "slug": "osm-n12622835297",
+  "name_ar": "مستشفى الصفوة العام",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "القاهره",
+  "district": "القاهره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12622835297"
+  ]
+ },
+ {
+  "slug": "health-1522012",
+  "name_ar": "مستشفى الكدرة الريفي",
+  "name_en": "Alkadrh Rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "المواسط",
+  "district": "المواسط",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n1461471786",
+  "name_ar": "مستشفى الكندي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "صاله",
+  "district": "صاله",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1461471786"
+  ]
+ },
+ {
+  "slug": "osm-w464570886",
+  "name_ar": "مستشفى المخأ",
+  "name_en": "Al-Mukha Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "المخاء",
+  "district": "المخاء",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/464570886"
+  ]
+ },
+ {
+  "slug": "osm-n4298021960",
+  "name_ar": "مستشفى المستقبل",
+  "name_en": "Almostqbal Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "القاهره",
+  "district": "القاهره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4298021960"
+  ]
+ },
+ {
+  "slug": "health-1522003",
+  "name_ar": "مستشفى المواسط الريفي",
+  "name_en": "Al Mawaset Rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "المواسط",
+  "district": "المواسط",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-1521002",
+  "name_ar": "مستشفى النشمة الريفي",
+  "name_en": "Alnshmh Rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "المعافر",
+  "district": "المعافر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-w995146837",
+  "name_ar": "مستشفى اليمن الدولي",
+  "name_en": "Yemen International Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "صاله",
+  "district": "صاله",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/995146837"
+  ]
+ },
+ {
+  "slug": "osm-n694537258",
+  "name_ar": "مستشفى تعز العسكري",
+  "name_en": "Taiz Military Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "صاله",
+  "district": "صاله",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/694537258"
+  ]
+ },
+ {
+  "slug": "osm-n4298023672",
+  "name_ar": "مستشفى د. علي علوي",
+  "name_en": "D.Ali Alwi Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "صاله",
+  "district": "صاله",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4298023672"
+  ]
+ },
+ {
+  "slug": "osm-n1216821655",
+  "name_ar": "مستشفى ذباب",
+  "name_en": "Mustashfa Dhubab",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "باب المندب",
+  "district": "باب المندب",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1216821655"
+  ]
+ },
+ {
+  "slug": "osm-n4727521463",
+  "name_ar": "مستشفى مؤقت في الخطوط الأمامية",
+  "name_en": "Front Line Temporary Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "المخاء",
+  "district": "المخاء",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4727521463"
+  ]
+ },
+ {
+  "slug": "health-1510014",
+  "name_ar": "مستشفي العروس الريفي",
+  "name_en": "Al Aroos Rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "صبر الموادم",
+  "district": "صبر الموادم",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-1517006",
+  "name_ar": "مستشفي المظفر للامومة والطفولة",
+  "name_en": "Al Modhafar H Mother & child",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "تعز",
+  "city": "المظفر",
+  "district": "المظفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n1221888811",
+  "name_ar": "مستوصف الظريفة",
+  "name_en": "Mustawsaf az Zarifah",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "الوازعيه",
+  "district": "الوازعيه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1221888811"
+  ]
+ },
+ {
+  "slug": "osm-n1226213769",
+  "name_ar": "مستوصف حبيب الأصابح",
+  "name_en": "Mustawsaf Hubayb al Asabih",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "تعز",
+  "city": "الشمايتين",
+  "district": "الشمايتين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1226213769"
+  ]
+ },
+ {
+  "slug": "osm-w778488742",
+  "name_ar": "الملكة ارواء",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "ذمار",
+  "city": "مدينة ذمار",
+  "district": "مدينة ذمار",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/778488742"
+  ]
+ },
+ {
+  "slug": "osm-n1218220744",
+  "name_ar": "الوحدة الصحية بالمصباح",
+  "name_en": "Al Wahdah as Sihhiyah bil Masbah",
+  "type": "medical_center",
+  "ownership": "government",
+  "governorate": "ذمار",
+  "city": "وصاب السافل",
+  "district": "وصاب السافل",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1218220744"
+  ]
+ },
+ {
+  "slug": "osm-n1223293196",
+  "name_ar": "الوحدة الصحية ربوع السائلة",
+  "name_en": "Al Wahdah as Sihhiyah Ribu as Sailah",
+  "type": "medical_center",
+  "ownership": "government",
+  "governorate": "ذمار",
+  "city": "وصاب العالي",
+  "district": "وصاب العالي",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1223293196"
+  ]
+ },
+ {
+  "slug": "osm-n1223293101",
+  "name_ar": "الوحدة الصحية نقذ",
+  "name_en": "Al Wahdah as Sihhiyah Naqdh",
+  "type": "medical_center",
+  "ownership": "government",
+  "governorate": "ذمار",
+  "city": "وصاب العالي",
+  "district": "وصاب العالي",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1223293101"
+  ]
+ },
+ {
+  "slug": "osm-n4796696521",
+  "name_ar": "الوحده الصحيه لثوبان",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "ذمار",
+  "city": "الحداء",
+  "district": "الحداء",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4796696521"
+  ]
+ },
+ {
+  "slug": "osm-n7805258386",
+  "name_ar": "كلية الطب والعلوم الصحية دائرة العلوم السريرية",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "ذمار",
+  "city": "جهران",
+  "district": "جهران",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/7805258386"
+  ]
+ },
+ {
+  "slug": "osm-n5540158866",
+  "name_ar": "مركز القراءة للتداوي بالرقية الشرعية",
+  "name_en": "Roqia Center",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "ذمار",
+  "city": "جهران",
+  "district": "جهران",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5540158866"
+  ]
+ },
+ {
+  "slug": "osm-n5794987954",
+  "name_ar": "مستشفى الدكتور نبيل محمد مياس التخصصي",
+  "name_en": "Dr. Nabil Mohamed Mayas Specialist Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "ذمار",
+  "city": "مدينة ذمار",
+  "district": "مدينة ذمار",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5794987954"
+  ]
+ },
+ {
+  "slug": "osm-n7499842485",
+  "name_ar": "مستشفى الريادة التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "ذمار",
+  "city": "مدينة ذمار",
+  "district": "مدينة ذمار",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/7499842485"
+  ]
+ },
+ {
+  "slug": "osm-w782456311",
+  "name_ar": "مستشفى الندى",
+  "name_en": "Alnada Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "ذمار",
+  "city": "مدينة ذمار",
+  "district": "مدينة ذمار",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/782456311"
+  ]
+ },
+ {
+  "slug": "osm-n13893178253",
+  "name_ar": "مستشفى تجمع ذي  عطاء العام",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "private",
+  "governorate": "ذمار",
+  "city": "ذي عطاء - مديرية عنس - محافظة ذمار",
+  "district": "عنس",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13893178253"
+  ]
+ },
+ {
+  "slug": "osm-r10753663",
+  "name_ar": "مستشفى ذمار العام",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "ذمار",
+  "city": "مدينة ذمار",
+  "district": "مدينة ذمار",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/relation/10753663"
+  ]
+ },
+ {
+  "slug": "osm-n1218069819",
+  "name_ar": "مستشفى صنوران",
+  "name_en": "Mustashfa Sanuran",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "ذمار",
+  "city": "ضوران انس",
+  "district": "ضوران انس",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1218069819"
+  ]
+ },
+ {
+  "slug": "osm-n7801968760",
+  "name_ar": "مستشفى مدينة الرواد التخصصي",
+  "name_en": "Al-Rwad C.S. Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "ذمار",
+  "city": "Dhamar",
+  "district": "جبل الشرق",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/7801968760"
+  ]
+ },
+ {
+  "slug": "osm-n1218054507",
+  "name_ar": "مستشفى معبر",
+  "name_en": "Mustashfa Ma`bar",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "ذمار",
+  "city": "جهران",
+  "district": "جهران",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1218054507"
+  ]
+ },
+ {
+  "slug": "osm-n5639951428",
+  "name_ar": "مستوصف الثريا الطبي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "ذمار",
+  "city": "جهران",
+  "district": "جهران",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5639951428"
+  ]
+ },
+ {
+  "slug": "osm-n7884380164",
+  "name_ar": "مستوصف الشرم السافل",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "government",
+  "governorate": "ذمار",
+  "city": "عتمة",
+  "district": "عتمه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/7884380164"
+  ]
+ },
+ {
+  "slug": "osm-n6510668392",
+  "name_ar": "وحدة الصوحر الصحية",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "government",
+  "governorate": "ذمار",
+  "city": "وصاب العالي",
+  "district": "وصاب العالي",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6510668392"
+  ]
+ },
+ {
+  "slug": "osm-n6276348385",
+  "name_ar": "وحدة الضيق الصحية",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "ذمار",
+  "city": "جهران",
+  "district": "جهران",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6276348385"
+  ]
+ }
+]
