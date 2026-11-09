@@ -64,7 +64,7 @@ test('sorting and unread badge values are deterministic and bounded',()=>{
  assert.deepEqual(orderNotices(input).map(x=>x.id),['b','c','a']);
  assert.equal(noticeCountLabel(0),'0');assert.equal(noticeCountLabel(101),'99+');
  assert.equal(noticeCountLabel(-20),'0');
- assert.deepEqual(NOTIFICATION_CATEGORIES,['all','messages','tasks','debates','account']);
+ assert.deepEqual(NOTIFICATION_CATEGORIES,['all','messages','market','tasks','debates','account']);
 });
 
 test('mark-read accepts only a source-scoped UUID or positive integer',()=>{
@@ -100,7 +100,8 @@ test('header and page expose discoverable notifications without duplicating mess
  assert.match(bell,/aria-controls="notifications-preview"/);
  assert.match(bell,/document\.addEventListener\('keydown',key\)/);
  assert.match(bell,/window\.setInterval\(refresh,60000\)/);
- assert.match(page,/NOTIFICATION_CATEGORIES\.map\(key=>/);
+ // «السوق» shows only when the market is open to the member, or they have market news.
+ assert.match(page,/NOTIFICATION_CATEGORIES\.filter\(key=>key!=='market'\|\|marketEnabled\|\|category==='market'\)\.map\(key=>/);
  assert.match(page,/markNotificationsRead\(\)/);
  assert.match(page,/onOpen=\{openItem\}/);
  assert.match(style,/\.popover\{position:absolute;/);

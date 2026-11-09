@@ -63,15 +63,18 @@ export default async function ListingPage({params}){
   ...(sub?.fields||[]).filter(field=>field.key!=='area_unit').map(field=>[field.label,attributeText(sub,field.key,listing.attributes)])].filter(([,value])=>value);
  const similar=await similarListings(db,listing,places).catch(()=>[]);
  const price=formatPrice(listing.price,listing.currency);
+ // «معدّل» beside what the seller changed after publishing, and the old price after a drop.
+ const edited=(part,force=false)=>(force||(listing.edited_fields||[]).includes(part))?<span className={styles.edited}>معدّل</span>:null;
+ const dropped=Number(listing.previous_price)>Number(listing.price);
  return <div className={styles.listing}>
   <div className={styles.layout}>
    <ListingGallery images={listing.images} title={listing.title}/>
    <div className={styles.summary}>
     {listing.status!=='active'&&<span className={styles.status}>{listing.status==='reserved'?'محجوز':'مباع'}</span>}
     {listing.status==='reserved'&&<p className={styles.reservedNote}>هذا الإعلان محجوز حاليًا، ويمكنك حفظه أو مراسلة البائع أو تقديم عرض.</p>}
-    <div><span className={styles.price}>{price}</span>{listing.negotiable&&<span className={styles.negotiable}>قابل للتفاوض</span>}</div>
-    <h1 className={styles.title}>{listing.title}</h1>
-    <div className={styles.where}><span><MapPin size={14} aria-hidden="true"/>{[listing.governorate,listing.district].filter(Boolean).join(' · ')}</span><span><Clock size={14} aria-hidden="true"/>{timeAgo(listing.published_at)}</span></div>
+    <div><span className={styles.price}>{price}</span>{dropped&&<s className={styles.oldPrice}>{formatPrice(listing.previous_price,listing.currency)}</s>}{listing.negotiable&&<span className={styles.negotiable}>قابل للتفاوض</span>}{edited('price')}</div>
+    <h1 className={styles.title}>{listing.title}{edited('title')}</h1>
+    <div className={styles.where}><span><MapPin size={14} aria-hidden="true"/>{[listing.governorate,listing.district].filter(Boolean).join(' · ')}{edited('place')}</span><span><Clock size={14} aria-hidden="true"/>{timeAgo(listing.published_at)}</span></div>
     {listingHighlights(listing).length>0&&<div className={styles.highlights}>{listingHighlights(listing).map(item=><span key={item}>{item}</span>)}</div>}
     <div className={styles.seller}>
      <span className={styles.avatar} aria-hidden="true">{listing.seller.name.trim().charAt(0)}</span>
@@ -83,8 +86,8 @@ export default async function ListingPage({params}){
    </div>
   </div>
   <section className={styles.block}>
-   {listing.description&&<><h2>الوصف</h2><p className={styles.description}>{listing.description}</p></>}
-   <h2>المواصفات</h2>
+   {listing.description&&<><h2>الوصف{edited('description')}</h2><p className={styles.description}>{listing.description}</p></>}
+   <h2>المواصفات{(listing.edited_fields||[]).some(part=>['details','condition'].includes(part))&&edited('details',true)}</h2>
    <dl className={styles.specs}>{specs.map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
    <p className={styles.safety}>قابل البائع في مكان عام، ولا تحوّل أي مبلغ قبل المعاينة.</p>
    <div className={styles.facts}><span>رقم الإعلان {listing.number}</span><span><Eye size={13} aria-hidden="true"/> {listing.views} مشاهدة</span>{listing.saves>0&&<span>حفظه {listing.saves}</span>}</div>

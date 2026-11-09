@@ -41,7 +41,9 @@ test('the phone number and terms acceptances are private to the server',()=>{
 test('publishing checks terms, phone, daily limits and duplicates, and attaches photos first',()=>{
  const source=read('lib/market/listingsServer.js');
  const body=source.slice(source.indexOf('export async function publishListing'),source.indexOf('export async function getOwnDraft'));
- const order=['TERMS_REQUIRED','PHONE_REQUIRED','DAILY_LIMIT','CONFIRM_GENUINE','DUPLICATE','reviewReason','promoteUploads','market_listings\').insert','linkUploads'].map(word=>body.indexOf(word));
+ // The WhatsApp number check is shared with editing (ensureWhatsapp).
+ assert.match(source.slice(source.indexOf('async function ensureWhatsapp'),source.indexOf('async function ensureWhatsapp')+800),/PHONE_REQUIRED/);
+ const order=['TERMS_REQUIRED','ensureWhatsapp','DAILY_LIMIT','CONFIRM_GENUINE','DUPLICATE','reviewReason','promoteUploads','market_listings\').insert','linkUploads'].map(word=>body.indexOf(word));
  for(const at of order)assert.ok(at>0);
  assert.deepEqual([...order].sort((a,b)=>a-b),order,'checks run in the expected order');
  assert.match(body,/complete:true/);

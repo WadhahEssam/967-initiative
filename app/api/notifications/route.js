@@ -7,6 +7,9 @@ import {
  NOTIFICATION_PAGE_SIZE,NOTIFICATION_CATEGORIES,validNotificationIds,
  NOTIFICATION_PREFERENCE_KEYS,normalizeNotificationPreferences,isNotificationEnabled
 } from '@/lib/unifiedNotifications';
+import {marketChatNotice,marketNotice} from '@/lib/market/notices';
+import {getSiteSettings} from '@/lib/data';
+import {sectionStatus} from '@/lib/pageVisibility';
 
 export const runtime='nodejs';
 export const dynamic='force-dynamic';
@@ -82,6 +85,32 @@ async function replyParents(accountRows){
  }
  return found;
 }
+// «سوق 967»: stored market events and chats with unread messages (read with the server's key for
+// the verified member only). A market failure never hides the other notifications.
+async function marketNotices(user,prefs){
+ const service=serverDb();
+ if(!service)return {items:[],enabled:false};
+ const settled=promise=>Promise.resolve(promise).then(result=>result?.error?{data:[]}:result,()=>({data:[]}));
+ const [stored,chats,settings]=await Promise.all([
+  settled(service.from('market_notifications').select('id,kind,subject,detail,count,href,created_at,read_at')
+   .eq('user_id',user.id).order('created_at',{ascending:false}).limit(SOURCE_LIMIT)),
+  prefs.messages?settled(service.from('market_chats').select('id,listing_id,buyer_id,seller_id,buyer_unread,seller_unread,last_preview,last_message_at')
+   .or('and(buyer_id.eq.'+user.id+',buyer_unread.gt.0),and(seller_id.eq.'+user.id+',seller_unread.gt.0)').limit(200)):{data:[]},
+  getSiteSettings().catch(()=>null),
+ ]);
+ const chatRows=chats.data||[];
+ let titles=new Map();
+ if(chatRows.length){
+  const listings=await settled(service.from('market_listings').select('id,title').in('id',[...new Set(chatRows.map(row=>row.listing_id))]));
+  titles=new Map((listings.data||[]).map(row=>[row.id,row.title]));
+ }
+ const items=[
+  ...(stored.data||[]).map(marketNotice),
+  ...chatRows.map(row=>marketChatNotice({...row,unread:row.buyer_id===user.id?row.buyer_unread:row.seller_unread},titles.get(row.listing_id))),
+ ].filter(Boolean);
+ // The «السوق» filter shows once the market is open, or for members who already have market news.
+ return {items,enabled:sectionStatus('market',settings)==='visible'||items.length>0};
+}
 async function readCenter(db,user,{mode,category,page}){
  const prefs=await preferences(db,user);
  const [accounts,tasks,messages]=await Promise.all([
@@ -89,6 +118,7 @@ async function readCenter(db,user,{mode,category,page}){
   taskQuery(db,user.id,category,SOURCE_LIMIT,prefs),
   messageNotices(user,category,prefs),
  ].map(value=>value||Promise.resolve({data:[],count:0,error:null})));
+ const market=await marketNotices(user,prefs);
  dbError(accounts.error);dbError(tasks.error);
  const rows=tasks.data||[];
  let titles=new Map();
@@ -106,13 +136,14 @@ async function readCenter(db,user,{mode,category,page}){
    return accountNotice({...row,reply_parent:replyId?parents.get(replyId):null});
   }),
   ...rows.map(row=>taskNotice(row,titles.get(row.task_id))),
-  ...messages
+  ...messages,
+  ...(['all','market'].includes(category)?market.items:[])
  ].filter(notice=>isNotificationEnabled(notice,prefs)));
  const count=entries.filter(notice=>notice.unread).length;
  const markableCount=entries.filter(notice=>notice.unread&&notice.source!=='message').length;
  const offset=(page-1)*NOTIFICATION_PAGE_SIZE;
  return {
-  count,total:entries.length,markable_count:markableCount,preferences:prefs,
+  count,total:entries.length,markable_count:markableCount,preferences:prefs,market_enabled:market.enabled,
   items:mode==='summary'?entries.slice(0,5):entries.slice(offset,offset+NOTIFICATION_PAGE_SIZE),
   hasMore:mode==='summary'?false:entries.length>offset+NOTIFICATION_PAGE_SIZE,
   // Source limits are conservative. Badge values 99+ may be approximate
@@ -171,11 +202,19 @@ export async function POST(request){
   }else if(body.action==='read'){
    const ids=body.ids??[body.id];
    if(!validNotificationIds(body.source,ids))throw new RequestValidationError('معرّف الإشعار غير صالح.');
-   const table=body.source==='account'?'account_notifications':'task_notifications';
-   // A grouped alert can be marked read without touching unrelated records.
-   const {error}=await db.from(table).update({read_at:time})
-    .eq('user_id',user.id).in('id',ids).is('read_at',null);
-   dbError(error);
+   if(body.source==='market'){
+    // Market notifications are private to the server; the verified member's own rows only.
+    const service=serverDb();
+    if(!service)throw new RequestValidationError('خدمة الإشعارات غير متاحة.',503);
+    const {error}=await service.from('market_notifications').update({read_at:time}).eq('user_id',user.id).in('id',ids).is('read_at',null);
+    dbError(error);
+   }else{
+    const table=body.source==='account'?'account_notifications':'task_notifications';
+    // A grouped alert can be marked read without touching unrelated records.
+    const {error}=await db.from(table).update({read_at:time})
+     .eq('user_id',user.id).in('id',ids).is('read_at',null);
+    dbError(error);
+   }
   }else if(body.action==='read_all'){
    // Mark only persisted notices; private-message read receipts remain
    // untouched until the owner opens the actual conversation.
@@ -185,6 +224,12 @@ export async function POST(request){
     return query;
    }));
    for(const result of results)dbError(result.error);
+   const service=serverDb();
+   if(service){
+    const market=await service.from('market_notifications').update({read_at:time}).eq('user_id',user.id).is('read_at',null);
+    // Before the market tables exist there is nothing to mark.
+    if(market.error&&market.error.code!=='42P01')dbError(market.error);
+   }
   }else throw new RequestValidationError('الإجراء غير مدعوم.');
   return response({ok:true});
  }catch(error){

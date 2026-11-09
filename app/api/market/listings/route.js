@@ -1,6 +1,6 @@
 import {marketMember} from '@/lib/market/access';
 import {getMarketPlaces,governorateIdByName} from '@/lib/market/places';
-import {MarketActionError,getOwnDraft,publishListing,saveDraft,sellerDefaults} from '@/lib/market/listingsServer';
+import {MarketActionError,getOwnDraft,getOwnForEdit,publishListing,saveDraft,sellerDefaults,updateListing} from '@/lib/market/listingsServer';
 import {ListingError} from '@/lib/market/listing';
 import {readJsonObject,RequestValidationError} from '@/lib/requestSecurity';
 
@@ -23,11 +23,12 @@ function failure(error){
 export async function GET(request){
  try{
   const {db,user}=await marketMember(request);
-  const draftId=new URL(request.url).searchParams.get('draft');
-  if(draftId&&!UUID.test(draftId))throw new RequestValidationError('رابط المسودة غير صالح.',400);
+  const params=new URL(request.url).searchParams;
+  const draftId=params.get('draft'),editId=params.get('edit');
+  if((draftId&&!UUID.test(draftId))||(editId&&!UUID.test(editId)))throw new RequestValidationError('رابط الإعلان غير صالح.',400);
   const [defaults,places]=await Promise.all([sellerDefaults(db,user),getMarketPlaces()]);
   const governorate_id=defaults.governorate_id||governorateIdByName(places,defaults.governorateName);
-  return json({defaults:{...defaults,governorate_id},draft:draftId?await getOwnDraft(db,user,draftId):null});
+  return json({defaults:{...defaults,governorate_id},draft:draftId?await getOwnDraft(db,user,draftId):null,editing:editId?await getOwnForEdit(db,user,editId):null});
  }catch(error){return failure(error);}
 }
 
@@ -39,6 +40,7 @@ export async function POST(request){
   const places=await getMarketPlaces();
   const input={id:body.id||null,data:body.data||{},images:body.images||[]};
   if(body.action==='save')return json({listing:await saveDraft(db,user,input,places)});
+  if(body.action==='update')return json({listing:await updateListing(db,user,{...input,phone:body.phone||null},places)});
   if(body.action==='publish')return json({listing:await publishListing(db,user,{...input,acceptTerms:body.acceptTerms===true,confirmGenuine:body.confirmGenuine===true,phone:body.phone||null},places)},201);
   throw new RequestValidationError('الإجراء غير مدعوم.',400);
  }catch(error){return failure(error);}
