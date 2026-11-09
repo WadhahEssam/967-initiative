@@ -2,7 +2,7 @@
 import {useEffect,useState} from 'react';
 import {useRouter} from 'next/navigation';
 import {ChevronDown,MapPin} from 'lucide-react';
-import {browserDb} from '@/lib/supabase';
+import {currentSession,loadBrowserDb} from '@/lib/browserSession';
 import {normalizeSearch} from '@/lib/market/text';
 import {ALL_YEMEN,PLACE_COOKIE} from '@/lib/market/search';
 import Sheet from './Sheet';
@@ -24,10 +24,10 @@ export default function PlaceChooser({governorates,current}){
   let live=true;
   (async()=>{
    try{
-    const db=browserDb();
-    const {data}=db?await db.auth.getSession():{data:{}};
-    if(!data?.session||!live)return;
-    const {data:prefs}=await db.from('account_preferences').select('governorate').eq('user_id',data.session.user.id).maybeSingle();
+    const session=await currentSession();
+    if(!session||!live)return;
+    const db=await loadBrowserDb();
+    const {data:prefs}=await db.from('account_preferences').select('governorate').eq('user_id',session.user.id).maybeSingle();
     const key=normalizeSearch(prefs?.governorate||'');
     const match=key&&governorates.find(item=>normalizeSearch(item.name)===key);
     if(match&&live)choose(match.id);

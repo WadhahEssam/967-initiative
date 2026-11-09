@@ -16,7 +16,7 @@ test('editorial A has full home and correct route-scoped CSS',()=>{
  assert.ok(layout.includes("import './foundation/shell.css'"));
  assert.ok(!layout.includes("import './globals.css'"));
  assert.ok(legacy.includes("import './knowledge-data.css'"));
- assert.ok(existsSync(new URL('../public/fonts/markazi-text-arabic-var.woff2',import.meta.url)));
+ assert.ok(existsSync(new URL('../public/fonts/markazi-arabic-web.woff2',import.meta.url)));
 });
 
 test('light is default and the explicit dark theme covers every route',()=>{

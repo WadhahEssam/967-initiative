@@ -4,7 +4,7 @@ import {useEffect,useState} from 'react';
 import Link from 'next/link';
 import {ArrowLeft,BookOpen,Bookmark,Compass,Gamepad2,GraduationCap,LogIn,RefreshCw} from 'lucide-react';
 import useAudience from '@/components/debates/useAudience';
-import {browserDb} from '@/lib/supabase';
+import {loadBrowserDb,whenBrowserDb} from '@/lib/browserSession';
 import {dailyGameUrl,utcDay} from '@/lib/dailyGame';
 import {readingListItem} from '@/lib/readingList';
 import {usePageVisibility} from '@/components/PageVisibilityProvider';
@@ -56,7 +56,7 @@ export default function HomeSmartStart({initialDate,knowledgeHref='/search',memb
   };
   (async()=>{
    try{
-    const db=browserDb();
+    const db=await loadBrowserDb();
     if(!db)throw Error('Auth unavailable');
     const {data,error}=await db.auth.getSession();
     if(error||!data?.session?.access_token)throw Error('Missing session');
@@ -75,15 +75,13 @@ export default function HomeSmartStart({initialDate,knowledgeHref='/search',memb
  // eslint-disable-next-line react-hooks/exhaustive-deps -- re-run only when the signed-in account changes, not on every session token refresh
  },[ready,user?.id,day,revision,isVisible]);
 
- useEffect(()=>{
-  const db=browserDb();
-  if(!db)return;
+ useEffect(()=>whenBrowserDb(db=>{
   const {data:{subscription}}=db.auth.onAuthStateChange((event,session)=>{
    if(event==='SIGNED_OUT'||event==='SIGNED_IN')
     setCards(old=>old.userId&&old.userId!==session?.user?.id?{userId:null,...empty()}:old);
   });
   return()=>subscription.unsubscribe();
- },[]);
+ }),[]);
 
  const showSchool=isVisible('/school');
  const showGames=isVisible('/games');

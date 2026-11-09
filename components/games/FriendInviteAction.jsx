@@ -3,7 +3,7 @@
 import {useState} from 'react';
 import Link from 'next/link';
 import {ArrowLeft,Check,Copy,ExternalLink,Link2,Swords,Users} from 'lucide-react';
-import {browserDb} from '@/lib/supabase';
+import {currentSession} from '@/lib/browserSession';
 import styles from './FriendInviteAction.module.css';
 
 /** Create a friend duel right beside the normal start button of any of the nine games. */
@@ -17,9 +17,8 @@ export default function FriendInviteAction({game,seconds=15,disabled=false}){
   if(creating||disabled)return;
   setCreating(true);setError('');setCreated(null);setCopyState('');
   try{
-   const db=browserDb();
-   const {data,error:sessionError}=await db?.auth.getSession()||{};
-   if(sessionError||!data?.session?.access_token)throw Error('سجّل الدخول بحسابك المؤكد لإنشاء تحدٍّ خاص.');
+   const data={session:await currentSession()};
+   if(!data.session?.access_token)throw Error('سجّل الدخول بحسابك المؤكد لإنشاء تحدٍّ خاص.');
    const response=await fetch('/api/games/friends',{
     method:'POST',cache:'no-store',
     headers:{Authorization:'Bearer '+data.session.access_token,'Content-Type':'application/json'},
