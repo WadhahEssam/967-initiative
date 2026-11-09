@@ -13,6 +13,7 @@ import {site} from '@/lib/config';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import {getSiteSettings} from '@/lib/data';
+import {getMemberCount} from '@/lib/memberCount';
 import {getSiteOrigin, pageMetadata} from '@/lib/seo';
 import {JsonLd, siteSchema} from '@/lib/seo-schema';
 import {contentPagePath} from '@/lib/contentPages';
@@ -33,5 +34,7 @@ export const metadata = {
 };
 export default async function RootLayout({children}){
  const settings=await getSiteSettings();
- return <html lang="ar" dir="rtl" data-ed-theme="light" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{__html:"try{var t=localStorage.getItem('967-editorial-theme');if(t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.dataset.edTheme='dark'}catch(e){}"}}/><link rel="preload" href="/fonts/ibm-plex-arabic-1.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/><link rel="preload" href="/fonts/markazi-text-arabic-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/></head><body><OperationalMonitor/><NavigationMemory/><JsonLd data={siteSchema(settings)}/><a className="ed-skip" href="#content">انتقل إلى المحتوى</a><PageVisibilityProvider visibility={settings.pageVisibility} pages={(settings.contentPages||[]).map(({slug,isPublished})=>({slug,isPublished}))}><SiteUsageTracker/><InlineEditorProvider><Header actionLabel={settings.headerActionLabel} contentLinks={(settings.contentPages||[]).filter(page=>pageIsVisible(contentPagePath(page),settings.pageVisibility,settings.contentPages)).map(page=>({slug:page.slug,title:page.title,href:contentPagePath(page)}))}/><main id="content" className="visual-foundation site-experience">{children}</main><Footer settings={settings}/></InlineEditorProvider></PageVisibilityProvider></body></html>;
+ // The footer shows how many accounts exist; a failure only hides that line.
+ const memberCount=await getMemberCount().catch(()=>null);
+ return <html lang="ar" dir="rtl" data-ed-theme="light" suppressHydrationWarning><head><script dangerouslySetInnerHTML={{__html:"try{var t=localStorage.getItem('967-editorial-theme');if(t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.dataset.edTheme='dark'}catch(e){}"}}/><link rel="preload" href="/fonts/ibm-plex-arabic-1.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/><link rel="preload" href="/fonts/markazi-text-arabic-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous"/></head><body><OperationalMonitor/><NavigationMemory/><JsonLd data={siteSchema(settings)}/><a className="ed-skip" href="#content">انتقل إلى المحتوى</a><PageVisibilityProvider visibility={settings.pageVisibility} pages={(settings.contentPages||[]).map(({slug,isPublished})=>({slug,isPublished}))}><SiteUsageTracker/><InlineEditorProvider><Header actionLabel={settings.headerActionLabel} contentLinks={(settings.contentPages||[]).filter(page=>pageIsVisible(contentPagePath(page),settings.pageVisibility,settings.contentPages)).map(page=>({slug:page.slug,title:page.title,href:contentPagePath(page)}))}/><main id="content" className="visual-foundation site-experience">{children}</main><Footer settings={settings} memberCount={memberCount}/></InlineEditorProvider></PageVisibilityProvider></body></html>;
 }
