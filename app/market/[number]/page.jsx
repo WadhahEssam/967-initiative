@@ -67,6 +67,7 @@ export default async function ListingPage({params}){
    <ListingGallery images={listing.images} title={listing.title}/>
    <div className={styles.summary}>
     {listing.status!=='active'&&<span className={styles.status}>{listing.status==='reserved'?'محجوز':'مباع'}</span>}
+    {listing.status==='reserved'&&<p className={styles.reservedNote}>هذا الإعلان محجوز حاليًا، ويمكنك حفظه أو مراسلة البائع أو تقديم عرض.</p>}
     <div><span className={styles.price}>{price}</span>{listing.negotiable&&<span className={styles.negotiable}>قابل للتفاوض</span>}</div>
     <h1 className={styles.title}>{listing.title}</h1>
     <div className={styles.where}><span><MapPin size={14} aria-hidden="true"/>{[listing.governorate,listing.district].filter(Boolean).join(' · ')}</span><span><Clock size={14} aria-hidden="true"/>{timeAgo(listing.published_at)}</span></div>
@@ -88,6 +89,7 @@ export default async function ListingPage({params}){
    <div className={styles.facts}><span>رقم الإعلان {listing.number}</span><span><Eye size={13} aria-hidden="true"/> {listing.views} مشاهدة</span>{listing.saves>0&&<span>حفظه {listing.saves}</span>}</div>
    {similar.length>0&&<><h2>إعلانات مشابهة</h2><div className={styles.grid}>{similar.map(item=><ListingCard key={item.id} listing={item}/>)}</div></>}
   </section>
-  <ListingContactBar listingId={listing.id} title={listing.title} price={price} whatsapp={listing.whatsapp} negotiable={listing.negotiable&&listing.status==='active'} url={siteUrl(listingPath(listing.number))}/>
+  <ListingContactBar listingId={listing.id} sellerId={listing.seller.id} title={listing.title} price={price} amount={listing.price} currency={listing.currency} closed={listing.status==='sold'}
+   whatsapp={listing.status==='sold'?null:listing.whatsapp} negotiable={listing.negotiable&&Number(listing.price)>0&&['active','reserved'].includes(listing.status)} url={siteUrl(listingPath(listing.number))}/>
  </div>;
 }

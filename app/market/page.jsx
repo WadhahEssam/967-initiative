@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import {cookies} from 'next/headers';
-import {Bell,Car,Dumbbell,Heart,House,Package,PawPrint,Plus,Shirt,Smartphone,Sofa,Sun,Wrench} from 'lucide-react';
+import {Bell,Car,Dumbbell,Heart,House,List,MessageCircle,Package,PawPrint,Plus,Shirt,Smartphone,Sofa,Sun,Wrench} from 'lucide-react';
 import ListingCard from '@/components/market/ListingCard';
 import MarketSearchBar from '@/components/market/MarketSearchBar';
 import PlaceChooser from '@/components/market/PlaceChooser';
@@ -36,6 +36,8 @@ export default async function MarketHome(){
   </header>
   <MarketSearchBar/>
   <nav className={styles.quickLinks} aria-label="روابط السوق">
+   <Link href="/market/mine"><List size={15} aria-hidden="true"/> إعلاناتي</Link>
+   <Link href="/messages?tab=market"><MessageCircle size={15} aria-hidden="true"/> محادثات السوق</Link>
    <Link href="/market/favourites"><Heart size={15} aria-hidden="true"/> المفضلة</Link>
    <Link href="/market/saved-searches"><Bell size={15} aria-hidden="true"/> بحوثي المحفوظة</Link>
   </nav>
