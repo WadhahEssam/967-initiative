@@ -13,7 +13,8 @@
     "data:rankings": "node scripts/sync-yemen-rankings.mjs",
     "data:companies": "node --env-file=.env.local scripts/seed-yemeni-companies.mjs",
     "data:directories": "node scripts/import-institution-directories.mjs",
-    "data:figures": "node --env-file=.env.local scripts/seed-yemeni-figures.mjs"
+    "data:figures": "node --env-file=.env.local scripts/seed-yemeni-figures.mjs",
+    "css:legacy": "node scripts/build-legacy-css.mjs"
   },
   "dependencies": {
     "@resvg/resvg-wasm": "^2.6.2",
