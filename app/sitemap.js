@@ -18,6 +18,7 @@ import {recordOperationalEvent} from '@/lib/operationalEvents';
 import {readPublicHistoryCatalog} from '@/lib/historyRepository';
 import {serverDb} from '@/lib/supabase-server';
 import {getMapBoundaries} from '@/lib/mapProfileRepository';
+import {sectionStatus} from '@/lib/pageVisibility';
 
 export const dynamic = 'force-dynamic';
 
@@ -32,5 +33,12 @@ export default async function sitemap() {
   let history=[];try{history=(await readPublicHistoryCatalog(serverDb())).entries;}catch{recordOperationalEvent('source_unavailable',{source:'pages',area:'sitemap'});}
   // Governorate and district pages come from the boundary file shipped with the site.
   let places=[];try{const boundaries=await getMapBoundaries();places=[...boundaries.governorates.map(item=>'/yemen-map/governorates/'+item.id),...boundaries.districts.map(item=>'/yemen-map/districts/'+item.id)];}catch{recordOperationalEvent('source_unavailable',{source:'places',area:'sitemap'});}
-  return buildSitemap({...data,history,places,pageVisibility:settings.pageVisibility});
+  // «سوق 967» listings people can see, once the market is open (newest 5,000).
+  let market=null;
+  if(sectionStatus('market',settings)==='visible'){
+   const {data:rows,error}=await serverDb().from('market_listings').select('number,updated_at').in('status',['active','reserved']).not('seller_id','is',null).order('published_at',{ascending:false}).limit(5000);
+   if(error)recordOperationalEvent('source_unavailable',{source:'market',area:'sitemap'});
+   market=rows||[];
+  }
+  return buildSitemap({...data,history,places,market,pageVisibility:settings.pageVisibility});
 }

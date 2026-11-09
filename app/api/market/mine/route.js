@@ -1,6 +1,7 @@
 import {marketMember} from '@/lib/market/access';
 import {marketFailure,marketJson} from '@/lib/market/apiResponse';
 import {changeListingStatus,myListings} from '@/lib/market/chatServer';
+import {myPhone,removePhone} from '@/lib/market/listingsServer';
 import {readJsonObject} from '@/lib/requestSecurity';
 
 export const dynamic='force-dynamic';
@@ -10,14 +11,16 @@ export const runtime='nodejs';
 export async function GET(request){
  try{
   const {db,user}=await marketMember(request);
-  return marketJson({items:await myListings(db,user)});
+  const [items,phone]=await Promise.all([myListings(db,user),myPhone(db,user)]);
+  return marketJson({items,phone});
  }catch(error){return marketFailure(error);}
 }
-// POST {id, action: sold|reserve|available|remove|renew}
+// POST {id, action: sold|reserve|available|remove|renew|keep} · {action:'remove_phone'}
 export async function POST(request){
  try{
   const {db,user}=await marketMember(request);
   const body=await readJsonObject(request,1000);
+  if(body.action==='remove_phone')return marketJson(await removePhone(db,user));
   return marketJson(await changeListingStatus(db,user,{id:body.id,action:body.action}));
  }catch(error){return marketFailure(error);}
 }

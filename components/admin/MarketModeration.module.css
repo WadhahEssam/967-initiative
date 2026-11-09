@@ -48,3 +48,8 @@
 .error{background:var(--c-danger-soft);color:var(--c-danger)}
 .success{background:var(--c-success-soft);color:var(--c-success)}
 .link{justify-self:start;border:0;background:transparent;color:var(--c-ink-2);font:inherit;font-size:13px;text-decoration:underline;cursor:pointer}
+.launch{margin:0 0 14px;padding:12px 14px;border:1px solid var(--c-amber);border-radius:14px;background:var(--c-amber-soft)}
+.launch h2{margin:0 0 6px;font-size:15px}
+.launch ul{margin:0;padding-inline-start:18px;display:grid;gap:4px;font-size:13.5px;line-height:1.8}
+.launch li[data-ok="false"]{color:var(--c-danger);font-weight:600}
+.launch a{color:var(--c-accent)}

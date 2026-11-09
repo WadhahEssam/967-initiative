@@ -4,6 +4,9 @@ import {RequestValidationError,readJsonObject} from '@/lib/requestSecurity';
 import {MarketActionError} from '@/lib/market/listingsServer';
 import {SafetyError} from '@/lib/market/safety.js';
 import {getMarketPlaces} from '@/lib/market/places';
+import {marketStorageConfigured} from '@/lib/market/storage';
+import {getSiteSettings} from '@/lib/data';
+import {sectionStatus} from '@/lib/pageVisibility';
 import {actOnReport,activeBans,banMember,blockAlerts,decideListing,findListing,liftBan,listReports,moderationCounts,pendingListings,reportedChat,sendTeamMessage} from '@/lib/market/moderationServer';
 
 export const runtime='nodejs';
@@ -31,7 +34,9 @@ export async function GET(request){
   const {db,actor}=await team(request);
   const params=new URL(request.url).searchParams;
   const view=params.get('view')||'pending';
-  const base={role:actor.role,counts:await moderationCounts(db)};
+  // Launch readiness: photo storage configured on this server, and whether the market is open.
+  const launch={storage:marketStorageConfigured(),status:sectionStatus('market',await getSiteSettings())};
+  const base={role:actor.role,counts:await moderationCounts(db),launch};
   if(view==='pending')return json({...base,listings:await pendingListings(db,await getMarketPlaces())});
   if(view==='reports')return json({...base,reports:await listReports(db,await getMarketPlaces(),{status:params.get('status')||'open'})});
   if(view==='alerts')return json({...base,alerts:await blockAlerts(db)});
