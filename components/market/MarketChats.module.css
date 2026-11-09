@@ -1,11 +1,11 @@
 /* «السوق» tab of the messages page: chats list beside the open chat; one at a time on phones. */
-.shell{display:grid;grid-template-columns:minmax(250px,320px) minmax(0,1fr);min-height:min(72vh,720px);border-top:1px solid var(--c-line)}
+.shell{flex:1;min-height:0;display:grid;grid-template-columns:minmax(250px,320px) minmax(0,1fr);grid-template-rows:minmax(0,1fr);border-top:1px solid var(--c-line)}
 @media(max-width:760px){
- .shell{grid-template-columns:1fr;min-height:0}
+ .shell{grid-template-columns:1fr}
  .shell[data-open] .list{display:none}
  .shell:not([data-open]) .thread{display:none}
 }
-.list{border-inline-end:1px solid var(--c-line);overflow-y:auto;max-height:78vh}
+.list{min-height:0;border-inline-end:1px solid var(--c-line);overflow-y:auto;overscroll-behavior:contain}
 .list ul{margin:0;padding:0;list-style:none}
 .filters{display:flex;gap:6px;padding:10px 12px;border-bottom:1px solid var(--c-line)}
 .filters button{min-height:32px;padding:0 12px;border:1px solid var(--c-line-2);border-radius:999px;background:var(--c-surface);color:var(--c-ink-2);font:inherit;font-size:13px;cursor:pointer}
@@ -21,14 +21,14 @@
 .itemText span{font-size:13px;color:var(--c-ink-2)}
 .itemMeta{display:grid;justify-items:end;gap:4px}
 .itemMeta small{font-size:11px;color:var(--c-ink-3);white-space:nowrap}
-.itemMeta b{display:grid;place-items:center;min-inline-size:20px;block-size:20px;padding:0 5px;border-radius:999px;background:var(--c-accent);color:#fff;font-size:11px}
+.itemMeta b{display:grid;place-items:center;min-inline-size:20px;block-size:20px;padding:0 5px;border-radius:999px;background:var(--c-accent);color:var(--c-bg);font-size:11px}
 .emptyList{display:grid;justify-items:center;gap:6px;padding:30px 16px;text-align:center;color:var(--c-ink-2)}
 .muted{padding:20px 16px;color:var(--c-ink-3)}
 .placeholder{display:grid;justify-items:center;align-content:center;gap:6px;min-height:50vh;padding:20px;text-align:center;color:var(--c-ink-2)}
 .placeholder h2{margin:0;font-size:18px;color:var(--c-ink)}
 
-.thread{display:flex;flex-direction:column;min-width:0}
-.chat{display:flex;flex-direction:column;min-height:min(72vh,720px)}
+.thread{display:flex;flex-direction:column;min-width:0;min-height:0}
+.chat{flex:1;display:flex;flex-direction:column;min-height:0}
 .chatHead{display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--c-line);background:var(--c-surface)}
 .back{display:grid;place-items:center;inline-size:36px;block-size:36px;border:1px solid var(--c-line-2);border-radius:10px;background:var(--c-surface);color:var(--c-ink);cursor:pointer}
 @media(min-width:761px){.back{display:none}}
@@ -38,6 +38,7 @@
 .listingCard strong{font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .listingCard small{font-size:12px;color:var(--c-ink-3)}
 .partner{font-size:12px;color:var(--c-ink-2);white-space:nowrap}
+.rateBanner{display:flex;align-items:center;justify-content:center;gap:6px;padding:9px 12px;background:var(--c-accent-soft);color:var(--c-accent);font-weight:600;font-size:14px;text-decoration:none}
 .banner,.bannerGood{margin:0;padding:8px 12px;font-size:13px;background:var(--c-amber-soft);color:var(--c-ink)}
 .bannerGood{background:var(--c-success-soft)}
 .safety{display:flex;align-items:flex-start;gap:8px;margin:10px 12px 0;padding:10px 12px;border-radius:12px;background:var(--c-accent-soft);color:var(--c-ink);font-size:13px}
@@ -46,9 +47,9 @@
 .safety p{margin:2px 0 0;color:var(--c-ink-2)}
 .safety button{border:0;background:transparent;color:var(--c-ink-3);cursor:pointer}
 
-.messages{flex:1;display:flex;flex-direction:column;gap:6px;margin:0;padding:12px;list-style:none;overflow-y:auto;max-height:60vh}
+.messages{flex:1;display:flex;flex-direction:column;gap:6px;margin:0;padding:12px;list-style:none;overflow-y:auto;overscroll-behavior:contain;min-height:0}
 .mine,.theirs{max-inline-size:min(80%,420px);padding:8px 10px 4px;border-radius:14px;font-size:14.5px;line-height:1.7}
-.mine{align-self:flex-start;background:var(--c-accent);color:#fff;border-end-start-radius:4px}
+.mine{align-self:flex-start;background:var(--c-accent);color:var(--c-bg);border-end-start-radius:4px}
 .theirs{align-self:flex-end;background:var(--c-surface-2);color:var(--c-ink);border-end-end-radius:4px}
 .mine p,.theirs p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
 .mine time,.theirs time,.system time{display:block;font-size:10.5px;opacity:.7;text-align:end}
@@ -74,7 +75,7 @@
 .composer textarea{flex:1;min-width:0;min-height:42px;max-height:140px;padding:9px 12px;border:1px solid var(--c-line-2);border-radius:12px;background:var(--c-bg);color:var(--c-ink);font:inherit;font-size:15px;resize:none}
 .icon,.send{display:grid;place-items:center;inline-size:42px;block-size:42px;flex:none;border-radius:12px;cursor:pointer}
 .icon{border:1px solid var(--c-line-2);background:var(--c-surface);color:var(--c-ink-2)}
-.send{border:0;background:var(--c-accent);color:#fff}
+.send{border:0;background:var(--c-accent);color:var(--c-bg)}
 .send:disabled,.icon:disabled{opacity:.5;cursor:not-allowed}
 .offerButton{display:inline-flex;align-items:center;gap:4px;min-height:42px;padding:0 10px;flex:none;border:1px solid var(--c-accent);border-radius:12px;background:var(--c-surface);color:var(--c-accent);font:inherit;font-size:13px;font-weight:600;cursor:pointer}
 .pending{position:absolute;bottom:calc(100% + 6px);inset-inline-start:12px;display:flex;align-items:center;gap:6px;padding:4px;border:1px solid var(--c-line-2);border-radius:10px;background:var(--c-surface)}
@@ -96,7 +97,7 @@
 .offerField textarea{resize:vertical}
 .offerActions{display:flex;gap:8px}
 .primary,.ghost{min-height:40px;padding:0 14px;border-radius:10px;font:inherit;font-weight:600;font-size:14px;cursor:pointer}
-.primary{border:0;background:var(--c-accent);color:#fff}
+.primary{border:0;background:var(--c-accent);color:var(--c-bg)}
 .ghost{border:1px solid var(--c-line-2);background:var(--c-surface);color:var(--c-ink)}
 .primary:disabled,.ghost:disabled{opacity:.55;cursor:not-allowed}
 

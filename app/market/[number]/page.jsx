@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {headers} from 'next/headers';
 import {notFound} from 'next/navigation';
 import {Clock,Eye,MapPin} from 'lucide-react';
@@ -9,6 +10,8 @@ import {attributeText,listingHighlights} from '@/lib/market/listing';
 import {formatPrice,listingPath,timeAgo} from '@/lib/market/format';
 import {getMarketPlaces} from '@/lib/market/places';
 import {getPublicListing,similarListings} from '@/lib/market/listingsServer';
+import {sellerStats} from '@/lib/market/ratingsServer';
+import {ratingSummary,responseText} from '@/lib/market/ratings';
 import {isBotAgent} from '@/lib/issueDownloads';
 import {serverDb} from '@/lib/supabase-server';
 import {formatArabicDate} from '@/lib/format';
@@ -61,7 +64,8 @@ export default async function ListingPage({params}){
  // «الحالة» is optional for property and animals: rows without a value are left out.
  const specs=[['الفئة',[category?.label,sub?.label].filter(Boolean).join(' / ')],['الحالة',conditionLabel(listing.condition)],
   ...(sub?.fields||[]).filter(field=>field.key!=='area_unit').map(field=>[field.label,attributeText(sub,field.key,listing.attributes)])].filter(([,value])=>value);
- const similar=await similarListings(db,listing,places).catch(()=>[]);
+ const [similar,stats]=await Promise.all([similarListings(db,listing,places).catch(()=>[]),sellerStats(db,listing.seller.id).catch(()=>({}))]);
+ const rated=ratingSummary(stats),response=responseText(stats);
  const price=formatPrice(listing.price,listing.currency);
  // «معدّل» beside what the seller changed after publishing, and the old price after a drop.
  const edited=(part,force=false)=>(force||(listing.edited_fields||[]).includes(part))?<span className={styles.edited}>معدّل</span>:null;
@@ -78,9 +82,10 @@ export default async function ListingPage({params}){
     {listingHighlights(listing).length>0&&<div className={styles.highlights}>{listingHighlights(listing).map(item=><span key={item}>{item}</span>)}</div>}
     <div className={styles.seller}>
      <span className={styles.avatar} aria-hidden="true">{listing.seller.name.trim().charAt(0)}</span>
-     <div><strong>{listing.seller.name}</strong>
+     <div><Link href={'/market/seller/'+listing.seller.id} className={styles.sellerName}>{listing.seller.name}</Link>
       <small>{listing.seller.since?'عضو منذ '+formatArabicDate(listing.seller.since,{year:'numeric',month:'long'}):''}{listing.seller.sold?' · باع '+listing.seller.sold+' في السوق':''}</small>
-      <small>لا توجد تقييمات بعد</small>
+      <small>{rated.shown?'★ '+rated.text:rated.text}</small>
+      {response&&<small>{response}</small>}
      </div>
     </div>
    </div>

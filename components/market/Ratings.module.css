@@ -1,0 +1,75 @@
+/* «سوق 967» ratings: the rating form, the seller page and the list of ratings. */
+.notice{padding:16px;border:1px dashed var(--c-line-2);border-radius:14px;color:var(--c-ink-2);text-align:center}
+.error{margin:0;color:var(--c-danger);font-size:13px}
+.hint{margin:0;font-size:12.5px;color:var(--c-ink-3)}
+.primary,.secondary{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:0 18px;border-radius:12px;font:inherit;font-weight:600;font-size:15px;text-decoration:none;cursor:pointer}
+.primary{border:0;background:var(--c-accent);color:var(--c-bg)}
+.primary:disabled{opacity:.55;cursor:not-allowed}
+.secondary{border:1px solid var(--c-line-2);background:var(--c-surface);color:var(--c-ink)}
+.link{display:inline-flex;align-items:center;gap:4px;border:0;background:transparent;color:var(--c-ink-2);font:inherit;font-size:13px;cursor:pointer;padding:4px 0}
+
+/* Rating form */
+.form{display:grid;gap:14px;max-width:560px}
+.listing{display:flex;align-items:center;gap:12px;padding:10px;border:1px solid var(--c-line-2);border-radius:14px;background:var(--c-surface)}
+.listing div{display:grid;gap:2px;min-width:0}
+.listing strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.listing small{color:var(--c-ink-3);font-size:12.5px}
+.thumb{flex:none;display:grid;place-items:center;inline-size:56px;block-size:56px;border-radius:10px;overflow:hidden;background:var(--c-surface-2);color:var(--c-ink-3)}
+.thumb img{inline-size:100%;block-size:100%;object-fit:cover}
+.criterion{margin:0;padding:12px;border:1px solid var(--c-line-2);border-radius:14px;background:var(--c-surface)}
+.criterion legend{display:grid;gap:2px;padding:0 4px;font-weight:600}
+.criterion legend small{font-weight:400;font-size:12.5px;color:var(--c-ink-3)}
+.stars{display:flex;gap:4px;margin-top:6px}
+.stars button{display:grid;place-items:center;inline-size:48px;block-size:48px;border:0;border-radius:10px;background:transparent;color:var(--c-line-2);cursor:pointer}
+.stars button[data-on]{color:#e0a100}
+.stars button:focus-visible{outline:2px solid var(--c-accent)}
+.comment{display:grid;gap:4px;font-size:13px;color:var(--c-ink-3)}
+.comment textarea{min-height:80px;padding:10px 12px;border:1px solid var(--c-line-2);border-radius:12px;background:var(--c-bg);color:var(--c-ink);font:inherit;font-size:15px;resize:vertical}
+.done{display:grid;justify-items:center;gap:10px;max-width:560px;text-align:center}
+.done .listing{justify-self:stretch;text-align:start}
+.doneIcon{display:grid;place-items:center;inline-size:64px;block-size:64px;border-radius:50%;background:var(--c-success-soft);color:var(--c-success)}
+.done h2{margin:0;font-size:20px}
+
+/* Seller page */
+.profile{display:flex;align-items:flex-start;gap:14px;padding:8px 0 14px}
+.avatar{flex:none;display:grid;place-items:center;inline-size:72px;block-size:72px;border-radius:50%;overflow:hidden;background:var(--c-accent-soft);color:var(--c-accent);font-size:28px;font-weight:600}
+.avatar img{inline-size:100%;block-size:100%;object-fit:cover}
+.profile h1{margin:0;font-size:clamp(21px,5vw,28px)}
+.meta{display:flex;flex-wrap:wrap;gap:4px 14px;margin:4px 0 0;font-size:13px;color:var(--c-ink-3)}
+.meta span{display:inline-flex;align-items:center;gap:4px}
+.headline{display:inline-flex;align-items:center;gap:6px;margin:8px 0 0;font-weight:600}
+.headline svg{color:#e0a100}
+.breakdown{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 16px;margin:0 0 16px;padding:12px;border:1px solid var(--c-line-2);border-radius:14px}
+.breakdown div{display:grid;gap:4px}
+.breakdown dt{font-size:12.5px;color:var(--c-ink-3)}
+.breakdown dd{display:flex;align-items:center;gap:8px;margin:0;font-weight:600;font-variant-numeric:tabular-nums}
+.bar{flex:1;block-size:6px;border-radius:999px;background:var(--c-surface-2);overflow:hidden}
+.bar span{display:block;block-size:100%;background:#e0a100}
+.tabs{display:flex;gap:6px;margin:6px 0 12px;border-bottom:1px solid var(--c-line)}
+.tabs a{padding:10px 12px;color:var(--c-ink-2);text-decoration:none;font-weight:600;font-size:14px;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs a[aria-current="page"]{color:var(--c-accent);border-bottom-color:var(--c-accent)}
+.soldList{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.soldList li{display:flex;align-items:center;gap:12px;padding:8px;border:1px solid var(--c-line-2);border-radius:12px}
+.soldList div{display:grid;gap:2px;min-width:0}
+.soldList small{font-size:12.5px;color:var(--c-ink-3)}
+.soldRating{color:var(--c-ink-2)!important}
+.sectionTitle{font-size:18px;margin:22px 0 10px}
+
+/* Ratings list */
+.list{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.rating{display:grid;gap:8px;padding:12px;border:1px solid var(--c-line-2);border-radius:14px;background:var(--c-surface)}
+.ratingHead{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.ratingHead small{font-size:12px;color:var(--c-ink-3)}
+.starsText{color:#e0a100;letter-spacing:1px}
+.scores{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0;font-size:12.5px;color:var(--c-ink-3)}
+.scores div{display:flex;gap:4px}
+.scores dd{margin:0;color:var(--c-ink-2);font-variant-numeric:tabular-nums}
+.commentText{margin:0;line-height:1.8;white-space:pre-line}
+.reply{padding:8px 12px;border-inline-start:3px solid var(--c-accent);background:var(--c-surface-2);border-radius:8px}
+.reply strong{font-size:12.5px;color:var(--c-accent)}
+.reply p{margin:2px 0 0;font-size:14px}
+.actions{display:flex;align-items:center;gap:14px}
+.actions small{font-size:12px;color:var(--c-ink-3)}
+.inlineForm{display:grid;gap:8px}
+.inlineForm textarea{padding:8px 12px;border:1px solid var(--c-line-2);border-radius:10px;background:var(--c-bg);color:var(--c-ink);font:inherit;font-size:15px}
+.inlineForm div{display:flex;gap:8px}
