@@ -1,5 +1,6 @@
 import NextLink from 'next/link';
 import {pageIsVisible} from '@/lib/pageVisibility';
+import {memberCountLabel} from '@/lib/memberCountLabel';
 import {ArrowUpLeft, ChevronDown} from 'lucide-react';
 import BrandLogo from './BrandLogo';
 import {defaultSiteSettings} from '@/lib/siteSettings';
@@ -21,7 +22,8 @@ const extras = {
   initiative: [['/contribute?type=تصحيح%20معلومة', 'أرسل تصحيحاً'], ['/admin', 'دخول المحررين']],
 };
 
-export default function Footer({settings = defaultSiteSettings}) {
+export default function Footer({settings = defaultSiteSettings, memberCount = null}) {
+  const members = memberCountLabel(memberCount);
   const pages = (settings.contentPages || []).filter(page => page.showInFooter && page.isPublished !== false);
   const visible = href => pageIsVisible(href, settings.pageVisibility, settings.contentPages || []);
   const item = ([href, label]) => visible(href) ? <li key={href}><NextLink href={href}>{label}</NextLink></li> : null;
@@ -37,6 +39,7 @@ export default function Footer({settings = defaultSiteSettings}) {
       <NextLink href="/" className="ed-footer-brand" aria-label="مبادرة 967 — الرئيسية"><BrandLogo light className="ed-footer-mark"/></NextLink>
       <h2>{settings.footerTitle}</h2>
       <p>{settings.footerDescription}</p>
+      {members && <p className="ed-footer-members">انضمّ إلى مجتمع 967 حتى الآن <strong>{members}</strong>.{visible('/register') && <> <NextLink href="/register">انضم إلينا</NextLink></>}</p>}
       {socials.length > 0 && <ul className="ed-footer-socials" aria-label="حسابات 967">{socials.map(({key, label}) => <li key={key}><a href={settings[key]} target="_blank" rel="noopener noreferrer">{label}<ArrowUpLeft size={14} aria-hidden="true"/><span className="sr-only"> (يفتح في نافذة جديدة)</span></a></li>)}</ul>}
     </div>
     <div className="ed-footer-groups">{groups.map(section => <FooterGroup key={section.id} title={section.label}>{section.links.map(item)}</FooterGroup>)}</div>
