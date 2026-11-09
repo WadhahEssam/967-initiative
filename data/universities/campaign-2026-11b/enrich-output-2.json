@@ -1,0 +1,4143 @@
+[
+ {
+  "slug": "noor-sin-academy-training",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "gov-tech-f90ae7f1",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "إدارة مكاتب",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "برمجيات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تقنية معلومات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "حاسوب عام",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "اللغة الإنجليزية",
+    "field": "اللغات والترجمة",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "محاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم",
+   "ثانوية مهنية"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "gov-tech-3282e7cd",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "إنتاج حيواني",
+    "field": "الزراعة والطب البيطري",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "إنتاج نباتي",
+    "field": "الزراعة والطب البيطري",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صحة حيوان",
+    "field": "الزراعة والطب البيطري",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صناعات غذائية",
+    "field": "الصناعات الغذائية",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صناعات غذائية",
+    "field": "الصناعات الغذائية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "محاصيل حقلية",
+    "field": "الزراعة والطب البيطري",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم",
+   "ثانوية مهنية"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "gov-tech-c8ec7afb",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "حداد هياكل مركبات (سمكرة)",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "حدادة ألمونيوم",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "فني أبنية",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء لف آلات",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مساحة وطرق",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا تمديدات صحية",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا خراطة",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا لحام",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "نجارة أثاث",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "الأمن السيبراني",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "موازي",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "إلكترونيات أنظمة تحكم صناعي",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "موازي",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء الطاقة المتجددة",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "موازي",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء تمديدات كهربائية",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "موازي",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء سيارات",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "موازي",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكاترونيكس",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "موازي",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا مركبات خفيفة",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "موازي",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "برمجيات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء مركبات",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "الجرافيك والملتيميديا",
+    "field": "التصميم والفنون",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تصميم داخلي (ديكور)",
+    "field": "التصميم والفنون",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم",
+   "ثانوية مهنية"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "gov-tech-6879a8c6",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء لف آلات",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مساحة وطرق",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مياه وصرف صحي",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا خراطة",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا لحام",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "نجارة أثاث",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تحكم إلكتروني صناعي",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "موازي",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تكييف وتبريد",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "موازي",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صيانة سيارات",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "موازي",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء عام",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "موازي",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكاترونيكس",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "موازي",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا مركبات خفيفة",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "موازي",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "أنظمة الهيدروليك والنيوماتيك",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء تمديدات كهربائية",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا تبريد وتكييف",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم",
+   "ثانوية مهنية"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "gov-tech-f6e9646b",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "برمجيات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء تمديدات كهربائية",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء لف آلات",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "محاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "gov-tech-4a5ce3d9",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صيانة الحاسب",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء تمديدات كهربائية",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء عام",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "لحام",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيك مركبات",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا لحام",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا مركبات خفيفة",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "نجارة أثاث",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "gov-tech-ef09b844",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "برمجيات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تصميم جرافيكي",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تصميم داخلي (ديكور)",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تقنية معلومات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "خياطة وتفصيل",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "زراعي",
+    "field": "الزراعة والطب البيطري",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "علوم حاسوب",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء تمديدات كهربائية",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء عام",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "محاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا مركبات خفيفة",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "نجارة أثاث",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم",
+   "ثانوية مهنية"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "gov-tech-a318ac1d",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "الأمن السيبراني",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "الخياطة والتفصيل",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "برمجيات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تصميم أزياء",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تقنية المعلومات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "حاسوب عام",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "فن التجميل وفن القص وتصفيف الشعر",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مربيات رياض الأطفال",
+    "field": "التربية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم",
+   "ثانوية مهنية"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "international-technological-institute-training",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ذكاء الأعمال",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صيدلة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مساحة وطرق",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مساعد طبي",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "medical-educational-society-health-institute",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "y30-institute-medical-applied-sciences",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "حاسوب عام",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ذكاء الأعمال",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم",
+   "ثانوية مهنية"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "gov-tech-cf3b8bc1",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "إدارة مستشفيات",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "إدارة مكاتب",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "التصميم الجرافيكي والملتيميديا",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "الخياطة والتفصيل",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "برمجيات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "محاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "academic-medical-training-institute",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "al-amal-institute-medical-sciences-hodeidah",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صيدلة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مختبرات طبية",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "al-ekleel-institute-health-sciences",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صيدلة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "فني أسنان",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مختبرات طبية",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "gov-tech-d0479dbe",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "بحري عام",
+    "field": "العلوم البحرية",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صناعات غذائية",
+    "field": "الصناعات الغذائية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "هندسة تكييف بحري",
+    "field": "العلوم البحرية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "هندسة كهرباء بحري",
+    "field": "العلوم البحرية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "هندسة ميكانيكا بحري",
+    "field": "العلوم البحرية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم",
+   "ثانوية مهنية"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "gov-tech-6008d366",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "الخياطة والتفصيل",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "برمجيات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تصميم أزياء",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "حاسوب عام",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "عمارة داخلية (تصميم داخلي)",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء تمديدات كهربائية",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء لف آلات",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا خراطة",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا مركبات خفيفة",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "نجارة أثاث",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا مركبات",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تقنية معلومات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء عام",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم",
+   "ثانوية مهنية"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "gov-tech-609a0dea",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "محاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "إدارة مكاتب",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "برمجيات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "التصميم الجرافيكي والملتيميديا",
+    "field": "التصميم والفنون",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "applied-science-technology-institute",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "التصميم الجرافيكي والملتيميديا",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تصميم داخلي (ديكور)",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صيدلة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "فني أسنان",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "محاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "فرع أمانة العاصمة",
+    "department": "",
+    "name": "الأمن السيبراني",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "فرع أمانة العاصمة",
+    "department": "",
+    "name": "تقنية المعلومات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "فرع أمانة العاصمة",
+    "department": "",
+    "name": "حاسوب عام",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم",
+   "ثانوية مهنية"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ],
+  "branches": [
+   {
+    "name": "معهد العلوم والتكنولوجيا التطبيقي / الامانة",
+    "governorate": "أمانة العاصمة",
+    "city": "صنعاء",
+    "address": "",
+    "phone": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ]
+ },
+ {
+  "slug": "al-fursan-institute-science-technology",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مساعد طبي",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "turkish-star-institute-medical-administrative",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "modern-future-technologies-institute",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "التصميم الجرافيكي والملتيميديا",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "برمجيات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "محاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مختبرات طبية",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "technology-of-the-age-institute",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "إدارة مكاتب",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "اللغة الإنجليزية",
+    "field": "اللغات والترجمة",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "محاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مربيات رياض الأطفال",
+    "field": "التربية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "delta-science-institute-medical-technical",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تقنية معلومات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صيدلة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "محاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مختبرات طبية",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مساعد طبي",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "ruwwad-al-imtiyaz-stars-institute",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "إدارة مكاتب",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "اللغة الإنجليزية",
+    "field": "اللغات والترجمة",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "ruwwad-al-tib-technology-institute",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "إدارة مكاتب",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صيدلة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "محاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مختبرات طبية",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مساعد طبي",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "sufaraa-al-tib-institute",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تخدير",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تقنية معلومات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صيدلة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مساعد طبي",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "فني عمليات",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "samaa-taiz-institute",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "التصميم الجرافيكي والملتيميديا",
+    "field": "التصميم والفنون",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "محاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مربيات رياض الأطفال",
+    "field": "التربية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "shabab-rawafid-institute",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ذكاء الأعمال",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مساعد طبي",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "mawiyah-higher-institute-health-sciences",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "اللغة الإنجليزية",
+    "field": "اللغات والترجمة",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "محاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "gov-tech-61e99321",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "الحاسوب",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "برمجة حاسوب",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "تمريض",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "خياطة وتفصيل",
+    "field": "التصميم والفنون",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صيانة أجهزة إلكترونية عام",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "ثانوية مهنية",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "صيدلة",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "قبالة وتوليد",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء تمديدات كهربائية",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء عام",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم تقني (سنتان)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء لف آلات",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "دبلوم مهني",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "مساعد طبيب",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "دبلوم تقني (3 سنوات)",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم",
+   "ثانوية مهنية"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ },
+ {
+  "slug": "abyan-university",
+  "email": "info@abyan-univ.net",
+  "education_levels": [
+   "بكالوريوس",
+   "ماجستير"
+  ],
+  "study_modes": [
+   "انتظام",
+   "موازي"
+  ],
+  "programs": [
+   {
+    "faculty": "كلية التربية - زنجبار",
+    "department": "قسم علوم الحياة - كيمياء",
+    "name": "علوم الحياة - كيمياء",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/8"
+   },
+   {
+    "faculty": "كلية التربية - زنجبار",
+    "department": "قسم الكيمياء - علوم الحياة",
+    "name": "الكيمياء - علوم الحياة",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/8"
+   },
+   {
+    "faculty": "كلية التربية - زنجبار",
+    "department": "قسم الفيزياء - رياضيات",
+    "name": "الفيزياء - رياضيات",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/8"
+   },
+   {
+    "faculty": "كلية التربية - زنجبار",
+    "department": "قسم الرياضيات",
+    "name": "الرياضيات",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/8"
+   },
+   {
+    "faculty": "كلية التربية - زنجبار",
+    "department": "قسم الجغرافيا - تاريخ",
+    "name": "الجغرافيا - تاريخ",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/8"
+   },
+   {
+    "faculty": "كلية التربية - زنجبار",
+    "department": "قسم التاريخ - جغرافيا",
+    "name": "التاريخ - جغرافيا",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/8"
+   },
+   {
+    "faculty": "كلية التربية - زنجبار",
+    "department": "قسم اللغة العربية",
+    "name": "اللغة العربية",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/8"
+   },
+   {
+    "faculty": "كلية التربية - زنجبار",
+    "department": "قسم اللغة الإنجليزية",
+    "name": "اللغة الإنجليزية",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/8"
+   },
+   {
+    "faculty": "كلية التربية - زنجبار",
+    "department": "قسم التربية الإسلامية",
+    "name": "التربية الإسلامية",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/8"
+   },
+   {
+    "faculty": "كلية التربية - زنجبار",
+    "department": "قسم التربية وعلم النفس",
+    "name": "التربية وعلم النفس",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/8"
+   },
+   {
+    "faculty": "كلية التربية - زنجبار",
+    "department": "قسم معلم مجال علوم",
+    "name": "معلم مجال علوم",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/8"
+   },
+   {
+    "faculty": "كلية التربية - زنجبار",
+    "department": "قسم معلم مجال اجتماعيات",
+    "name": "معلم مجال اجتماعيات",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/8"
+   },
+   {
+    "faculty": "كلية التربية - لودر",
+    "department": "قسم الرياضيات/الفيزياء",
+    "name": "الرياضيات - الفيزياء",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/10"
+   },
+   {
+    "faculty": "كلية التربية - لودر",
+    "department": "قسم اللغة الإنجليزية",
+    "name": "اللغة الإنجليزية",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/10"
+   },
+   {
+    "faculty": "كلية التربية - لودر",
+    "department": "قسم اللغة العربية/تربية إسلامية",
+    "name": "اللغة العربية - التربية الإسلامية",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/10"
+   },
+   {
+    "faculty": "كلية التربية - لودر",
+    "department": "قسم الكيمياء/أحياء",
+    "name": "الكيمياء - الأحياء",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/10"
+   },
+   {
+    "faculty": "كلية التربية - لودر",
+    "department": "قسم برمجيات الحاسوب",
+    "name": "برمجيات الحاسوب",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/10"
+   },
+   {
+    "faculty": "كلية الإدارة والاقتصاد",
+    "department": "قسم الإدارة",
+    "name": "الإدارة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/11"
+   },
+   {
+    "faculty": "كلية الإدارة والاقتصاد",
+    "department": "قسم المحاسبة",
+    "name": "المحاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/11"
+   },
+   {
+    "faculty": "كلية الإدارة والاقتصاد",
+    "department": "قسم المالي والمصرفي",
+    "name": "المالي والمصرفي",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/11"
+   },
+   {
+    "faculty": "كلية الحاسوب وتقنية المعلومات",
+    "department": "",
+    "name": "الحاسوب وتقنية المعلومات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/14"
+   },
+   {
+    "faculty": "كلية الشريعة والقانون",
+    "department": "قسم الشريعة",
+    "name": "الشريعة",
+    "field": "القانون والشريعة",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/15"
+   },
+   {
+    "faculty": "كلية الشريعة والقانون",
+    "department": "قسم القانون",
+    "name": "القانون",
+    "field": "القانون والشريعة",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/15"
+   },
+   {
+    "faculty": "كلية اللغات والترجمة",
+    "department": "قسم الترجمة",
+    "name": "الترجمة",
+    "field": "اللغات والترجمة",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/34"
+   },
+   {
+    "faculty": "كلية اللغات والترجمة",
+    "department": "قسم اللغة الإنجليزية التجارية",
+    "name": "اللغة الإنجليزية التجارية",
+    "field": "اللغات والترجمة",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/pag/34"
+   },
+   {
+    "faculty": "كلية التربية - زنجبار",
+    "department": "",
+    "name": "الدراسات الإسلامية",
+    "field": "التربية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/news/9532"
+   },
+   {
+    "faculty": "كلية التربية - زنجبار",
+    "department": "",
+    "name": "الرياضيات البحتة",
+    "field": "التربية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/news/9532"
+   },
+   {
+    "faculty": "كلية الشريعة والقانون",
+    "department": "",
+    "name": "الشريعة الإسلامية",
+    "field": "القانون والشريعة",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://www.abyan-univ.net/news/9532"
+   }
+  ],
+  "sources": [
+   {
+    "title": "نبذة عن كلية التربية زنجبار",
+    "url": "https://www.abyan-univ.net/pag/8",
+    "publisher": "جامعة أبين",
+    "source_type": "official_site"
+   },
+   {
+    "title": "نبذة عن كلية التربية لودر",
+    "url": "https://www.abyan-univ.net/pag/10",
+    "publisher": "جامعة أبين",
+    "source_type": "official_site"
+   },
+   {
+    "title": "نبذة عن كلية الإدارة والاقتصاد",
+    "url": "https://www.abyan-univ.net/pag/11",
+    "publisher": "جامعة أبين",
+    "source_type": "official_site"
+   },
+   {
+    "title": "نبذة عن كلية الحاسوب وتقنية المعلومات",
+    "url": "https://www.abyan-univ.net/pag/14",
+    "publisher": "جامعة أبين",
+    "source_type": "official_site"
+   },
+   {
+    "title": "نبذة عن كلية الشريعة والقانون",
+    "url": "https://www.abyan-univ.net/pag/15",
+    "publisher": "جامعة أبين",
+    "source_type": "official_site"
+   },
+   {
+    "title": "نبذة عن كلية اللغات والترجمة",
+    "url": "https://www.abyan-univ.net/pag/34",
+    "publisher": "جامعة أبين",
+    "source_type": "official_site"
+   },
+   {
+    "title": "جامعة أبين تعلن فتح باب التنسيق والقبول في برامج الماجستير للعام الجامعي 2026–2027م",
+    "url": "https://www.abyan-univ.net/news/9532",
+    "publisher": "جامعة أبين",
+    "source_type": "official_site"
+   },
+   {
+    "title": "إتصل بنا",
+    "url": "https://www.abyan-univ.net/pag/2",
+    "publisher": "جامعة أبين",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "saba-region-university",
+  "email": "info@usr.ac",
+  "education_levels": [
+   "ماجستير",
+   "دكتوراه"
+  ],
+  "programs": [
+   {
+    "faculty": "كلية التربية والعلوم",
+    "department": "قسم المناهج وطرائق التدريس",
+    "name": "المناهج وطرائق التدريس",
+    "field": "التربية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://ca.usr.ac/application/create"
+   },
+   {
+    "faculty": "كلية التربية والعلوم",
+    "department": "قسم الأصول والإدارة التربوية",
+    "name": "الأصول والإدارة التربوية",
+    "field": "التربية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://ca.usr.ac/application/create"
+   },
+   {
+    "faculty": "كلية التربية والعلوم",
+    "department": "قسم المناهج وطرائق التدريس",
+    "name": "المناهج وطرائق التدريس",
+    "field": "التربية",
+    "qualification": "دكتوراه",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://ca.usr.ac/application/create"
+   },
+   {
+    "faculty": "كلية التربية والعلوم",
+    "department": "قسم الأصول والإدارة التربوية",
+    "name": "الأصول والإدارة التربوية",
+    "field": "التربية",
+    "qualification": "دكتوراه",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://ca.usr.ac/application/create"
+   },
+   {
+    "faculty": "كلية العلوم الإدارية والمالية",
+    "department": "قسم إدارة الأعمال",
+    "name": "إدارة الأعمال",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://ca.usr.ac/application/create"
+   },
+   {
+    "faculty": "كلية العلوم الإدارية والمالية",
+    "department": "قسم إدارة الأعمال",
+    "name": "إدارة الأعمال",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "دكتوراه",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://ca.usr.ac/application/create"
+   }
+  ],
+  "sources": [
+   {
+    "title": "البوابة الإلكترونية لجامعة إقليم سبأ — بوابة التنسيق الإلكتروني (طلب الالتحاق: الكلية والقسم ونوع البرنامج)",
+    "url": "https://ca.usr.ac/application/create",
+    "publisher": "جامعة إقليم سبأ",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "mahra-university",
+  "education_levels": [
+   "بكالوريوس",
+   "ماجستير",
+   "دكتوراه"
+  ],
+  "programs": [
+   {
+    "faculty": "كلية العلوم الإدارية",
+    "department": "",
+    "name": "إدارة الأعمال",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية العلوم الإدارية",
+    "department": "",
+    "name": "المحاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية العلوم الإدارية",
+    "department": "",
+    "name": "التسويق",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية العلوم التطبيقية والصحية",
+    "department": "",
+    "name": "علوم الكمبيوتر",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية العلوم التطبيقية والصحية",
+    "department": "",
+    "name": "تكنولوجيا المعلومات",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية العلوم التطبيقية والصحية",
+    "department": "",
+    "name": "الفيزياء",
+    "field": "العلوم الأساسية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية العلوم التطبيقية والصحية",
+    "department": "",
+    "name": "الرياضيات",
+    "field": "العلوم الأساسية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية العلوم التطبيقية والصحية",
+    "department": "",
+    "name": "طب وجراحة الفم والأسنان",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية الآداب والعلوم الإنسانية والاجتماعية",
+    "department": "",
+    "name": "الشريعة والقانون",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية الآداب والعلوم الإنسانية والاجتماعية",
+    "department": "",
+    "name": "الإعلام",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية الآداب والعلوم الإنسانية والاجتماعية",
+    "department": "",
+    "name": "الجغرافيا",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية الآداب والعلوم الإنسانية والاجتماعية",
+    "department": "",
+    "name": "اللغة العربية",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية الآداب والعلوم الإنسانية والاجتماعية",
+    "department": "",
+    "name": "اللغة الإنجليزية",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية الآداب والعلوم الإنسانية والاجتماعية",
+    "department": "",
+    "name": "الدراسات الإسلامية",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "",
+    "name": "معلم مجال اجتماعيات",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "",
+    "name": "معلم صف",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "",
+    "name": "علوم القرآن",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "",
+    "name": "رياض الأطفال",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "",
+    "name": "التربية البدنية والرياضة",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "",
+    "name": "اللغة العربية",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "",
+    "name": "اللغة الإنجليزية",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "",
+    "name": "الدراسات الإسلامية",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التعليم المفتوح",
+    "department": "",
+    "name": "إدارة الأعمال",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التعليم المفتوح",
+    "department": "",
+    "name": "المحاسبة",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التعليم المفتوح",
+    "department": "",
+    "name": "الشريعة والقانون",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التعليم المفتوح",
+    "department": "",
+    "name": "الدراسات الإسلامية",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التعليم المفتوح",
+    "department": "",
+    "name": "اللغة العربية",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التعليم المفتوح",
+    "department": "",
+    "name": "اللغة الإنجليزية",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التعليم المفتوح",
+    "department": "",
+    "name": "الجغرافيا",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التعليم المفتوح",
+    "department": "",
+    "name": "الإعلام",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://mhru.edu.ye/about/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "قسم اللغة العربية",
+    "name": "الأدب والنقد",
+    "field": "التربية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "قسم الدراسات الإسلامية",
+    "name": "الفقه وأصوله",
+    "field": "التربية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "قسم التربية وعلم النفس",
+    "name": "المناهج وطرائق التدريس",
+    "field": "التربية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "قسم التربية وعلم النفس",
+    "name": "الإدارة التربوية",
+    "field": "التربية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "قسم الرياضيات",
+    "name": "الرياضيات",
+    "field": "التربية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "قسم اللغة الإنجليزية",
+    "name": "الترجمة",
+    "field": "التربية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "قسم اللغة العربية",
+    "name": "الأدب والنقد",
+    "field": "التربية",
+    "qualification": "دكتوراه",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "قسم الدراسات الإسلامية",
+    "name": "الفقه وأصوله",
+    "field": "التربية",
+    "qualification": "دكتوراه",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   },
+   {
+    "faculty": "كلية التربية",
+    "department": "قسم التربية وعلم النفس",
+    "name": "المناهج وطرائق التدريس",
+    "field": "التربية",
+    "qualification": "دكتوراه",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   },
+   {
+    "faculty": "كلية الآداب والعلوم الإنسانية والاجتماعية",
+    "department": "قسم اللغة العربية",
+    "name": "اللغة والنحو",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   },
+   {
+    "faculty": "كلية الآداب والعلوم الإنسانية والاجتماعية",
+    "department": "قسم الدراسات الإسلامية",
+    "name": "التفسير وعلوم القرآن",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   },
+   {
+    "faculty": "كلية الآداب والعلوم الإنسانية والاجتماعية",
+    "department": "قسم اللغة الإنجليزية",
+    "name": "علم اللغة",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   },
+   {
+    "faculty": "كلية التعليم المفتوح",
+    "department": "قسم اللغة العربية",
+    "name": "اللغة والنحو",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   },
+   {
+    "faculty": "كلية التعليم المفتوح",
+    "department": "قسم الدراسات الإسلامية",
+    "name": "التفسير وعلوم القرآن",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   },
+   {
+    "faculty": "كلية التعليم المفتوح",
+    "department": "قسم اللغة الإنجليزية",
+    "name": "علم اللغة",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "ماجستير",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://mhru.edu.ye/details/1237/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "فتح باب التنسيق والقبول والتسجيل للدراسات العليا (2023/2024)",
+    "url": "https://mhru.edu.ye/details/1237/",
+    "publisher": "جامعة المهرة",
+    "source_type": "official_site"
+   },
+   {
+    "title": "كلية التربية — الأقسام والبرامج العلمية",
+    "url": "https://mhru.edu.ye/edufac",
+    "publisher": "جامعة المهرة",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "lahj-university",
+  "education_levels": [
+   "بكالوريوس"
+  ],
+  "study_modes": [
+   "انتظام",
+   "موازي"
+  ],
+  "programs": [
+   {
+    "faculty": "كلية ناصر للعلوم الزراعية",
+    "department": "",
+    "name": "الطب البيطري",
+    "field": "الزراعة والطب البيطري",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ناصر للعلوم الزراعية",
+    "department": "",
+    "name": "البساتين",
+    "field": "الزراعة والطب البيطري",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ناصر للعلوم الزراعية",
+    "department": "",
+    "name": "المحاصيل",
+    "field": "الزراعة والطب البيطري",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ناصر للعلوم الزراعية",
+    "department": "",
+    "name": "وقاية النبات",
+    "field": "الزراعة والطب البيطري",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ناصر للعلوم الزراعية",
+    "department": "",
+    "name": "الإنتاج الحيواني",
+    "field": "الزراعة والطب البيطري",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ناصر للعلوم الزراعية",
+    "department": "",
+    "name": "علوم وتكنولوجيا الأغذية",
+    "field": "الزراعة والطب البيطري",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ناصر للعلوم الزراعية",
+    "department": "",
+    "name": "التربة وهندسة المياه",
+    "field": "الزراعة والطب البيطري",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ناصر للعلوم الزراعية",
+    "department": "",
+    "name": "الاقتصاد والإرشاد الزراعي",
+    "field": "الزراعة والطب البيطري",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "علوم الحاسوب",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "الأمن السيبراني",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "الفيزياء الطبية",
+    "field": "العلوم الأساسية والتطبيقية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "الكيمياء التحليلية التطبيقية",
+    "field": "العلوم الأساسية والتطبيقية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "العلوم البيئية",
+    "field": "العلوم الأساسية والتطبيقية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "الدراسات الإسلامية",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "اللغة العربية والإعلام",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "الجغرافيا ونظم المعلومات الجغرافية",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "اللغة العربية",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "اللغة الإنجليزية",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "الترجمة",
+    "field": "العلوم الإنسانية والاجتماعية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "الأحياء",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "الكيمياء - الأحياء",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "الرياضيات",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "الفيزياء - الرياضيات",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "معلم مجال",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "التاريخ",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "رياض الأطفال",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية صبر للعلوم التطبيقية والإنسانية",
+    "department": "",
+    "name": "الإرشاد النفسي والتربوي",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ردفان الجامعية",
+    "department": "",
+    "name": "المحاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ردفان الجامعية",
+    "department": "",
+    "name": "المختبرات الطبية",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ردفان الجامعية",
+    "department": "",
+    "name": "علوم الحاسوب",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ردفان الجامعية",
+    "department": "",
+    "name": "القبالة والتوليد",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ردفان الجامعية",
+    "department": "",
+    "name": "اللغة العربية",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ردفان الجامعية",
+    "department": "",
+    "name": "اللغة الإنجليزية",
+    "field": "اللغات والترجمة",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ردفان الجامعية",
+    "department": "",
+    "name": "الأحياء - الكيمياء",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ردفان الجامعية",
+    "department": "",
+    "name": "الكيمياء - الأحياء",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ردفان الجامعية",
+    "department": "",
+    "name": "الرياضيات",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية ردفان الجامعية",
+    "department": "",
+    "name": "الفيزياء - الرياضيات",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية يافع الجامعية",
+    "department": "",
+    "name": "المختبرات الطبية",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية يافع الجامعية",
+    "department": "",
+    "name": "علوم الحاسوب",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية يافع الجامعية",
+    "department": "",
+    "name": "المحاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية يافع الجامعية",
+    "department": "",
+    "name": "العلوم المالية والمصرفية",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية يافع الجامعية",
+    "department": "",
+    "name": "الدراسات الإسلامية - اللغة العربية",
+    "field": "العلوم الشرعية والدراسات الإسلامية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية يافع الجامعية",
+    "department": "",
+    "name": "اللغة الإنجليزية",
+    "field": "اللغات والترجمة",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية يافع الجامعية",
+    "department": "",
+    "name": "الأحياء - الكيمياء",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية يافع الجامعية",
+    "department": "",
+    "name": "الرياضيات - الفيزياء",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية يافع الجامعية",
+    "department": "",
+    "name": "التاريخ - الجغرافيا",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية طور الباحة الجامعية",
+    "department": "",
+    "name": "اللغة الإنجليزية التجارية (Business English)",
+    "field": "اللغات والترجمة",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية طور الباحة الجامعية",
+    "department": "",
+    "name": "المختبرات الطبية",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية طور الباحة الجامعية",
+    "department": "",
+    "name": "علوم الحاسوب",
+    "field": "الحاسوب وتقنية المعلومات",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية طور الباحة الجامعية",
+    "department": "",
+    "name": "المحاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية طور الباحة الجامعية",
+    "department": "",
+    "name": "اللغة العربية - الدراسات الإسلامية",
+    "field": "العلوم الشرعية والدراسات الإسلامية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية طور الباحة الجامعية",
+    "department": "",
+    "name": "اللغة الإنجليزية",
+    "field": "اللغات والترجمة",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية طور الباحة الجامعية",
+    "department": "",
+    "name": "الرياضيات - الفيزياء",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية طور الباحة الجامعية",
+    "department": "",
+    "name": "الأحياء",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية طور الباحة الجامعية",
+    "department": "",
+    "name": "الجغرافيا ونظم المعلومات الجغرافية",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية طور الباحة الجامعية",
+    "department": "",
+    "name": "الجغرافيا - التاريخ",
+    "field": "التربية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية العلوم الإدارية والمصرفية",
+    "department": "",
+    "name": "المحاسبة",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية العلوم الإدارية والمصرفية",
+    "department": "",
+    "name": "إدارة الأعمال",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية العلوم الإدارية والمصرفية",
+    "department": "",
+    "name": "العلوم المالية والمصرفية",
+    "field": "العلوم الإدارية والمالية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/student-affairs/admission-guide/"
+   },
+   {
+    "faculty": "كلية الطب والعلوم الصحية",
+    "department": "",
+    "name": "الطب البشري",
+    "field": "العلوم الطبية والصحية",
+    "qualification": "بكالوريوس",
+    "language": "العربية",
+    "study_mode": "انتظام",
+    "source_url": "https://lahejuniversity.net/announcements/8836/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "دليل القبول والتسجيل — جامعة لحج — العام الجامعي 2026-2027م (البرامج التعليمية لكليات جامعة لحج، ص 9-15)",
+    "url": "https://lahejuniversity.net/student-affairs/admission-guide/",
+    "publisher": "جامعة لحج — نيابة شؤون الطلاب",
+    "source_type": "official_site"
+   },
+   {
+    "title": "إعلان فتح باب التنسيق والقبول في كلية الطب والعلوم الصحية — جامعة لحج 2026–2027م",
+    "url": "https://lahejuniversity.net/announcements/8836/",
+    "publisher": "جامعة لحج",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "gov-tech-bd95cc9d",
+  "programs": [
+   {
+    "faculty": "",
+    "department": "",
+    "name": "كهرباء تمديدات كهربائية",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "ميكانيكا مركبات خفيفة",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   },
+   {
+    "faculty": "",
+    "department": "",
+    "name": "نجارة أثاث",
+    "field": "الهندسة والتقنيات الصناعية",
+    "qualification": "",
+    "language": "العربية",
+    "study_mode": "",
+    "source_url": "https://www.tanseek.net/cgcriteria.php"
+   }
+  ],
+  "education_levels": [
+   "دبلوم"
+  ],
+  "sources": [
+   {
+    "title": "بوابة التنسيق الإلكتروني للكليات والمعاهد التقنية والمهنية — المعايير ونسب القبول (تخصصات المؤسسة ومستوياتها)",
+    "url": "https://www.tanseek.net/cgcriteria.php",
+    "publisher": "وزارة التربية والتعليم والبحث العلمي — قطاع التعليم الفني والتدريب المهني",
+    "source_type": "government"
+   }
+  ]
+ }
+]

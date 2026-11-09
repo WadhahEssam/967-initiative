@@ -7,6 +7,7 @@ import useQuestionTimer from './useQuestionTimer';
 import {PlaceBoard,TimelineBoard,MapBoard} from './ArcadeBoards';
 import {ExtraBoard} from './ExtraBoards';
 import styles from './FriendDuel.module.css';
+import {createAccountWatch,shouldReloadOnAuth} from '@/lib/authEvents';
 
 const choices=['أ','ب','ج','د'];
 const format=n=>Number(n||0).toLocaleString('ar');
@@ -66,7 +67,12 @@ export default function FriendDuel({id}){
    }finally{inFlight=false;}
   };
   refresh();
-  const auth=db?.auth.onAuthStateChange(()=>{
+  const account=createAccountWatch();
+  db?.auth.getSession().then(({data})=>account.seen(data.session)).catch(()=>{});
+  // Reload when the account changes, not on the initial event or hourly token refreshes.
+  const auth=db?.auth.onAuthStateChange((event,session)=>{
+   if(!shouldReloadOnAuth(account,event,session))return;
+   account.seen(session);
    clearTimeout(authTimer);
    authTimer=setTimeout(()=>{if(alive)refresh();},0);
   }).data?.subscription;

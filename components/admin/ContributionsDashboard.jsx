@@ -6,13 +6,14 @@ import {browserDb} from '@/lib/supabase';
 import {contributionActions as actions,contributionSections as sections,contributionTypes as types,contributionKeys,contributionEditorHref} from '@/lib/editorialContributions';
 import LoadingState from '@/components/LoadingState';
 import styles from './ContributionsDashboard.module.css';
+import {createAccountWatch,shouldReloadOnAuth} from '@/lib/authEvents';
 const number=v=>Number(v||0).toLocaleString('ar-YE-u-nu-latn');
 const date=v=>v?new Date(v).toLocaleString('ar-YE-u-nu-latn',{timeZone:'Asia/Aden',dateStyle:'medium',timeStyle:'short'}):'—';
 const read=()=>{const p=new URLSearchParams(location.search);return Object.fromEntries(contributionKeys.map(k=>[k,p.get(k)||'']));};
 export default function ContributionsDashboard(){
  const db=useMemo(()=>browserDb(),[]),[session,setSession]=useState(undefined),[filters,setFilters]=useState(null),[data,setData]=useState(null),[loading,setLoading]=useState(false),[error,setError]=useState(''),[refresh,setRefresh]=useState(0);
  useEffect(()=>{setFilters(read());const pop=()=>setFilters(read());window.addEventListener('popstate',pop);return()=>window.removeEventListener('popstate',pop);},[]);
- useEffect(()=>{if(!db){setSession(null);return;}let live=true;db.auth.getSession().then(({data})=>{if(live)setSession(data.session);});const {data}=db.auth.onAuthStateChange((_e,s)=>{setSession(s);setData(null);});return()=>{live=false;data.subscription.unsubscribe();};},[db]);
+ useEffect(()=>{if(!db){setSession(null);return;}let live=true;const account=createAccountWatch();db.auth.getSession().then(({data})=>{if(live){account.seen(data.session);setSession(data.session);}});const {data}=db.auth.onAuthStateChange((e,s)=>{if(!shouldReloadOnAuth(account,e,s))return;account.seen(s);setSession(s);setData(null);});return()=>{live=false;data.subscription.unsubscribe();};},[db]);
  useEffect(()=>{
   if(!filters||!session)return;const control=new AbortController();const timer=setTimeout(async()=>{
    const p=new URLSearchParams();for(const k of contributionKeys)if(filters[k])p.set(k,filters[k]);history.replaceState(history.state,'',location.pathname+(p.size?'?'+p:''));setLoading(true);setError('');

@@ -1,0 +1,4451 @@
+[
+ {
+  "slug": "osm-n12772132801",
+  "address": "شارع الجزائر، تقاطع شارع عمّان، جوار مطعم رداع، صنعاء",
+  "phone": "01-470366",
+  "specialties": [
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/2064/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/2064/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/2064/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "المركز المجري السلوفاكي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2064/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n6381704785",
+  "name_en": "European Modern Hospital",
+  "address": "شارع الستين الغربي، أمام مطاعم الخطيب، صنعاء",
+  "phone": "01-577777 / 774778805",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "الغدد الصماء والسكري",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "الخصوبة وعلاج العقم",
+    "source_url": "https://sanaamedical.net/1629/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "الرنين المغناطيسي",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "الأشعة المقطعية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "بنك الدم",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1629/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1629/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1629/"
+   }
+  ],
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/mehospitalyemen/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "المستشفى الأوروبي الحديث — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1629/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   },
+   {
+    "title": "المستشفى الاوروبي الحديث (فيسبوك)",
+    "url": "https://www.facebook.com/mehospitalyemen/",
+    "publisher": "المستشفى الأوروبي الحديث",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n6381704985",
+  "address": "شارع الستين الغربي، جوار جامعة آزال القديمة، صنعاء",
+  "phone": "01-200008",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "طب وجراحة العيون",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "العلاج الطبيعي",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "الغدد الصماء والسكري",
+    "source_url": "https://sanaamedical.net/1623/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1623/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1623/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1623/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "المستشفى الإستشاري اليمني — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1623/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ],
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/yemenyconsultant/"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n5266706822",
+  "name_en": "Modern German Hospital",
+  "address": "شارع تعز، صنعاء",
+  "phone": "01-600000",
+  "emergency_phone": "01-600000 (تحويلة 999)",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "طب وجراحة العيون",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "العلاج الطبيعي",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "الغدد الصماء والسكري",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "أمراض الكلى",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "الجهاز الهضمي والكبد",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "الخصوبة وعلاج العقم",
+    "source_url": "https://sanaamedical.net/950/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "بنك الدم",
+    "details": "",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/950/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/950/"
+   },
+   {
+    "label": "العيادات الخارجية",
+    "hours_text": "8:00–13:00 و16:00–20:00",
+    "source_url": "https://sanaamedical.net/950/"
+   }
+  ],
+  "website": "https://mg-hospital.com",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/MGHYemen/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "المستشفى الألماني الحديث — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/950/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   },
+   {
+    "title": "المستشفى الألماني الحديث — الموقع الرسمي",
+    "url": "https://mg-hospital.com",
+    "publisher": "المستشفى الألماني الحديث",
+    "source_type": "official_site"
+   },
+   {
+    "title": "المستشفى الألماني الحديث (فيسبوك)",
+    "url": "https://www.facebook.com/MGHYemen/",
+    "publisher": "المستشفى الألماني الحديث",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4513763827",
+  "name_en": "Al-Ahli Modern Hospital",
+  "address": "شارع الستين الجنوبي، جوار قاعة المعارض إكسبو، صنعاء",
+  "phone": "01-444484",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/2077/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2077/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2077/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2077/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2077/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2077/"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2077/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2077/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2077/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2077/"
+   }
+  ],
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/alahlialhadith/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "المستشفى الأهلي الحديث — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2077/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   },
+   {
+    "title": "Al-Ahli Hospital المستشفى الأهلي الحديث - صنعاء (فيسبوك)",
+    "url": "https://www.facebook.com/alahlialhadith/",
+    "publisher": "المستشفى الأهلي الحديث",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n12561034878",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/RomanHosbital/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "المستشفى الروماني الحديث (فيسبوك)",
+    "url": "https://www.facebook.com/RomanHosbital/",
+    "publisher": "المستشفى الروماني الحديث",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n6424373985",
+  "name_en": "Royal Hospital",
+  "address": "شارع الخمسين، جولة بيت بوس، امام الظياني للسيراميك، صنعاء",
+  "phone": "01-687000",
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/666/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/666/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/666/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/666/"
+   },
+   {
+    "name": "التجميل",
+    "source_url": "https://sanaamedical.net/666/"
+   },
+   {
+    "name": "الجهاز الهضمي والكبد",
+    "source_url": "https://sanaamedical.net/666/"
+   }
+  ],
+  "services": [
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/666/"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/666/"
+   },
+   {
+    "name": "بنك الدم",
+    "details": "",
+    "source_url": "https://sanaamedical.net/666/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/666/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "المستشفى الملكي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/666/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n704297320",
+  "name_en": "Yemen German Hospital",
+  "address": "شارع حدة، جولة المصباحي، صنعاء",
+  "phone": "775350518",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "التجميل",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "الغدد الصماء والسكري",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "أمراض الكلى",
+    "source_url": "https://sanaamedical.net/1911/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1911/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1911/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1911/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "المستشفى اليمني الألماني — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1911/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n13469713026",
+  "address": "شارع تعز، حزيز، بجوار مؤسسة عبدالله الحبيشي التجارية، صنعاء",
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/463/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/463/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/463/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/463/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/463/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/463/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/463/"
+   },
+   {
+    "name": "أمراض الكلى",
+    "source_url": "https://sanaamedical.net/463/"
+   }
+  ],
+  "services": [
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/463/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/463/"
+   },
+   {
+    "name": "بنك الدم",
+    "details": "",
+    "source_url": "https://sanaamedical.net/463/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/463/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى اليمني الدولي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/463/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   },
+   {
+    "title": "المستشفى اليمني الدولي (فيسبوك)",
+    "url": "https://www.facebook.com/YHIH.ye/",
+    "publisher": "المستشفى اليمني الدولي",
+    "source_type": "official_site"
+   }
+  ],
+  "phone": "+967 770 044 420",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/YHIH.ye/"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n12559596173",
+  "name_en": "Yemeni French Hospital",
+  "address": "شارع حدة، جولة الرويشان، صنعاء",
+  "phone": "01-400006 / 01-400003",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/1856/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/1856/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/1856/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/1856/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/1856/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/1856/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/1856/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/1856/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1856/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1856/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1856/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1856/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1856/"
+   },
+   {
+    "name": "الأشعة المقطعية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1856/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1856/"
+   }
+  ],
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/y.f.h.sanaa/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "المستشفى اليمني الفرنسي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1856/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   },
+   {
+    "title": "المستشفى اليمني الفرنسي (فيسبوك)",
+    "url": "https://www.facebook.com/y.f.h.sanaa/videos/312603136823554/",
+    "publisher": "المستشفى اليمني الفرنسي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4972278723",
+  "address": "شارع تعز، مقابل المسلخ المركزي، قبل جولة دار سلم، صنعاء",
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/301/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/301/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/301/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/301/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/301/"
+   },
+   {
+    "name": "طب وجراحة العيون",
+    "source_url": "https://sanaamedical.net/301/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/301/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مركز الدكتور خالد الهزار التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/301/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n8017375699",
+  "address": "شارع كلية الشرطة، أمام بوابة كلية الشرطة، صنعاء",
+  "phone": "01-241391",
+  "specialties": [
+   {
+    "name": "أمراض الكبد والجهاز الهضمي",
+    "source_url": "https://sanaamedical.net/2176/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "السبت–الأربعاء",
+    "hours_text": "16:00–20:00",
+    "source_url": "https://sanaamedical.net/2176/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "عيادة الأستاذ الدكتور محمد سالم نعمان القباطي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2176/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n12572220930",
+  "address": "نقم، جوار الكنترول، صنعاء",
+  "phone": "01-454666",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/836/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/836/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/836/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/836/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/836/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/836/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/836/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/836/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/836/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/836/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/836/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/836/"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/836/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/836/"
+   },
+   {
+    "name": "التطعيم",
+    "details": "",
+    "source_url": "https://sanaamedical.net/836/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/836/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/836/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مجمع آزال الطبي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/836/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n8143234118",
+  "address": "الأصبحي، سوق المقالح، أمام مستشفى اليمن السعيد، صنعاء",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/2591/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/2591/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/2591/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/2591/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/2591/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2591/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2591/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2591/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2591/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2591/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مركز الأصبحي الجراحي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2591/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n13810877840",
+  "address": "شارع عمران، جدر، جوار محطة الأخوين، صنعاء",
+  "phone": "01-385890",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/1682/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/1682/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/1682/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/1682/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/1682/"
+   },
+   {
+    "name": "التجميل",
+    "source_url": "https://sanaamedical.net/1682/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1682/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1682/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1682/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1682/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1682/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مركز النور الطبي الجراحي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1682/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-w995176977",
+  "name_en": "Azal Hospital",
+  "address": "الستين الشمالي، نهاية جسر مذبح، صنعاء",
+  "phone": "01-200000",
+  "email": "azal.t.hosp@gmail.com",
+  "website": "https://azal-hospital.com",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/Azalhospita/"
+   }
+  ],
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "الجراحة العامة وجراحة الصدر",
+    "source_url": "https://azal-hospital.com"
+   },
+   {
+    "name": "جراحة العظام والكسور والمفاصل",
+    "source_url": "https://azal-hospital.com"
+   },
+   {
+    "name": "أمراض وجراحة القلب المفتوح",
+    "source_url": "https://azal-hospital.com"
+   },
+   {
+    "name": "جراحة المخ والأعصاب والعمود الفقري",
+    "source_url": "https://azal-hospital.com"
+   },
+   {
+    "name": "الأمراض الجلدية والتناسلية",
+    "source_url": "https://azal-hospital.com"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://azal-hospital.com"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://azal-hospital.com"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://azal-hospital.com"
+   },
+   {
+    "name": "الأشعة والتصوير الطبي",
+    "details": "الرنين المغناطيسي والأشعة المقطعية",
+    "source_url": "https://azal-hospital.com"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://azal-hospital.com"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://azal-hospital.com"
+   }
+  ],
+  "hours": [
+   {
+    "label": "العيادات الخارجية (الفترة الصباحية)",
+    "hours_text": "8:00–13:00",
+    "source_url": "https://azal-hospital.com"
+   },
+   {
+    "label": "العيادات الخارجية (الفترة المسائية)",
+    "hours_text": "16:00–20:00",
+    "source_url": "https://azal-hospital.com"
+   },
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://azal-hospital.com"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى آزال النموذجي — الموقع الرسمي",
+    "url": "https://azal-hospital.com",
+    "publisher": "مستشفى آزال النموذجي",
+    "source_type": "official_site"
+   },
+   {
+    "title": "تواصل معنا",
+    "url": "https://azal-hospital.com/contact",
+    "publisher": "مستشفى آزال النموذجي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4298023951",
+  "address": "جولة عصر، عمارة الاوقاف، صنعاء",
+  "phone": "01-533330 / 01-217601",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/1507/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/1507/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/1507/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/1507/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/1507/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/1507/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://sanaamedical.net/1507/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1507/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1507/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1507/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1507/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ وأقسام الرقود",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://ibnsina-hospital.com"
+   }
+  ],
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/profile.php?id=100075862067167"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى ابن سينا التخصصي — الموقع الرسمي",
+    "url": "https://ibnsina-hospital.com",
+    "publisher": "مستشفى ابن سينا التخصصي",
+    "source_type": "official_site"
+   },
+   {
+    "title": "مستشفى ابن سيناء التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1507/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   },
+   {
+    "title": "مستشفى إبن سينا التخصصي صنعاء (فيسبوك)",
+    "url": "https://www.facebook.com/profile.php?id=100075862067167",
+    "publisher": "مستشفى ابن سينا التخصصي",
+    "source_type": "official_site"
+   }
+  ],
+  "emergency_phone": "01-533330",
+  "website": "https://ibnsina-hospital.com",
+  "email": "info@ibnsina-hospital.com",
+  "name_en": "Ibn Sina Specialist Hospital"
+ },
+ {
+  "slug": "osm-n4298022231",
+  "address": "شارع الثلاثين، الصافية الجنوبيه، صنعاء",
+  "phone": "01-240407",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/877/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/877/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/877/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/877/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/877/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/877/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/877/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/877/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الأم التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/877/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n2456316498",
+  "address": "الحصبه، جوار مؤسسه المياه والصرف الصحي، صنعاء",
+  "phone": "771237639",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/721/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/721/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/721/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/721/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/721/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/721/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/721/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/721/"
+   },
+   {
+    "name": "العلاج الطبيعي",
+    "source_url": "https://sanaamedical.net/721/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/721/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/721/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/721/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/721/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/721/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/721/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/721/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الأمل التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/721/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4551175792",
+  "address": "مذبح، جوار شركه الادويه، صنعاء",
+  "phone": "01-371066",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "التجميل",
+    "source_url": "https://sanaamedical.net/2267/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2267/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2267/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2267/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الأمانة الحديثة — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2267/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n5709382625",
+  "address": "سعوان، المدينة السكنية، أمام مدرسة اليرموك، صنعاء",
+  "phone": "01-308209",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/1126/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/1126/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/1126/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/1126/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/1126/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1126/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1126/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1126/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1126/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1126/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الحرمين التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1126/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4349901690",
+  "address": "شارع الخمسين، بعد جولة بيت بوس، صنعاء",
+  "phone": "01-680552",
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/2182/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/2182/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/2182/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/2182/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/2182/"
+   },
+   {
+    "name": "طب وجراحة العيون",
+    "source_url": "https://sanaamedical.net/2182/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/2182/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/2182/"
+   }
+  ],
+  "services": [
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2182/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2182/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الخمسين — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2182/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n12572220955",
+  "address": "جولة النصر، جوار نادي 22 مايو، صنعاء",
+  "phone": "01-322019",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/292/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/292/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/292/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/292/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/292/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/292/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/292/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/292/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الدكتورة مها البيضاني — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/292/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n6726165885",
+  "address": "نهاية شارع هايل، قبل تقاطع شارع الرباط، صنعاء",
+  "phone": "01-533105",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "التجميل",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "العلاج الطبيعي",
+    "source_url": "https://sanaamedical.net/1519/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1519/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1519/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1519/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الرباط الحديث — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1519/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n12407562087",
+  "address": "شارع بغداد، أمام عالم الصيدلة، صنعاء",
+  "phone": "01-213283",
+  "specialties": [
+   {
+    "name": "الطب النفسي",
+    "source_url": "https://sanaamedical.net/2028/"
+   },
+   {
+    "name": "علاج الإدمان",
+    "source_url": "https://sanaamedical.net/2028/"
+   }
+  ],
+  "services": [
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2028/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2028/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2028/"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2028/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الدوام",
+    "hours_text": "8:00–13:00 و16:00–20:00",
+    "source_url": "https://sanaamedical.net/2028/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الرسالة للطب النفسي وعلاج الإدمان — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2028/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-w87318804",
+  "address": "ميدان السبعين، جوار جامع الشعب، صنعاء",
+  "phone": "01-262218",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/1999/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "بنك الدم",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "سيارات الإسعاف",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "name": "التطعيم",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1999/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1999/"
+   },
+   {
+    "label": "الطوارئ والمختبر والأشعة",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1999/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى السبعين للأمومة والطفولة — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1999/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n9422931294",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/p/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B4%D8%B1%D8%B7%D8%A9-%D8%A7%D9%84%D9%86%D9%85%D9%88%D8%B0%D8%AC%D9%8A-100076806649630/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الشرطة النموذجي (فيسبوك)",
+    "url": "https://www.facebook.com/p/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B4%D8%B1%D8%B7%D8%A9-%D8%A7%D9%84%D9%86%D9%85%D9%88%D8%B0%D8%AC%D9%8A-100076806649630/",
+    "publisher": "مستشفى الشرطة النموذجي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n12593417420",
+  "address": "الحصبه، جوار وزاره الادارة المحلية، صنعاء",
+  "phone": "01-226157",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/417/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/417/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/417/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/417/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/417/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/417/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/417/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/417/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/417/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/417/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/417/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/417/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/417/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/417/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/417/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/417/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/417/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الصحاب التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/417/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n760301550",
+  "address": "شارع تعز، جوار مدرسة زيد بن حارثه، صنعاء",
+  "phone": "01-618857",
+  "sources": [
+   {
+    "title": "مستشفى الصفاء — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/493/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n13469713019",
+  "address": "حزيز، سوق الوحدة، صنعاء",
+  "phone": "01-694378",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/2169/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/2169/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/2169/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/2169/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/2169/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/2169/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/2169/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://sanaamedical.net/2169/"
+   },
+   {
+    "name": "العلاج الطبيعي",
+    "source_url": "https://sanaamedical.net/2169/"
+   },
+   {
+    "name": "الجهاز الهضمي والكبد",
+    "source_url": "https://sanaamedical.net/2169/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2169/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2169/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2169/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2169/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2169/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2169/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2169/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الطاهر التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2169/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4182443391",
+  "address": "عصر، أمام مستشفى ابن سيناء، صنعاء",
+  "phone": "01-400999",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/1529/"
+   },
+   {
+    "name": "طب وجراحة العيون",
+    "source_url": "https://sanaamedical.net/1529/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/1529/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1529/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1529/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1529/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1529/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1529/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1529/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى العاقل التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1529/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n5869201486",
+  "address": "شارع تعز، شميله، جولة شميلة، صنعاء",
+  "phone": "01-633921",
+  "emergency_available": true,
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2580/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2580/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2580/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2580/"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2580/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2580/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى العظام التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2580/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   },
+   {
+    "title": "مستشفى العظام والتجميل Orthpedic&plastic specialist hospital (فيسبوك)",
+    "url": "https://www.facebook.com/Orthhosp/",
+    "publisher": "مستشفى العظام",
+    "source_type": "official_site"
+   }
+  ],
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/Orthhosp/"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n5072397421",
+  "address": "شارع الزبيري، جوار المغربي للعيون، صنعاء",
+  "phone": "01-216666",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "العلاج الطبيعي",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "الغدد الصماء والسكري",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "الجهاز الهضمي والكبد",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "الخصوبة وعلاج العقم",
+    "source_url": "https://sanaamedical.net/2429/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "بنك الدم",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2429/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2429/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2429/"
+   }
+  ],
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/ALaliaahospital/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى العلياء الدولي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2429/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   },
+   {
+    "title": "مستشفى العلياء الدولي اليمن - صنعاء (فيسبوك)",
+    "url": "https://www.facebook.com/ALaliaahospital/",
+    "publisher": "مستشفى العلياء الدولي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4346513462",
+  "address": "بيت بوس، شارع الخمسين، جوار فندق شهران، صنعاء",
+  "phone": "01-429058 / 01-417185",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/2273/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/2273/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/2273/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/2273/"
+   },
+   {
+    "name": "طب وجراحة العيون",
+    "source_url": "https://sanaamedical.net/2273/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/2273/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/2273/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://sanaamedical.net/2273/"
+   },
+   {
+    "name": "العلاج الطبيعي",
+    "source_url": "https://sanaamedical.net/2273/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2273/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2273/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2273/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2273/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2273/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى القدس العسكري — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2273/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n2173416640",
+  "name_en": "Dr. Amin Al-Kamali Model Hospital",
+  "address": "مدخل السنينة، شارع الستين الغربي، صنعاء",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/AKSHYEMEN/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى دكتور امين الكمالي النموذجي (فيسبوك)",
+    "url": "https://www.facebook.com/AKSHYEMEN/",
+    "publisher": "مستشفى الدكتور أمين الكمالي النموذجي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n6937224638",
+  "name_en": "Kuwait University Hospital",
+  "address": "شارع الكويت، صنعاء",
+  "phone": "01-283283",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/1223/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/1223/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/1223/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/1223/"
+   },
+   {
+    "name": "طب وجراحة العيون",
+    "source_url": "https://sanaamedical.net/1223/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/1223/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://sanaamedical.net/1223/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1223/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1223/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1223/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1223/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1223/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1223/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1223/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الكويت الجامعي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1223/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n12593417408",
+  "address": "سعوان، قرب جولة النصر، صنعاء",
+  "phone": "01-307888 / 01-307999",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/1180/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/1180/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/1180/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/1180/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://sanaamedical.net/1180/"
+   },
+   {
+    "name": "التجميل",
+    "source_url": "https://sanaamedical.net/1180/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1180/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1180/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1180/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1180/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1180/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى المتحدون التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1180/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n8505180411",
+  "address": "خط المطار، دارس، صنعاء",
+  "phone": "01-342394",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/582/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/582/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/582/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/582/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/582/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/582/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/582/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/582/"
+   },
+   {
+    "name": "التجميل",
+    "source_url": "https://sanaamedical.net/582/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/582/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/582/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/582/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/582/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/582/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/582/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى المجد التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/582/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4636983997",
+  "address": "تقاطع الزبيري، شارع عمان، خلف مستشفى المغربي، صنعاء",
+  "phone": "777802660",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/1456/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/1456/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/1456/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/1456/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/1456/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1456/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1456/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1456/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1456/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1456/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1456/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1456/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1456/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى المدينة النموذجي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1456/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4379341189",
+  "address": "الجراف، خط المطار، جوار مطابع الكتاب، صنعاء",
+  "phone": "771004367",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/1639/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/1639/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/1639/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/1639/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1639/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1639/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1639/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1639/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1639/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1639/"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1639/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1639/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الملك التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1639/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n5228839821",
+  "address": "شارع نواكشط، حي المحروقات جوار برج سندس، صنعاء",
+  "phone": "01-405055",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "التجميل",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "الخصوبة وعلاج العقم",
+    "source_url": "https://sanaamedical.net/2055/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "name": "التطعيم",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2055/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2055/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2055/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى المودة — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2055/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4999473224",
+  "name_en": "Elite (Al-Nukhbah) Specialist Hospital",
+  "address": "شارع تعز، صنعاء",
+  "phone": "01-636890 / 01-636891 / 01-636892 / +967 776 000 061",
+  "email": "info@elite-hospital.com",
+  "website": "https://elite-hospitals.com",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/elitehospitalye/"
+   },
+   {
+    "label": "إكس (تويتر)",
+    "url": "https://twitter.com/elitehospitalye"
+   }
+  ],
+  "specialties": [
+   {
+    "name": "جراحة العظام والعمود الفقري",
+    "source_url": "https://www.facebook.com/elitehospitalye/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://www.facebook.com/elitehospitalye/"
+   },
+   {
+    "name": "التجميل",
+    "source_url": "https://www.facebook.com/elitehospitalye/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://www.facebook.com/elitehospitalye/"
+   },
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://www.facebook.com/elitehospitalye/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://www.facebook.com/elitehospitalye/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://www.facebook.com/elitehospitalye/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://elite-hospitals.com"
+   }
+  ],
+  "services": [
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://elite-hospitals.com"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://elite-hospitals.com"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://elite-hospitals.com"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى النخبة التخصصي — إتصل بنا",
+    "url": "https://elite-hospitals.com/contactus.php",
+    "publisher": "مستشفى النخبة التخصصي",
+    "source_type": "official_site"
+   },
+   {
+    "title": "مستشفى النخبة Elite Hospital (فيسبوك)",
+    "url": "https://www.facebook.com/elitehospitalye/",
+    "publisher": "مستشفى النخبة",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n12559596142",
+  "address": "شارع حدة تقاطع الزبيري، مقابل جامع حجر، صنعاء",
+  "phone": "01-215111",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "التجميل",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "أمراض الكلى",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "الجهاز الهضمي والكبد",
+    "source_url": "https://sanaamedical.net/1805/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "name": "بنك الدم",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1805/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1805/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1805/"
+   }
+  ],
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/p/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D9%88%D8%B3%D8%A7%D9%85-%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A-100063568914886/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الوسام الدولي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1805/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n12299761960",
+  "address": "الاصبحي، شارع المقالح، امام فندق واجنحة نجوم اليمن السياحي، صنعاء",
+  "phone": "01-687687 / 01-677755 / 779133301",
+  "specialties": [
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/574/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/574/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/574/"
+   }
+  ],
+  "website": "https://www.yshyemen.com",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/yemensaeedhospitl"
+   },
+   {
+    "label": "إنستغرام",
+    "url": "https://www.instagram.com/yemenhospital/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى اليمن السعيد — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/574/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   },
+   {
+    "title": "مستشفى اليمن السعيد — الموقع الرسمي",
+    "url": "https://www.yshyemen.com",
+    "publisher": "مستشفى اليمن السعيد",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n12561034870",
+  "address": "حدة، أمام سوبر ماركت الجندول، صنعاء",
+  "phone": "01-417555",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "الغدد الصماء والسكري",
+    "source_url": "https://sanaamedical.net/2628/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2628/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2628/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2628/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى بروج صنعاء الدولي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2628/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4368828990",
+  "name_en": "Dr. Abdulqader Al-Mutawakel Hospital",
+  "address": "شارع بغداد، صنعاء",
+  "phone": "01-208080",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "طب وجراحة العيون",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "التجميل",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "العلاج الطبيعي",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "الغدد الصماء والسكري",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "أمراض الكلى",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "الجهاز الهضمي والكبد",
+    "source_url": "https://sanaamedical.net/2013/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "name": "غسيل الكلى",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2013/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2013/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2013/"
+   }
+  ],
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/almutawakelhospital/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الدكتور عبدالقادر المتوكل النموذجي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2013/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   },
+   {
+    "title": "مستشفى الدكتور عبدالقادر المتوكل (فيسبوك)",
+    "url": "https://www.facebook.com/almutawakelhospital/",
+    "publisher": "مستشفى الدكتور عبدالقادر المتوكل",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n7713205861",
+  "address": "شارع التلفزيون، امام الكريمي للصرافه، صنعاء",
+  "phone": "771297610",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/703/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/703/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/703/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/703/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/703/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/703/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/703/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/703/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/703/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/703/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الدكتور عبد الوهاب عجلان التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/703/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4551224889",
+  "address": "مذبح، جوار مستشفى الامانة، صنعاء",
+  "phone": "01-371426",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "التجميل",
+    "source_url": "https://sanaamedical.net/2277/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2277/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2277/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2277/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مسشتفى دار الرحمه — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2277/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n6578045192",
+  "address": "شملان، جوار مصنع شملان، صنعاء",
+  "phone": "01-383557",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/2190/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/2190/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/2190/"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://sanaamedical.net/2190/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/2190/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/2190/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2190/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2190/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2190/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2190/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2190/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2190/"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2190/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/2190/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/2190/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى شملان — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/2190/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-w373910399",
+  "address": "منطقة الروضة، بني الحارث، صنعاء",
+  "phone": "01-598082",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/633/"
+   },
+   {
+    "name": "العلاج الطبيعي",
+    "source_url": "https://sanaamedical.net/633/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/633/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/633/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/633/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/633/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/633/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/633/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/633/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/633/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى فلسطين للأمومة والطفولة — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/633/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n2314622714",
+  "name_en": "Lebanon Hospital",
+  "address": "حدة، بداية شارع 24 المتفرع من شارع 14 أكتوبر، صنعاء",
+  "phone": "+967 781 111 801",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/Lebanonhospital/"
+   }
+  ],
+  "specialties": [
+   {
+    "name": "أمراض وجراحة القلب",
+    "source_url": "https://www.facebook.com/Lebanonhospital/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://www.facebook.com/Lebanonhospital/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى لبنان - lebanon hospital (فيسبوك)",
+    "url": "https://www.facebook.com/Lebanonhospital/",
+    "publisher": "مستشفى لبنان",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n5196307026",
+  "address": "شارع تعز، امام جامع بيرعبيد، صنعاء",
+  "phone": "01-634448",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/937/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/937/"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://sanaamedical.net/937/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/937/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/937/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/937/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/937/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/937/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/937/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/937/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/937/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى ناصر التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/937/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n12573635346",
+  "address": "شارع تعز، جوار بازرعة، صنعاء",
+  "phone": "01-600804",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/953/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/953/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/953/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/953/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/953/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/953/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/953/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/953/"
+   },
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/953/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى نشوان التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/953/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n10914314605",
+  "address": "شارع تعز، جنوب دار سلم مقابل محطة الدار الحديثة، صنعاء",
+  "phone": "01-664000",
+  "services": [
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/327/"
+   },
+   {
+    "name": "العمليات الجراحية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/327/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى يشفين الاستشارية — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/327/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n1038698634",
+  "address": "سعوان، جوار نايس وير، صنعاء",
+  "phone": "01-301114",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/273/"
+   },
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://sanaamedical.net/273/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/273/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/273/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/273/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/273/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/273/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/273/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/273/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الرأفة التخصصي — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/273/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n12407644015",
+  "name_en": "Magrabi Eye Hospital – Sanaa",
+  "address": "شارع الزبيري، قرب جولة كنتاكي، صنعاء",
+  "phone": "01-210020 / 8000068",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "طب وجراحة العيون",
+    "source_url": "https://sanaamedical.net/1470/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1470/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1470/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1470/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/1470/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/1470/"
+   }
+  ],
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/magrabiyemen/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى مغربي للعيون — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/1470/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   },
+   {
+    "title": "مستشفى مغربي للعيون - اليمن (فيسبوك)",
+    "url": "https://www.facebook.com/magrabiyemen/",
+    "publisher": "مستشفى مغربي للعيون",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n12403309183",
+  "address": "سعوان، حي الأربعين، جوار الماس مول، صنعاء",
+  "phone": "778842727",
+  "emergency_available": true,
+  "specialties": [
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://sanaamedical.net/359/"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://sanaamedical.net/359/"
+   },
+   {
+    "name": "جراحة المناظير",
+    "source_url": "https://sanaamedical.net/359/"
+   },
+   {
+    "name": "جراحة العظام والمفاصل",
+    "source_url": "https://sanaamedical.net/359/"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://sanaamedical.net/359/"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://sanaamedical.net/359/"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://sanaamedical.net/359/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/359/"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://sanaamedical.net/359/"
+   },
+   {
+    "name": "الأشعة التشخيصية",
+    "details": "",
+    "source_url": "https://sanaamedical.net/359/"
+   },
+   {
+    "name": "أقسام الرقود (التنويم)",
+    "details": "",
+    "source_url": "https://sanaamedical.net/359/"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://sanaamedical.net/359/"
+   },
+   {
+    "name": "حضانة الأطفال والخدج",
+    "details": "",
+    "source_url": "https://sanaamedical.net/359/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://sanaamedical.net/359/"
+   }
+  ],
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/Nobles.M.H"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى النبلاء الحديث — دليل صنعاء الطبي",
+    "url": "https://sanaamedical.net/359/",
+    "publisher": "دليل صنعاء الطبي (sanaamedical.net)",
+    "source_type": "independent_directory"
+   }
+  ]
+ }
+]

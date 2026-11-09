@@ -13,6 +13,7 @@ import {messageBadgeCount,messageBadgeLabel} from '@/lib/messageBadge';
 import NotificationBell from './notifications/NotificationBell';
 import {advanceMessageAlert,playMessageChime} from '@/lib/messageSound';
 import {readEditorFlag, writeEditorFlag} from './editorFlag';
+import {createRefreshThrottle} from '@/lib/authEvents';
 
 // Masthead: one row on wide screens, a menu sheet below 1100px.
 // Sections come from lib/navigation.js, shared with the footer and home doors.
@@ -28,6 +29,9 @@ export default function Header({actionLabel = 'ساهم معنا', contentLinks 
   const [messageCounts, setMessageCounts] = useState({unread:0,requests:0});
   const messageAudioRef = useRef(null);
   const messageAlertRef = useRef({initialized:false,latest:0});
+  // Read by the message poll without restarting it on every navigation.
+  const pathRef = useRef(path);
+  useEffect(() => {pathRef.current = path;}, [path]);
   const header = useRef(null);
   // Remembers that the visitor reached this page from another page of the site (used by back buttons).
   const lastPath = useRef(null);
@@ -139,7 +143,9 @@ export default function Header({actionLabel = 'ساهم معنا', contentLinks 
       window.removeEventListener('keydown',unlock);
     };
   },[sessionUserId]);
-  // The header badge uses a lightweight summary request while the page is visible.
+  // The header badge uses a summary request while the page is visible: once on sign-in, every
+  // minute, when a message action announces a change, and on returning to the tab (at most every
+  // 15 s, since focus and visibilitychange both fire). Navigating between pages does not refetch.
   // No always-on Realtime socket is required on the Supabase free tier.
   useEffect(() => {
     if (!db || !sessionUserId) {
@@ -168,7 +174,7 @@ export default function Header({actionLabel = 'ساهم معنا', contentLinks 
           const result = await response.json();
           if (active) {
             setMessageCounts({unread:result.unread,requests:result.requests});
-            const decision=advanceMessageAlert(messageAlertRef.current,result,path);
+            const decision=advanceMessageAlert(messageAlertRef.current,result,pathRef.current);
             messageAlertRef.current=decision.state;
             if(decision.play)playMessageChime(messageAudioRef.current);
           }
@@ -181,20 +187,23 @@ export default function Header({actionLabel = 'ساهم معنا', contentLinks 
         pending = false;
       }
     };
+    const returning = createRefreshThrottle(15000);
+    const onReturn = () => {if (document.visibilityState==='visible' && returning.due()) {returning.mark(); void refresh();}};
+    returning.mark();
     void refresh();
-    const timer = window.setInterval(refresh,30000);
-    const onVisibility = () => {if (document.visibilityState==='visible') void refresh();};
-    window.addEventListener('focus',refresh);
+    const timer = window.setInterval(refresh,60000);
+    const onVisibility = onReturn;
+    window.addEventListener('focus',onReturn);
     window.addEventListener('967:messages-changed',refresh);
     document.addEventListener('visibilitychange',onVisibility);
     return () => {
       active=false;
       window.clearInterval(timer);
-      window.removeEventListener('focus',refresh);
+      window.removeEventListener('focus',onReturn);
       window.removeEventListener('967:messages-changed',refresh);
       document.removeEventListener('visibilitychange',onVisibility);
     };
-  }, [db,sessionUserId,path]);
+  }, [db,sessionUserId]);
   const newMessageCount=messageBadgeCount(messageCounts);
   const messageCountText=messageBadgeLabel(newMessageCount);
   const messageLinkLabel=newMessageCount

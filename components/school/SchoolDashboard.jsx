@@ -6,6 +6,7 @@ import {browserDb} from '@/lib/supabase';
 import styles from '@/app/school/dashboard/dashboard.module.css';
 import SchoolCompetition from './SchoolCompetition';
 import MobileFold from '@/components/mobile/MobileFold';
+import {createAccountWatch,shouldReloadOnAuth} from '@/lib/authEvents';
 
 export default function SchoolDashboard(){
  const [state,setState]=useState({kind:'loading',data:null,message:''});
@@ -57,7 +58,12 @@ export default function SchoolDashboard(){
   }
   refresh();
   const db=browserDb();
-  const sub=db?.auth.onAuthStateChange(()=>{
+  const account=createAccountWatch();
+  db?.auth.getSession().then(({data})=>account.seen(data.session)).catch(()=>{});
+  // Reload when the account changes, not on the initial event or hourly token refreshes.
+  const sub=db?.auth.onAuthStateChange((event,session)=>{
+   if(!shouldReloadOnAuth(account,event,session))return;
+   account.seen(session);
    clearTimeout(timer);
    timer=setTimeout(()=>{if(alive)refresh();},0);
   }).data.subscription;

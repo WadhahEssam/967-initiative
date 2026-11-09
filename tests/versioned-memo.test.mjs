@@ -114,5 +114,5 @@ test('the home page latest indicators are cached and cleared with the statistics
   const data = read('lib/data.js');
   assert.match(data, /export const getRecentIndicators=publicList\('statistics',cachedRecentIndicators\);/);
   assert.match(data, /if\(!memo\)\{memo=createMemo\(\{ttlMs:5\*60\*1000,staleMs:60\*60\*1000\}\);recentIndicatorsMemos\.set\(key,memo\);\}/);
-  assert.match(data, /export function invalidateStatCatalog\(\)\{statIndicatorsMemo\.clear\(\);statSectionsMemo\.clear\(\);recentIndicatorsMemos\.clear\(\);\}/);
+  assert.match(data, /export function invalidateStatCatalog\(\)\{statIndicatorsMemo\.clear\(\);statSectionsMemo\.clear\(\);recentIndicatorsMemos\.clear\(\);statIndicatorMemos\.clear\(\);\}/);
 });

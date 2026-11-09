@@ -5,11 +5,13 @@
 //   --enrich        applies researched contacts, specialties, services, hours and sources (enrich-output-*.json)
 // Inputs: HeRAMS geojson and an OSM Overpass JSON (paths in env HERAMS and OSM). Add --write to save.
 import {createClient} from '@supabase/supabase-js';
-import {existsSync, readFileSync, writeFileSync} from 'node:fs';
+import {existsSync, readFileSync, readdirSync, writeFileSync} from 'node:fs';
+import {openDirectRpc} from './lib/directRpc.mjs';
 
 const args = new Set(process.argv.slice(2));
 const write = args.has('--write');
-const dir = new URL('../data/medical-centers/campaign-2026-11/', import.meta.url);
+// CAMPAIGN=campaign-2026-11b reads a later round of research from its own folder.
+const dir = new URL(`../data/medical-centers/${process.env.CAMPAIGN || 'campaign-2026-11'}/`, import.meta.url);
 const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {auth: {persistSession: false}});
 const today = new Date().toISOString().slice(0, 10);
 const keys = ['stable_key', 'official_code', 'slug', 'name_ar', 'name_en', 'institution_type', 'ownership', 'operator_name', 'summary', 'governorate', 'city', 'district', 'address', 'latitude', 'longitude', 'map_url', 'logo_url', 'website', 'phone', 'emergency_phone', 'email', 'social_links', 'booking_url', 'emergency_available', 'operating_status', 'operating_status_as_of', 'verification_status', 'verified_at', 'facility_presence', 'care_level', 'access_status', 'building_status', 'equipment_status', 'is_published'];
@@ -46,7 +48,13 @@ async function children(id) {
   }
   return out;
 }
+// DIRECT_DB=1 saves over a direct database connection (see scripts/lib/directRpc.mjs).
+const direct = write && process.env.DIRECT_DB === '1' ? await openDirectRpc() : null;
 async function save(id, revision, record, kids, origin) {
+  if (direct) {
+    await direct.call('directory_save_medical_center', {p_id: id, p_revision: revision, p_record: record, p_specialties: kids.specialties, p_services: kids.services, p_hours: kids.hours, p_branches: kids.branches, p_sources: kids.sources, p_origin: origin}, {p_id: 'uuid', p_revision: 'bigint', p_record: 'jsonb', p_specialties: 'jsonb', p_services: 'jsonb', p_hours: 'jsonb', p_branches: 'jsonb', p_sources: 'jsonb', p_origin: 'text'});
+    return;
+  }
   const {error: e} = await db.rpc('directory_save_medical_center', {p_id: id, p_revision: revision, p_record: record, p_specialties: kids.specialties, p_services: kids.services, p_hours: kids.hours, p_branches: kids.branches, p_sources: kids.sources, p_origin: origin});
   if (e) throw new Error(e.message);
 }
@@ -127,7 +135,7 @@ if (args.has('--add-osm')) {
 }
 
 if (args.has('--enrich')) {
-  const items = [1, 2, 3, 4, 5, 6].flatMap(n => existsSync(new URL(`enrich-output-${n}.json`, dir)) ? JSON.parse(readFileSync(new URL(`enrich-output-${n}.json`, dir), 'utf8')) : []);
+  const items = readdirSync(dir).filter(name => /^enrich-output-[\w-]+\.json$/.test(name)).sort().flatMap(name => JSON.parse(readFileSync(new URL(name, dir), 'utf8')));
   const fresh = (await db.from('medical_centers').select('*').is('deleted_at', null)).data;
   const bySlug = new Map(fresh.map(r => [r.slug, r]));
   for (const item of items) {
@@ -161,3 +169,4 @@ if (args.has('--enrich')) {
 writeFileSync(new URL(`apply-report${write ? '' : '-dry-run'}.json`, dir), JSON.stringify({...done, problems}, null, 1));
 console.log(JSON.stringify(done), write ? 'written' : 'ready', `problems ${problems.length}`);
 for (const p of problems.slice(0, 20)) console.log(' - ' + p);
+await direct?.end();

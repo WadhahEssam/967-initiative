@@ -1,0 +1,469 @@
+[
+ {
+  "slug": "osm-n4998832321",
+  "address": "شارع صنعاء، مدينة الحديدة",
+  "emergency_available": true,
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/alamal.hosp/"
+   }
+  ],
+  "hours": [
+   {
+    "label": "الطوارئ",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://www.openstreetmap.org/node/4998832321"
+   }
+  ],
+  "specialties": [
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "جراحة وأمراض الكلى",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "العلاج الطبيعي والطب الرياضي",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "جراحة العيون",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "العظام وأمراض المفاصل",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "الباطنية وأمراض السكري",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "المخ والأعصاب",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "الجراحة العامة والمناظير",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "التخدير والإنعاش والعناية المركزة",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "جراحة الفم والأسنان",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "",
+    "source_url": "https://www.openstreetmap.org/node/4998832321"
+   },
+   {
+    "name": "الأشعة",
+    "details": "",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "المختبر وبنك الدم",
+    "details": "",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   },
+   {
+    "name": "الفحص الطبي الشامل",
+    "details": "",
+    "source_url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90"
+   }
+  ],
+  "sources": [
+   {
+    "title": "OpenStreetMap — مستشفى الأمل العربي",
+    "url": "https://www.openstreetmap.org/node/4998832321",
+    "publisher": "OpenStreetMap",
+    "source_type": "independent_directory"
+   },
+   {
+    "title": "أقسام المستشفى — موقع مستشفى الأمل العربي التخصصي (نسخة مؤرشفة 2009)",
+    "url": "https://web.archive.org/web/2009/http://alamal-hospital.net:80/dtls.php?ContentID=90",
+    "publisher": "مستشفى الأمل العربي التخصصي",
+    "source_type": "official_site"
+   },
+   {
+    "title": "مستشفى الأمل العربي بالحديدة — الصفحة الرسمية على فيسبوك",
+    "url": "https://www.facebook.com/alamal.hosp/",
+    "publisher": "مستشفى الأمل العربي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4574339689",
+  "address": "شارع صنعاء، مدينة الحديدة",
+  "hours": [
+   {
+    "label": "ساعات العمل",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://www.openstreetmap.org/node/4574339689"
+   }
+  ],
+  "sources": [
+   {
+    "title": "OpenStreetMap — مستشفى الحديدة التخصصي",
+    "url": "https://www.openstreetmap.org/node/4574339689",
+    "publisher": "OpenStreetMap",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n4298022272",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/ALrasheedhud/"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى الرشيد التخصصي الحديدة — الصفحة الرسمية على فيسبوك",
+    "url": "https://www.facebook.com/ALrasheedhud/",
+    "publisher": "مستشفى الرشيد التخصصي",
+    "source_type": "official_site"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n5031253622",
+  "address": "شارع النصر (7 يوليو)، مدينة الحديدة",
+  "hours": [
+   {
+    "label": "السبت–الجمعة",
+    "hours_text": "9:00–18:00",
+    "source_url": "https://www.openstreetmap.org/node/5031253622"
+   }
+  ],
+  "sources": [
+   {
+    "title": "OpenStreetMap — مستشفى الكويت التعاوني",
+    "url": "https://www.openstreetmap.org/node/5031253622",
+    "publisher": "OpenStreetMap",
+    "source_type": "independent_directory"
+   }
+  ]
+ },
+ {
+  "slug": "osm-n1224186976",
+  "operator_name": "المملكة العربية السعودية (مركز الملك سلمان للإغاثة والأعمال الإنسانية)",
+  "specialties": [
+   {
+    "name": "الجراحة العامة",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "الطب العام",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "أمراض القلب",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "العظام",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "أمراض الكلى",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "طب العيون",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   }
+  ],
+  "services": [
+   {
+    "name": "الاستقبال والطوارئ",
+    "details": "",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "العناية المركزة",
+    "details": "",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "غسيل الكلى",
+    "details": "",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "العلاج الطبيعي",
+    "details": "",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "تخطيط القلب",
+    "details": "",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "الأشعة",
+    "details": "",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "الصيدلية",
+    "details": "",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   },
+   {
+    "name": "الحضانة",
+    "details": "",
+    "source_url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9"
+   }
+  ],
+  "sources": [
+   {
+    "title": "المستشفى السعودي في حجة",
+    "url": "https://saudipedia.com/ar/%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D8%AD%D8%AC%D8%A9",
+    "publisher": "سعوديبيديا (نقلًا عن وكالة الأنباء السعودية)",
+    "source_type": "independent"
+   }
+  ]
+ },
+ {
+  "slug": "osm-w353274309",
+  "operator_name": "المملكة العربية السعودية (مركز الملك سلمان للإغاثة والأعمال الإنسانية)",
+  "specialties": [
+   {
+    "name": "الأمراض الباطنية",
+    "source_url": "https://saudipedia.com/ar/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B5%D8%B9%D8%AF%D8%A9"
+   },
+   {
+    "name": "الجراحة",
+    "source_url": "https://saudipedia.com/ar/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B5%D8%B9%D8%AF%D8%A9"
+   },
+   {
+    "name": "طب الأطفال",
+    "source_url": "https://saudipedia.com/ar/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B5%D8%B9%D8%AF%D8%A9"
+   },
+   {
+    "name": "النساء والولادة",
+    "source_url": "https://saudipedia.com/ar/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B5%D8%B9%D8%AF%D8%A9"
+   },
+   {
+    "name": "العظام",
+    "source_url": "https://saudipedia.com/ar/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B5%D8%B9%D8%AF%D8%A9"
+   },
+   {
+    "name": "الأمراض الجلدية",
+    "source_url": "https://saudipedia.com/ar/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B5%D8%B9%D8%AF%D8%A9"
+   },
+   {
+    "name": "طب الأسنان",
+    "source_url": "https://saudipedia.com/ar/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B5%D8%B9%D8%AF%D8%A9"
+   },
+   {
+    "name": "طب العيون",
+    "source_url": "https://saudipedia.com/ar/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B5%D8%B9%D8%AF%D8%A9"
+   },
+   {
+    "name": "المسالك البولية",
+    "source_url": "https://saudipedia.com/ar/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B5%D8%B9%D8%AF%D8%A9"
+   },
+   {
+    "name": "الأنف والأذن والحنجرة",
+    "source_url": "https://saudipedia.com/ar/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B5%D8%B9%D8%AF%D8%A9"
+   }
+  ],
+  "services": [
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://saudipedia.com/ar/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B5%D8%B9%D8%AF%D8%A9"
+   },
+   {
+    "name": "الأشعة",
+    "details": "",
+    "source_url": "https://saudipedia.com/ar/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B5%D8%B9%D8%AF%D8%A9"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى السلام السعودي في محافظة صعدة",
+    "url": "https://saudipedia.com/ar/%D9%85%D8%B3%D8%AA%D8%B4%D9%81%D9%89-%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85-%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A-%D9%81%D9%8A-%D9%85%D8%AD%D8%A7%D9%81%D8%B8%D8%A9-%D8%B5%D8%B9%D8%AF%D8%A9",
+    "publisher": "سعوديبيديا (نقلًا عن وكالة الأنباء السعودية)",
+    "source_type": "independent"
+   }
+  ]
+ },
+ {
+  "slug": "health-2613011",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/KaraHospital/"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ العامة",
+    "details": "",
+    "source_url": "https://www.emro.who.int/press-releases/2024-arabic/kara-hospital-works-with-who-to-provide-quality-care-for-all.html"
+   },
+   {
+    "name": "الخدمات الجراحية",
+    "details": "",
+    "source_url": "https://www.emro.who.int/press-releases/2024-arabic/kara-hospital-works-with-who-to-provide-quality-care-for-all.html"
+   },
+   {
+    "name": "صحة الأم والطفل",
+    "details": "",
+    "source_url": "https://www.emro.who.int/press-releases/2024-arabic/kara-hospital-works-with-who-to-provide-quality-care-for-all.html"
+   },
+   {
+    "name": "العيادات الخارجية",
+    "details": "",
+    "source_url": "https://www.emro.who.int/press-releases/2024-arabic/kara-hospital-works-with-who-to-provide-quality-care-for-all.html"
+   }
+  ],
+  "sources": [
+   {
+    "title": "مستشفى كرى العام — الصفحة الرسمية على فيسبوك",
+    "url": "https://www.facebook.com/KaraHospital/",
+    "publisher": "مستشفى كرى العام",
+    "source_type": "official_site"
+   },
+   {
+    "title": "يعمل مستشفى كرى العام مع منظمة الصحة العالمية لتوفير رعاية جيدة للجميع (4 سبتمبر 2024)",
+    "url": "https://www.emro.who.int/press-releases/2024-arabic/kara-hospital-works-with-who-to-provide-quality-care-for-all.html",
+    "publisher": "منظمة الصحة العالمية — المكتب الإقليمي لشرق المتوسط",
+    "source_type": "institutional"
+   }
+  ]
+ },
+ {
+  "slug": "health-2612004",
+  "social_links": [
+   {
+    "label": "فيسبوك",
+    "url": "https://www.facebook.com/Marib.Hospital/"
+   }
+  ],
+  "emergency_available": true,
+  "hours": [
+   {
+    "label": "الطوارئ والجراحات الطارئة",
+    "hours_text": "على مدار الساعة",
+    "source_url": "https://www.emro.who.int/press-releases/2026-arabic/when-every-minute-counts-emergency-trauma-care-saving-lives-in-marib-and-taiz.html"
+   }
+  ],
+  "services": [
+   {
+    "name": "الطوارئ على مدار الساعة",
+    "details": "جراحة الرضوح الطارئة",
+    "source_url": "https://www.emro.who.int/press-releases/2026-arabic/when-every-minute-counts-emergency-trauma-care-saving-lives-in-marib-and-taiz.html"
+   },
+   {
+    "name": "غسيل الكلى",
+    "details": "مركز الغسيل الكلوي (2020)",
+    "source_url": "https://www.ksrelief.org/en/Pages/NewsDetails/570344ce-8abc-44f2-bfd0-bca6f55870c6"
+   },
+   {
+    "name": "مركز الأطراف الصناعية",
+    "details": "تصنيع الأطراف الصناعية وصيانتها (2020)",
+    "source_url": "https://www.ksrelief.org/en/Pages/NewsDetails/570344ce-8abc-44f2-bfd0-bca6f55870c6"
+   },
+   {
+    "name": "العلاج الطبيعي",
+    "details": "",
+    "source_url": "https://www.ksrelief.org/en/Pages/NewsDetails/570344ce-8abc-44f2-bfd0-bca6f55870c6"
+   },
+   {
+    "name": "المختبر",
+    "details": "",
+    "source_url": "https://www.ksrelief.org/en/Pages/NewsDetails/570344ce-8abc-44f2-bfd0-bca6f55870c6"
+   },
+   {
+    "name": "الأشعة",
+    "details": "",
+    "source_url": "https://www.ksrelief.org/en/Pages/NewsDetails/570344ce-8abc-44f2-bfd0-bca6f55870c6"
+   }
+  ],
+  "sources": [
+   {
+    "title": "أهمية كل دقيقة من الوقت: الرعاية الطارئة للرضوح تُنقذ الأرواح في مأرب وتعز (11 فبراير 2026)",
+    "url": "https://www.emro.who.int/press-releases/2026-arabic/when-every-minute-counts-emergency-trauma-care-saving-lives-in-marib-and-taiz.html",
+    "publisher": "منظمة الصحة العالمية — المكتب الإقليمي لشرق المتوسط",
+    "source_type": "institutional"
+   },
+   {
+    "title": "Ma’rib Hospital Authority Continues to Provide Care (15/10/2020)",
+    "url": "https://www.ksrelief.org/en/Pages/NewsDetails/570344ce-8abc-44f2-bfd0-bca6f55870c6",
+    "publisher": "مركز الملك سلمان للإغاثة",
+    "source_type": "institutional"
+   },
+   {
+    "title": "هيئة مستشفى مأرب العام — الصفحة الرسمية على فيسبوك",
+    "url": "https://www.facebook.com/Marib.Hospital/",
+    "publisher": "هيئة مستشفى مأرب العام",
+    "source_type": "official_site"
+   }
+  ]
+ }
+]

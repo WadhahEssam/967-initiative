@@ -1,0 +1,727 @@
+[
+ {
+  "slug": "noor-sin-academy-training",
+  "name_ar": "أكاديمية نور سين للتدريب والتأهيل",
+  "name_en": "Noor Sin Academy for Training and Qualification",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "أمانة العاصمة",
+  "city": "صنعاء",
+  "website": null,
+  "phone": "771428936",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=263"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "gov-tech-f90ae7f1",
+  "name_ar": "المعهد التقني التجاري / صعده",
+  "name_en": null,
+  "type": "technical_institute",
+  "ownership": "government",
+  "governorate": "صعدة",
+  "city": "صعدة",
+  "website": null,
+  "phone": "775300910",
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gateig.php",
+   "https://www.tanseek.net/crgate.php?cg=262"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "gov-tech-3282e7cd",
+  "name_ar": "المعهد التقني الزراعي - سردود",
+  "name_en": null,
+  "type": "technical_institute",
+  "ownership": "government",
+  "governorate": "الحديدة",
+  "city": null,
+  "website": null,
+  "phone": "739179605",
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gateig.php",
+   "https://tanseek.net/crgate.php?cg=106"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "gov-tech-c8ec7afb",
+  "name_ar": "المعهد التقني الصناعي - بغداد",
+  "name_en": null,
+  "type": "technical_institute",
+  "ownership": "government",
+  "governorate": "أمانة العاصمة",
+  "city": "صنعاء",
+  "website": null,
+  "phone": "771519341",
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gateig.php",
+   "https://www.tanseek.net/crgate.php?cg=115"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "gov-tech-6879a8c6",
+  "name_ar": "المعهد التقني الصناعي - ذهبان",
+  "name_en": null,
+  "type": "technical_institute",
+  "ownership": "government",
+  "governorate": "أمانة العاصمة",
+  "city": "صنعاء",
+  "website": null,
+  "phone": "770061929",
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gateig.php",
+   "https://tanseek.net/crgate.php?cg=116"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "gov-tech-f6e9646b",
+  "name_ar": "المعهد التقني الصناعي القفر",
+  "name_en": null,
+  "type": "technical_institute",
+  "ownership": "government",
+  "governorate": "إب",
+  "city": "القفر",
+  "website": null,
+  "phone": "771889818",
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gateig.php",
+   "https://tanseek.net/crgate.php?cg=97"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "gov-tech-4a5ce3d9",
+  "name_ar": "المعهد التقني الصناعي خمر",
+  "name_en": "Technical Industrial Institute - Khamer",
+  "type": "technical_institute",
+  "ownership": "government",
+  "governorate": "عمران",
+  "city": "خمر",
+  "website": null,
+  "phone": "777051445",
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gateig.php",
+   "https://www.tanseek.net/crgate.php?cg=134"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "gov-tech-ef09b844",
+  "name_ar": "المعهد التقني الصناعي يريم",
+  "name_en": null,
+  "type": "technical_institute",
+  "ownership": "government",
+  "governorate": "إب",
+  "city": "يريم",
+  "website": null,
+  "phone": "777727561",
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gateig.php",
+   "https://tanseek.net/crgate.php?cg=99"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "gov-tech-a318ac1d",
+  "name_ar": "المعهد التقني لتدريب وتاهيل المرأة نقم",
+  "name_en": null,
+  "type": "technical_institute",
+  "ownership": "government",
+  "governorate": "أمانة العاصمة",
+  "city": "صنعاء",
+  "website": null,
+  "phone": null,
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gateig.php",
+   "https://www.tanseek.net/crgate.php?cg=119"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "international-technological-institute-training",
+  "name_ar": "المعهد التكنولوجي الدولي للتدريب والتأهيل",
+  "name_en": "International Technological Institute for Training and Qualification",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "إب",
+  "city": null,
+  "website": null,
+  "phone": "770543390",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=182"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "medical-educational-society-health-institute",
+  "name_ar": "المعهد الصحي للجمعية الطبية التعليمية والخدمات الإنسانية",
+  "name_en": "Health Institute of the Medical Educational and Humanitarian Services Society",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "ذمار",
+  "city": null,
+  "website": null,
+  "phone": "780678044",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=179"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "y30-institute-medical-applied-sciences",
+  "name_ar": "معهد Y30 للعلوم الطبية والتطبيقية",
+  "name_en": "Y30 Institute for Medical and Applied Sciences",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "أمانة العاصمة",
+  "city": "صنعاء",
+  "website": null,
+  "phone": "774466167",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=265"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "gov-tech-cf3b8bc1",
+  "name_ar": "معهد أروى لبناء القدرات التقني للبنات/حجه",
+  "name_en": null,
+  "type": "technical_institute",
+  "ownership": "government",
+  "governorate": "حجة",
+  "city": "حجة",
+  "website": null,
+  "phone": "775076934",
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gateig.php",
+   "https://tanseek.net/crgate.php?cg=127"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "academic-medical-training-institute",
+  "name_ar": "معهد أكاديمك للتدريب والتأهيل الطبي",
+  "name_en": "Academic Institute for Medical Training and Qualification",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "أمانة العاصمة",
+  "city": "صنعاء",
+  "website": null,
+  "phone": "777197296",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=253"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "al-amal-institute-medical-sciences-hodeidah",
+  "name_ar": "معهد الأمل للعلوم الطبية – الحديدة",
+  "name_en": "Al-Amal Institute for Medical Sciences – Hodeidah",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "الحديدة",
+  "city": null,
+  "website": null,
+  "phone": "770330103",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=255"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "al-ekleel-institute-health-sciences",
+  "name_ar": "معهد الإكليل للعلوم الصحية والتقنية والإدارية",
+  "name_en": "Al-Ekleel Institute for Health, Technical and Administrative Sciences",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "الحديدة",
+  "city": null,
+  "website": null,
+  "phone": "777173140",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=234"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "gov-tech-d0479dbe",
+  "name_ar": "معهد التقني الاليات وعلوم البحار",
+  "name_en": null,
+  "type": "technical_institute",
+  "ownership": "government",
+  "governorate": "الحديدة",
+  "city": "الحديدة",
+  "website": null,
+  "phone": "773354448",
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gateig.php",
+   "https://www.tanseek.net/crgate.php?cg=237"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "gov-tech-6008d366",
+  "name_ar": "معهد الصماد التقني الصناعي محافظة إب",
+  "name_en": null,
+  "type": "technical_institute",
+  "ownership": "government",
+  "governorate": "إب",
+  "city": null,
+  "website": null,
+  "phone": "770387381",
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gateig.php",
+   "https://tanseek.net/crgate.php?cg=98"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "gov-tech-609a0dea",
+  "name_ar": "معهد العلوم المالية والاقتصادية",
+  "name_en": "Institute of Financial & Economical Science",
+  "type": "technical_institute",
+  "ownership": "government",
+  "governorate": "أمانة العاصمة",
+  "city": "صنعاء",
+  "website": null,
+  "phone": "775557425",
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gateig.php",
+   "https://www.tanseek.net/crgate.php?cg=212"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "applied-science-technology-institute",
+  "name_ar": "معهد العلوم والتكنولوجيا التطبيقي",
+  "name_en": "Applied Science and Technology Institute",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "إب",
+  "city": null,
+  "website": null,
+  "phone": "782832540",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=180",
+   "https://www.tanseek.net/crgate.php?cg=245"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "al-fursan-institute-science-technology",
+  "name_ar": "معهد الفرسان للعلوم والتكنولوجيا",
+  "name_en": "Al-Fursan Institute for Science and Technology",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "المحويت",
+  "city": null,
+  "website": null,
+  "phone": "771397014",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=192"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "turkish-star-institute-medical-administrative",
+  "name_ar": "معهد النجم التركي للعلوم الطبية والإدارية",
+  "name_en": "Turkish Star Institute for Medical and Administrative Sciences",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "صنعاء",
+  "city": null,
+  "website": null,
+  "phone": "771734330",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=264"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "modern-future-technologies-institute",
+  "name_ar": "معهد تقنيات المستقبل الحديث للعلوم الإدارية",
+  "name_en": "Modern Future Technologies Institute for Administrative Sciences",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "تعز",
+  "city": null,
+  "website": null,
+  "phone": "777723785",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=260"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "technology-of-the-age-institute",
+  "name_ar": "معهد تكنولوجيا العصر",
+  "name_en": "Technology of the Age Institute",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "تعز",
+  "city": null,
+  "website": null,
+  "phone": "777575924",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=232"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "delta-science-institute-medical-technical",
+  "name_ar": "معهد دلتا ساينس للعلوم الطبية والتقنية",
+  "name_en": "Delta Science Institute for Medical and Technical Sciences",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "إب",
+  "city": null,
+  "website": null,
+  "phone": "773646202",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=183"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "ruwwad-al-imtiyaz-stars-institute",
+  "name_ar": "معهد رواد الامتياز ستارز للعلوم الطبية والتطبيقية",
+  "name_en": "Ruwwad Al-Imtiyaz Stars Institute for Medical and Applied Sciences",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "صنعاء",
+  "city": null,
+  "website": null,
+  "phone": "774614343",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=227"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "ruwwad-al-tib-technology-institute",
+  "name_ar": "معهد رواد الطب والتكنولوجيا للتدريب والتأهيل",
+  "name_en": "Ruwwad Al-Tib and Technology Institute for Training",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "إب",
+  "city": null,
+  "website": null,
+  "phone": "773516669",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=187"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "sufaraa-al-tib-institute",
+  "name_ar": "معهد سفراء الطب للعلوم والتكنولوجيا",
+  "name_en": "Sufaraa Al-Tib Institute for Science and Technology",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "حجة",
+  "city": null,
+  "website": null,
+  "phone": "771594951",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=190"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "samaa-taiz-institute",
+  "name_ar": "معهد سماء تعز للعلوم الإدارية والتقنية",
+  "name_en": "Samaa Taiz Institute for Administrative and Technical Sciences",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "تعز",
+  "city": null,
+  "website": null,
+  "phone": "734647485",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=240"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "shabab-rawafid-institute",
+  "name_ar": "معهد شباب روافد للتدريب والتأهيل",
+  "name_en": "Shabab Rawafid Institute for Training and Qualification",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "إب",
+  "city": null,
+  "website": null,
+  "phone": "774407406",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=196"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "mawiyah-higher-institute-health-sciences",
+  "name_ar": "معهد ماوية العالي للعلوم الصحية والتقنية",
+  "name_en": "Mawiyah Higher Institute for Health and Technical Sciences",
+  "type": "technical_institute",
+  "ownership": "private",
+  "governorate": "تعز",
+  "city": null,
+  "website": null,
+  "phone": "772839299",
+  "social_links": [],
+  "source_urls": [
+   "https://www.tanseek.net/gateis.php",
+   "https://www.tanseek.net/crgate.php?cg=195"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "gov-tech-61e99321",
+  "name_ar": "معهد وصابين للعلوم الطبية والتقنية",
+  "name_en": null,
+  "type": "technical_institute",
+  "ownership": "government",
+  "governorate": "ذمار",
+  "city": null,
+  "website": null,
+  "phone": "777058095",
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gateig.php",
+   "https://tanseek.net/crgate.php?cg=131"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "edu-2b008ca0ad1a",
+  "name_ar": "الجامعة العربية للعلوم و التقنية",
+  "name_en": "Arab University for Science and Technology",
+  "type": "university",
+  "ownership": "other",
+  "governorate": "صنعاء",
+  "city": "فج عطان",
+  "website": null,
+  "phone": null,
+  "social_links": [
+   {
+    "url": "https://www.facebook.com/alarabiaunv",
+    "label": "فيسبوك"
+   }
+  ],
+  "source_urls": [
+   "https://caqa.gov.ye/",
+   "https://ar.wikipedia.org/wiki/الجامعة_العربية_للعلوم_والتقنية",
+   "https://www.unirank.org/ye/uni/arab-university-for-science-and-technology/"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "abyan-university",
+  "name_ar": "جامعة أبين",
+  "name_en": "Abyan University",
+  "type": "university",
+  "ownership": "government",
+  "governorate": "أبين",
+  "city": null,
+  "website": "https://www.abyan-univ.net/",
+  "phone": null,
+  "social_links": [
+   {
+    "url": "https://www.facebook.com/abyanuniversity",
+    "label": "فيسبوك"
+   }
+  ],
+  "source_urls": [
+   "https://www.abyan-univ.net/pag/1",
+   "https://www.moheye.net/public-universities/",
+   "https://yemen-edu.com/university/14"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "saba-region-university",
+  "name_ar": "جامعة إقليم سبأ",
+  "name_en": "University of Saba Region",
+  "type": "university",
+  "ownership": "government",
+  "governorate": "مأرب",
+  "city": "مأرب",
+  "website": "https://www.usr.ac/",
+  "phone": "+967 6 302008",
+  "social_links": [
+   {
+    "url": "https://twitter.com/Usr_University",
+    "label": "X"
+   },
+   {
+    "url": "https://youtube.com/channel/UCZF1gnR_VW1GI1epjqym5xg",
+    "label": "يوتيوب"
+   }
+  ],
+  "source_urls": [
+   "https://www.usr.ac/aboutuniv",
+   "https://www.usr.ac/college",
+   "https://www.moheye.net/public-universities/"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "edu-6726760c12ff",
+  "name_ar": "جامعة القرآن الكريم والعلوم الأكاديمية",
+  "name_en": null,
+  "type": "university",
+  "ownership": "private",
+  "governorate": "شبوة",
+  "city": null,
+  "website": null,
+  "phone": null,
+  "social_links": [
+   {
+    "url": "https://www.facebook.com/uqasadmin",
+    "label": "فيسبوك"
+   }
+  ],
+  "source_urls": [
+   "https://en.wikipedia.org/wiki/List_of_universities_in_Yemen",
+   "https://yemen-edu.com/university/46",
+   "https://caqa.gov.ye/"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "mahra-university",
+  "name_ar": "جامعة المهرة",
+  "name_en": "Mahrah University",
+  "type": "university",
+  "ownership": "government",
+  "governorate": "المهرة",
+  "city": "الغيضة",
+  "website": "https://mhru.edu.ye/",
+  "phone": null,
+  "social_links": [
+   {
+    "url": "https://www.facebook.com/mahrahUniversity2023",
+    "label": "فيسبوك"
+   }
+  ],
+  "source_urls": [
+   "https://mhru.edu.ye/about/",
+   "https://www.moheye.net/public-universities/",
+   "https://yemen-edu.com/university/11"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "edu-2e3cd2705b4f",
+  "name_ar": "جامعة الوحدة للعلوم والتكنولوجيا",
+  "name_en": null,
+  "type": "university",
+  "ownership": "other",
+  "governorate": null,
+  "city": null,
+  "website": null,
+  "phone": null,
+  "social_links": [
+   {
+    "url": "https://www.facebook.com/alwhdaun",
+    "label": "فيسبوك"
+   }
+  ],
+  "source_urls": [
+   "https://caqa.gov.ye/"
+  ],
+  "researched_before": true
+ },
+ {
+  "slug": "lahj-university",
+  "name_ar": "جامعة لحج",
+  "name_en": "University of Lahej",
+  "type": "university",
+  "ownership": "government",
+  "governorate": "لحج",
+  "city": null,
+  "website": "https://lahejuniversity.net/",
+  "phone": null,
+  "social_links": [
+   {
+    "url": "https://www.facebook.com/profile.php?id=100084316350669",
+    "label": "فيسبوك"
+   }
+  ],
+  "source_urls": [
+   "https://lahejuniversity.net/about-university/",
+   "https://lahejuniversity.net/radfan-faculty/",
+   "https://www.moheye.net/public-universities/"
+  ],
+  "researched_before": false
+ },
+ {
+  "slug": "gov-tech-bd95cc9d",
+  "name_ar": "المعهد المهني الصناعي القاعدة",
+  "name_en": "Industrial Technical Institute Al-Qaedah",
+  "type": "vocational_institute",
+  "ownership": "government",
+  "governorate": "إب",
+  "city": "القاعدة",
+  "website": null,
+  "phone": "772902411",
+  "social_links": [],
+  "source_urls": [
+   "https://tanseek.net/gateig.php",
+   "https://www.tanseek.net/crgate.php?cg=101"
+  ],
+  "researched_before": true
+ }
+]

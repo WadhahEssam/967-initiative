@@ -1,0 +1,1970 @@
+[
+ {
+  "slug": "osm-n13470921398",
+  "name_ar": "مركز الأمومة والطفولة والصحة الانجابية",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "ابين",
+  "city": "زنجبار",
+  "district": "زنجبار",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13470921398"
+  ]
+ },
+ {
+  "slug": "health-1211008",
+  "name_ar": "مستشفى الرازي",
+  "name_en": "Alrazi H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "ابين",
+  "city": "خنفر",
+  "district": "خنفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n1225457967",
+  "name_ar": "مستشفى المحفد",
+  "name_en": "Mustashfa al Mahfid",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "ابين",
+  "city": "المحفد",
+  "district": "المحفد",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1225457967"
+  ]
+ },
+ {
+  "slug": "health-1208001",
+  "name_ar": "مستشفى الوضيع",
+  "name_en": "Alwadhee H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "ابين",
+  "city": "الوضيع",
+  "district": "الوضيع",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-1211041",
+  "name_ar": "مستشفى شقرة الريفي",
+  "name_en": "Shoqra H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "ابين",
+  "city": "خنفر",
+  "district": "خنفر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n6937224555",
+  "name_ar": "مستشفى لودر",
+  "name_en": "Mustashfa Lawdar",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "ابين",
+  "city": "لودر",
+  "district": "لودر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6937224555"
+  ]
+ },
+ {
+  "slug": "osm-n1225579958",
+  "name_ar": "مستشفى مودية",
+  "name_en": "Mustashfa Mudiyah",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "ابين",
+  "city": "موديه",
+  "district": "موديه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1225579958"
+  ]
+ },
+ {
+  "slug": "osm-n6404148587",
+  "name_ar": "الوحدة الصحية أرضة",
+  "name_en": "emergency hospital",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "الضالع",
+  "city": "الشعيب",
+  "district": "الشعيب",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6404148587"
+  ]
+ },
+ {
+  "slug": "osm-n12397990948",
+  "name_ar": "مركز الغراس الصحي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "الضالع",
+  "city": "قرية الغراس",
+  "district": "دمت",
+  "website": "https://g.co/kgs/RYJfWo5",
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12397990948"
+  ]
+ },
+ {
+  "slug": "health-3008023",
+  "name_ar": "مستشفى الأزارق الريفي",
+  "name_en": "Al Azariq Rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "الضالع",
+  "city": "الازارق",
+  "district": "الازارق",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n1226285400",
+  "name_ar": "مستشفى السلام قعطبة",
+  "name_en": "Al-Salam Hospital, Qataba",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "الضالع",
+  "city": "قعطبه",
+  "district": "قعطبه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1226285400"
+  ]
+ },
+ {
+  "slug": "osm-n13470962774",
+  "name_ar": "مستشفى الضالع المركزي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "الضالع",
+  "city": "الضالع",
+  "district": "الضالع",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13470962774"
+  ]
+ },
+ {
+  "slug": "osm-n4867771926",
+  "name_ar": "مستشفى النجار",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "الضالع",
+  "city": "دمت",
+  "district": "دمت",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4867771926"
+  ]
+ },
+ {
+  "slug": "osm-n8545054221",
+  "name_ar": "مستشفى سناح",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "الضالع",
+  "city": "الضالع",
+  "district": "الضالع",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/8545054221"
+  ]
+ },
+ {
+  "slug": "osm-n8545054220",
+  "name_ar": "مستوصف النور",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "الضالع",
+  "city": "الحصين",
+  "district": "الحصين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/8545054220"
+  ]
+ },
+ {
+  "slug": "osm-n1222517259",
+  "name_ar": "المستشفى الريفي قشن",
+  "name_en": "Al Mustashfa ar Rifi Qushn",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "المهره",
+  "city": "قشن",
+  "district": "قشن",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1222517259"
+  ]
+ },
+ {
+  "slug": "health-1916012",
+  "name_ar": "المجمع الصحي السناء (بريدة الجوهيين)",
+  "name_en": "ALsana HC",
+  "type": "medical_complex",
+  "ownership": "government",
+  "governorate": "حضرموت",
+  "city": "غيل بن يمين",
+  "district": "غيل بن يمين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-1927001",
+  "name_ar": "المركز الوطني لعلاج الأورام حضرموت الساحل",
+  "name_en": "Oncology Center",
+  "type": "specialized_hospital",
+  "ownership": "government",
+  "governorate": "حضرموت",
+  "city": "مدينة المكلا",
+  "district": "مدينة المكلا",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n1217778957",
+  "name_ar": "الوحدة الصحية وادي رغدون",
+  "name_en": "Al Wahdah as Sihhiyah Wadi Raghdoon",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "الريدة وقصيعر",
+  "district": "الريدة وقصيعر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1217778957"
+  ]
+ },
+ {
+  "slug": "osm-n3904084333",
+  "name_ar": "عيادة الخطيب لطب الفم والأسنان",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "الحزم",
+  "district": "شبام",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/3904084333"
+  ]
+ },
+ {
+  "slug": "osm-n4356796097",
+  "name_ar": "مركز يعقوب الطبي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "تريم",
+  "district": "تريم",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4356796097"
+  ]
+ },
+ {
+  "slug": "osm-n4298022653",
+  "name_ar": "مستشفى البرج 2",
+  "name_en": "Al Burj Hospital 2",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "مدينة المكلا",
+  "district": "مدينة المكلا",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4298022653"
+  ]
+ },
+ {
+  "slug": "health-1924006",
+  "name_ar": "مستشفى الجول الريفي ( مستشفى الفقيد الشادلي )",
+  "name_en": "Hajar Aljoul rural H (Al Faqeed Al Shadli H)",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "حضرموت",
+  "city": "حجر",
+  "district": "حجر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n13437080621",
+  "name_ar": "مستشفى الدكتور رياض الجريري",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "مدينة المكلا",
+  "district": "مدينة المكلا",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13437080621"
+  ]
+ },
+ {
+  "slug": "health-1918010",
+  "name_ar": "مستشفى القويره",
+  "name_en": "AlGwayrah H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "حضرموت",
+  "city": "دوعن",
+  "district": "دوعن",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-1927012",
+  "name_ar": "مستشفى المكلا للأمومة والطفولة",
+  "name_en": "AlMukalla Maternity and Childhood Hospital",
+  "type": "specialized_hospital",
+  "ownership": "government",
+  "governorate": "حضرموت",
+  "city": "مدينة المكلا",
+  "district": "مدينة المكلا",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n12993446480",
+  "name_ar": "مستشفى بضة",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "دوعن",
+  "district": "دوعن",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12993446480"
+  ]
+ },
+ {
+  "slug": "osm-n4298023464",
+  "name_ar": "مستشفى بن زيلع",
+  "name_en": "Ibn Zaila Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "سيئون",
+  "district": "سيئون",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4298023464"
+  ]
+ },
+ {
+  "slug": "osm-n1222510124",
+  "name_ar": "مستشفى تريم الريفي",
+  "name_en": "Al Mustashfa Tarim ar Rifi",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "تريم",
+  "district": "تريم",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1222510124"
+  ]
+ },
+ {
+  "slug": "health-1902002",
+  "name_ar": "مستشفى ثمود الريفي",
+  "name_en": "Thamoud H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "حضرموت",
+  "city": "ثمود",
+  "district": "ثمود",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-w422347564",
+  "name_ar": "مستشفى حضرموت",
+  "name_en": "Hadhramout Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "مدينة المكلا",
+  "district": "مدينة المكلا",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/422347564"
+  ]
+ },
+ {
+  "slug": "health-1919001",
+  "name_ar": "مستشفى حوره",
+  "name_en": "Hawra H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "حضرموت",
+  "city": "وادي العين",
+  "district": "وادي العين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n6184720786",
+  "name_ar": "مستشفى دوعن",
+  "name_en": "Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "دوعن",
+  "district": "دوعن",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6184720786"
+  ]
+ },
+ {
+  "slug": "health-1901003",
+  "name_ar": "مستشفى رماه الريفي",
+  "name_en": "Ramah rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "حضرموت",
+  "city": "رماه",
+  "district": "رماه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n1226124421",
+  "name_ar": "مستشفى ريفي خورة",
+  "name_en": "Mustashfa Rifi Khawrah",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "وادي العين",
+  "district": "وادي العين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1226124421"
+  ]
+ },
+ {
+  "slug": "health-1910021",
+  "name_ar": "مستشفى سيؤن العام",
+  "name_en": "Sayo'on Public Hospital",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "حضرموت",
+  "city": "سيئون",
+  "district": "سيئون",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n5158567281",
+  "name_ar": "مستشفى صالح بابكر الخيري",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "وادي العين",
+  "district": "وادي العين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5158567281"
+  ]
+ },
+ {
+  "slug": "osm-n4298023922",
+  "name_ar": "مستشفى عيديد الخيري",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "تريم",
+  "district": "تريم",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4298023922"
+  ]
+ },
+ {
+  "slug": "health-1917010",
+  "name_ar": "مستشفى غيل باوزير",
+  "name_en": "Ghail Bawazeer H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "حضرموت",
+  "city": "غيل باوزير",
+  "district": "غيل باوزير",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-1916009",
+  "name_ar": "مستشفى غيل بن يمين",
+  "name_en": "Ghayl Bin yamin Hospital",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "حضرموت",
+  "city": "غيل بن يمين",
+  "district": "غيل بن يمين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-1913019",
+  "name_ar": "مستشفى مديريات الريدة الشرقيه الريفي (مبنى جديد)",
+  "name_en": "Alraida Alsharkia Districts H (Under construction)",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "حضرموت",
+  "city": "الريدة وقصيعر",
+  "district": "الريدة وقصيعر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-1928004",
+  "name_ar": "مستشفى مديرية حريضه",
+  "name_en": "Huraidha rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "حضرموت",
+  "city": "حريضه",
+  "district": "حريضه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-1918015",
+  "name_ar": "مستشفى مقيبل بالجحي",
+  "name_en": "Mukaibel Balhji H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "حضرموت",
+  "city": "دوعن",
+  "district": "دوعن",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n4336604421",
+  "name_ar": "مستشفى هيا عبدالله اليحيا لطب العيون",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "مدينة المكلا",
+  "district": "مدينة المكلا",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4336604421"
+  ]
+ },
+ {
+  "slug": "osm-n1222119460",
+  "name_ar": "مستشفى وادي العين",
+  "name_en": "Mustashfa Wadi al `Ayn",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "وادي العين",
+  "district": "وادي العين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1222119460"
+  ]
+ },
+ {
+  "slug": "osm-w835398700",
+  "name_ar": "مستوصف السلامة",
+  "name_en": "Al-Salamah Clinic",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "الشحر",
+  "district": "الشحر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/835398700"
+  ]
+ },
+ {
+  "slug": "osm-n4327699046",
+  "name_ar": "مستوصف المدينة",
+  "name_en": "City Clinic",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "حضرموت",
+  "city": "سيئون",
+  "district": "سيئون",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4327699046"
+  ]
+ },
+ {
+  "slug": "health-3201011",
+  "name_ar": "مستشفى 22 مايو",
+  "name_en": "22 May H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "سقطرى",
+  "city": "حديبو",
+  "district": "حديبو",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-w459046337",
+  "name_ar": "مستشفى الشيخ خليفة",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "سقطرى",
+  "city": "حديبو",
+  "district": "حديبو",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/459046337"
+  ]
+ },
+ {
+  "slug": "health-2115009",
+  "name_ar": "مستشفى الروضة",
+  "name_en": "Ar Rawdah Hospital",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "شبوه",
+  "city": "الروضه",
+  "district": "الروضه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2110012",
+  "name_ar": "مستشفى الكرموم (مؤقت",
+  "name_en": "Al Karmoom Hospital(temp)",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "شبوه",
+  "city": "نصاب",
+  "district": "نصاب",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2112012",
+  "name_ar": "مستشفى المسحاء الصعيد الريفي",
+  "name_en": "Al Mas'ha Al Saeed Hospital",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "شبوه",
+  "city": "الصعيد",
+  "district": "الصعيد",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2112005",
+  "name_ar": "مستشفى المصينعة",
+  "name_en": "Al Musaina'ah Hospital",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "شبوه",
+  "city": "الصعيد",
+  "district": "الصعيد",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n1225471705",
+  "name_ar": "مستشفى بانافع التخصصي",
+  "name_en": "Banafa Specialized Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "شبوه",
+  "city": "عتق",
+  "district": "عتق",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1225471705"
+  ]
+ },
+ {
+  "slug": "health-2103004",
+  "name_ar": "مستشفى جردان",
+  "name_en": "Jardan H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "شبوه",
+  "city": "جردان",
+  "district": "جردان",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2112011",
+  "name_ar": "مستشفى جمال عبدالناصر",
+  "name_en": "Jamal Abdul Nasser Hospital",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "شبوه",
+  "city": "الصعيد",
+  "district": "الصعيد",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2114002",
+  "name_ar": "مستشفى حبان",
+  "name_en": "Habban Hospital",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "شبوه",
+  "city": "حبان",
+  "district": "حبان",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2117001",
+  "name_ar": "مستشفى رضوم",
+  "name_en": "Rudum Rural Hospital",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "شبوه",
+  "city": "رضوم",
+  "district": "رضوم",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2113011",
+  "name_ar": "مستشفى عتق العام",
+  "name_en": "Ataq general Hospital",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "شبوه",
+  "city": "عتق",
+  "district": "عتق",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2116008",
+  "name_ar": "مستشفى عزان",
+  "name_en": "Azzan Hospital",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "شبوه",
+  "city": "ميفعه",
+  "district": "ميفعه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2106001",
+  "name_ar": "مستشفى عين",
+  "name_en": "Ain H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "شبوه",
+  "city": "عين",
+  "district": "عين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2404003",
+  "name_ar": "المجمع الصحي البريقة",
+  "name_en": "Alburaika Health Complex",
+  "type": "medical_complex",
+  "ownership": "government",
+  "governorate": "عدن",
+  "city": "البريقه",
+  "district": "البريقه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2405001",
+  "name_ar": "المجمع الصحي التواهي",
+  "name_en": "Altwahi Health Complex",
+  "type": "medical_complex",
+  "ownership": "government",
+  "governorate": "عدن",
+  "city": "التواهي",
+  "district": "التواهي",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2402006",
+  "name_ar": "المجمع الصحي الشيخ عثمان",
+  "name_en": "Alshaikh Otman health complex",
+  "type": "medical_complex",
+  "ownership": "government",
+  "governorate": "عدن",
+  "city": "الشيخ عثمان",
+  "district": "الشيخ عثمان",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2403004",
+  "name_ar": "المجمع الصحي القاهرة",
+  "name_en": "Alkahera health complex",
+  "type": "medical_complex",
+  "ownership": "government",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2407002",
+  "name_ar": "المجمع الصحي القطيع",
+  "name_en": "Alkatee'e health complex",
+  "type": "medical_complex",
+  "ownership": "government",
+  "governorate": "عدن",
+  "city": "صيره",
+  "district": "صيره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2406002",
+  "name_ar": "المجمع الصحي المعلا",
+  "name_en": "Almua'ala health complex",
+  "type": "medical_complex",
+  "ownership": "government",
+  "governorate": "عدن",
+  "city": "المعلا",
+  "district": "المعلا",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2407004",
+  "name_ar": "المجمع الصحي الميدان",
+  "name_en": "Almaidan Health Complex",
+  "type": "medical_complex",
+  "ownership": "government",
+  "governorate": "عدن",
+  "city": "صيره",
+  "district": "صيره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2403005",
+  "name_ar": "المجمع الصحي حاشد",
+  "name_en": "Hashed Health Complex",
+  "type": "medical_complex",
+  "ownership": "government",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2408002",
+  "name_ar": "المجمع الصحي خورمكسر",
+  "name_en": "Khurmaksar health complex",
+  "type": "medical_complex",
+  "ownership": "government",
+  "governorate": "عدن",
+  "city": "خور مكسر",
+  "district": "خور مكسر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2403015",
+  "name_ar": "المجمع الصحي كابوتا (بئر فضل)",
+  "name_en": "Kabota Health  complex",
+  "type": "medical_complex",
+  "ownership": "government",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2404006",
+  "name_ar": "المجمع الصحي مدينة الشعب",
+  "name_en": "Madinat Alsha'ab health complex",
+  "type": "medical_complex",
+  "ownership": "government",
+  "governorate": "عدن",
+  "city": "البريقه",
+  "district": "البريقه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n4324765604",
+  "name_ar": "المركز اليمني الكوبي",
+  "name_en": "Yemeni-Cuban Center",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4324765604"
+  ]
+ },
+ {
+  "slug": "osm-n1218235660",
+  "name_ar": "المستشفى الجمهوري",
+  "name_en": "Al Mustashfa al Jumhuri",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "خور مكسر",
+  "district": "خور مكسر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1218235660"
+  ]
+ },
+ {
+  "slug": "osm-n1140517780",
+  "name_ar": "عيادة رأس مربط",
+  "name_en": "Ras Marbat Clinic",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "التواهي",
+  "district": "التواهي",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1140517780"
+  ]
+ },
+ {
+  "slug": "osm-n4323071920",
+  "name_ar": "مركز المدينة الطبي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4323071920"
+  ]
+ },
+ {
+  "slug": "health-2408007",
+  "name_ar": "مركز رعاية الصحة الأولية جامعة عدن",
+  "name_en": "Primary health care center at Aden University",
+  "type": "medical_complex",
+  "ownership": "government",
+  "governorate": "عدن",
+  "city": "خور مكسر",
+  "district": "خور مكسر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n4323071914",
+  "name_ar": "مستشفى 22 مابو",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4323071914"
+  ]
+ },
+ {
+  "slug": "osm-n4323054120",
+  "name_ar": "مستشفى البريهي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4323054120"
+  ]
+ },
+ {
+  "slug": "osm-n4921476121",
+  "name_ar": "مستشفى الريادة الدولي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4921476121"
+  ]
+ },
+ {
+  "slug": "osm-n4711817689",
+  "name_ar": "مستشفى السعيدي التخصصي",
+  "name_en": "Alsaeedy hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "الشيخ عثمان",
+  "district": "الشيخ عثمان",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4711817689"
+  ]
+ },
+ {
+  "slug": "health-2402008",
+  "name_ar": "مستشفى الصداقة التعليمي العام",
+  "name_en": "Alsadaqa teaching hospital",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "عدن",
+  "city": "الشيخ عثمان",
+  "district": "الشيخ عثمان",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n4324756338",
+  "name_ar": "مستشفى النقيب التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4324756338"
+  ]
+ },
+ {
+  "slug": "osm-n4324756339",
+  "name_ar": "مستشفى الوالي التخصصي",
+  "name_en": "Al-Wali Specialized Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4324756339"
+  ]
+ },
+ {
+  "slug": "osm-w173088658",
+  "name_ar": "مستشفى امراض الكلى والقلب",
+  "name_en": "Kidney and Heart Disease Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "الشيخ عثمان",
+  "district": "الشيخ عثمان",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/173088658"
+  ]
+ },
+ {
+  "slug": "osm-n4040613545",
+  "name_ar": "مستشفى بابل",
+  "name_en": "Babel Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "صيره",
+  "district": "صيره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4040613545"
+  ]
+ },
+ {
+  "slug": "osm-n4355754403",
+  "name_ar": "مستشفى باصهيب العسكري",
+  "name_en": "Military Basuhaib Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "التواهي",
+  "district": "التواهي",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4355754403"
+  ]
+ },
+ {
+  "slug": "osm-n6308113385",
+  "name_ar": "مستشفى خليج عدن الدولي",
+  "name_en": "Aden Gulf International Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "المعلا",
+  "district": "المعلا",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6308113385"
+  ]
+ },
+ {
+  "slug": "health-2401001",
+  "name_ar": "مستشفى دارسعد",
+  "name_en": "Dar Sa'ad H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "عدن",
+  "city": "دار سعد",
+  "district": "دار سعد",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n6014304085",
+  "name_ar": "مستشفى صابر",
+  "name_en": "Saber Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6014304085"
+  ]
+ },
+ {
+  "slug": "osm-n4647151089",
+  "name_ar": "مستشفى عدن الألماني",
+  "name_en": "Aden and Germany hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4647151089"
+  ]
+ },
+ {
+  "slug": "osm-n4285409390",
+  "name_ar": "مستوصف الحكمة",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "صيره",
+  "district": "صيره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4285409390"
+  ]
+ },
+ {
+  "slug": "osm-n4813878425",
+  "name_ar": "مستوصف الرشيد. توليد وامراض نساء",
+  "name_en": "Al-Rashid Clinic, Obstetrics and Gynecology",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "خور مكسر",
+  "district": "خور مكسر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4813878425"
+  ]
+ },
+ {
+  "slug": "osm-n6308106586",
+  "name_ar": "مستوصف السلام التخصصي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6308106586"
+  ]
+ },
+ {
+  "slug": "osm-n4285425190",
+  "name_ar": "مستوصف الشعب (الصين) للولادة",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "صيره",
+  "district": "صيره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4285425190"
+  ]
+ },
+ {
+  "slug": "osm-n4040613544",
+  "name_ar": "مستوصف دار الشفاء الطبي",
+  "name_en": "Dar Al Shifa Clinic",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "صيره",
+  "district": "صيره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4040613544"
+  ]
+ },
+ {
+  "slug": "osm-n11349985269",
+  "name_ar": "مستوصف عدن",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/11349985269"
+  ]
+ },
+ {
+  "slug": "osm-n4402047090",
+  "name_ar": "مستوصف مكة الطبي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "عدن",
+  "city": "المنصوره",
+  "district": "المنصوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4402047090"
+  ]
+ },
+ {
+  "slug": "osm-n1223200575",
+  "name_ar": "المستشفى الريفي السلام",
+  "name_en": "Al Mustashfa ar Rifi as Salam",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "يافع",
+  "district": "يافع",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1223200575"
+  ]
+ },
+ {
+  "slug": "osm-n1221924359",
+  "name_ar": "المستشفى الريفي الشط",
+  "name_en": "Al Mustashfa ar Rifi ash Shatt",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "المضاربة و العاره",
+  "district": "المضاربة و العاره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1221924359"
+  ]
+ },
+ {
+  "slug": "osm-n6937218311",
+  "name_ar": "المستشفى الريفي العارة",
+  "name_en": "Al Mustashfa ar Rifi al `Arah",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "المضاربة و العاره",
+  "district": "المضاربة و العاره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6937218311"
+  ]
+ },
+ {
+  "slug": "osm-n1226323257",
+  "name_ar": "المستشفى الريفي المسيمير",
+  "name_en": "Al Mustashfa ar Rifi al Musaymir",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "المسيمير",
+  "district": "المسيمير",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1226323257"
+  ]
+ },
+ {
+  "slug": "osm-n1225650212",
+  "name_ar": "المستشفى الريفي المفلحي",
+  "name_en": "Al Mustashfa ar Rifi al Muflahi",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "المفلحي",
+  "district": "المفلحي",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1225650212"
+  ]
+ },
+ {
+  "slug": "osm-n1226276805",
+  "name_ar": "المستشفى الريفي حبيل الريدة",
+  "name_en": "Al Mustashfa ar Rifi Habil ar Raydah",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "حالمين",
+  "district": "حالمين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1226276805"
+  ]
+ },
+ {
+  "slug": "osm-n1226277975",
+  "name_ar": "المستشفى الريفي حبيل جبر",
+  "name_en": "Al Mustashfa ar Rifi Habil Jabr",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "حبيل جبر",
+  "district": "حبيل جبر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1226277975"
+  ]
+ },
+ {
+  "slug": "osm-n1225651241",
+  "name_ar": "المستشفى الريفي يهر",
+  "name_en": "Al Mustashfa ar Rifi Yahr",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "يهر",
+  "district": "يهر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1225651241"
+  ]
+ },
+ {
+  "slug": "osm-n4677865603",
+  "name_ar": "مركز رعاية الامومة والطفولة الحوطة",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "الحوطه",
+  "district": "الحوطه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4677865603"
+  ]
+ },
+ {
+  "slug": "osm-n6937224329",
+  "name_ar": "مستشفى إبن خلدون",
+  "name_en": "Mustashfa Ibn Khaldun",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "تبن",
+  "district": "تبن",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6937224329"
+  ]
+ },
+ {
+  "slug": "osm-w1041997284",
+  "name_ar": "مستشفى البنك الدولي",
+  "name_en": "World Bank Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "يافع",
+  "district": "يافع",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/1041997284"
+  ]
+ },
+ {
+  "slug": "osm-n1225429097",
+  "name_ar": "مستشفى الحبيلين",
+  "name_en": "Mustashfa al Habilayn",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "ردفان",
+  "district": "ردفان",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1225429097"
+  ]
+ },
+ {
+  "slug": "osm-n1223197140",
+  "name_ar": "مستشفى الحد",
+  "name_en": "Mustashfa al Hadd",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "الحد",
+  "district": "الحد",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1223197140"
+  ]
+ },
+ {
+  "slug": "health-2501006",
+  "name_ar": "مستشفى الحد الريفي",
+  "name_en": "Alhad rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "لحج",
+  "city": "الحد",
+  "district": "الحد",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2513012",
+  "name_ar": "مستشفى الشط",
+  "name_en": "Alshat rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "لحج",
+  "city": "المضاربة و العاره",
+  "district": "المضاربة و العاره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2513009",
+  "name_ar": "مستشفى العاره الريفي",
+  "name_en": "Ala'ara rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "لحج",
+  "city": "المضاربة و العاره",
+  "district": "المضاربة و العاره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2509009",
+  "name_ar": "مستشفى المسيمير الريفي",
+  "name_en": "Almusaimeer rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "لحج",
+  "city": "المسيمير",
+  "district": "المسيمير",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2515021",
+  "name_ar": "مستشفى الوهط الريفي",
+  "name_en": "Alwaht Rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "لحج",
+  "city": "تبن",
+  "district": "تبن",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "health-2505009",
+  "name_ar": "مستشفى حبيل جبر الريفي",
+  "name_en": "Habil Aljubair rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "لحج",
+  "city": "حبيل جبر",
+  "district": "حبيل جبر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n4985113723",
+  "name_ar": "مستشفى راس العارة",
+  "name_en": "Ras Al Arah Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "المضاربة و العاره",
+  "district": "المضاربة و العاره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4985113723"
+  ]
+ },
+ {
+  "slug": "health-2511004",
+  "name_ar": "مستشفى طور الباحة",
+  "name_en": "Tour Albaha H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "لحج",
+  "city": "طور الباحه",
+  "district": "طور الباحه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-n6937224404",
+  "name_ar": "مستشفى علي جاحص",
+  "name_en": "Mustashfa `Ali Jahis",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "الحوطه",
+  "district": "الحوطه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6937224404"
+  ]
+ },
+ {
+  "slug": "health-2504002",
+  "name_ar": "مستشفى يهر الريفي",
+  "name_en": "yaher rural H",
+  "type": "hospital",
+  "ownership": "government",
+  "governorate": "لحج",
+  "city": "يهر",
+  "district": "يهر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ },
+ {
+  "slug": "osm-w790970072",
+  "name_ar": "مكرز الصفاء الطبي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "لحج",
+  "city": "تبن",
+  "district": "تبن",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/790970072"
+  ]
+ },
+ {
+  "slug": "health-2514003",
+  "name_ar": "هيئة مستشفى إبن خلدون",
+  "name_en": "Ibn Khaldon Authority H",
+  "type": "referral_hospital",
+  "ownership": "government",
+  "governorate": "لحج",
+  "city": "الحوطه",
+  "district": "الحوطه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://data.humdata.org/dataset/yemen-herams-dataset-2020-list-of-health-facilities"
+  ]
+ }
+]
