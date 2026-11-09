@@ -52,10 +52,10 @@ test('the existing shared header summary sends only counts, settings, and the la
  const header=read('components/Header.jsx');
  const api=read('app/api/messages/route.js');
  const ui=read('components/messages/PrivateMessaging.jsx');
- assert.match(header,/advanceMessageAlert\(messageAlertRef\.current,result,path\)/);
+ assert.match(header,/advanceMessageAlert\(messageAlertRef\.current,result,pathRef\.current\)/);
  assert.match(header,/playMessageChime\(messageAudioRef\.current\)/);
  assert.match(header,/window\.addEventListener\('pointerdown',unlock/);
- assert.match(header,/window\.setInterval\(refresh,30000\)/);
+ assert.match(header,/window\.setInterval\(refresh,60000\)/);
  assert.match(header,/document\.visibilityState !== 'visible'/);
  assert.match(api,/\.neq\('sender_id',user\.id\)/);
  assert.match(api,/latest_incoming_unread_at/);

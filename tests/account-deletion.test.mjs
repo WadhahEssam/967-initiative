@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {validateManagementAction} from '../lib/managementUsers.js';
 
-const read=path=>readFileSync(new URL('../'+path,import.meta.url),'utf8');
+// Windows checkouts may use CRLF; the patterns below are written for LF.
+const read=path=>readFileSync(new URL('../'+path,import.meta.url),'utf8').replace(/\r\n/g,'\n');
 const migration=read('supabase/migrations/20261109120000_account_deletion_release.sql');
 const route=read('app/api/admin/users/route.js');
 

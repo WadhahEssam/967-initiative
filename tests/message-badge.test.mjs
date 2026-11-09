@@ -28,9 +28,11 @@ test('header badge is restricted to signed-in users, refreshes on focus, and sto
  assert.match(header,/setMessageCounts\(\{unread:0,requests:0\}\)/);
  assert.match(header,/fetch\('\/api\/messages\?mode=summary'/);
  assert.match(header,/cache:'no-store'/);
- assert.match(header,/window\.setInterval\(refresh,30000\)/);
+ assert.match(header,/window\.setInterval\(refresh,60000\)/);
+ assert.match(header,/\}, \[db,sessionUserId\]\);/,'navigating does not restart the poll');
+ assert.match(header,/returning\.due\(\)/,'returning to the tab refreshes at most every 15 s');
  assert.match(header,/document\.visibilityState !== 'visible'/);
- assert.match(header,/window\.addEventListener\('focus',refresh\)/);
+ assert.match(header,/window\.addEventListener\('focus',onReturn\)/);
  assert.match(header,/window\.addEventListener\('967:messages-changed',refresh\)/);
  assert.match(header,/window\.removeEventListener\('967:messages-changed',refresh\)/);
  assert.match(header,/active=false;/);
