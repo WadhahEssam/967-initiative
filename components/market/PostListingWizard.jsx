@@ -7,6 +7,7 @@ import {CATEGORIES,CONDITIONS,CURRENCIES,OTHER,findSubcategory} from '@/lib/mark
 import {listingCompleteness,listingHighlights,suggestTitle} from '@/lib/market/listing';
 import {formatPrice,listingPath} from '@/lib/market/format';
 import {compressForUpload} from '@/lib/market/clientImage';
+import {marketApi} from '@/lib/market/clientApi';
 import styles from './PostListing.module.css';
 
 const ICONS={car:Car,home:House,phone:Smartphone,sun:Sun,sofa:Sofa,shirt:Shirt,paw:PawPrint,tools:Wrench,ball:Dumbbell,box:Package};
@@ -14,15 +15,7 @@ const STEPS=['الصور','ماذا تبيع؟','التفاصيل','السعر �
 const LOCAL_KEY='967-market-draft';
 const MAX_PHOTOS=10;
 
-// Requests with the member's session token (the site authenticates API calls with Bearer tokens).
-async function api(path,{method='GET',body,form}={}){
- const db=browserDb();const {data}=await db.auth.getSession();
- if(!data.session)throw Object.assign(new Error('سجّل الدخول لإضافة إعلان.'),{status:401});
- const response=await fetch(path,{method,cache:'no-store',headers:{Authorization:'Bearer '+data.session.access_token,...(body?{'Content-Type':'application/json'}:{})},body:form||(body?JSON.stringify(body):undefined)});
- const result=await response.json().catch(()=>({}));
- if(!response.ok)throw Object.assign(new Error(result.error||'تعذر إتمام الطلب.'),{status:response.status,code:result.code,field:result.field});
- return result;
-}
+const api=(path,options={})=>marketApi(path,{signInMessage:'سجّل الدخول لإضافة إعلان.',...options});
 const empty=value=>value===undefined||value===null||value==='';
 
 function Chips({options,value,onChange,label}){
