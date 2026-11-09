@@ -55,6 +55,8 @@
 .avatar{display:grid;place-items:center;inline-size:46px;block-size:46px;border-radius:50%;background:var(--c-accent-soft);color:var(--c-accent);font-weight:600;font-size:18px;flex:none}
 .seller div{display:grid;gap:2px;min-width:0}
 .seller small{color:var(--c-ink-3)}
+.sellerName{font-weight:600;color:var(--c-ink);text-decoration:none}
+.sellerName:hover{color:var(--c-accent);text-decoration:underline}
 .block{padding:0 16px}
 @media(min-width:900px){.block{padding:0}}
 .block h2{font-size:17px;margin:16px 0 8px}

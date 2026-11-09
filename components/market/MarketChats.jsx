@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element -- chat photos are signed private links and listing covers are 480 px thumbnails; next/image would add nothing. */
 import {useCallback,useEffect,useRef,useState} from 'react';
 import Link from 'next/link';
-import {ArrowRight,Check,HandCoins,ImagePlus,Package,Send,ShieldCheck,Store,X} from 'lucide-react';
+import {ArrowRight,Check,HandCoins,ImagePlus,Package,Send,ShieldCheck,Star,Store,X} from 'lucide-react';
 import OfferForm from './OfferForm';
 import {marketApi} from '@/lib/market/clientApi';
 import {compressForUpload} from '@/lib/market/clientImage';
@@ -139,6 +139,7 @@ function ChatThread({data=null,draft=null,onBack,reload,onStarted}){
    <span className={styles.partner}>{data?.chat.partnerName||draft?.sellerName}</span>
   </header>
   {status==='sold'&&<p className={styles.banner}>تم البيع. تبقى المحادثة مقروءة.</p>}
+  {data?.rating?.canRate&&<Link href={'/market/rate/'+data.chat.id} className={styles.rateBanner}><Star size={16} aria-hidden="true"/> قيّم تعاملك مع البائع</Link>}
   {status==='reserved'&&role==='buyer'&&(data?.listing.reservedForMe?<p className={styles.bannerGood}>البائع حجز الإعلان لك.</p>:<p className={styles.banner}>الإعلان محجوز حاليًا، ويمكنك مراسلة البائع أو تقديم عرض.</p>)}
   {safety&&<div className={styles.safety} role="note">
    <ShieldCheck size={18} aria-hidden="true"/>
