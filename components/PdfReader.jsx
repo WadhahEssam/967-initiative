@@ -23,7 +23,7 @@ function LeafSide({image,number,side}){
  </div>;
 }
 
-export default function PdfReader({url,title}){
+export default function PdfReader({url,title,downloadHref=url}){
  const readerRef=useRef(null),viewRef=useRef(null),pdf=useRef(null),cache=useRef(new Map()),pending=useRef(new Map()),gesture=useRef(null),textCache=useRef(new Map()),searchRequest=useRef({id:0});
  const [count,setCount]=useState(0),[page,setPage]=useState(1),[zoom,setZoom]=useState(1);
  const [pageInput,setPageInput]=useState('1'),[attempt,setAttempt]=useState(0),[pageTexts,setPageTexts]=useState({}),[fullMessage,setFullMessage]=useState('');
@@ -183,7 +183,7 @@ export default function PdfReader({url,title}){
     <button className={flipOn?'active-control':''} title={flipOn?'إيقاف تأثير تقليب الورق':'تفعيل تقليب الورق'} aria-pressed={flipOn} onClick={()=>setFlipOn(v=>!v)}><BookOpen size={18}/><span className="flip-label">تقليب الورق</span></button>
     <button className={double?'active-control':''} title="عرض صفحتين على الكمبيوتر" aria-label="عرض صفحتين" aria-pressed={double} disabled={viewWidth<760||Boolean(turn)} onClick={()=>{setTurn(null);setSpread(v=>!v);}}><Columns2 size={19}/></button>
     <button title={full?'إنهاء ملء الشاشة':'ملء الشاشة'} aria-label={full?'إنهاء ملء الشاشة':'ملء الشاشة'} onClick={toggleFull}>{full?<Minimize2 size={19}/>:<Maximize2 size={19}/>}</button>
-    <a title="تحميل العدد" aria-label="تحميل العدد" href={url} download target="_blank" rel="noopener noreferrer"><Download size={19}/></a>
+    <a title="تحميل العدد" aria-label="تحميل العدد" href={downloadHref} target="_blank" rel="noopener noreferrer"><Download size={19}/></a>
    </div>
   </div>
   {fullMessage&&<p className="pdf-notice" role="status">{fullMessage}</p>}
