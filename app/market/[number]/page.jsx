@@ -88,6 +88,6 @@ export default async function ListingPage({params}){
    <div className={styles.facts}><span>رقم الإعلان {listing.number}</span><span><Eye size={13} aria-hidden="true"/> {listing.views} مشاهدة</span>{listing.saves>0&&<span>حفظه {listing.saves}</span>}</div>
    {similar.length>0&&<><h2>إعلانات مشابهة</h2><div className={styles.grid}>{similar.map(item=><ListingCard key={item.id} listing={item}/>)}</div></>}
   </section>
-  <ListingContactBar title={listing.title} price={price} whatsapp={listing.whatsapp} negotiable={listing.negotiable&&listing.status==='active'} url={siteUrl(listingPath(listing.number))}/>
+  <ListingContactBar listingId={listing.id} title={listing.title} price={price} whatsapp={listing.whatsapp} negotiable={listing.negotiable&&listing.status==='active'} url={siteUrl(listingPath(listing.number))}/>
  </div>;
 }
