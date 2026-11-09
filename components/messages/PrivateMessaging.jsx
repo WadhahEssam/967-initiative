@@ -11,9 +11,12 @@ import {buildMessageTimeline,messageClock} from '@/lib/messageTimeline';
 import {placeMessageMenu} from '@/lib/messageMenuPlacement';
 import MemberLink from '@/components/members/MemberLink';
 import ProfileAvatar from '@/components/design/ProfileAvatar';
-import MarketChats from '@/components/market/MarketChats';
+import dynamic from 'next/dynamic';
 import useMarketChatCount from '@/components/market/useMarketChatCount';
 import styles from './PrivateMessaging.module.css';
+
+// «سوق 967» chats load only when their tab is opened (most visits to /messages never open it).
+const MarketChats=dynamic(()=>import('@/components/market/MarketChats'),{ssr:false,loading:()=><p style={{padding:'20px 16px',color:'var(--c-ink-2)'}}>جارٍ تحميل محادثات السوق…</p>});
 
 const date=value=>value?new Intl.DateTimeFormat('ar',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(value)):'';
 const defaults={discoverable:true,allow_requests:true,notify_messages:true};

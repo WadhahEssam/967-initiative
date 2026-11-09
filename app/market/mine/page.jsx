@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import MarketTopBar from '@/components/market/MarketTopBar';
 import MyListings from '@/components/market/MyListings';
 import {pageMetadata} from '@/lib/seo';
 import styles from '@/components/market/Market.module.css';
@@ -7,7 +7,7 @@ export const metadata=pageMetadata({title:'إعلاناتي — سوق 967',desc
 
 export default function MarketMine(){
  return <div className={styles.page}>
-  <nav className={styles.crumbs} aria-label="مسار الصفحة"><Link href="/market">سوق 967</Link></nav>
+  <MarketTopBar current="mine"/>
   <h1 className={styles.pageTitle}>إعلاناتي</h1>
   <MyListings/>
  </div>;

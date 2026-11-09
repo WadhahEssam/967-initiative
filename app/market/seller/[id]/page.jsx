@@ -4,6 +4,7 @@ import {notFound} from 'next/navigation';
 import {CalendarDays,MapPin,MessageCircle,Package,ShoppingBag,Star} from 'lucide-react';
 import ListingCard from '@/components/market/ListingCard';
 import RatingList from '@/components/market/RatingList';
+import MarketTopBar from '@/components/market/MarketTopBar';
 import {MemberSafety} from '@/components/market/SafetyDialogs';
 import {getMarketPlaces} from '@/lib/market/places';
 import {RATING_CRITERIA,MIN_RATINGS_SHOWN,ratingSummary,responseText} from '@/lib/market/ratings';
@@ -40,6 +41,7 @@ export default async function SellerPage({params,searchParams}){
  const summary=ratingSummary(stats);
  const response=responseText(stats);
  return <div className={market.page} data-seller={seller.id} data-seller-page="">
+  <MarketTopBar/>
   <header className={styles.profile}>
    <span className={styles.avatar}>{seller.avatar?<img src={seller.avatar} alt="" width={72} height={72}/>:seller.name.trim().charAt(0)}</span>
    <div>
@@ -61,7 +63,7 @@ export default async function SellerPage({params,searchParams}){
    <Link href={'/market/seller/'+seller.id} aria-current={tab==='active'?'page':undefined}>الإعلانات النشطة ({active.length})</Link>
    <Link href={'/market/seller/'+seller.id+'?tab=sold'} aria-current={tab==='sold'?'page':undefined}>تم البيع ({sold.length})</Link>
   </nav>
-  {tab==='active'?(active.length?<div className={market.grid}>{active.map(item=><ListingCard key={item.id} listing={item}/>)}</div>:<p className={styles.notice}>لا توجد إعلانات نشطة الآن.</p>)
+  {tab==='active'?(active.length?<div className={market.grid}>{active.map((item,index)=><ListingCard key={item.id} listing={item} index={index}/>)}</div>:<p className={styles.notice}>لا توجد إعلانات نشطة الآن.</p>)
    :(sold.length?<ul className={styles.soldList}>{sold.map(item=><li key={item.id}>
     <span className={styles.thumb}>{item.cover?<img src={item.cover} alt="" loading="lazy"/>:<Package size={22} aria-hidden="true"/>}</span>
     <div><strong>{item.title}</strong><small>بيع {formatArabicDate(item.soldAt,{year:'numeric',month:'long',day:'numeric'})}</small>{item.rating!==null&&<small className={styles.soldRating}>تقييم المشتري {item.rating} من 5</small>}</div>

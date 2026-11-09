@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import MarketTopBar from '@/components/market/MarketTopBar';
 import SavedSearchesList from '@/components/market/SavedSearchesList';
 import {pageMetadata} from '@/lib/seo';
 import styles from '@/components/market/Market.module.css';
@@ -7,7 +7,7 @@ export const metadata=pageMetadata({title:'بحوثي المحفوظة — سو�
 
 export default function MarketSavedSearches(){
  return <div className={styles.page}>
-  <nav className={styles.crumbs} aria-label="مسار الصفحة"><Link href="/market">سوق 967</Link></nav>
+  <MarketTopBar/>
   <h1 className={styles.pageTitle}>بحوثي المحفوظة</h1>
   <p className={styles.lead}>يصلك إشعار عند نزول إعلان جديد يطابق أي بحث فعّلت إشعاره.</p>
   <SavedSearchesList/>

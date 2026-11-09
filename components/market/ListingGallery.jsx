@@ -4,8 +4,8 @@ import {ChevronLeft,ChevronRight} from 'lucide-react';
 import styles from './Market.module.css';
 
 // Swipeable photos (CSS scroll-snap, no library) with a «1/6» counter; arrows on screens with a
-// mouse. The first photo loads first (it is what the buyer looks at); the others load as they come
-// into view. `children` sit over the photos (back, save, share).
+// mouse. Phones get the 800px «medium» size (about a third of «full»). The first photo loads first
+// (it is what the buyer looks at); the others load as they come into view. `children` sit over the photos (back, save, share).
 export default function ListingGallery({images,title,children}){
  const track=useRef(null);
  const frame=useRef(0);
@@ -21,7 +21,7 @@ export default function ListingGallery({images,title,children}){
    onKeyDown={event=>{if(event.key==='ArrowLeft'){event.preventDefault();go(index+1);}if(event.key==='ArrowRight'){event.preventDefault();go(index-1);}}}>
    {images.map((image,i)=><figure key={image.id} className={styles.slide}>
     {/* eslint-disable-next-line @next/next/no-img-element */}
-    <img src={'/api/market/img/'+image.id+'/full'} alt={i===0?title:title+' — صورة '+(i+1)} width={image.w} height={image.h} loading={i===0?'eager':'lazy'} fetchPriority={i===0?'high':undefined} decoding="async"/>
+    <img src={'/api/market/img/'+image.id+'/medium'} srcSet={'/api/market/img/'+image.id+'/medium 800w, /api/market/img/'+image.id+'/full 1280w'} sizes="(min-width: 900px) 600px, 100vw" alt={i===0?title:title+' — صورة '+(i+1)} width={image.w} height={image.h} loading={i===0?'eager':'lazy'} fetchPriority={i===0?'high':undefined} decoding="async"/>
    </figure>)}
   </div>
   {children}

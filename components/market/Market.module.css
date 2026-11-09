@@ -6,7 +6,7 @@
 @media(min-width:761px){.page{padding-bottom:64px}}
 .crumbs{margin:12px 0 0;font-size:var(--t-size-meta)}
 .crumbs a{color:var(--c-ink-3)}
-.pageTitle{margin:6px 0 4px;font-size:var(--t-size-h2);font-weight:600;line-height:1.4}
+.pageTitle{margin:16px 0 8px;font-size:var(--t-size-h2);font-weight:600;line-height:1.4}
 .lead{margin:0 0 12px;color:var(--c-ink-2);font-size:var(--t-size-ui);line-height:1.7}
 .sectionTitle{margin:0;font-size:var(--t-size-h3);font-weight:600;line-height:1.4}
 .sectionHead,.feedHead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:16px 0 10px}

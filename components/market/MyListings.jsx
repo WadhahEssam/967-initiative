@@ -2,14 +2,17 @@
 /* eslint-disable @next/next/no-img-element -- listing covers are 480 px thumbnails; next/image would add nothing. */
 import {useEffect,useState} from 'react';
 import Link from 'next/link';
-import {Eye,Heart,MessageCircle,Package,Plus,HandCoins} from 'lucide-react';
+import {Eye,Heart,MessageCircle,Package,HandCoins} from 'lucide-react';
 import {marketApi,marketSession} from '@/lib/market/clientApi';
 import {STATUS_LABELS,formatPrice,listingPath,timeAgo} from '@/lib/market/format';
+import ui from './ui.module.css';
 import styles from './MyListings.module.css';
 
 // What each status allows (the server checks the same rules).
 const ACTIONS={draft:[],pending_review:[],active:['sold','reserve'],reserved:['sold','available'],expired:['renew'],sold:[]};
-const LABELS={sold:'تم البيع',reserve:'محجوز',available:'إعادته متاحًا',renew:'تجديد 30 يومًا'};
+const LABELS={sold:'تم البيع',reserve:'احجزه',available:'أعده متاحًا',renew:'جدّده 30 يومًا'};
+// Tabs by state, so a seller with many listings finds the ones that need them. Only tabs with listings show.
+const TABS=[['all','الكل',()=>true],['active','نشطة',item=>item.status==='active'],['reserved','محجوزة',item=>item.status==='reserved'],['review','قيد المراجعة',item=>item.status==='pending_review'],['sold','مباعة',item=>item.status==='sold'],['expired','منتهية',item=>item.status==='expired'],['draft','مسودات',item=>item.status==='draft']];
 const EDITABLE=['active','reserved','pending_review'];
 const daysLeft=value=>{const time=Date.parse(value);return Number.isFinite(time)?Math.max(0,Math.ceil((time-Date.now())/86400000)):null;};
 
@@ -22,7 +25,9 @@ export default function MyListings(){
  const [busy,setBusy]=useState(null);
  const [error,setError]=useState('');
  const [phone,setPhone]=useState(null);
- const load=()=>marketApi('/api/market/mine').then(result=>{setItems(result.items);setPhone(result.phone||null);}).catch(e=>{setError(e.message);setItems(current=>current||[]);});
+ const [tab,setTab]=useState('all');
+ const [failed,setFailed]=useState(false);
+ const load=()=>marketApi('/api/market/mine').then(result=>{setItems(result.items);setPhone(result.phone||null);setFailed(false);}).catch(e=>{setError(e.message);setFailed(true);setItems(current=>current||[]);});
  useEffect(()=>{marketSession().then(session=>session?load():setSignedOut(true));},[]);
  const change=async(id,action)=>{
   setBusy(id);setError('');setAsking(null);
@@ -32,6 +37,10 @@ export default function MyListings(){
  };
  if(signedOut)return <p className={styles.empty}>سجّل الدخول لترى إعلاناتك. <Link href="/login?next=/market/mine">تسجيل الدخول</Link></p>;
  if(!items)return <p className={styles.empty} aria-busy="true">جارٍ التحميل…</p>;
+ if(failed&&!items.length)return <p className={styles.error} role="alert">{error||'تعذر تحميل إعلاناتك.'} <button type="button" className={styles.link} onClick={load}>أعد المحاولة</button></p>;
+ const tabs=TABS.map(([key,label,test])=>({key,label,count:items.filter(test).length})).filter(item=>item.key==='all'||item.count>0);
+ const shown=items.filter(TABS.find(([key])=>key===tab)?.[2]||(()=>true));
+ const waiting=items.filter(item=>item.askSold||item.askDeal).length;
  const forgetPhone=async()=>{
   if(!window.confirm('حذف رقم واتساب من حسابك؟ يختفي زر واتساب من كل إعلاناتك.'))return;
   setBusy('phone');setError('');
@@ -41,9 +50,11 @@ export default function MyListings(){
  };
  return <>
   {error&&<p className={styles.error} role="alert">{error}</p>}
-  {!items.length?<p className={styles.empty}>لم تنشر أي إعلان بعد. <Link href="/market/new">أضف إعلانك الأول</Link></p>:
+  {waiting>0&&<p className={styles.attention} role="status">{waiting===1?'إعلان واحد ينتظر ردك':waiting+' إعلانات تنتظر ردك'}: أجب عن السؤال تحته.</p>}
+  {tabs.length>2&&<nav className={styles.tabs} aria-label="حالات الإعلانات">{tabs.map(item=><button key={item.key} type="button" className={ui.chip} aria-pressed={tab===item.key} onClick={()=>setTab(item.key)}>{item.label} <span className={styles.tabCount}>{item.count}</span></button>)}</nav>}
+  {!items.length?<div className={ui.empty}><strong>لم تنشر أي إعلان بعد</strong><span>صوّر ما تريد بيعه، وانشره مجانًا في أقل من دقيقة.</span><Link href="/market/new">أضف إعلانك الأول</Link></div>:
   <ul className={styles.list}>
-   {items.map(item=><li key={item.id} className={styles.item} data-status={item.status}>
+   {[...shown].sort((a,b)=>(b.askSold||b.askDeal)-(a.askSold||a.askDeal)).map(item=><li key={item.id} className={styles.item} data-status={item.status}>
     <Link href={item.status==='draft'?'/market/new?draft='+item.id:listingPath(item.number)} className={styles.thumb} aria-label={item.title||'مسودة'}>
      {item.cover?<img src={item.cover} alt="" loading="lazy"/>:<Package size={24} aria-hidden="true"/>}
     </Link>
@@ -90,7 +101,6 @@ export default function MyListings(){
     </div>
    </li>)}
   </ul>}
-  <Link href="/market/new" className={styles.add}><Plus size={18} aria-hidden="true"/> أضف إعلانًا</Link>
   {phone&&<p className={styles.phone}>رقم واتساب المحفوظ في حسابك: <bdi>{phone}</bdi>. يظهر فقط في الإعلانات التي اخترت فيها زر واتساب. <button type="button" className={styles.link} disabled={busy==='phone'} onClick={forgetPhone}>حذف الرقم</button></p>}
  </>;
 }
