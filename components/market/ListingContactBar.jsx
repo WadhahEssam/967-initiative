@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useState} from 'react';
+import {createPortal} from 'react-dom';
 import Link from 'next/link';
 import {HandCoins,MessageCircle,Settings2,Share2,X} from 'lucide-react';
 import {whatsappLink} from '@/lib/market/format';
@@ -43,11 +44,12 @@ export default function ListingContactBar({listingId,sellerId,title,price,amount
    </>}
    <button type="button" className={styles.contactIcon} onClick={share} aria-label="مشاركة الإعلان"><Share2 size={18}/></button>
   </div>
-  {offering&&<div className={chatStyles.dialog} role="dialog" aria-modal="true" aria-labelledby="offer-title" onClick={event=>{if(event.target===event.currentTarget)setOffering(false);}}>
+  {/* In <body>, so it sits above the site's bottom tab bar. */}
+  {offering&&createPortal(<div className={chatStyles.dialog} role="dialog" aria-modal="true" aria-labelledby="offer-title" onClick={event=>{if(event.target===event.currentTarget)setOffering(false);}}>
    <div className={chatStyles.dialogBox}>
     <div className={chatStyles.dialogHead}><h2 id="offer-title">عرض سعر</h2><button type="button" onClick={()=>setOffering(false)} aria-label="إغلاق"><X size={18}/></button></div>
     <OfferForm price={amount} currency={currency} busy={busy} error={error} onSubmit={sendOffer} onCancel={()=>setOffering(false)}/>
    </div>
-  </div>}
+  </div>,document.body)}
  </>;
 }
