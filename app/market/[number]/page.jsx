@@ -58,8 +58,9 @@ export default async function ListingPage({params}){
  const {db,places,listing}=data;
  await countView(db,listing);
  const sub=findSubcategory(listing.category,listing.subcategory),category=findCategory(listing.category);
+ // «الحالة» is optional for property and animals: rows without a value are left out.
  const specs=[['الفئة',[category?.label,sub?.label].filter(Boolean).join(' / ')],['الحالة',conditionLabel(listing.condition)],
-  ...(sub?.fields||[]).filter(field=>field.key!=='area_unit').map(field=>[field.label,attributeText(sub,field.key,listing.attributes)]).filter(([,value])=>value)];
+  ...(sub?.fields||[]).filter(field=>field.key!=='area_unit').map(field=>[field.label,attributeText(sub,field.key,listing.attributes)])].filter(([,value])=>value);
  const similar=await similarListings(db,listing,places).catch(()=>[]);
  const price=formatPrice(listing.price,listing.currency);
  return <div className={styles.listing}>

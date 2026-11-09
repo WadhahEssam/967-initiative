@@ -112,3 +112,14 @@ test('uploads need a market member, go to tmp/, and are served from a disk cache
  assert.ok(serve.includes("'public, max-age=31536000, immutable'")&&serve.includes('rename(temporary,file)'));
  assert.ok(read('lib/market/uploads.js').includes(".eq('owner_id',ownerId)"),'only the owner\'s uploads can be attached');
 });
+
+test('«الحالة» is required for goods and optional for property and animals',()=>{
+ assert.throws(()=>validateListing(car({condition:null}),{complete:true,places}),error=>error.field==='condition');
+ const base={price:'1000',currency:'YER_OLD',governorate_id:'YE15',district_id:'YE1501'};
+ const land=validateListing({...base,category:'real_estate',subcategory:'land',attributes:{land_type:'residential',area:4,area_unit:'libna'}},{complete:true,places});
+ assert.equal(land.condition,null);
+ const sheep=validateListing({...base,category:'animals',subcategory:'livestock',attributes:{type:'sheep',count:10}},{complete:true,places});
+ assert.equal(sheep.condition,null);
+ assert.equal(validateListing({...base,category:'animals',subcategory:'livestock',condition:'new',attributes:{type:'sheep',count:10}},{complete:true,places}).condition,'new','a seller may still choose one');
+ assert.throws(()=>validateListing({...base,category:'animals',subcategory:'livestock',condition:'broken',attributes:{type:'sheep',count:10}},{complete:true,places}),/حالة المنتج/);
+});

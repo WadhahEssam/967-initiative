@@ -3,7 +3,7 @@ import {useCallback,useEffect,useMemo,useRef,useState} from 'react';
 import Link from 'next/link';
 import {Car,Check,ChevronLeft,ChevronRight,Dumbbell,House,ImagePlus,Package,PawPrint,Shirt,Smartphone,Sofa,Star,Sun,Trash2,Wrench} from 'lucide-react';
 import {browserDb} from '@/lib/supabase';
-import {CATEGORIES,CONDITIONS,CURRENCIES,OTHER,findSubcategory} from '@/lib/market/catalog';
+import {CATEGORIES,CONDITIONS,CURRENCIES,OTHER,conditionRequired,findSubcategory} from '@/lib/market/catalog';
 import {listingCompleteness,listingHighlights,suggestTitle} from '@/lib/market/listing';
 import {formatPrice,listingPath} from '@/lib/market/format';
 import {compressForUpload} from '@/lib/market/clientImage';
@@ -119,12 +119,13 @@ export default function PostListingWizard({places}){
  const makeCover=index=>setPhotos(list=>[list[index],...list.filter((_,i)=>i!==index)]);
  const removePhoto=index=>setPhotos(list=>list.filter((_,i)=>i!==index));
 
+ const needsCondition=conditionRequired(form.category);
  const missingRequired=sub?sub.fields.filter(f=>f.required&&(empty(form.attributes[f.key])||(form.attributes[f.key]===OTHER&&empty(form.attributes[f.key+'_other'])))):[];
- const canNext=[uploaded.length>0&&!photos.some(p=>p.uploading),Boolean(sub),missingRequired.length===0,!empty(form.price)&&Boolean(form.currency)&&Boolean(form.condition)&&Boolean(form.district_id),true][step];
+ const canNext=[uploaded.length>0&&!photos.some(p=>p.uploading),Boolean(sub),missingRequired.length===0,!empty(form.price)&&Boolean(form.currency)&&(Boolean(form.condition)||!needsCondition)&&Boolean(form.district_id),true][step];
  // What still blocks «التالي», said plainly under the buttons.
  const waiting=photos.some(p=>p.uploading)?'انتظر حتى يكتمل رفع الصور.'
   :['أضف صورة واحدة على الأقل.','اختر الفئة والقسم.',missingRequired.length?'أكمل: '+missingRequired.map(f=>f.label).join('، ')+'.':'',
-   'أكمل: '+[empty(form.price)&&'السعر',!form.currency&&'العملة',!form.condition&&'الحالة',!form.district_id&&'المحافظة والمديرية'].filter(Boolean).join('، ')+'.'][step]||'';
+   'أكمل: '+[empty(form.price)&&'السعر',!form.currency&&'العملة',!form.condition&&needsCondition&&'الحالة',!form.district_id&&'المحافظة والمديرية'].filter(Boolean).join('، ')+'.'][step]||'';
  const districts=places.districts.filter(d=>d.governorateId===form.governorate_id);
 
  async function publish(){
@@ -200,7 +201,7 @@ export default function PostListingWizard({places}){
    <label className={styles.field}><span className={styles.fieldLabel}>السعر<b aria-hidden="true"> *</b></span><input className={styles.price} inputMode="decimal" dir="ltr" value={form.price} placeholder="0" onChange={e=>set({price:e.target.value})}/></label>
    <div className={styles.field}><span className={styles.fieldLabel}>العملة<b aria-hidden="true"> *</b></span><Chips label="العملة" options={CURRENCIES} value={form.currency} onChange={v=>set({currency:v})}/></div>
    <div className={styles.field}><span className={styles.fieldLabel}>نوع السعر</span><Chips label="نوع السعر" options={[{value:'yes',label:'قابل للتفاوض'},{value:'no',label:'سعر نهائي'}]} value={form.negotiable?'yes':'no'} onChange={v=>set({negotiable:v==='yes'})}/></div>
-   <div className={styles.field}><span className={styles.fieldLabel}>الحالة<b aria-hidden="true"> *</b></span><Chips label="الحالة" options={CONDITIONS} value={form.condition} onChange={v=>set({condition:v})}/></div>
+   <div className={styles.field}><span className={styles.fieldLabel}>الحالة{needsCondition?<b aria-hidden="true"> *</b>:<small> (اختيارية)</small>}</span><Chips label="الحالة" options={CONDITIONS} value={form.condition} onChange={v=>set({condition:!needsCondition&&form.condition===v?'':v})}/></div>
    <div className={styles.twoCols}>
     <label className={styles.field}><span className={styles.fieldLabel}>المحافظة<b aria-hidden="true"> *</b></span><select className={styles.input} value={form.governorate_id} onChange={e=>set({governorate_id:e.target.value,district_id:''})}><option value="">اختر</option>{places.governorates.map(g=><option key={g.id} value={g.id}>{g.name}</option>)}</select></label>
     <label className={styles.field}><span className={styles.fieldLabel}>المديرية<b aria-hidden="true"> *</b></span><select className={styles.input} value={form.district_id} disabled={!form.governorate_id} onChange={e=>set({district_id:e.target.value})}><option value="">اختر</option>{districts.map(d=><option key={d.id} value={d.id}>{d.name}</option>)}</select></label>
