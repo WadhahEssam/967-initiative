@@ -1,4 +1,4 @@
-import '@/app/legacy-styles';
+import '@/app/legacy/school.css';
 
 // Not redesigned yet: keeps the legacy stylesheet bundle scoped to this route.
 // Musnad letters need a font most phones lack (iPhone has none). Google Fonts serves it with a
