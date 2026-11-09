@@ -1,0 +1,75 @@
+/* «سوق 967» shared UI: one button, field, chip, sheet, empty and skeleton for every market screen.
+   Screen modules compose these (`composes: button primary from './ui.module.css'`) and keep only
+   their layout. Phone first: every control is at least 44px (--target); text never under 12px. */
+
+
+/* ---- Buttons ---- */
+.button{display:inline-flex;align-items:center;justify-content:center;gap:var(--s-2);min-height:var(--target);padding:0 var(--s-4);border:1px solid transparent;border-radius:var(--r-2);font:inherit;font-size:var(--t-size-ui);font-weight:600;line-height:1.2;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background var(--m-fast),border-color var(--m-fast),color var(--m-fast)}
+.button:focus-visible{outline:3px solid var(--c-focus);outline-offset:2px}
+.button:disabled,.button[aria-disabled="true"]{opacity:.5;cursor:not-allowed}
+.button svg{flex:none}
+.primary{background:var(--c-accent);color:var(--c-bg)}
+.primary:hover:not(:disabled){background:var(--c-accent-strong)}
+.secondary{border-color:var(--c-accent);background:var(--c-surface);color:var(--c-accent)}
+.secondary:hover:not(:disabled){background:var(--c-accent-soft)}
+.ghost{border-color:var(--c-control);background:var(--c-surface);color:var(--c-ink)}
+.ghost:hover:not(:disabled){background:var(--c-surface-2)}
+.danger{background:var(--c-danger);color:var(--c-bg)}
+.whatsapp{background:var(--c-whatsapp);color:var(--c-on-whatsapp)}
+.large{min-height:50px;font-size:1rem;border-radius:var(--r-3)}
+.block{inline-size:100%}
+.iconButton{composes:button;inline-size:var(--target);padding:0;border-color:var(--c-control);background:var(--c-surface);color:var(--c-ink)}
+.iconButton:hover:not(:disabled){background:var(--c-surface-2)}
+/* A quiet text action (report, remove…), still 44px tall to tap. */
+.textButton{display:inline-flex;align-items:center;gap:6px;min-height:var(--target);padding:0 var(--s-1);border:0;background:transparent;color:var(--c-ink-2);font:inherit;font-size:var(--t-size-ui);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.textButton:hover{color:var(--c-ink)}
+.textButton:focus-visible{outline:3px solid var(--c-focus);outline-offset:2px;border-radius:6px}
+
+/* ---- Chips: one look for every choice (category, filter, sort, reason…). Selected = aria-pressed,
+   aria-current or a checked radio inside. ---- */
+.chip{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:0 var(--s-3);border:1px solid var(--c-control);border-radius:var(--r-pill);background:var(--c-surface);color:var(--c-ink);font:inherit;font-size:var(--t-size-ui);line-height:1.3;text-decoration:none;white-space:nowrap;cursor:pointer}
+.chip:focus-visible,.chip:has(input:focus-visible){outline:3px solid var(--c-focus);outline-offset:2px}
+.chip[aria-pressed="true"],.chip[aria-current="page"],.chip[aria-current="true"],.chip:has(input:checked){border-color:var(--c-accent);background:var(--c-accent);color:var(--c-bg);font-weight:600}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chipRow{display:flex;flex-wrap:wrap;gap:var(--s-2)}
+
+/* ---- Fields ---- */
+.field{display:grid;gap:6px;font-size:var(--t-size-ui);color:var(--c-ink-2)}
+.field>span:first-child{font-weight:600;color:var(--c-ink)}
+.input{inline-size:100%;min-height:48px;padding:0 var(--s-3);border:1px solid var(--c-control);border-radius:var(--r-2);background:var(--c-surface);color:var(--c-ink);font:inherit;font-size:16px}
+textarea.input{min-height:96px;padding:10px var(--s-3);line-height:1.8;resize:vertical}
+select.input{padding-inline-end:var(--s-6)}
+.input:focus-visible{outline:3px solid var(--c-focus);outline-offset:1px;border-color:var(--c-accent)}
+.input::placeholder{color:var(--c-ink-3)}
+
+/* ---- Messages ---- */
+.error{margin:0;padding:10px var(--s-3);border-radius:var(--r-2);background:var(--c-danger-soft);color:var(--c-danger);font-size:var(--t-size-ui);line-height:1.7}
+.notice{margin:0;padding:10px var(--s-3);border-radius:var(--r-2);background:var(--c-surface-2);color:var(--c-ink-2);font-size:var(--t-size-ui);line-height:1.7}
+.empty{display:grid;justify-items:center;gap:var(--s-2);padding:var(--s-6) var(--s-4);border:1px dashed var(--c-control);border-radius:var(--r-3);color:var(--c-ink-2);text-align:center;font-size:var(--t-size-ui);line-height:1.8}
+.empty>svg{color:var(--c-ink-3)}
+.empty strong{font-size:var(--t-size-h3);color:var(--c-ink)}
+.empty a{color:var(--c-accent);font-weight:600}
+
+/* ---- Cards and badges ---- */
+.card{border:1px solid var(--c-line-2);border-radius:var(--r-3);background:var(--c-surface)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:var(--r-pill);font-size:var(--t-size-meta);font-weight:600;line-height:1.6;background:var(--c-surface-2);color:var(--c-ink-2)}
+.thumb{position:relative;display:grid;place-items:center;flex:none;overflow:hidden;border-radius:var(--r-2);background:var(--c-surface-2);color:var(--c-ink-3)}
+.thumb img{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover}
+
+/* ---- Sheet: a bottom sheet on phones, a centred dialog on wider screens (native <dialog>) ---- */
+.sheet{inline-size:100%;max-inline-size:100%;max-block-size:92dvh;margin:auto auto 0;padding:0;border:0;border-radius:var(--r-4) var(--r-4) 0 0;background:var(--c-surface);color:var(--c-ink);box-shadow:var(--e-3);overflow:hidden}
+.sheet[open]{display:flex;flex-direction:column}
+.sheet::backdrop{background:rgb(0 0 0 / .45)}
+@media(min-width:700px){.sheet{inline-size:min(100% - 32px,480px);margin:auto;border-radius:var(--r-4)}}
+.sheetHead{display:flex;align-items:center;justify-content:space-between;gap:var(--s-2);padding:var(--s-2) var(--s-3) var(--s-2) var(--s-4);border-bottom:1px solid var(--c-line)}
+.sheetHead h2{margin:0;font-size:var(--t-size-h3);font-weight:600}
+.sheetBody{overflow-y:auto;overscroll-behavior:contain;padding:var(--s-4) var(--s-4) calc(var(--s-4) + env(safe-area-inset-bottom))}
+.sheetGrip{display:block;inline-size:40px;block-size:4px;margin:8px auto 0;border-radius:2px;background:var(--c-line-2)}
+@media(min-width:700px){.sheetGrip{display:none}}
+
+/* ---- Skeleton (loading.jsx) ---- */
+.skeleton{background:linear-gradient(90deg,var(--c-surface-2) 0,var(--c-surface-3,var(--c-line)) 50%,var(--c-surface-2) 100%);background-size:200% 100%;border-radius:var(--r-2);animation:shine 1.4s linear infinite}
+@keyframes shine{to{background-position:-200% 0}}
+@media(prefers-reduced-motion:reduce){.skeleton{animation:none}}
+
+.visuallyHidden{position:absolute!important;inline-size:1px;block-size:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}

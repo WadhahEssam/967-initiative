@@ -92,12 +92,21 @@
   --w-text: 44rem;
   --target: 44px;
   --header-h: 54px;
+  --tabbar-h: 58px;           /* phone tab bar (shell.css), for bars that sit above it */
+
+  /* Brand colours of outside services, readable as button backgrounds / text */
+  --c-whatsapp: #1a7f45;      /* 5.0:1 with white text */
+  --c-on-whatsapp: #fff;
+  --c-star: #a26700;          /* rating stars, 4.6:1 on surface */
 }
 
 /* Dark: warm basalt, not an inverted cold black. Depth comes from lighter
    surfaces with a faint top highlight; shadows are nearly invisible on dark. */
 :root[data-ed-theme="dark"] {
     color-scheme: dark;
+    --c-whatsapp: #4cc283;
+    --c-on-whatsapp: #0e0c0a;
+    --c-star: #f0bf5a;
     --c-bg: #13110f;
     --c-bg-2: #0e0c0a;
     --c-surface: #1c1916;
