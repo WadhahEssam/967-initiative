@@ -3,7 +3,7 @@
 import {useEffect,useRef,useState} from 'react';
 import Link from 'next/link';
 import {ArrowUpLeft,CalendarDays,CheckCircle2,Clock3,Crown,Flame,LockKeyhole,Medal,Puzzle,RefreshCw,ShieldCheck,Target,Trophy,Zap} from 'lucide-react';
-import {browserDb} from '@/lib/supabase';
+import {currentSession,whenBrowserDb} from '@/lib/browserSession';
 import {officialGameWeek} from '@/lib/gameWeeklyMissions';
 import {createAccountWatch,shouldReloadOnAuth,createRefreshThrottle} from '@/lib/authEvents';
 import styles from './WeeklyArcade.module.css';
@@ -22,17 +22,16 @@ export default function WeeklyArcade(){
 
  useEffect(()=>{
   let alive=true,serial=0,authTimer=null;
-  const db=browserDb(),throttle=createRefreshThrottle(),account=createAccountWatch();
+  const throttle=createRefreshThrottle(),account=createAccountWatch();
   async function refresh(){
    const id=++serial;throttle.mark();
    setMissions(empty);setLeaders(empty);
    let token='';
    try{
-    if(db){
-     const {data}=await db.auth.getSession();
-     account.seen(data?.session);
-     token=data?.session?.access_token||'';
-    }
+    // Guests skip loading the account client (lib/browserSession.js).
+    const session=await currentSession();
+    account.seen(session);
+    token=session?.access_token||'';
    }catch{account.seen(null);/* Guest missions and public weekly rankings remain available. */}
    if(!alive||id!==serial)return;
    const [missionRequest,leaderRequest]=await Promise.allSettled([
@@ -59,11 +58,14 @@ export default function WeeklyArcade(){
   }
   refresh();
   // Reload when the account changes, not on the initial event or hourly token refreshes.
-  const subscription=db?.auth.onAuthStateChange((event,session)=>{
-   if(!shouldReloadOnAuth(account,event,session))return;
-   clearTimeout(authTimer);
-   authTimer=setTimeout(()=>{if(alive)refresh();},0);
-  }).data?.subscription;
+  const stopWatching=whenBrowserDb(db=>{
+   const {data:{subscription}}=db.auth.onAuthStateChange((event,session)=>{
+    if(!shouldReloadOnAuth(account,event,session))return;
+    clearTimeout(authTimer);
+    authTimer=setTimeout(()=>{if(alive)refresh();},0);
+   });
+   return()=>subscription.unsubscribe();
+  });
   // Returning to the tab fires focus and visibilitychange together: reload once a minute at most.
   const onVisible=()=>{if(document.visibilityState==='visible'&&throttle.due())refresh();};
   const onFocus=()=>{if(throttle.due())refresh();};
@@ -76,7 +78,7 @@ export default function WeeklyArcade(){
   document.addEventListener('visibilitychange',onVisible);
   return()=>{
    alive=false;serial++;clearTimeout(authTimer);clearInterval(poll);
-   subscription?.unsubscribe();
+   stopWatching();
    window.removeEventListener('focus',onFocus);
    document.removeEventListener('visibilitychange',onVisible);
   };

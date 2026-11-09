@@ -4,7 +4,7 @@
 import {useEffect, useMemo, useState} from 'react';
 import Link from 'next/link';
 import {ArrowLeft, ArrowRight, BookOpen, FlaskConical, Hammer, Signpost, Search, Sparkles, Trophy, LockKeyhole, Star, MapPin, LogIn, UserRoundPlus} from 'lucide-react';
-import {browserDb} from '@/lib/supabase';
+import {currentSession} from '@/lib/browserSession';
 import {journeyUnits, journeyState} from '@/lib/schoolJourney';
 import styles from './CourseJourney.module.css';
 
@@ -30,7 +30,7 @@ export default function CourseJourney({backHref, slug, title, description, units
     let alive = true;
     (async () => {
       try {
-        const db = browserDb(), {data} = await db?.auth.getSession() || {};
+        const data = {session: await currentSession()};
         const token = data?.session?.access_token;
         if (!token) { if (alive) setProgress({loading: false, guest: true, error: '', stages: null, staff: false}); return; }
         const res = await fetch('/api/school/custom?slug=' + encodeURIComponent(slug), {cache: 'no-store', headers: {Authorization: 'Bearer ' + token}});

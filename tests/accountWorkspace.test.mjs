@@ -64,7 +64,8 @@ test('new contributions are linked only after server verifies the bearer and mat
 });
 
 test('bookmarks remain local when signed out; old local files need deliberate import',()=>{
- assert.ok(bookmarks.includes("if(!error&&data.session)return audienceRequest"));
+ assert.ok(bookmarks.includes("currentSession().then(session=>{"));
+ assert.ok(bookmarks.includes("if(session)return audienceRequest"));
  assert.ok(bookmarks.includes("mirrorToAccount({action:'save',item})"));
  assert.ok(ui.includes("action:'import'"));
  assert.ok(reading.includes("const items=[...indexed.values()]"));
