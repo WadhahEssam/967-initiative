@@ -7,7 +7,7 @@ import {getMarketPlaces} from '@/lib/market/places';
 import {marketStorageConfigured} from '@/lib/market/storage';
 import {getSiteSettings} from '@/lib/data';
 import {sectionStatus} from '@/lib/pageVisibility';
-import {actOnReport,activeBans,banMember,blockAlerts,decideListing,findListing,liftBan,listReports,moderationCounts,pendingListings,reportedChat,sendTeamMessage} from '@/lib/market/moderationServer';
+import {actOnReport,activeBans,addSynonym,banMember,blockAlerts,decideListing,findListing,handleMiss,liftBan,listReports,moderationCounts,otherValues,pendingListings,removeSynonym,reportedChat,searchMisses,sendTeamMessage} from '@/lib/market/moderationServer';
 
 export const runtime='nodejs';
 export const dynamic='force-dynamic';
@@ -28,7 +28,7 @@ const fail=error=>{
  return json({error:'تعذر إتمام إجراء الإشراف. حاول مجددًا.'},503);
 };
 
-// GET ?view=pending|reports|alerts|bans|listing|chat (+ status, number, report).
+// GET ?view=pending|reports|alerts|bans|brands|misses|listing|chat (+ status, number, report).
 export async function GET(request){
  try{
   const {db,actor}=await team(request);
@@ -41,6 +41,8 @@ export async function GET(request){
   if(view==='reports')return json({...base,reports:await listReports(db,await getMarketPlaces(),{status:params.get('status')||'open'})});
   if(view==='alerts')return json({...base,alerts:await blockAlerts(db)});
   if(view==='bans')return json({...base,bans:await activeBans(db)});
+  if(view==='brands')return json({...base,brands:await otherValues(db)});
+  if(view==='misses')return json({...base,...await searchMisses(db)});
   if(view==='listing')return json({...base,listing:await findListing(db,await getMarketPlaces(),params.get('number'))});
   if(view==='chat')return json(await reportedChat(db,actor,params.get('report')));
   throw new RequestValidationError('طلب غير معروف.',400);
@@ -48,7 +50,8 @@ export async function GET(request){
 }
 
 // POST {action}: listing {id, decision:approve|reject|hold|remove, reason} · report {id, act, who, days,
-// reason, message} · ban {userId, days, reason} · lift {id} · message {userId, message}.
+// reason, message} · ban {userId, days, reason} · lift {id} · message {userId, message}
+// · synonym {words, query} · unsynonym {id} · miss {query} (handled).
 export async function POST(request){
  try{
   const {db,actor}=await team(request);
@@ -57,6 +60,9 @@ export async function POST(request){
   if(body.action==='report')return json(await actOnReport(db,actor,{id:body.id,action:body.act,who:body.who,days:body.days??null,reason:body.reason,message:body.message}));
   if(body.action==='ban')return json(await banMember(db,actor,{userId:body.userId,days:body.days??null,reason:body.reason}));
   if(body.action==='lift')return json(await liftBan(db,actor,{id:body.id}));
+  if(body.action==='synonym')return json(await addSynonym(db,actor,{words:body.words,query:body.query}));
+  if(body.action==='unsynonym')return json(await removeSynonym(db,actor,{id:body.id}));
+  if(body.action==='miss')return json(await handleMiss(db,actor,{query:body.query}));
   if(body.action==='message')return json(await sendTeamMessage(db,actor,{userId:body.userId,message:body.message}));
   throw new RequestValidationError('الإجراء غير مدعوم.',400);
  }catch(error){return fail(error);}

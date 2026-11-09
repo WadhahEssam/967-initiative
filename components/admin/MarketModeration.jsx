@@ -7,8 +7,9 @@ import {browserDb} from '@/lib/supabase';
 import styles from './MarketModeration.module.css';
 
 // «سوق 967» moderation (spec: «الإشراف ولوحة التحكم»): held listings, reports, the block alert
-// and market bans. Bans and reading reported chats are for management only.
-const VIEWS=[{id:'pending',label:'قيد المراجعة',count:'pending'},{id:'reports',label:'البلاغات',count:'reports'},{id:'alerts',label:'تنبيهات الحظر',count:'alerts'},{id:'bans',label:'الإيقافات',count:'bans'}];
+// and market bans; and catalogue upkeep: searches with no results (with synonyms) and brands typed
+// under «أخرى». Bans and reading reported chats are for management only.
+const VIEWS=[{id:'pending',label:'قيد المراجعة',count:'pending'},{id:'reports',label:'البلاغات',count:'reports'},{id:'alerts',label:'تنبيهات الحظر',count:'alerts'},{id:'bans',label:'الإيقافات',count:'bans'},{id:'misses',label:'بحث بلا نتائج',count:'misses'},{id:'brands',label:'ماركات «أخرى»'}];
 const ACTION_LABELS={dismiss:'تجاهل',warn:'رسالة تنبيه',ban_reported:'إيقاف المبلَّغ عنه',ban_seller:'إيقاف البائع',ban_buyer:'إيقاف المشتري',remove_listing:'حذف الإعلان',hold_listing:'إيقاف الإعلان للمراجعة',hide_rating:'إخفاء التقييم'};
 const BAN_OPTIONS=[['3','3 أيام'],['7','أسبوع'],['30','شهر'],['','نهائي']];
 const when=value=>value?new Date(value).toLocaleString('ar',{dateStyle:'medium',timeStyle:'short'}):'';
@@ -91,6 +92,45 @@ function ReportBox({report,role,busy,run,readChat}){
  </article>;
 }
 
+// Searches that found nothing: add words that mean the same (search uses them within minutes), or
+// mark the search handled. Below, the synonym groups the team added.
+function MissesView({data,busy,run}){
+ const [words,setWords]=useState('');
+ if(!data.misses)return <p className={styles.empty}>جارٍ التحميل…</p>;
+ return <>
+  <p className={styles.meta}>عمليات بحث لم تجد أي إعلان في كل اليمن. أضف كلمات بالمعنى نفسه ليجدها البحث (مثل: «تلفون» = جوال، موبايل)، أو علّمها كمعالجة إن لم تحتج شيئًا.</p>
+  {data.misses.length?data.misses.map(item=><article key={item.query} className={styles.card}><div className={styles.cardBody}>
+   <p className={styles.kicker}><Search size={14} aria-hidden="true"/> بحث عنها {item.count} مرة · آخرها {when(item.last_at)}</p>
+   <h3>«{item.query}»</h3>
+   <div className={styles.actions}>
+    <Action label="أضف مرادفات" fields="message" busy={busy} placeholder="كلمات بالمعنى نفسه، مفصولة بفاصلة: جوال، موبايل" onRun={({text})=>run({action:'synonym',query:item.query,words:text},'أُضيفت المرادفات، ويستخدمها البحث خلال دقائق.')}/>
+    <Action label="تمت المعالجة" busy={busy} onRun={()=>run({action:'miss',query:item.query},'أُزيل من القائمة.')}/>
+   </div>
+  </div></article>):<p className={styles.empty}>لا توجد عمليات بحث بلا نتائج تحتاج مراجعة.</p>}
+  <h2 className={styles.subhead}>مرادفات أضافها الفريق</h2>
+  <form className={styles.lookup} onSubmit={async event=>{event.preventDefault();if(await run({action:'synonym',words},'أُضيفت المجموعة.'))setWords('');}}>
+   <input value={words} onChange={event=>setWords(event.target.value)} placeholder="مجموعة جديدة: كنب، كنبة، صوفا" aria-label="مجموعة مرادفات جديدة" className={styles.wide}/>
+   <button type="submit" className={styles.button} disabled={busy||!words.trim()}>أضف</button>
+  </form>
+  {data.synonyms?.length?<ul className={styles.chips}>{data.synonyms.map(group=><li key={group.id}>{group.words.join(' · ')}
+   <button type="button" disabled={busy} aria-label={'حذف المجموعة '+group.words[0]} onClick={()=>{if(window.confirm('حذف هذه المجموعة من المرادفات؟'))run({action:'unsynonym',id:group.id},'حُذفت المجموعة.');}}>×</button></li>)}</ul>
+   :<p className={styles.meta}>لم يضف الفريق مرادفات بعد. القاموس الأساسي في الكود يبقى كما هو.</p>}
+ </>;
+}
+
+// Brands and models sellers typed under «أخرى», most common first: candidates for the lists.
+function BrandsView({brands}){
+ if(!brands)return <p className={styles.empty}>جارٍ التحميل…</p>;
+ return <>
+  <p className={styles.meta}>ما كتبه البائعون تحت «أخرى» في الماركة أو الموديل، مرتبًا بعدد الإعلانات. ما يتكرر كثيرًا يستحق أن يُضاف إلى القوائم الجاهزة؛ أرسل القائمة للمطوّر ليضيفه.</p>
+  {brands.length?<div className={styles.tableWrap}><table className={styles.table}>
+   <thead><tr><th>القسم</th><th>الحقل</th><th>ما كتبه البائع</th><th>الإعلانات</th><th>آخرها</th></tr></thead>
+   <tbody>{brands.map(item=><tr key={item.section+item.field+item.value}><td>{item.section}</td><td>{item.field}</td><td><strong>{item.value}</strong></td>
+    <td><Link href={'/market/'+item.example} target="_blank">{item.listings}</Link></td><td>{when(item.latest)}</td></tr>)}</tbody>
+  </table></div>:<p className={styles.empty}>لم يكتب أي بائع ماركة أو موديلًا تحت «أخرى» بعد.</p>}
+ </>;
+}
+
 export default function MarketModeration(){
  const {user,ready}=useAudience();
  const [view,setView]=useState('pending');
@@ -136,7 +176,7 @@ export default function MarketModeration(){
  return <main className={styles.page} dir="rtl">
   <header className={styles.header}>
    <div><p className={styles.kicker}><Link href="/admin">لوحة التحرير</Link></p><h1>إشراف سوق 967</h1>
-    <p className={styles.meta}>الإعلانات المحجوزة، والبلاغات، وتنبيهات الحظر، والإيقافات.{role&&role!=='management'?' الإيقاف وقراءة المحادثات لفريق الإدارة فقط.':''}</p></div>
+    <p className={styles.meta}>الإعلانات المحجوزة، والبلاغات، وتنبيهات الحظر، والإيقافات، والبحث بلا نتائج، والماركات المكتوبة تحت «أخرى».{role&&role!=='management'?' الإيقاف وقراءة المحادثات لفريق الإدارة فقط.':''}</p></div>
    <button type="button" className={styles.button} onClick={load} disabled={busy}><RefreshCcw size={15} aria-hidden="true"/> تحديث</button>
   </header>
   {data?.launch&&data.launch.status!=='visible'&&<section className={styles.launch} aria-label="جاهزية الإطلاق">
@@ -169,6 +209,8 @@ export default function MarketModeration(){
      {role==='management'&&!item.banned&&<Action label="إيقاف في السوق" fields="ban" tone="danger" busy={busy} onRun={({text,days})=>run({action:'ban',userId:item.user.id,days,reason:text},'أُوقف الحساب في السوق.')}/>}
     </div>
    </div></article>):<p className={styles.empty}>لا يوجد حساب حظره 3 مستخدمين أو أكثر.</p>)
+  :view==='misses'?<MissesView data={data} busy={busy} run={run}/>
+  :view==='brands'?<BrandsView brands={data.brands}/>
   :(data.bans?.length?data.bans.map(item=><article key={item.id} className={styles.card}><div className={styles.cardBody}>
     <p className={styles.kicker}><Ban size={14} aria-hidden="true"/> {item.until?'حتى '+when(item.until):'نهائي'} · منذ {when(item.createdAt)} · بواسطة {item.by}</p>
     <h3><Link href={'/market/seller/'+item.user.id} target="_blank">{item.user.name}</Link></h3>
