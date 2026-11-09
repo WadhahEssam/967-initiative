@@ -1,0 +1,1698 @@
+[
+ {
+  "slug": "osm-n12772132801",
+  "name_ar": "المركز الاستشاري المجري السلوفاكي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الوحده",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12772132801"
+  ]
+ },
+ {
+  "slug": "osm-n13469712995",
+  "name_ar": "المركز الطبي الشامل",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13469712995"
+  ]
+ },
+ {
+  "slug": "osm-n6381704785",
+  "name_ar": "المستشفى الأوروبي الحديث",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "مدينة صنعاء",
+  "district": "معين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6381704785"
+  ]
+ },
+ {
+  "slug": "osm-n6381704985",
+  "name_ar": "المستشفى الاستشاري",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "معين",
+  "district": "معين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6381704985"
+  ]
+ },
+ {
+  "slug": "osm-n5266706822",
+  "name_ar": "المستشفى الالماني الحديث",
+  "name_en": "Modern German Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5266706822"
+  ]
+ },
+ {
+  "slug": "osm-n4513763827",
+  "name_ar": "المستشفى الاهلي الحديث",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الوحده",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4513763827"
+  ]
+ },
+ {
+  "slug": "osm-n12561034878",
+  "name_ar": "المستشفى الروماني الحديث",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12561034878"
+  ]
+ },
+ {
+  "slug": "osm-n6424373985",
+  "name_ar": "المستشفى الملكي",
+  "name_en": "Royal Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6424373985"
+  ]
+ },
+ {
+  "slug": "osm-n704297320",
+  "name_ar": "المستشفى اليمني الألماني",
+  "name_en": "Yemeni German Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "السبعين",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/704297320"
+  ]
+ },
+ {
+  "slug": "osm-n13469713026",
+  "name_ar": "المستشفى اليمني الدولي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13469713026"
+  ]
+ },
+ {
+  "slug": "osm-n12559596173",
+  "name_ar": "المستشفى اليمني الفرنسي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12559596173"
+  ]
+ },
+ {
+  "slug": "osm-n13452172380",
+  "name_ar": "برج حدة الطبي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "السبعين",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13452172380"
+  ]
+ },
+ {
+  "slug": "osm-n3256253233",
+  "name_ar": "جمعية الهلال الأحمر اليمنية",
+  "name_en": "Yemeni Red Crescent Society",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "التحرير",
+  "district": "التحرير",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/3256253233"
+  ]
+ },
+ {
+  "slug": "osm-n4972278723",
+  "name_ar": "خالد الهزار التخصصي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4972278723"
+  ]
+ },
+ {
+  "slug": "osm-n8017375699",
+  "name_ar": "عيادة الدكتور محمد سالم نعمان/جهاز الهضمي وكبد",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الوحده",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/8017375699"
+  ]
+ },
+ {
+  "slug": "osm-n12349645818",
+  "name_ar": "عيادة الدكتورة إيناس العريقي أخصائية نساءوولادةوعقم",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "private",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "بني الحارث",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12349645818"
+  ]
+ },
+ {
+  "slug": "osm-n8772619117",
+  "name_ar": "عيادة نساء وولادة",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "معين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/8772619117"
+  ]
+ },
+ {
+  "slug": "osm-n12572220930",
+  "name_ar": "مجمع آزال الطبي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "ازال",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12572220930"
+  ]
+ },
+ {
+  "slug": "osm-n13452194223",
+  "name_ar": "مجمع التحدي لذوي الإعاقة",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "السبعين",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13452194223"
+  ]
+ },
+ {
+  "slug": "osm-n4242714894",
+  "name_ar": "مجمع الثورة الطبي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الثوره",
+  "district": "الثوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4242714894"
+  ]
+ },
+ {
+  "slug": "osm-n5052506724",
+  "name_ar": "مختبرات الذبحاني",
+  "name_en": "Aldabhany laboratory",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الصافيه",
+  "district": "الصافيه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5052506724"
+  ]
+ },
+ {
+  "slug": "osm-n8143234118",
+  "name_ar": "مركز الاصبحي الجراحي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/8143234118"
+  ]
+ },
+ {
+  "slug": "osm-n4729303998",
+  "name_ar": "مركز التعاون الطبي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الثوره",
+  "district": "الثوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4729303998"
+  ]
+ },
+ {
+  "slug": "osm-n13452078586",
+  "name_ar": "مركز الثريا الطبي الحديث",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13452078586"
+  ]
+ },
+ {
+  "slug": "osm-n4637027892",
+  "name_ar": "مركز الجراف الطبي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الثوره",
+  "district": "الثوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4637027892"
+  ]
+ },
+ {
+  "slug": "osm-n13452127024",
+  "name_ar": "مركز الجعدي للأمومة والطفولة",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "السبعين",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13452127024"
+  ]
+ },
+ {
+  "slug": "osm-n13473730198",
+  "name_ar": "مركز الخمسين الطبي التعاوني",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "السبعين",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13473730198"
+  ]
+ },
+ {
+  "slug": "osm-n12466189202",
+  "name_ar": "مركز الدكتور سليم خيلة التخصصي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الثوره",
+  "district": "الثوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12466189202"
+  ]
+ },
+ {
+  "slug": "osm-n3256260075",
+  "name_ar": "مركز الزراعة الصحي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "التحرير",
+  "district": "التحرير",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/3256260075"
+  ]
+ },
+ {
+  "slug": "osm-n4388528989",
+  "name_ar": "مركز الزهراوي الطبي",
+  "name_en": "Alzahrawi Medical Center",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "السبعين",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4388528989"
+  ]
+ },
+ {
+  "slug": "osm-n12409058837",
+  "name_ar": "مركز القلب الطبي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12409058837"
+  ]
+ },
+ {
+  "slug": "osm-n13810877840",
+  "name_ar": "مركز النور الطبي الجراحي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء جدر",
+  "district": "بني الحارث",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13810877840"
+  ]
+ },
+ {
+  "slug": "osm-n5875416582",
+  "name_ar": "مركز الوليد الطبي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "معين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5875416582"
+  ]
+ },
+ {
+  "slug": "osm-n1222651007",
+  "name_ar": "مركز جدر صحي",
+  "name_en": "Markaz Jidr. AL.Sihhiy",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "بني الحارث",
+  "district": "بني الحارث",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1222651007"
+  ]
+ },
+ {
+  "slug": "osm-n5895667751",
+  "name_ar": "مركز سبأ الصحي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الثوره",
+  "district": "الثوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5895667751"
+  ]
+ },
+ {
+  "slug": "osm-n12511753501",
+  "name_ar": "مركز طب العائلة",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "السبعين",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12511753501"
+  ]
+ },
+ {
+  "slug": "osm-n6545702517",
+  "name_ar": "مركز علاو الإنجابي",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "شعوب",
+  "district": "شعوب",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6545702517"
+  ]
+ },
+ {
+  "slug": "osm-n2395137137",
+  "name_ar": "مستشفى 17 يوليو",
+  "name_en": "17th July Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/2395137137"
+  ]
+ },
+ {
+  "slug": "osm-n4386074990",
+  "name_ar": "مستشفى 48 الطبي",
+  "name_en": "48 Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4386074990"
+  ]
+ },
+ {
+  "slug": "osm-w995176977",
+  "name_ar": "مستشفى آزال",
+  "name_en": "Azal hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "معين",
+  "district": "معين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/995176977"
+  ]
+ },
+ {
+  "slug": "osm-n5471078723",
+  "name_ar": "مستشفى ابن الهيثم للبصريات والسمعيات",
+  "name_en": "ibn alhethem hosptial",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الوحده",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5471078723"
+  ]
+ },
+ {
+  "slug": "osm-n6641686287",
+  "name_ar": "مستشفى ابن حيان التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "معين",
+  "district": "معين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6641686287"
+  ]
+ },
+ {
+  "slug": "osm-n4298023951",
+  "name_ar": "مستشفى ابن سينا التخصصي",
+  "name_en": "Ibn Sina Specialist Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الوحده",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4298023951"
+  ]
+ },
+ {
+  "slug": "osm-n4298022231",
+  "name_ar": "مستشفى الأم",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الوحده",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4298022231"
+  ]
+ },
+ {
+  "slug": "osm-n2456316498",
+  "name_ar": "مستشفى الأمل التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الثوره",
+  "district": "الثوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/2456316498"
+  ]
+ },
+ {
+  "slug": "osm-n4298021216",
+  "name_ar": "مستشفى الاشول التخصصي",
+  "name_en": "Alashwal Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "السبعين",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4298021216"
+  ]
+ },
+ {
+  "slug": "osm-n4551175792",
+  "name_ar": "مستشفى الامانة",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "معين",
+  "district": "معين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4551175792"
+  ]
+ },
+ {
+  "slug": "osm-n4182412895",
+  "name_ar": "مستشفى الامل لاورام السرطان",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "معين",
+  "district": "معين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4182412895"
+  ]
+ },
+ {
+  "slug": "osm-n2395138147",
+  "name_ar": "مستشفى الاوروبي اليمني",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/2395138147"
+  ]
+ },
+ {
+  "slug": "osm-n12559677578",
+  "name_ar": "مستشفى البروفيسور فاكر القباطي التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12559677578"
+  ]
+ },
+ {
+  "slug": "osm-n13469713226",
+  "name_ar": "مستشفى البنون الدولي للخصوبة والعقم",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13469713226"
+  ]
+ },
+ {
+  "slug": "osm-n12615894256",
+  "name_ar": "مستشفى الجزائر التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الوحده",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12615894256"
+  ]
+ },
+ {
+  "slug": "osm-n5709382625",
+  "name_ar": "مستشفى الحرمين",
+  "name_en": "Alharameen Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "شعوب",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5709382625"
+  ]
+ },
+ {
+  "slug": "osm-n13521158002",
+  "name_ar": "مستشفى الحكماء التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "شعوب",
+  "district": "شعوب",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13521158002"
+  ]
+ },
+ {
+  "slug": "osm-n6564870186",
+  "name_ar": "مستشفى الخزان التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6564870186"
+  ]
+ },
+ {
+  "slug": "osm-n4349901690",
+  "name_ar": "مستشفى الخمسين",
+  "name_en": "50 st Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4349901690"
+  ]
+ },
+ {
+  "slug": "osm-n8957471017",
+  "name_ar": "مستشفى الدكتور علي الخزان",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "بني الحارث",
+  "district": "بني الحارث",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/8957471017"
+  ]
+ },
+ {
+  "slug": "osm-n12572220955",
+  "name_ar": "مستشفى الدكتورة مها البيضاني التخصصي للأمومة والطفولة",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "شعوب",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12572220955"
+  ]
+ },
+ {
+  "slug": "osm-n6726165885",
+  "name_ar": "مستشفى الرباط الحديث",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "معين",
+  "district": "معين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6726165885"
+  ]
+ },
+ {
+  "slug": "osm-n12407562087",
+  "name_ar": "مستشفى الرسالة للطب النفسي وعلاج الإدمان",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الوحده",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12407562087"
+  ]
+ },
+ {
+  "slug": "osm-w87318804",
+  "name_ar": "مستشفى السبعين للنساء والولادة",
+  "name_en": "Al Sabeen Maternal Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "السبعين",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/87318804"
+  ]
+ },
+ {
+  "slug": "osm-n9422931294",
+  "name_ar": "مستشفى الشرطة",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "شعوب",
+  "district": "شعوب",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/9422931294"
+  ]
+ },
+ {
+  "slug": "osm-n12593417420",
+  "name_ar": "مستشفى الصحاب التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "شعوب",
+  "district": "شعوب",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12593417420"
+  ]
+ },
+ {
+  "slug": "osm-n760301550",
+  "name_ar": "مستشفى الصفاء العام",
+  "name_en": "Alsafaa General Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "السبعين",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/760301550"
+  ]
+ },
+ {
+  "slug": "osm-n13469713019",
+  "name_ar": "مستشفى الطاهر",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13469713019"
+  ]
+ },
+ {
+  "slug": "osm-n4182443391",
+  "name_ar": "مستشفى العاقل",
+  "name_en": "Alaqil Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الوحده",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4182443391"
+  ]
+ },
+ {
+  "slug": "osm-n5869201486",
+  "name_ar": "مستشفى العظام التخصصي",
+  "name_en": "Bones Specialist Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5869201486"
+  ]
+ },
+ {
+  "slug": "osm-n5072397421",
+  "name_ar": "مستشفى العلياء الدولي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5072397421"
+  ]
+ },
+ {
+  "slug": "osm-n4298021220",
+  "name_ar": "مستشفى العواضي",
+  "name_en": "Alawadhi Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "السبعين",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4298021220"
+  ]
+ },
+ {
+  "slug": "osm-n13452127136",
+  "name_ar": "مستشفى العين والأنف التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/13452127136"
+  ]
+ },
+ {
+  "slug": "osm-n4346542914",
+  "name_ar": "مستشفى القاهرة",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الثوره",
+  "district": "الثوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4346542914"
+  ]
+ },
+ {
+  "slug": "osm-n4346513462",
+  "name_ar": "مستشفى القدس العسكري",
+  "name_en": "Alkods Military Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "السبعين",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4346513462"
+  ]
+ },
+ {
+  "slug": "osm-n2173416640",
+  "name_ar": "مستشفى الكمالي التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "معين",
+  "district": "معين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/2173416640"
+  ]
+ },
+ {
+  "slug": "osm-n6937224638",
+  "name_ar": "مستشفى الكويت",
+  "name_en": "Al Kuwait Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "التحرير",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6937224638"
+  ]
+ },
+ {
+  "slug": "osm-n4319651591",
+  "name_ar": "مستشفى المؤيد",
+  "name_en": "Almoa'ayad hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "شعوب",
+  "district": "شعوب",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4319651591"
+  ]
+ },
+ {
+  "slug": "osm-n12593417408",
+  "name_ar": "مستشفى المتحدون",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "شعوب",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12593417408"
+  ]
+ },
+ {
+  "slug": "osm-n8505180411",
+  "name_ar": "مستشفى المجد التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "بني الحارث",
+  "district": "بني الحارث",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/8505180411"
+  ]
+ },
+ {
+  "slug": "osm-n4298021786",
+  "name_ar": "مستشفى المدينة التخصصي",
+  "name_en": "Almadena Specialist Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الوحده",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4298021786"
+  ]
+ },
+ {
+  "slug": "osm-n4636983997",
+  "name_ar": "مستشفى المدينة النموذجي",
+  "name_en": "Almadinah hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الوحده",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4636983997"
+  ]
+ },
+ {
+  "slug": "osm-n4379341189",
+  "name_ar": "مستشفى الملك التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الثوره",
+  "district": "الثوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4379341189"
+  ]
+ },
+ {
+  "slug": "osm-n5228839821",
+  "name_ar": "مستشفى المودة",
+  "name_en": "Almawada Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "الوحده",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5228839821"
+  ]
+ },
+ {
+  "slug": "osm-n4999473224",
+  "name_ar": "مستشفى النخبة",
+  "name_en": "Alnukhbah Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4999473224"
+  ]
+ },
+ {
+  "slug": "osm-n4388529190",
+  "name_ar": "مستشفى الهلال الابيض",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4388529190"
+  ]
+ },
+ {
+  "slug": "osm-n12559596142",
+  "name_ar": "مستشفى الوسام الدولي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12559596142"
+  ]
+ },
+ {
+  "slug": "osm-n12299761960",
+  "name_ar": "مستشفى اليمن السعيد",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12299761960"
+  ]
+ },
+ {
+  "slug": "osm-n12561034870",
+  "name_ar": "مستشفى بروج صنعاء الدولي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12561034870"
+  ]
+ },
+ {
+  "slug": "osm-n4368828990",
+  "name_ar": "مستشفى د.عبدالقادر المتوكل",
+  "name_en": "Almtwakel Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4368828990"
+  ]
+ },
+ {
+  "slug": "osm-n7713205861",
+  "name_ar": "مستشفى د.عبدالوهاب عجلان التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "private",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "الثوره",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/7713205861"
+  ]
+ },
+ {
+  "slug": "osm-n4551224889",
+  "name_ar": "مستشفى دار الرحمه",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "معين",
+  "district": "معين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4551224889"
+  ]
+ },
+ {
+  "slug": "osm-n6578045192",
+  "name_ar": "مستشفى شملان التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة همدان",
+  "district": "ضواحي الامانة همدان",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6578045192"
+  ]
+ },
+ {
+  "slug": "osm-n6581420390",
+  "name_ar": "مستشفى عين الحياة التخصصي",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/6581420390"
+  ]
+ },
+ {
+  "slug": "osm-w373910399",
+  "name_ar": "مستشفى فلسطين للأمومة والطفولة",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "بني الحارث",
+  "district": "بني الحارث",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/373910399"
+  ]
+ },
+ {
+  "slug": "osm-n2314622714",
+  "name_ar": "مستشفى لبنان",
+  "name_en": "Lebanon Hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "السبعين",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/2314622714"
+  ]
+ },
+ {
+  "slug": "osm-n5196307026",
+  "name_ar": "مستشفى ناصر التخصصي",
+  "name_en": "Alnasser hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/5196307026"
+  ]
+ },
+ {
+  "slug": "osm-n4846638552",
+  "name_ar": "مستشفى نبض الحياة",
+  "name_en": "Nabdh AlHyat Hospitable",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/4846638552"
+  ]
+ },
+ {
+  "slug": "osm-n12573635346",
+  "name_ar": "مستشفى نشوان",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "السبعين",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12573635346"
+  ]
+ },
+ {
+  "slug": "osm-w1346369933",
+  "name_ar": "مستشفى وملحق مسجد",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/way/1346369933"
+  ]
+ },
+ {
+  "slug": "osm-n10914314605",
+  "name_ar": "مستشفى يشفين",
+  "name_en": "Yashfeen hospital",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "ضواحي الامانة سنحان وبني بهلول",
+  "district": "ضواحي الامانة سنحان وبني بهلول",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/10914314605"
+  ]
+ },
+ {
+  "slug": "osm-n1038698634",
+  "name_ar": "مستوصف الرأفة",
+  "name_en": "Alra'afah Hospital",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "شعوب",
+  "district": "شعوب",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1038698634"
+  ]
+ },
+ {
+  "slug": "osm-n12407644015",
+  "name_ar": "مسشفى مغربي للعيون",
+  "name_en": null,
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "صنعاء",
+  "district": "الوحده",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12407644015"
+  ]
+ },
+ {
+  "slug": "osm-n1227056668",
+  "name_ar": "وحدة الحجر الصحي",
+  "name_en": "Wahdat al Hajr as Sihhiy",
+  "type": "medical_center",
+  "ownership": "other",
+  "governorate": "امانة العاصمه",
+  "city": "بني الحارث",
+  "district": "بني الحارث",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1227056668"
+  ]
+ },
+ {
+  "slug": "osm-n1222547640",
+  "name_ar": "مستشفى العر",
+  "name_en": "Mustashfa al `Urr",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "صنعاء",
+  "city": "الحيمة الداخليه",
+  "district": "الحيمة الداخليه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1222547640"
+  ]
+ },
+ {
+  "slug": "osm-n1222549688",
+  "name_ar": "مستشفى المنار",
+  "name_en": "Mustashfa al Manar",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "صنعاء",
+  "city": "الحيمة الخارجيه",
+  "district": "الحيمة الخارجيه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1222549688"
+  ]
+ },
+ {
+  "slug": "osm-n12403309183",
+  "name_ar": "مستشفى النبلاء الحديث",
+  "name_en": null,
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "صنعاء",
+  "city": "مدينة صنعاء",
+  "district": "بني حشيش",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/12403309183"
+  ]
+ },
+ {
+  "slug": "osm-n1222547579",
+  "name_ar": "مستشفى ستة و عشرون سبتمبر بمتنة",
+  "name_en": "Mustashfa Sittah wa Ashrun Sibtambir bi Matnah",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "صنعاء",
+  "city": "بني مطر",
+  "district": "بني مطر",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1222547579"
+  ]
+ },
+ {
+  "slug": "osm-n1222551623",
+  "name_ar": "مستشفى مناخة",
+  "name_en": "Mustashfa Manakhah",
+  "type": "hospital",
+  "ownership": "other",
+  "governorate": "صنعاء",
+  "city": "مناخه",
+  "district": "مناخه",
+  "website": null,
+  "social_links": [],
+  "existing_hours": 0,
+  "source_urls": [
+   "https://www.openstreetmap.org/node/1222551623"
+  ]
+ }
+]
