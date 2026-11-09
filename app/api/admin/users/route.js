@@ -68,16 +68,36 @@ async function findTarget(db,id){
  return data.user;
 }
 
+// Last step of a member's deletion request, after «إخفاء الهوية» in the debates audience panel.
+// Editors must lose their permissions first. Rows that would block the auth delete (tasks,
+// comments, lesson edits) are detached by public.release_deleted_account: tasks assigned to the
+// user go to the manager doing the deletion, and authorship becomes «عضو سابق».
+async function deleteAccount(db,actor,target,editor){
+ if(editor)throw new RequestValidationError('هذا الحساب لديه صلاحيات تحرير. أزل صلاحياته من إدارة المحررين أولًا.',403);
+ const profile=await db.from('public_profiles').select('display_name,deletion_requested_at').eq('user_id',target.id).maybeSingle();
+ if(profile.error)throw profile.error;
+ if(!profile.data?.deletion_requested_at)throw new RequestValidationError('لا يوجد طلب حذف من صاحب هذا الحساب.',409);
+ if(profile.data.display_name!=='حساب محذوف')throw new RequestValidationError('نفّذ «معالجة طلب الحذف وإخفاء الهوية» أولًا.',409);
+ const released=await db.rpc('release_deleted_account',{p_user:target.id,p_successor:actor.id});
+ if(released.error)throw released.error;
+ const {error}=await db.auth.admin.deleteUser(target.id);
+ if(error)throw error;
+ const moved=released.data?.reassigned||0;
+ console.info('management_account_deleted',{reassigned:moved});
+ return json({ok:true,message:'حُذف الحساب نهائيًا.'+(moved?' نُقلت '+moved+' مهام كانت مسندة إليه إلى حسابك.':'')});
+}
+
 export async function POST(request){
  try{
   const {db,actor}=await management(request);
   const body=await readJsonObject(request,10000);
   const invalid=validateManagementAction(body);
   if(invalid)throw new RequestValidationError(invalid,400);
-  if(actor.id===body.user_id)throw new RequestValidationError('لا يمكنك تغيير حالة حظر حسابك الحالي من هنا.',403);
+  if(actor.id===body.user_id)throw new RequestValidationError(body.action==='delete'?'لا يمكنك حذف حسابك الحالي من هنا.':'لا يمكنك تغيير حالة حظر حسابك الحالي من هنا.',403);
   const target=await findTarget(db,body.user_id);
   const editor=await db.from('editors').select('role').eq('user_id',target.id).maybeSingle();
   if(editor.error)throw editor.error;
+  if(body.action==='delete')return await deleteAccount(db,actor,target,editor.data);
 
   // Prevent all staff lockouts, not merely self-bans: changes to staff
   // privileges must first be made explicitly in the editors management UI.
