@@ -5,7 +5,10 @@ import {createDefaultContentPages,mutateContentCatalog,contentPagesForSearch,res
 import {buildSitemap} from '../lib/seo.js';
 
 test('missing visibility settings preserve published sections; malformed saved settings cannot reopen them',()=>{
- const visibility=resolvePageVisibility();assert.equal(Object.keys(visibility).length,publicSections.length);assert.ok(Object.values(visibility).every(Boolean));
+ const visibility=resolvePageVisibility();assert.equal(Object.keys(visibility).length,publicSections.length);
+ // Published sections stay open; a new section marked defaultHidden (the market) starts closed.
+ for(const section of publicSections)assert.equal(visibility[section.id],!section.defaultHidden,section.id);
+ assert.equal(visibility.market,false);
  assert.throws(()=>resolvePageVisibility([{key:PAGE_VISIBILITY_KEY,value:{version:2,sections:{}}}]),error=>error.status===503);
  for(const input of [{works:'false'},{admin:false},{__proto__:null,login:false},[],null])assert.throws(()=>validatePageVisibility(input));
 });
