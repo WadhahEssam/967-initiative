@@ -28,3 +28,5 @@
 .empty{padding:28px 16px;text-align:center;border:1px dashed var(--c-line-2);border-radius:16px;color:var(--c-ink-2)}
 .error{margin:0 0 10px;color:var(--c-danger);font-size:13px}
 .add{display:inline-flex;align-items:center;gap:6px;margin-top:14px;min-height:46px;padding:0 18px;border-radius:14px;background:var(--c-accent);color:#fff;font-weight:600;text-decoration:none}
+.question{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:8px;padding:10px 12px;border-radius:12px;background:var(--c-accent-soft)}
+.question p{flex:1 0 100%;margin:0;font-weight:600;font-size:14px;color:var(--c-ink)}

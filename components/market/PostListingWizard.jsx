@@ -51,6 +51,8 @@ export default function PostListingWizard({places}){
  const [confirmGenuine,setConfirmGenuine]=useState(false);
  const [needs,setNeeds]=useState({});
  const [draftId,setDraftId]=useState(null);
+ // Editing a published listing (/market/new?edit=<id>): same steps, no autosave, category locked.
+ const [editing,setEditing]=useState(null);
  const [busy,setBusy]=useState(false);
  const [error,setError]=useState('');
  const [done,setDone]=useState(null);
@@ -66,12 +68,14 @@ export default function PostListingWizard({places}){
   db.auth.getSession().then(async({data})=>{
    if(!live)return;setSession(data.session||null);if(!data.session)return;
    try{
-    const draft=new URLSearchParams(location.search).get('draft');
-    const result=await api('/api/market/listings'+(draft?'?draft='+encodeURIComponent(draft):''));
+    const params=new URLSearchParams(location.search);
+    const draft=params.get('draft'),edit=params.get('edit');
+    const result=await api('/api/market/listings'+(edit?'?edit='+encodeURIComponent(edit):draft?'?draft='+encodeURIComponent(draft):''));
     if(!live)return;
     setDefaults(result.defaults);
-    if(result.draft){
-     const d=result.draft;setDraftId(d.id);
+    const d=result.editing||result.draft;
+    if(d){
+     if(result.editing)setEditing({id:d.id,number:d.number});else setDraftId(d.id);
      setPhotos((d.images||[]).map(image=>({id:image.id,thumb:'/api/market/img/'+image.id+'/thumb'})));
      set({category:d.category,subcategory:d.subcategory,attributes:d.attributes||{},price:d.price??'',currency:d.currency||'',negotiable:d.negotiable,condition:d.condition||'',governorate_id:d.governorate_id||'',district_id:d.district_id||'',title:d.title||'',titleEdited:Boolean(d.title),description:d.description||'',show_whatsapp:d.show_whatsapp});
     }else{
@@ -88,7 +92,7 @@ export default function PostListingWizard({places}){
  const uploaded=photos.filter(p=>p.id);
  const payload=useMemo(()=>({category:form.category,subcategory:form.subcategory,attributes:form.attributes,price:form.price,currency:form.currency||null,negotiable:form.negotiable,condition:form.condition||null,governorate_id:form.governorate_id||null,district_id:form.district_id||null,title:form.title,description:form.description,show_whatsapp:form.show_whatsapp}),[form]);
  useEffect(()=>{
-  if(done||session===undefined)return;
+  if(done||session===undefined||editing)return;
   try{localStorage.setItem(LOCAL_KEY,JSON.stringify({form,photos:uploaded,draftId,step}));}catch{/* private mode */}
   if(!session||!form.subcategory)return;
   const timer=setTimeout(async()=>{
@@ -97,7 +101,7 @@ export default function PostListingWizard({places}){
   },1500);
   return()=>clearTimeout(timer);
   // eslint-disable-next-line react-hooks/exhaustive-deps
- },[payload,uploaded.length,session]);
+ },[payload,uploaded.length,session,editing]);
 
  // The suggested title follows brand, model and year until the seller edits it.
  useEffect(()=>{if(!form.titleEdited&&sub)set({title:suggestTitle(form)});
@@ -131,9 +135,11 @@ export default function PostListingWizard({places}){
  async function publish(){
   setBusy(true);setError('');
   try{
-   const result=await api('/api/market/listings',{method:'POST',body:{action:'publish',id:draftId,data:payload,images:uploaded.map(p=>p.id),acceptTerms,confirmGenuine,phone:phone||null}});
-   try{localStorage.removeItem(LOCAL_KEY);}catch{/* ignore */}
-   setDone(result.listing);window.scrollTo(0,0);
+   const body=editing?{action:'update',id:editing.id,data:payload,images:uploaded.map(p=>p.id),phone:phone||null}
+    :{action:'publish',id:draftId,data:payload,images:uploaded.map(p=>p.id),acceptTerms,confirmGenuine,phone:phone||null};
+   const result=await api('/api/market/listings',{method:'POST',body});
+   if(!editing)try{localStorage.removeItem(LOCAL_KEY);}catch{/* ignore */}
+   setDone({...result.listing,edited:Boolean(editing)});window.scrollTo(0,0);
   }catch(e){
    if(e.code==='TERMS_REQUIRED')setNeeds(n=>({...n,terms:true}));
    else if(e.code==='PHONE_REQUIRED'||e.field==='phone')setNeeds(n=>({...n,phone:true}));
@@ -151,12 +157,13 @@ export default function PostListingWizard({places}){
   const percent=listingCompleteness({...payload,images:uploaded});
   return <div className={styles.done}>
    <span className={styles.doneIcon}><Check size={34} aria-hidden="true"/></span>
-   <h1>{done.status==='pending_review'?'إعلانك قيد المراجعة':'تم نشر إعلانك'}</h1>
-   {done.status==='pending_review'?<p>احتوى الإعلان على كلمات تحتاج مراجعة قبل نشره. سيصلك إشعار بعد المراجعة.</p>:<p>رقم الإعلان {done.number}. إعلانك مكتمل {percent}%، وأكمل تفاصيله ليظهر في نتائج بحث أكثر.</p>}
+   <h1>{done.status==='pending_review'?'إعلانك قيد المراجعة':done.edited?(done.changed?.length?'تم حفظ التعديلات':'لم تغيّر شيئًا'):'تم نشر إعلانك'}</h1>
+   {done.edited&&done.status!=='pending_review'?<p>يحتفظ الإعلان بتاريخ نشره، وتظهر علامة «معدّل» بجانب ما غيّرته.</p>:done.status==='pending_review'?<p>احتوى الإعلان على كلمات تحتاج مراجعة قبل نشره. سيصلك إشعار بعد المراجعة.</p>:<p>رقم الإعلان {done.number}. إعلانك مكتمل {percent}%، وأكمل تفاصيله ليظهر في نتائج بحث أكثر.</p>}
    <div className={styles.doneActions}>
-    {done.status!=='pending_review'&&<a className={styles.whatsapp} href={'https://wa.me/?text='+encodeURIComponent(form.title+' — '+url)} target="_blank" rel="noopener noreferrer">شارك عبر واتساب</a>}
+    {done.edited&&<Link className={styles.secondary} href="/market/mine">إعلاناتي</Link>}
+    {done.status!=='pending_review'&&!done.edited&&<a className={styles.whatsapp} href={'https://wa.me/?text='+encodeURIComponent(form.title+' — '+url)} target="_blank" rel="noopener noreferrer">شارك عبر واتساب</a>}
     {done.status!=='pending_review'&&<Link className={styles.secondary} href={listingPath(done.number)}>عرض الإعلان</Link>}
-    <button type="button" className={styles.secondary} onClick={()=>location.reload()}>أضف إعلانًا آخر</button>
+    {!done.edited&&<button type="button" className={styles.secondary} onClick={()=>location.reload()}>أضف إعلانًا آخر</button>}
    </div>
   </div>;
  }
@@ -164,7 +171,7 @@ export default function PostListingWizard({places}){
  return <div className={styles.wizard}>
   <div className={styles.progress} aria-hidden="true">{STEPS.map((_,i)=><span key={i} className={i<=step?styles.progressOn:''}/>)}</div>
   <p className={styles.stepMeta}>الخطوة {step+1} من {STEPS.length}</p>
-  <h1 className={styles.question}>{['أضف صور ما تبيعه','ماذا تبيع؟','التفاصيل الأساسية','السعر والحالة','راجع إعلانك وانشره'][step]}</h1>
+  <h1 className={styles.question}>{['أضف صور ما تبيعه','ماذا تبيع؟','التفاصيل الأساسية','السعر والحالة',editing?'راجع تعديلاتك واحفظها':'راجع إعلانك وانشره'][step]}</h1>
   {error&&<p className={styles.error} role="alert">{error}</p>}
 
   {step===0&&<section>
@@ -183,7 +190,11 @@ export default function PostListingWizard({places}){
    <input ref={fileInput} type="file" accept="image/*" multiple hidden onChange={e=>{addPhotos(e.target.files);e.target.value='';}}/>
   </section>}
 
-  {step===1&&<section>
+  {step===1&&editing&&<section>
+   <p className={styles.hint}>{CATEGORIES.find(c=>c.key===form.category)?.label} / {sub?.label}</p>
+   <p className={styles.hint}>لا يمكن تغيير فئة الإعلان بعد نشره. إن كانت خاطئة، احذفه وانشره من جديد.</p>
+  </section>}
+  {step===1&&!editing&&<section>
    <div className={styles.categories}>{CATEGORIES.map(category=>{const Icon=ICONS[category.icon]||Package;return <button type="button" key={category.key} className={form.category===category.key?styles.categoryOn:styles.category} onClick={()=>set({category:category.key,subcategory:category.subcategories.length===1?category.subcategories[0].key:'',attributes:{},titleEdited:false})}><Icon size={28} aria-hidden="true"/><span>{category.label}</span></button>;})}</div>
    {form.category&&CATEGORIES.find(c=>c.key===form.category).subcategories.length>1&&<><h2 className={styles.subhead}>القسم</h2>
     <Chips label="القسم" options={CATEGORIES.find(c=>c.key===form.category).subcategories.map(s=>({value:s.key,label:s.label}))} value={form.subcategory} onChange={v=>set({subcategory:v,attributes:{},titleEdited:false})}/></>}
@@ -224,7 +235,7 @@ export default function PostListingWizard({places}){
    <label className={styles.field}><span className={styles.fieldLabel}>الوصف <small>(اختياري)</small></span><textarea className={styles.textarea} rows={4} maxLength={4000} value={form.description} placeholder="مثل: سبب البيع، الملحقات، أي عيوب" onChange={e=>set({description:e.target.value})}/></label>
    <label className={styles.check}><input type="checkbox" checked={form.show_whatsapp} onChange={e=>set({show_whatsapp:e.target.checked})}/><span>أظهر زر واتساب في الإعلان</span></label>
    {form.show_whatsapp&&(needs.phone||!defaults?.hasPhone)&&<label className={styles.field}><span className={styles.fieldLabel}>رقم جوالك (يظهر عبر زر واتساب فقط)</span><input className={styles.input} inputMode="tel" dir="ltr" placeholder="77xxxxxxx" value={phone} onChange={e=>setPhone(e.target.value)}/></label>}
-   {(needs.terms||defaults&&!defaults.termsAccepted)&&<label className={styles.check}><input type="checkbox" checked={acceptTerms} onChange={e=>setAcceptTerms(e.target.checked)}/><span>قرأت <Link href="/market/terms" target="_blank">شروط استخدام سوق 967</Link> وأوافق عليها</span></label>}
+   {!editing&&(needs.terms||defaults&&!defaults.termsAccepted)&&<label className={styles.check}><input type="checkbox" checked={acceptTerms} onChange={e=>setAcceptTerms(e.target.checked)}/><span>قرأت <Link href="/market/terms" target="_blank">شروط استخدام سوق 967</Link> وأوافق عليها</span></label>}
    {needs.genuine&&<label className={styles.check}><input type="checkbox" checked={confirmGenuine} onChange={e=>setConfirmGenuine(e.target.checked)}/><span>أؤكد أن إعلاناتي حقيقية</span></label>}
    <p className={styles.safety}>البيع والشراء بين الأطراف مباشرة. لا تحوّل أي مبلغ قبل المعاينة.</p>
   </section>}
@@ -233,7 +244,7 @@ export default function PostListingWizard({places}){
    {step<4&&!canNext&&waiting&&<p className={styles.waiting} role="status">{waiting}</p>}
    {step>0&&<button type="button" className={styles.back} onClick={()=>setStep(s=>s-1)}><ChevronRight size={18} aria-hidden="true"/> رجوع</button>}
    {step<4?<button type="button" className={styles.primary} disabled={!canNext} onClick={()=>{setError('');setStep(s=>s+1);window.scrollTo(0,0);}}>التالي <ChevronLeft size={18} aria-hidden="true"/></button>
-    :<button type="button" className={styles.primary} disabled={busy||((needs.terms||defaults&&!defaults.termsAccepted)&&!acceptTerms)} onClick={publish}>{busy?'جارٍ النشر…':'انشر الإعلان'}</button>}
+    :<button type="button" className={styles.primary} disabled={busy||(!editing&&(needs.terms||defaults&&!defaults.termsAccepted)&&!acceptTerms)} onClick={publish}>{busy?'جارٍ الحفظ…':editing?'حفظ التعديلات':'انشر الإعلان'}</button>}
   </div>
  </div>;
 }
