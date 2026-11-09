@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import MarketTopBar from '@/components/market/MarketTopBar';
 import FavouritesList from '@/components/market/FavouritesList';
 import {pageMetadata} from '@/lib/seo';
 import styles from '@/components/market/Market.module.css';
@@ -7,7 +7,7 @@ export const metadata=pageMetadata({title:'المفضلة — سوق 967',descri
 
 export default function MarketFavourites(){
  return <div className={styles.page}>
-  <nav className={styles.crumbs} aria-label="مسار الصفحة"><Link href="/market">سوق 967</Link></nav>
+  <MarketTopBar current="favourites"/>
   <h1 className={styles.pageTitle}>المفضلة</h1>
   <FavouritesList/>
  </div>;

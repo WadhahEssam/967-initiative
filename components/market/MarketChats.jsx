@@ -12,7 +12,13 @@ import {STATUS_LABELS,formatPrice,listingPath,timeAgo} from '@/lib/market/format
 import styles from './MarketChats.module.css';
 
 const SAFETY_KEY='967-market-safety-seen';
-const clock=value=>new Intl.DateTimeFormat('ar',{hour:'2-digit',minute:'2-digit'}).format(new Date(value));
+const CLOCK=new Intl.DateTimeFormat('ar',{hour:'2-digit',minute:'2-digit'});
+const clock=value=>CLOCK.format(new Date(value));
+// What a buyer usually asks first: one tap fills the message (the buyer can still edit it).
+const QUICK=['هل ما زال متاحًا؟','ما آخر سعر؟','أين مكان المعاينة؟','هل يمكن التوصيل؟'];
+// Polling skips re-rendering when nothing changed.
+const threadKey=result=>JSON.stringify([result.messages?.map(m=>m.id),Object.values(result.offers||{}).map(o=>o.status),result.listing?.status,result.chat?.closed,result.chat?.blockedByMe,result.rating?.canRate,result.canOffer]);
+const listKey=list=>JSON.stringify((list||[]).map(c=>[c.id,c.unread,c.lastMessageAt,c.preview]));
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const setUrl=params=>{const url=new URL(location.href);for(const key of ['chat','listing'])url.searchParams.delete(key);url.searchParams.set('tab','market');for(const [key,value] of Object.entries(params))if(value)url.searchParams.set(key,value);history.replaceState(null,'',url);};
 
@@ -27,13 +33,15 @@ export default function MarketChats({onCount}){
  const [thread,setThread]=useState(null);
  const [error,setError]=useState('');
  const countRef=useRef(onCount);
+ const seenThread=useRef('');
+ const seenList=useRef('');
  countRef.current=onCount;
  const loadList=useCallback(async()=>{
-  try{const result=await marketApi('/api/market/chats');setChats(result.chats);countRef.current?.(result.chats.reduce((sum,chat)=>sum+Number(chat.unread||0),0));}
+  try{const result=await marketApi('/api/market/chats');const key=listKey(result.chats);if(key===seenList.current)return;seenList.current=key;setChats(result.chats);countRef.current?.(result.chats.reduce((sum,chat)=>sum+Number(chat.unread||0),0));}
   catch(e){setError(e.message);setChats(current=>current||[]);}
  },[]);
  const loadThread=useCallback(async(id,{quiet=false}={})=>{
-  try{const result=await marketApi('/api/market/chats?chat='+encodeURIComponent(id));setThread(result);if(!quiet)setError('');}
+  try{const result=await marketApi('/api/market/chats?chat='+encodeURIComponent(id));const key=id+threadKey(result);if(quiet&&key===seenThread.current)return;seenThread.current=key;setThread(result);if(!quiet)setError('');}
   catch(e){if(!quiet){setError(e.message);setThread(null);}}
  },[]);
 
@@ -51,13 +59,14 @@ export default function MarketChats({onCount}){
  useEffect(()=>{if(openId){setDraft(null);loadThread(openId);}else setThread(null);},[openId,loadThread]);
  useEffect(()=>{
   const tick=()=>{if(document.visibilityState!=='visible')return;if(openId)loadThread(openId,{quiet:true});};
-  const list=()=>{if(document.visibilityState==='visible')loadList();};
+  // On phones the list is hidden while a chat is open: no need to refresh it then.
+  const list=()=>{if(document.visibilityState!=='visible')return;if(openId&&matchMedia('(max-width:760px)').matches)return;loadList();};
   const a=setInterval(tick,10000),b=setInterval(list,30000);
   return()=>{clearInterval(a);clearInterval(b);};
  },[openId,loadThread,loadList]);
 
  const choose=id=>{setOpenId(id);setUrl({chat:id});setChats(list=>list?.map(chat=>chat.id===id?{...chat,unread:0}:chat));};
- const back=()=>{setOpenId(null);setDraft(null);setUrl({});loadList();};
+ const back=()=>{setOpenId(null);setDraft(null);setUrl({});seenList.current='';loadList();};
  const visible=(chats||[]).filter(chat=>(!listingFor||chat.listing?.id===listingFor)&&(filter==='all'||(filter==='selling'?chat.role==='seller':chat.role==='buyer')));
  const showing=Boolean(openId||draft);
 
@@ -104,6 +113,7 @@ function ChatThread({data=null,draft=null,onBack,reload,onStarted}){
  const [dialog,setDialog]=useState(null);
  const end=useRef(null);
  const fileInput=useRef(null);
+ const composerRef=useRef(null);
  const count=data?.messages.length||0;
  useEffect(()=>{end.current?.scrollIntoView({block:'end'});},[count]);
  useEffect(()=>{try{setSafety(!localStorage.getItem(SAFETY_KEY));}catch{setSafety(true);}},[]);
@@ -179,15 +189,16 @@ function ChatThread({data=null,draft=null,onBack,reload,onStarted}){
   {offering?<OfferForm price={listing?.price} currency={listing?.currency} busy={busy} onCancel={()=>setOffering(false)}
     onSubmit={async(amount,note)=>{if(await act({action:'offer',...target,amount,note}))setOffering(false);}}/>
   :data?.chat.closed?<p className={styles.closed}>{data.chat.blockedByMe?'حظرت هذا المستخدم، فلا يمكنكما المراسلة.':'لا يمكن مراسلة هذا المستخدم.'}</p>
-  :<form className={styles.composer} onSubmit={send}>
+  :<>{role==='buyer'&&!(data?.messages||[]).some(message=>message.mine)&&<div className={styles.quick} role="group" aria-label="أسئلة جاهزة">{QUICK.map(item=><button type="button" key={item} onClick={()=>{setText(item);composerRef.current?.focus();}}>{item}</button>)}</div>}
+  <form className={styles.composer} onSubmit={send}>
    {photo&&<span className={styles.pending}><img src={photo.preview} alt=""/>{photo.uploading?<small>جارٍ الرفع…</small>:<button type="button" onClick={()=>setPhoto(null)} aria-label="إزالة الصورة"><X size={14}/></button>}</span>}
    <button type="button" className={styles.icon} onClick={()=>fileInput.current?.click()} aria-label="إرسال صورة" disabled={busy||photo?.uploading}><ImagePlus size={19}/></button>
    <input ref={fileInput} type="file" accept="image/*" hidden onChange={event=>{pickPhoto(event.target.files?.[0]);event.target.value='';}}/>
-   <textarea rows={1} value={text} maxLength={2000} placeholder="اكتب رسالة…" aria-label="الرسالة" onChange={event=>setText(event.target.value)}
+   <textarea ref={composerRef} rows={1} value={text} maxLength={2000} placeholder="اكتب رسالة…" aria-label="الرسالة" onChange={event=>setText(event.target.value)}
     onKeyDown={event=>{if(event.key==='Enter'&&!event.shiftKey&&!event.nativeEvent.isComposing&&window.matchMedia('(pointer:fine)').matches){event.preventDefault();event.currentTarget.form.requestSubmit();}}}/>
    {(data?data.canOffer:draft?.canOffer)&&<button type="button" className={styles.offerButton} onClick={()=>setOffering(true)} disabled={busy}><HandCoins size={17} aria-hidden="true"/> عرض سعر</button>}
    <button type="submit" className={styles.send} disabled={busy||photo?.uploading||(!text.trim()&&!photo?.id)} aria-label="إرسال"><Send size={18}/></button>
-  </form>}
+  </form></>}
  </div>;
 }
 

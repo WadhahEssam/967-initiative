@@ -29,7 +29,7 @@ export async function POST(request){
   if(!file||typeof file.arrayBuffer!=='function')throw new RequestValidationError('أرسل الصورة في حقل file.',400);
   const image=await processListingImage(Buffer.from(await file.arrayBuffer()));
   const id=randomUUID();
-  await Promise.all([putImage(imageKey(id,'full',{temporary:true}),image.full),putImage(imageKey(id,'thumb',{temporary:true}),image.thumb)]);
+  await Promise.all([putImage(imageKey(id,'full',{temporary:true}),image.full),putImage(imageKey(id,'medium',{temporary:true}),image.medium),putImage(imageKey(id,'thumb',{temporary:true}),image.thumb)]);
   const {error}=await db.from('market_uploads').insert({id,owner_id:user.id,width:image.width,height:image.height,bytes:image.bytes});
   if(error)throw error;
   return json({id,width:image.width,height:image.height,thumb:'/api/market/img/'+id+'/thumb',full:'/api/market/img/'+id+'/full'},201);

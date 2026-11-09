@@ -1,21 +1,15 @@
 'use client';
 import {useEffect,useState} from 'react';
-import {createPortal} from 'react-dom';
-import {Ban,Flag,X} from 'lucide-react';
+import {Ban,Flag} from 'lucide-react';
 import {loginHref,marketApi,marketSession} from '@/lib/market/clientApi';
 import {BLOCK_REASONS,REPORT_REASONS} from '@/lib/market/safety';
+import Sheet from './Sheet';
 import styles from './Safety.module.css';
 
-// Report and block dialogs (spec: «الإبلاغ», «الحظر بين المستخدمين»). They open in <body>, above the
-// site's bottom tab bar.
+// Report and block dialogs (spec: «الإبلاغ», «الحظر بين المستخدمين»), in the market's shared sheet
+// (focus stays inside, Escape closes, focus returns to the button).
 function Dialog({title,onClose,children}){
- useEffect(()=>{const key=event=>{if(event.key==='Escape')onClose();};addEventListener('keydown',key);return ()=>removeEventListener('keydown',key);},[onClose]);
- return createPortal(<div className={styles.dialog} role="dialog" aria-modal="true" aria-labelledby="safety-title" onClick={event=>{if(event.target===event.currentTarget)onClose();}}>
-  <div className={styles.box}>
-   <div className={styles.head}><h2 id="safety-title">{title}</h2><button type="button" onClick={onClose} aria-label="إغلاق"><X size={18}/></button></div>
-   {children}
-  </div>
- </div>,document.body);
+ return <Sheet open title={title} onClose={onClose}>{children}</Sheet>;
 }
 
 function Reasons({list,value,onChange,name}){

@@ -2,10 +2,9 @@
 import {useEffect,useState} from 'react';
 import {Heart} from 'lucide-react';
 import {loginHref,marketApi,marketSession} from '@/lib/market/clientApi';
-import styles from './Market.module.css';
 
 // Save a listing to «المفضلة». Visitors are sent to sign in and come back to the listing.
-export default function FavouriteButton({listingId,onNote}){
+export default function FavouriteButton({listingId,onNote,className,onClassName}){
  const [saved,setSaved]=useState(false);
  const [busy,setBusy]=useState(false);
  useEffect(()=>{
@@ -25,7 +24,7 @@ export default function FavouriteButton({listingId,onNote}){
   }catch(error){setSaved(!next);onNote?.(error.message);}
   finally{setBusy(false);}
  };
- return <button type="button" className={saved?styles.favouriteOn:styles.contactIcon} onClick={toggle} aria-pressed={saved} aria-label={saved?'إزالة من المفضلة':'حفظ في المفضلة'}>
-  <Heart size={18} fill={saved?'currentColor':'none'} aria-hidden="true"/>
+ return <button type="button" className={saved&&onClassName?onClassName:className} onClick={toggle} aria-pressed={saved} aria-label={saved?'إزالة من المفضلة':'حفظ في المفضلة'}>
+  <Heart size={20} fill={saved?'currentColor':'none'} aria-hidden="true"/>
  </button>;
 }

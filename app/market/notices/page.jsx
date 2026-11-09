@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import MarketTopBar from '@/components/market/MarketTopBar';
 import MarketNotices from '@/components/market/MarketNotices';
 import {pageMetadata} from '@/lib/seo';
 import styles from '@/components/market/Market.module.css';
@@ -7,7 +7,7 @@ export const metadata=pageMetadata({title:'رسائل الإدارة — سوق 
 
 export default function MarketNoticesPage(){
  return <div className={styles.page}>
-  <nav className={styles.crumbs} aria-label="مسار الصفحة"><Link href="/market">سوق 967</Link></nav>
+  <MarketTopBar/>
   <h1 className={styles.pageTitle}>رسائل الإدارة</h1>
   <MarketNotices/>
  </div>;

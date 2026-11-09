@@ -1,10 +1,12 @@
 import Link from 'next/link';
 import {headers} from 'next/headers';
 import {notFound} from 'next/navigation';
-import {Clock,Eye,MapPin} from 'lucide-react';
+import {ChevronLeft,Clock,Eye,MapPin,ShieldCheck,Star} from 'lucide-react';
 import ListingGallery from '@/components/market/ListingGallery';
 import ListingContactBar from '@/components/market/ListingContactBar';
 import ListingCard from '@/components/market/ListingCard';
+import ListingActions from '@/components/market/ListingActions';
+import Price from '@/components/market/Price';
 import {ReportButton} from '@/components/market/SafetyDialogs';
 import {conditionLabel,findCategory,findSubcategory} from '@/lib/market/catalog';
 import {attributeText,listingHighlights} from '@/lib/market/listing';
@@ -73,33 +75,39 @@ export default async function ListingPage({params}){
  const dropped=Number(listing.previous_price)>Number(listing.price);
  return <div className={styles.listing} data-seller={listing.seller.id} data-seller-page="">
   <div className={styles.layout}>
-   <ListingGallery images={listing.images} title={listing.title}/>
+   <ListingGallery images={listing.images} title={listing.title}>
+    <ListingActions listingId={listing.id} title={listing.title} price={price} url={siteUrl(listingPath(listing.number))}/>
+   </ListingGallery>
    <div className={styles.summary}>
-    {listing.status!=='active'&&<span className={styles.status}>{listing.status==='reserved'?'محجوز':'مباع'}</span>}
-    {listing.status==='reserved'&&<p className={styles.reservedNote}>هذا الإعلان محجوز حاليًا، ويمكنك حفظه أو مراسلة البائع أو تقديم عرض.</p>}
-    <div><span className={styles.price}>{price}</span>{dropped&&<s className={styles.oldPrice}>{formatPrice(listing.previous_price,listing.currency)}</s>}{listing.negotiable&&<span className={styles.negotiable}>قابل للتفاوض</span>}{edited('price')}</div>
-    <h1 className={styles.title}>{listing.title}{edited('title')}</h1>
-    <div className={styles.where}><span><MapPin size={14} aria-hidden="true"/>{[listing.governorate,listing.district].filter(Boolean).join(' · ')}{edited('place')}</span><span><Clock size={14} aria-hidden="true"/>{timeAgo(listing.published_at)}</span></div>
-    {listingHighlights(listing).length>0&&<div className={styles.highlights}>{listingHighlights(listing).map(item=><span key={item}>{item}</span>)}</div>}
-    <div className={styles.seller}>
-     <span className={styles.avatar} aria-hidden="true">{listing.seller.name.trim().charAt(0)}</span>
-     <div><Link href={'/market/seller/'+listing.seller.id} className={styles.sellerName}>{listing.seller.name}</Link>
-      <small>{listing.seller.since?'عضو منذ '+formatArabicDate(listing.seller.since,{year:'numeric',month:'long'}):''}{listing.seller.sold?' · باع '+listing.seller.sold+' في السوق':''}</small>
-      <small>{rated.shown?'★ '+rated.text:rated.text}</small>
-      {response&&<small>{response}</small>}
-     </div>
+    {listing.status!=='active'&&<p className={styles.status}>{listing.status==='reserved'?'محجوز حاليًا: يمكنك حفظه أو مراسلة البائع أو تقديم عرض.':'مباع'}</p>}
+    <div className={styles.priceRow}>
+     <Price price={listing.price} currency={listing.currency} className={styles.price} currencyClassName={styles.currency}/>
+     {dropped&&<s className={styles.oldPrice}><Price price={listing.previous_price} currency={listing.currency}/></s>}
+     {listing.negotiable&&<span className={styles.negotiable}>قابل للتفاوض</span>}{edited('price')}
     </div>
+    <h1 className={styles.title}>{listing.title}{edited('title')}</h1>
+    <p className={styles.where}><span><MapPin size={14} aria-hidden="true"/>{[listing.governorate,listing.district].filter(Boolean).join(' · ')}{edited('place')}</span><span><Clock size={14} aria-hidden="true"/>{timeAgo(listing.published_at)}</span></p>
+    {listingHighlights(listing).length>0&&<ul className={styles.highlights}>{listingHighlights(listing).map(item=><li key={item}>{item}</li>)}</ul>}
+    <Link href={'/market/seller/'+listing.seller.id} className={styles.seller}>
+     <span className={styles.avatar} aria-hidden="true">{listing.seller.name.trim().charAt(0)}</span>
+     <span className={styles.sellerText}>
+      <strong>{listing.seller.name}</strong>
+      <small>{rated.shown?<><Star size={13} aria-hidden="true" className={styles.star}/> {rated.text}</>:rated.text}{listing.seller.sold?' · باع '+listing.seller.sold:''}</small>
+      <small>{response||(listing.seller.since?'عضو منذ '+formatArabicDate(listing.seller.since,{year:'numeric',month:'long'}):'')}</small>
+     </span>
+     <ChevronLeft size={18} aria-hidden="true" className={styles.sellerGo}/>
+    </Link>
    </div>
   </div>
   <section className={styles.block}>
    {listing.description&&<><h2>الوصف{edited('description')}</h2><p className={styles.description}>{listing.description}</p></>}
    <h2>المواصفات{(listing.edited_fields||[]).some(part=>['details','condition'].includes(part))&&edited('details',true)}</h2>
    <dl className={styles.specs}>{specs.map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
-   <p className={styles.safety}>قابل البائع في مكان عام، ولا تحوّل أي مبلغ قبل المعاينة.</p>
+   <p className={styles.safety}><ShieldCheck size={16} aria-hidden="true"/> قابل البائع في مكان عام، ولا تحوّل أي مبلغ قبل المعاينة.</p>
    <div className={styles.facts}><span>رقم الإعلان {listing.number}</span><span><Eye size={13} aria-hidden="true"/> {listing.views} مشاهدة</span>{listing.saves>0&&<span>حفظه {listing.saves}</span>}<ReportButton target="listing" ids={{listingId:listing.id}} ownerId={listing.seller.id} label="إبلاغ عن الإعلان"/></div>
    {similar.length>0&&<><h2>إعلانات مشابهة</h2><div className={styles.grid}>{similar.map(item=><ListingCard key={item.id} listing={item}/>)}</div></>}
   </section>
-  <ListingContactBar listingId={listing.id} sellerId={listing.seller.id} title={listing.title} price={price} amount={listing.price} currency={listing.currency} closed={listing.status==='sold'}
+  <ListingContactBar listingId={listing.id} sellerId={listing.seller.id} title={listing.title} amount={listing.price} currency={listing.currency} closed={listing.status==='sold'}
    whatsapp={listing.status==='sold'?null:listing.whatsapp} negotiable={listing.negotiable&&Number(listing.price)>0&&['active','reserved'].includes(listing.status)} url={siteUrl(listingPath(listing.number))}/>
  </div>;
 }

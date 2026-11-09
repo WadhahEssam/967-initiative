@@ -1,13 +1,14 @@
 'use client';
-import {useCallback,useEffect,useMemo,useRef,useState} from 'react';
+import {useCallback,useEffect,useId,useMemo,useRef,useState} from 'react';
 import Link from 'next/link';
-import {Car,Check,ChevronLeft,ChevronRight,Dumbbell,House,ImagePlus,Package,PawPrint,Shirt,Smartphone,Sofa,Star,Sun,Trash2,Wrench} from 'lucide-react';
+import {Car,Check,ChevronLeft,ChevronRight,Dumbbell,House,ImagePlus,Package,PawPrint,Shirt,Smartphone,Sofa,Star,Sun,Trash2,Wrench,X} from 'lucide-react';
 import {browserDb} from '@/lib/supabase';
 import {CATEGORIES,CONDITIONS,CURRENCIES,OTHER,conditionRequired,findSubcategory} from '@/lib/market/catalog';
 import {listingCompleteness,listingHighlights,suggestTitle} from '@/lib/market/listing';
 import {formatPrice,listingPath} from '@/lib/market/format';
 import {compressForUpload} from '@/lib/market/clientImage';
 import {marketApi} from '@/lib/market/clientApi';
+import ui from './ui.module.css';
 import styles from './PostListing.module.css';
 
 const ICONS={car:Car,home:House,phone:Smartphone,sun:Sun,sofa:Sofa,shirt:Shirt,paw:PawPrint,tools:Wrench,ball:Dumbbell,box:Package};
@@ -18,8 +19,13 @@ const MAX_PHOTOS=10;
 const api=(path,options={})=>marketApi(path,{signInMessage:'سجّل الدخول لإضافة إعلان.',...options});
 const empty=value=>value===undefined||value===null||value==='';
 
-function Chips({options,value,onChange,label}){
- return <div className={styles.chips} role="radiogroup" aria-label={label}>{options.map(option=><button type="button" key={option.value} role="radio" aria-checked={value===option.value} className={value===option.value?styles.chipOn:styles.chip} onClick={()=>onChange(option.value)}>{option.label}</button>)}</div>;
+// Choices are native radio buttons drawn as chips (arrow keys and screen readers work); an optional
+// choice (`clearable`) is cleared by tapping it again.
+function Chips({options,value,onChange,label,clearable=false}){
+ const name=useId();
+ return <div className={ui.chipRow} role="radiogroup" aria-label={label}>{options.map(option=><label key={option.value} className={ui.chip}>
+  <input type="radio" name={name} value={option.value} checked={value===option.value} onChange={()=>onChange(option.value)} onClick={()=>{if(clearable&&value===option.value)onChange('');}}/>{option.label}
+ </label>)}</div>;
 }
 
 // One field of a subcategory, answered with taps where possible.
@@ -33,7 +39,7 @@ function Field({field,attributes,setAttribute}){
   const options=[...list,{value:OTHER,label:'أخرى'}];
   return <div className={styles.field}>{label}
    {list.length?<Chips label={field.label} options={options} value={value} onChange={v=>setAttribute(field.key,v)}/>:null}
-   {(value===OTHER||!list.length)&&<input className={styles.input} value={attributes[field.key+'_other']||''} maxLength={40} placeholder={'اكتب '+field.label} onChange={e=>{setAttribute(field.key,OTHER);setAttribute(field.key+'_other',e.target.value);}}/>}
+   {(value===OTHER||!list.length)&&<input className={styles.input} aria-label={'اكتب '+field.label} value={attributes[field.key+'_other']||''} maxLength={40} placeholder={'اكتب '+field.label} onChange={e=>{setAttribute(field.key,OTHER);setAttribute(field.key+'_other',e.target.value);}}/>}
   </div>;
  }
  if(field.type==='number')return <label className={styles.field}>{label}<input className={styles.input} inputMode="decimal" dir="ltr" value={value??''} onChange={e=>setAttribute(field.key,e.target.value)}/></label>;
@@ -57,6 +63,10 @@ export default function PostListingWizard({places}){
  const [error,setError]=useState('');
  const [done,setDone]=useState(null);
  const fileInput=useRef(null);
+ const heading=useRef(null);
+ // Each new step starts at its question (for screen readers and keyboards too).
+ const firstStep=useRef(true);
+ useEffect(()=>{if(firstStep.current){firstStep.current=false;return;}heading.current?.focus();},[step]);
  const sub=findSubcategory(form.category,form.subcategory);
  const set=patch=>setForm(current=>({...current,...patch}));
  const setAttribute=(key,value)=>setForm(current=>({...current,attributes:{...current.attributes,[key]:value}}));
@@ -168,10 +178,13 @@ export default function PostListingWizard({places}){
   </div>;
  }
 
- return <div className={styles.wizard}>
+ return <div className={styles.wizard} data-market-focus="">
+  <div className={styles.top}>
+   <p className={styles.stepMeta}>الخطوة {step+1} من {STEPS.length} · {STEPS[step]}</p>
+   <Link href={editing?'/market/mine':'/market'} className={ui.iconButton} aria-label={editing?'إلغاء التعديل':'خروج (تُحفظ المسودة)'} title={editing?'إلغاء التعديل':'خروج، وتبقى مسودتك محفوظة'}><X size={18} aria-hidden="true"/></Link>
+  </div>
   <div className={styles.progress} aria-hidden="true">{STEPS.map((_,i)=><span key={i} className={i<=step?styles.progressOn:''}/>)}</div>
-  <p className={styles.stepMeta}>الخطوة {step+1} من {STEPS.length}</p>
-  <h1 className={styles.question}>{['أضف صور ما تبيعه','ماذا تبيع؟','التفاصيل الأساسية','السعر والحالة',editing?'راجع تعديلاتك واحفظها':'راجع إعلانك وانشره'][step]}</h1>
+  <h1 className={styles.question} ref={heading} tabIndex={-1}>{['أضف صور ما تبيعه','ماذا تبيع؟','التفاصيل الأساسية','السعر والحالة',editing?'راجع تعديلاتك واحفظها':'راجع إعلانك وانشره'][step]}</h1>
   {error&&<p className={styles.error} role="alert">{error}</p>}
 
   {step===0&&<section>
@@ -195,7 +208,7 @@ export default function PostListingWizard({places}){
    <p className={styles.hint}>لا يمكن تغيير فئة الإعلان بعد نشره. إن كانت خاطئة، احذفه وانشره من جديد.</p>
   </section>}
   {step===1&&!editing&&<section>
-   <div className={styles.categories}>{CATEGORIES.map(category=>{const Icon=ICONS[category.icon]||Package;return <button type="button" key={category.key} className={form.category===category.key?styles.categoryOn:styles.category} onClick={()=>set({category:category.key,subcategory:category.subcategories.length===1?category.subcategories[0].key:'',attributes:{},titleEdited:false})}><Icon size={28} aria-hidden="true"/><span>{category.label}</span></button>;})}</div>
+   <div className={styles.categories}>{CATEGORIES.map(category=>{const Icon=ICONS[category.icon]||Package;return <button type="button" key={category.key} aria-pressed={form.category===category.key} className={form.category===category.key?styles.categoryOn:styles.category} onClick={()=>set({category:category.key,subcategory:category.subcategories.length===1?category.subcategories[0].key:'',attributes:{},titleEdited:false})}><Icon size={28} aria-hidden="true"/><span>{category.label}</span></button>;})}</div>
    {form.category&&CATEGORIES.find(c=>c.key===form.category).subcategories.length>1&&<><h2 className={styles.subhead}>القسم</h2>
     <Chips label="القسم" options={CATEGORIES.find(c=>c.key===form.category).subcategories.map(s=>({value:s.key,label:s.label}))} value={form.subcategory} onChange={v=>set({subcategory:v,attributes:{},titleEdited:false})}/></>}
   </section>}
@@ -212,7 +225,7 @@ export default function PostListingWizard({places}){
    <label className={styles.field}><span className={styles.fieldLabel}>السعر<b aria-hidden="true"> *</b></span><input className={styles.price} inputMode="decimal" dir="ltr" value={form.price} placeholder="0" onChange={e=>set({price:e.target.value})}/></label>
    <div className={styles.field}><span className={styles.fieldLabel}>العملة<b aria-hidden="true"> *</b></span><Chips label="العملة" options={CURRENCIES} value={form.currency} onChange={v=>set({currency:v})}/></div>
    <div className={styles.field}><span className={styles.fieldLabel}>نوع السعر</span><Chips label="نوع السعر" options={[{value:'yes',label:'قابل للتفاوض'},{value:'no',label:'سعر نهائي'}]} value={form.negotiable?'yes':'no'} onChange={v=>set({negotiable:v==='yes'})}/></div>
-   <div className={styles.field}><span className={styles.fieldLabel}>الحالة{needsCondition?<b aria-hidden="true"> *</b>:<small> (اختيارية)</small>}</span><Chips label="الحالة" options={CONDITIONS} value={form.condition} onChange={v=>set({condition:!needsCondition&&form.condition===v?'':v})}/></div>
+   <div className={styles.field}><span className={styles.fieldLabel}>الحالة{needsCondition?<b aria-hidden="true"> *</b>:<small> (اختيارية)</small>}</span><Chips label="الحالة" options={CONDITIONS} value={form.condition} clearable={!needsCondition} onChange={v=>set({condition:v})}/></div>
    <div className={styles.twoCols}>
     <label className={styles.field}><span className={styles.fieldLabel}>المحافظة<b aria-hidden="true"> *</b></span><select className={styles.input} value={form.governorate_id} onChange={e=>set({governorate_id:e.target.value,district_id:''})}><option value="">اختر</option>{places.governorates.map(g=><option key={g.id} value={g.id}>{g.name}</option>)}</select></label>
     <label className={styles.field}><span className={styles.fieldLabel}>المديرية<b aria-hidden="true"> *</b></span><select className={styles.input} value={form.district_id} disabled={!form.governorate_id} onChange={e=>set({district_id:e.target.value})}><option value="">اختر</option>{districts.map(d=><option key={d.id} value={d.id}>{d.name}</option>)}</select></label>

@@ -3,7 +3,7 @@ import {cookies,headers} from 'next/headers';
 import {X} from 'lucide-react';
 import FilterPanel from '@/components/market/FilterPanel';
 import ListingCard from '@/components/market/ListingCard';
-import MarketSearchBar from '@/components/market/MarketSearchBar';
+import MarketTopBar from '@/components/market/MarketTopBar';
 import SaveSearchButton from '@/components/market/SaveSearchButton';
 import {CONDITIONS,CURRENCIES,findCategory,findSubcategory} from '@/lib/market/catalog';
 import {getMarketPlaces,placeChecks,placeNames} from '@/lib/market/places';
@@ -58,17 +58,19 @@ export default async function MarketSearch({searchParams}){
  const page=filters.page||1;
  const title=filters.q?'نتائج «'+filters.q+'»':findSubcategory(filters.category,filters.sub)?.label||findCategory(filters.category)?.label||'كل الإعلانات';
  return <div className={styles.page}>
-  <MarketSearchBar initial={filters.q||''} keep={{category:filters.category,sub:filters.sub,gov:filters.fromHome?undefined:filters.gov,district:filters.district}}/>
-  <FilterPanel filters={filters} places={places} activeCount={chips.filter(chip=>!chip.label.startsWith('«')).length}/>
-  {chips.length>0&&<ul className={styles.chips} aria-label="الفلاتر المستخدمة">
-   {chips.map(chip=><li key={chip.label}><Link href={chip.href} aria-label={'إزالة '+chip.label}>{chip.label}<X size={13} aria-hidden="true"/></Link></li>)}
-  </ul>}
-  <div className={styles.sectionHead}>
+  <MarketTopBar query={filters.q||''} keep={{category:filters.category,sub:filters.sub,gov:filters.fromHome?undefined:filters.gov,district:filters.district}}/>
+  <div className={styles.resultsHead}>
    <h1 className={styles.sectionTitle}>{title}</h1>
-   <nav className={styles.sorts} aria-label="الترتيب">{SORTS.map(sort=><Link key={sort.value} href={searchHref(filters,{sort:sort.value,page:1})} aria-current={(filters.sort||'new')===sort.value?'true':undefined}>{sort.label}</Link>)}</nav>
+   <nav className={styles.sorts} aria-label="الترتيب">{SORTS.map(sort=><Link key={sort.value} href={searchHref(filters,{sort:sort.value,page:1})} aria-current={(filters.sort||'new')===sort.value?'true':undefined} prefetch={false}>{sort.label}</Link>)}</nav>
+  </div>
+  <div className={styles.toolbar}>
+   <FilterPanel filters={filters} places={places} activeCount={chips.filter(chip=>!chip.label.startsWith('«')).length}/>
+   {chips.length>0&&<ul className={styles.chips} aria-label="الفلاتر المستخدمة">
+    {chips.map(chip=><li key={chip.label}><Link href={chip.href} aria-label={'إزالة '+chip.label} prefetch={false}>{chip.label}<X size={14} aria-hidden="true"/></Link></li>)}
+   </ul>}
   </div>
   {widened&&<p className={styles.notice}>لا توجد نتائج في {widened}، فهذه نتائج من كل اليمن.</p>}
-  {result.cards.length?<div className={styles.grid}>{result.cards.map(item=><ListingCard key={item.id} listing={item}/>)}</div>
+  {result.cards.length?<div className={styles.grid}>{result.cards.map((item,index)=><ListingCard key={item.id} listing={item} index={index}/>)}</div>
    :<div className={styles.empty}>
     <p>لم نجد إعلانات مطابقة{chips.length?'':' بعد'}.</p>
     {chips.length>0&&<p>جرّب كلمات أقل، أو <Link href={filters.q?searchHref({q:filters.q,gov:ALL_YEMEN}):'/market/search?gov='+ALL_YEMEN}>ابحث بلا فلاتر</Link>.</p>}

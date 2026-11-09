@@ -1,32 +1,25 @@
-/* Report and block dialogs, and the small «إبلاغ / حظر» links. */
-.dialog{position:fixed;inset:0;z-index:90;display:grid;align-items:end;justify-items:center;background:rgb(0 0 0 / .45)}
-@media(min-width:700px){.dialog{align-items:center}}
-.box{inline-size:min(100%,480px);max-block-size:90vh;overflow-y:auto;border-radius:18px 18px 0 0;background:var(--c-surface);color:var(--c-ink);padding:6px 16px calc(14px + env(safe-area-inset-bottom))}
-@media(min-width:700px){.box{border-radius:18px}}
-.head{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
-.head h2{margin:0;font-size:17px}
-.head button{display:grid;place-items:center;inline-size:36px;block-size:36px;border:0;border-radius:10px;background:transparent;color:var(--c-ink-2);cursor:pointer}
-.form{display:grid;gap:12px}
-.text{margin:0 0 8px;font-size:14px;line-height:1.8;color:var(--c-ink-2)}
-.hint{margin:0;font-size:12.5px;line-height:1.7;color:var(--c-ink-3)}
+/* Report and block forms (inside the shared Sheet), and the small «إبلاغ / حظر» links. */
+.form{display:grid;gap:14px}
+.text{margin:0;font-size:var(--t-size-ui);line-height:1.8;color:var(--c-ink-2)}
+.hint{margin:0;font-size:var(--t-size-meta);line-height:1.7;color:var(--c-ink-2)}
 .hint a{color:var(--c-accent)}
-.reasons{display:grid;gap:6px;margin:0;padding:0;border:0}
-.reasons legend{margin-bottom:6px;font-size:13px;font-weight:600;color:var(--c-ink-2)}
-.reason,.reasonOn{display:flex;align-items:center;gap:10px;min-height:44px;padding:0 12px;border:1px solid var(--c-line-2);border-radius:12px;background:var(--c-bg);font-size:14.5px;cursor:pointer}
-.reasonOn{border-color:var(--c-accent);background:var(--c-accent-soft)}
-.reason input,.reasonOn input{inline-size:18px;block-size:18px;margin:0;accent-color:var(--c-accent)}
-.field{display:grid;gap:6px;font-size:13px;color:var(--c-ink-2)}
-.field textarea{min-height:64px;padding:8px 12px;border:1px solid var(--c-line-2);border-radius:12px;background:var(--c-bg);color:var(--c-ink);font:inherit;font-size:16px;resize:vertical}
-.check{display:flex;align-items:center;gap:8px;font-size:14px}
-.check input{inline-size:18px;block-size:18px;margin:0;accent-color:var(--c-accent)}
-.error{margin:0;padding:8px 12px;border-radius:10px;background:var(--c-danger-soft);color:var(--c-danger);font-size:13.5px}
+.reasons{display:grid;gap:8px;margin:0;padding:0;border:0}
+.reasons legend{margin-bottom:8px;font-size:var(--t-size-ui);font-weight:600;color:var(--c-ink)}
+.reason,.reasonOn{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;border:1px solid var(--c-control);border-radius:var(--r-2);background:var(--c-surface);font-size:var(--t-size-body);cursor:pointer}
+.reasonOn{border-color:var(--c-accent);background:var(--c-accent-soft);font-weight:600}
+.reason:has(input:focus-visible),.reasonOn:has(input:focus-visible){outline:3px solid var(--c-focus);outline-offset:2px}
+.reason input,.reasonOn input{inline-size:20px;block-size:20px;margin:0;accent-color:var(--c-accent)}
+.field{composes:field from './ui.module.css'}
+.field textarea{inline-size:100%;min-height:80px;padding:10px 12px;border:1px solid var(--c-control);border-radius:var(--r-2);background:var(--c-surface);color:var(--c-ink);font:inherit;font-size:16px;line-height:1.8;resize:vertical}
+.field textarea:focus-visible{outline:3px solid var(--c-focus);outline-offset:1px;border-color:var(--c-accent)}
+.check{display:flex;align-items:center;gap:10px;min-height:var(--target);font-size:var(--t-size-ui)}
+.check input{inline-size:20px;block-size:20px;margin:0;accent-color:var(--c-accent)}
+.error{composes:error from './ui.module.css'}
 .actions{display:flex;gap:8px;margin-top:4px}
-.primary,.secondary,.danger{min-height:46px;padding:0 18px;border-radius:12px;font:inherit;font-weight:600;font-size:15px;cursor:pointer}
-.primary{flex:1;border:0;background:var(--c-accent);color:var(--c-bg)}
-.danger{flex:1;border:0;background:var(--c-danger);color:var(--c-bg)}
-.secondary{border:1px solid var(--c-line-2);background:var(--c-surface);color:var(--c-ink)}
-.primary:disabled,.danger:disabled{opacity:.5;cursor:not-allowed}
-.link{display:inline-flex;align-items:center;gap:4px;min-height:32px;padding:0;border:0;background:transparent;color:var(--c-ink-3);font:inherit;font-size:12.5px;cursor:pointer}
+.primary{composes:button primary large from './ui.module.css';flex:1}
+.danger{composes:button danger large from './ui.module.css';flex:1}
+.secondary{composes:button ghost large from './ui.module.css'}
+.link{composes:textButton from './ui.module.css';color:var(--c-ink-2);text-decoration:none}
 .link:hover{color:var(--c-danger)}
 .memberActions{display:flex;gap:14px}
 /* Shown in place of a listing or a seller page the member may not see (a block either way). */
