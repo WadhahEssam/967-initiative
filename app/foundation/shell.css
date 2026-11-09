@@ -284,3 +284,8 @@
   .ed-nav-utility { gap: 6px; padding-top: 10px; }
   .ed-nav-utility a { min-height: 38px; padding: 0 14px; font-size: .85rem; }
 }
+
+/* Footer: number of registered members. */
+.ed-footer-members { margin-top: var(--s-3); font-size: var(--t-size-ui); color: rgb(255 255 255 / .78); }
+.ed-footer-members strong { color: #fff; font-weight: 600; font-variant-numeric: tabular-nums; }
+.ed-footer-members a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
