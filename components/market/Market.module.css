@@ -1,0 +1,82 @@
+/* «سوق 967»: market home, cards and the listing page. Phone first; light on data. */
+.page{max-width:1100px;margin:0 auto;padding:12px 16px 40px}
+.hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:8px 0 14px}
+.hero h1{margin:0;font-size:clamp(24px,5vw,34px)}
+.hero p{margin:2px 0 0;color:var(--c-ink-2);font-size:14px}
+.add{display:inline-flex;align-items:center;gap:6px;min-height:46px;padding:0 18px;border-radius:14px;background:var(--c-accent);color:#fff;font-weight:600;text-decoration:none}
+.categories{display:flex;gap:8px;overflow-x:auto;padding:4px 0 12px;scrollbar-width:none}
+.categories::-webkit-scrollbar{display:none}
+.categoryLink,.categoryLinkOn{flex:none;display:grid;justify-items:center;gap:4px;inline-size:84px;padding:10px 6px;border:1px solid var(--c-line-2);border-radius:14px;background:var(--c-surface);color:var(--c-ink);font-size:12px;text-align:center;text-decoration:none}
+.categoryLink svg,.categoryLinkOn svg{color:var(--c-accent)}
+.categoryLinkOn{border-color:var(--c-accent);background:var(--c-accent-soft)}
+.sectionTitle{font-size:18px;margin:10px 0}
+.empty{padding:28px 16px;text-align:center;border:1px dashed var(--c-line-2);border-radius:16px;color:var(--c-ink-2)}
+
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(min-width:1000px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.card{display:grid;border:1px solid var(--c-line-2);border-radius:14px;overflow:hidden;background:var(--c-surface);color:var(--c-ink);text-decoration:none}
+.card:hover{border-color:var(--c-accent)}
+.cardImage{position:relative;display:grid;place-items:center;aspect-ratio:4/3;background:var(--c-surface-2);color:var(--c-ink-3)}
+.cardImage img{width:100%;height:100%;object-fit:cover;display:block}
+.badge,.badgeSold{position:absolute;inset-inline-start:8px;top:8px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;color:#fff;background:var(--c-amber)}
+.badgeSold{background:var(--c-ink-3)}
+.cardBody{display:grid;gap:2px;padding:8px 10px 10px;min-width:0}
+.cardPrice{font-size:16px;font-variant-numeric:tabular-nums}
+.cardTitle{font-size:14px;line-height:1.6;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cardMeta{font-size:11.5px;color:var(--c-ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* Listing page: photos first (about 60% of a phone screen), then price, title and place. */
+.listing{max-width:980px;margin:0 auto;padding:0 0 110px}
+.layout{display:grid;gap:16px}
+@media(min-width:900px){.layout{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);padding:16px}.gallery{border-radius:16px}}
+.gallery{position:relative;background:#111;overflow:hidden}
+.galleryTrack{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;block-size:min(60vh,560px)}
+.galleryTrack::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;margin:0;scroll-snap-align:center;display:grid;place-items:center}
+.slide img{max-inline-size:100%;max-block-size:100%;object-fit:contain;display:block}
+.counter{position:absolute;inset-inline-end:10px;bottom:10px;padding:2px 10px;border-radius:999px;background:rgb(0 0 0 / .6);color:#fff;font-size:12px;font-variant-numeric:tabular-nums}
+.dots{position:absolute;inset-inline:0;bottom:12px;display:flex;justify-content:center;gap:6px;pointer-events:none}
+.dots button{pointer-events:auto;inline-size:7px;block-size:7px;padding:0;border:0;border-radius:50%;background:rgb(255 255 255 / .5)}
+.dots button[aria-current="true"]{background:#fff}
+.summary{padding:0 16px;display:grid;gap:6px}
+@media(min-width:900px){.summary{padding:0}}
+.price{font-size:clamp(26px,6vw,34px);font-weight:600;font-variant-numeric:tabular-nums}
+.negotiable{font-size:13px;color:var(--c-accent);font-weight:600;margin-inline-start:8px}
+.oldPrice{font-size:14px;color:var(--c-ink-3);text-decoration:line-through}
+.title{margin:0;font-size:clamp(19px,4vw,24px);line-height:1.5}
+.where{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13px;color:var(--c-ink-3)}
+.where span{display:inline-flex;align-items:center;gap:4px}
+.status{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600;background:var(--c-amber-soft);color:var(--c-amber)}
+.highlights{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.highlights span{padding:4px 10px;border-radius:999px;background:var(--c-surface-2);border:1px solid var(--c-line);font-size:13px}
+.seller{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--c-line-2);border-radius:14px;background:var(--c-surface)}
+.avatar{display:grid;place-items:center;inline-size:46px;block-size:46px;border-radius:50%;background:var(--c-accent-soft);color:var(--c-accent);font-weight:600;font-size:18px;flex:none}
+.seller div{display:grid;gap:2px;min-width:0}
+.seller small{color:var(--c-ink-3)}
+.block{padding:0 16px}
+@media(min-width:900px){.block{padding:0}}
+.block h2{font-size:17px;margin:16px 0 8px}
+.description{white-space:pre-line;line-height:1.95;margin:0;color:var(--c-ink-2)}
+.specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin:0;border:1px solid var(--c-line-2);border-radius:14px;overflow:hidden}
+.specs div{padding:9px 12px;border-bottom:1px solid var(--c-line);display:grid;gap:2px}
+.specs dt{font-size:12px;color:var(--c-ink-3)}
+.specs dd{margin:0;font-size:14px;font-weight:600}
+.safety{margin:14px 0 0;padding:10px 12px;border-radius:10px;background:var(--c-surface-2);font-size:13px;color:var(--c-ink-2)}
+.facts{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--c-ink-3);margin-top:8px}
+
+/* Contact buttons stay at the bottom of the screen, above the site's tab bar on phones. */
+.contactBar{position:fixed;inset-inline:0;bottom:0;z-index:60;display:flex;gap:8px;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:var(--c-glass);border-top:1px solid var(--c-line);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+@media(max-width:760px){.contactBar{bottom:calc(58px + env(safe-area-inset-bottom));padding-bottom:10px}}
+.contactPrimary,.contactSecondary,.contactWhatsapp,.contactIcon{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:46px;padding:0 16px;border-radius:12px;font:inherit;font-weight:600;font-size:15px;text-decoration:none;cursor:pointer}
+.contactPrimary{flex:1;border:0;background:var(--c-accent);color:#fff}
+.contactSecondary{flex:1;border:1px solid var(--c-accent);background:var(--c-surface);color:var(--c-accent)}
+.contactWhatsapp{flex:1;border:0;background:#1f9d55;color:#fff}
+.contactIcon{border:1px solid var(--c-line-2);background:var(--c-surface);color:var(--c-ink);padding:0 14px}
+.contactPrimary:disabled,.contactSecondary:disabled{opacity:.5;cursor:not-allowed}
+.toast{position:absolute;bottom:calc(100% + 8px);inset-inline-start:50%;transform:translateX(50%);padding:6px 14px;border-radius:999px;background:var(--c-ink);color:var(--c-bg);font-size:13px;white-space:nowrap}
+
+.terms{max-width:760px;margin:0 auto;padding:20px 16px 60px;line-height:2}
+.terms h1{font-size:26px}
+.terms h2{font-size:18px;margin-top:22px}
+.terms li{margin-bottom:4px}
