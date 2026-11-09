@@ -1,0 +1,5 @@
+/* Download count under each magazine issue. */
+.issue-downloads{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted,#6b6258);font-variant-numeric:tabular-nums}
+.spotlight-copy .issue-downloads{margin-inline-start:12px}
+.issue-card .issue-downloads{display:block;margin-top:2px;font-size:12px}
+.reader-intro .issue-downloads{margin-inline-start:12px}
