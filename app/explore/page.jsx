@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import {ArrowLeft, BookOpen, Compass, Gamepad2, GraduationCap, Handshake, Library, PlayCircle} from 'lucide-react';
+import {ArrowLeft, BookOpen, Compass, Gamepad2, GraduationCap, Handshake, Library, PlayCircle, Store} from 'lucide-react';
 import SearchForm from '@/components/SearchForm';
 import ThemeToggle from '@/components/ThemeToggle';
 import {getSiteSettings} from '@/lib/data';
@@ -12,8 +12,8 @@ import styles from './explore.module.css';
 export const dynamic = 'force-dynamic';
 export const metadata = pageMetadata({title: 'استكشف 967', description: 'كل أقسام منصة 967 في مكان واحد: الإعلام والمعرفة والمدرسة والألعاب والأدلة والمبادرة.', path: '/explore'});
 
-const ICONS = {media: PlayCircle, knowledge: Compass, school: GraduationCap, games: Gamepad2, directories: Library, initiative: Handshake};
-const HUES = {media: 'var(--c-ember)', knowledge: 'var(--c-teal)', school: 'var(--c-leaf)', games: 'var(--c-violet)', directories: 'var(--c-amber)', initiative: 'var(--c-plum)'};
+const ICONS = {media: PlayCircle, knowledge: Compass, school: GraduationCap, games: Gamepad2, market: Store, directories: Library, initiative: Handshake};
+const HUES = {media: 'var(--c-ember)', knowledge: 'var(--c-teal)', school: 'var(--c-leaf)', games: 'var(--c-violet)', market: 'var(--c-clay)', directories: 'var(--c-amber)', initiative: 'var(--c-plum)'};
 
 // The phone "استكشف" tab: search first, then every visible section as a card
 // with its own links. It replaces digging through the menu sheet.

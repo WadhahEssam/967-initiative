@@ -21,7 +21,8 @@ export default function MyListings(){
  const [asking,setAsking]=useState(null);
  const [busy,setBusy]=useState(null);
  const [error,setError]=useState('');
- const load=()=>marketApi('/api/market/mine').then(result=>setItems(result.items)).catch(e=>{setError(e.message);setItems(current=>current||[]);});
+ const [phone,setPhone]=useState(null);
+ const load=()=>marketApi('/api/market/mine').then(result=>{setItems(result.items);setPhone(result.phone||null);}).catch(e=>{setError(e.message);setItems(current=>current||[]);});
  useEffect(()=>{marketSession().then(session=>session?load():setSignedOut(true));},[]);
  const change=async(id,action)=>{
   setBusy(id);setError('');setAsking(null);
@@ -31,6 +32,13 @@ export default function MyListings(){
  };
  if(signedOut)return <p className={styles.empty}>سجّل الدخول لترى إعلاناتك. <Link href="/login?next=/market/mine">تسجيل الدخول</Link></p>;
  if(!items)return <p className={styles.empty} aria-busy="true">جارٍ التحميل…</p>;
+ const forgetPhone=async()=>{
+  if(!window.confirm('حذف رقم واتساب من حسابك؟ يختفي زر واتساب من كل إعلاناتك.'))return;
+  setBusy('phone');setError('');
+  try{await marketApi('/api/market/mine',{method:'POST',body:{action:'remove_phone'}});setPhone(null);}
+  catch(e){setError(e.message);}
+  finally{setBusy(null);}
+ };
  return <>
   {error&&<p className={styles.error} role="alert">{error}</p>}
   {!items.length?<p className={styles.empty}>لم تنشر أي إعلان بعد. <Link href="/market/new">أضف إعلانك الأول</Link></p>:
@@ -83,5 +91,6 @@ export default function MyListings(){
    </li>)}
   </ul>}
   <Link href="/market/new" className={styles.add}><Plus size={18} aria-hidden="true"/> أضف إعلانًا</Link>
+  {phone&&<p className={styles.phone}>رقم واتساب المحفوظ في حسابك: <bdi>{phone}</bdi>. يظهر فقط في الإعلانات التي اخترت فيها زر واتساب. <button type="button" className={styles.link} disabled={busy==='phone'} onClick={forgetPhone}>حذف الرقم</button></p>}
  </>;
 }

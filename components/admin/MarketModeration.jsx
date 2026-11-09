@@ -139,6 +139,14 @@ export default function MarketModeration(){
     <p className={styles.meta}>الإعلانات المحجوزة، والبلاغات، وتنبيهات الحظر، والإيقافات.{role&&role!=='management'?' الإيقاف وقراءة المحادثات لفريق الإدارة فقط.':''}</p></div>
    <button type="button" className={styles.button} onClick={load} disabled={busy}><RefreshCcw size={15} aria-hidden="true"/> تحديث</button>
   </header>
+  {data?.launch&&data.launch.status!=='visible'&&<section className={styles.launch} aria-label="جاهزية الإطلاق">
+   <h2>السوق مخفي عن الزوار</h2>
+   <ul>
+    <li data-ok={data.launch.storage}>{data.launch.storage?'تخزين الصور مضبوط على هذا الخادم.':'تخزين الصور غير مضبوط: أضف متغيرات MARKET_S3_* في إعدادات الخادم (Coolify) ثم أعد النشر.'}</li>
+    <li data-ok="true">عند فتح القسم تظهر روابط السوق في القوائم والبحث وخريطة الموقع، ويُضاف قسم «خصوصية سوق 967» إلى سياسة الخصوصية تلقائيًا.</li>
+    <li data-ok="true">الفتح من <Link href="/admin?tab=pages">لوحة التحرير ← صفحات الموقع ← ظهور الأقسام</Link>: فعّل «سوق 967».</li>
+   </ul>
+  </section>}
   <form className={styles.lookup} onSubmit={lookup}>
    <label htmlFor="market-number">إعلان برقمه</label>
    <input id="market-number" inputMode="numeric" value={number} onChange={event=>setNumber(event.target.value.replace(/\D/g,''))} placeholder="مثل 125"/>
