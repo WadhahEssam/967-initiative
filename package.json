@@ -19,13 +19,15 @@
   "dependencies": {
     "@resvg/resvg-wasm": "^2.6.2",
     "@supabase/supabase-js": "^2.57.0",
+    "aws4fetch": "^1.0.20",
     "lucide-react": "^0.468.0",
     "next": "^15.5.28",
     "papaparse": "^5.7.0",
     "pdfjs-dist": "^6.2.108",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "recharts": "^3.10.1"
+    "recharts": "^3.10.1",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.10",
