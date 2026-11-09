@@ -27,7 +27,7 @@ export default async function YemeniFiguresPage({searchParams}){
   <KnowledgePageIntro
    area="figures"
    title="شخصيات يمنية"
-   category="دليل الشخصيات اليمنية"
+   category="معجم 967 للأعلام"
    description="سير وتجارب وشخصيات تركت أثرها في اليمن. تصفح الشخصيات أو ابحث بالاسم والمجال والمحافظة والفترة.">
    <div className="directory-summary">
     <a href="#yemeni-figures">تصفح دليل الشخصيات</a>

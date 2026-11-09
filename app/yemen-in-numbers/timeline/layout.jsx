@@ -1,4 +1,4 @@
-import '@/app/legacy-styles';
+import '@/app/legacy/yemen-in-numbers--timeline.css';
 import '@/app/interior-design.css';
 
 // Not redesigned yet: legacy stylesheet bundle and interior wrapper, as before.
