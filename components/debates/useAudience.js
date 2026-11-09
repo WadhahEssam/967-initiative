@@ -1,6 +1,7 @@
 'use client';
 import {useCallback,useEffect,useState} from 'react';
 import {browserDb} from '@/lib/supabase';
+import {createAccountWatch,shouldReloadOnAuth} from '@/lib/authEvents';
 
 export async function audienceRequest(path,body){
  const db=browserDb();if(!db)throw Error('خدمة الحسابات غير مفعّلة بعد.');
@@ -18,10 +19,10 @@ export default function useAudience(){
   try{const {data,error}=await db.auth.getUser();setState({user:error?null:data.user,ready:true,error:error&&error.status!==400&&error.name!=='AuthSessionMissingError'?'انتهت الجلسة أو تعذر التحقق منها. سجل الدخول مجدداً.':''});}
   catch{setState({user:null,ready:true,error:'تعذر التحقق من الجلسة. حاول مجدداً.'});}
  },[]);
- useEffect(()=>{let active=true,revision=0;const timers=new Set();const db=browserDb();
+ useEffect(()=>{let active=true,revision=0;const timers=new Set();const db=browserDb();const account=createAccountWatch();
   if(!db){setState({user:null,ready:true,error:''});return;}
-  const check=async()=>{const current=++revision;try{const {data,error}=await db.auth.getUser();if(active&&current===revision)setState({user:error?null:data.user,ready:true,error:error&&error.name!=='AuthSessionMissingError'?'انتهت الجلسة أو تعذر التحقق منها. سجل الدخول مجدداً.':''});}catch{if(active&&current===revision)setState({user:null,ready:true,error:'تعذر التحقق من الجلسة.'});}};
-  check();const {data:{subscription}}=db.auth.onAuthStateChange((_event,session)=>{revision++;if(!session){setState({user:null,ready:true,error:''});return;}const timer=setTimeout(()=>{timers.delete(timer);if(active)check();},0);timers.add(timer);});
+  const check=async()=>{const current=++revision;try{const {data,error}=await db.auth.getUser();if(active&&current===revision){account.seen(error?null:{user:data.user});}if(active&&current===revision)setState({user:error?null:data.user,ready:true,error:error&&error.name!=='AuthSessionMissingError'?'انتهت الجلسة أو تعذر التحقق منها. سجل الدخول مجدداً.':''});}catch{if(active&&current===revision)setState({user:null,ready:true,error:'تعذر التحقق من الجلسة.'});}};
+  check();const {data:{subscription}}=db.auth.onAuthStateChange((event,session)=>{if(!shouldReloadOnAuth(account,event,session))return;account.seen(session);revision++;if(!session){setState({user:null,ready:true,error:''});return;}const timer=setTimeout(()=>{timers.delete(timer);if(active)check();},0);timers.add(timer);});
   return()=>{active=false;revision++;timers.forEach(clearTimeout);subscription.unsubscribe();};
  },[]);
  return {...state,refresh};

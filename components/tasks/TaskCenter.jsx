@@ -21,7 +21,7 @@ export default function TaskCenter(){
  const [focusedComment,setFocusedComment]=useState(null),[pendingDetail,setPendingDetail]=useState(null),initialComment=useRef(null),latestDetail=useRef(null);latestDetail.current=detail;
  useEffect(()=>{const initial=readFilters(),params=new URLSearchParams(window.location.search);initialTask.current=params.get('task');initialComment.current=params.get('comment');setFilters(initial);setQuery(initial.q||'');const pop=()=>{const f=readFilters();setFilters(f);setQuery(f.q||'');};window.addEventListener('popstate',pop);return()=>window.removeEventListener('popstate',pop);},[]);
  useEffect(()=>{if(!db){setSession(null);setLoading(false);return;}let live=true;
-  const update=s=>{if(!live)return;const id=s?.user.id||null;if(active.current!==id){setWorkspace(null);setDetail(null);setEditor(null);setError('');listController.current?.abort();detailController.current?.abort();}active.current=id;setSession(s);};
+  const update=s=>{if(!live)return;const id=s?.user.id||null;if(active.current===id&&id)return;if(active.current!==id){setWorkspace(null);setDetail(null);setEditor(null);setError('');listController.current?.abort();detailController.current?.abort();}active.current=id;setSession(s);};
   db.auth.getSession().then(({data})=>update(data.session)).catch(()=>update(null));const {data}=db.auth.onAuthStateChange((_e,s)=>update(s));
   return()=>{live=false;active.current=null;listController.current?.abort();detailController.current?.abort();data.subscription.unsubscribe();};
  },[db]);
