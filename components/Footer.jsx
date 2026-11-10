@@ -42,7 +42,7 @@ export default function Footer({settings = defaultSiteSettings, memberCount = nu
       {members && <p className="ed-footer-members">انضمّ إلى مجتمع 967 حتى الآن <strong>{members}</strong>.{visible('/register') && <> <NextLink href="/register">انضم إلينا</NextLink></>}</p>}
       {socials.length > 0 && <ul className="ed-footer-socials" aria-label="حسابات 967">{socials.map(({key, label}) => <li key={key}><a href={settings[key]} target="_blank" rel="noopener noreferrer">{label}<ArrowUpLeft size={14} aria-hidden="true"/><span className="sr-only"> (يفتح في نافذة جديدة)</span></a></li>)}</ul>}
     </div>
-    <div className="ed-footer-groups">{groups.map(section => <FooterGroup key={section.id} title={section.label}>{section.links.map(item)}</FooterGroup>)}</div>
+    <div className="ed-footer-groups" style={{'--footer-groups': Math.min(groups.length, 8)}}>{groups.map(section => <FooterGroup key={section.id} title={section.label}>{section.links.map(item)}</FooterGroup>)}</div>
     <div className="ed-footer-bottom">
       <span>© {new Date().getFullYear()} مبادرة 967</span>
       <span className="ed-footer-motto">المعرفة تجمعنا، والمشاركة تقرّبنا.</span>

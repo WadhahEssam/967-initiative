@@ -1,6 +1,6 @@
 import NextLink from 'next/link';
 import OpenFoldOnHash from '@/components/OpenFoldOnHash';
-import {BarChart3, ChevronDown, Compass, Flame, GraduationCap, Handshake, LayoutGrid, MapPin, MapPinned, MessagesSquare, Newspaper, Sparkles, UsersRound} from 'lucide-react';
+import {Banknote, BarChart3, ChevronDown, Compass, Flame, GraduationCap, Handshake, LayoutGrid, MapPin, MapPinned, MessagesSquare, Newspaper, Sparkles, UsersRound} from 'lucide-react';
 import SearchForm from '@/components/SearchForm';
 import HomeSmartStart from '@/components/home/HomeSmartStart';
 import Resilient from '@/components/front/Resilient';
@@ -9,9 +9,12 @@ import OnThisDay from '@/components/home/OnThisDay';
 import {onThisDay} from '@/lib/onThisDayServer';
 import {buildTodayFeed} from '@/lib/todayFeed';
 import {Shortcuts, SectionLauncher, BlockHead, GamesStrip, SchoolStrip, KnowledgeRail, NumbersRail, CommunityRows, InviteBanner} from '@/components/home/HomeBlocks';
-import {formatCompact} from '@/lib/format';
+import {formatCompact, formatNumber} from '@/lib/format';
 import {utcDay, dailyGameUrl, dailyGameForDate, DAILY_GAME_TITLES} from '@/lib/dailyGame';
 import {getLatestWorks, getLatestIssues, getRecentIndicators, getRecentCompanies, getRecentProfessionals, getSiteSettings} from '@/lib/data';
+import {getPublicRates} from '@/lib/exchangeRatesServer';
+import {serverDb} from '@/lib/supabase-server';
+import {RATE_REGIONS, usableRates} from '@/lib/exchangeRates';
 import {getDebateCatalog} from '@/lib/debateServer';
 import {selectHomeContent, homeProjections} from '@/lib/homeContent';
 import {visibleHomeKnowledge} from '@/lib/homeKnowledge';
@@ -32,7 +35,7 @@ const settle = promise => promise.then(data => ({data, failed:false}), () => ({d
 export default async function Home() {
   const settings = await getSiteSettings();
   const visibleHistory = sectionIsVisible('history', settings.pageVisibility);
-  const [works, issues, indicators, debates, companies, professionals, historyDay] = await Promise.all([
+  const [works, issues, indicators, debates, companies, professionals, historyDay, exchange] = await Promise.all([
     settle(getLatestWorks(homeProjections.works, 8)),
     settle(getLatestIssues(homeProjections.issues, 2)),
     settle(getRecentIndicators(4)),
@@ -40,7 +43,10 @@ export default async function Home() {
     settle(getRecentCompanies(homeProjections.companies, 6)),
     settle(getRecentProfessionals(homeProjections.professionals, 6)),
     visibleHistory ? onThisDay().catch(() => null) : null,
+    sectionIsVisible('services', settings.pageVisibility) ? getPublicRates(serverDb()).catch(() => null) : null,
   ]);
+  // Today's dollar in both cities, only while the rates are recent.
+  const dollarRates = exchange ? RATE_REGIONS.map(region => ({region, row: usableRates(exchange.latest)[region.id + ':USD']})).filter(item => item.row) : [];
   const content = selectHomeContent({works:works.data||[], issues:issues.data||[], indicators:indicators.data||[], debates:debates.data||[], companies:companies.data||[], professionals:professionals.data||[]});
   const visible = id => sectionIsVisible(id, settings.pageVisibility);
   const Link = ({href, ...props}) => pageIsVisible(href, settings.pageVisibility, settings.contentPages||[]) ? <NextLink href={href} {...props}/> : null;
@@ -59,6 +65,7 @@ export default async function Home() {
   // "الآن": the few things worth one tap today. Each respects section visibility.
   const shortcuts = [
     visible('games') && {href: dailyGameUrl(today), label: 'تحدي اليوم', sub: DAILY_GAME_TITLES[dailyGame], icon: Flame, hue: 'var(--c-violet)'},
+    dollarRates.length > 0 && {href: '/services/exchange-rates', label: 'سعر الصرف اليوم', sub: 'الدولار: ' + dollarRates.map(({region, row}) => region.name + ' ' + formatNumber(row.sell)).join(' · '), icon: Banknote, hue: 'var(--c-indigo)'},
     visible('school') && {href: '/school', label: 'تعلّم اليوم', sub: '15 مسارًا تفاعليًا', icon: GraduationCap, hue: 'var(--c-leaf)'},
     visible('debates') && debate && {href: '/debates/' + encodeURIComponent(debate.slug), label: debate.stage === 'live' ? 'مناظرة مباشرة' : 'مناظرة', sub: debate.title, icon: MessagesSquare, hue: 'var(--c-plum)', live: debate.stage === 'live'},
     leadNumber && {href: '/yemen-in-numbers/indicator/' + encodeURIComponent(leadNumber.slug), label: 'رقم اليوم', sub: leadNumber.name + ': ' + formatCompact(leadNumber.latestValue.value) + (leadNumber.unit ? ' ' + leadNumber.unit : '') + (leadNumber.latestValue.year ? ' (' + leadNumber.latestValue.year + ')' : ''), icon: BarChart3, hue: 'var(--c-indigo)'},

@@ -47,7 +47,7 @@ test('footer has a separate Games 967 heading with working destination routes',(
  assert.ok(ids.indexOf('knowledge')<ids.indexOf('games')&&ids.indexOf('games')<ids.indexOf('directories'));
  assert.deepEqual(games.links.map(([href])=>href),['/games','/games/leaderboard','/games/achievements']);
  assert.deepEqual(games.links.map(([,label])=>label),['جميع الألعاب','لوحة المتصدرين','الشارات والإنجازات']);
- assert.ok(css.includes('.ed-footer-groups { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr))'));
+ assert.ok(css.includes('.ed-footer-groups { display: grid; grid-template-columns: repeat(var(--footer-groups, 6), minmax(0, 1fr))'));
  assert.ok(css.includes('@media (max-width: 700px)'));
 });
 
