@@ -7,10 +7,10 @@ import Link from 'next/link';
 import {ArrowLeft,ArrowRight,CheckCircle2,Clock3,Flame,Play,RotateCcw,Share2,Target,Trophy,XCircle,Zap} from 'lucide-react';
 import {buildPlaceChallenges,buildTimelineChallenges,buildMapChallenges,gameTypes,isTimelineCorrect} from '@/lib/arcadeChallenges';
 import {questionPoints} from '@/lib/gameEngine';
-import {roundDuration} from '@/lib/gameClock';
+import {roundDuration,localStartTime} from '@/lib/gameClock';
 import useQuestionTimer from './useQuestionTimer';
 import {TimeControls,GameTimer} from './TimeControls';
-import useDailyAttempt,{DailyAttemptNotice} from './useDailyAttempt';
+import useDailyAttempt,{DailyAttemptNotice,useLeaveWarning} from './useDailyAttempt';
 import {PlaceBoard,TimelineBoard,MapBoard} from './ArcadeBoards';
 import {readPracticeSeen,rememberPracticeTasks} from '@/lib/practiceRotation';
 import FriendInviteAction from './FriendInviteAction';
@@ -58,6 +58,7 @@ export default function ArcadeChallenge({game,date,initialMode='practice'}){
  const revealed=answer!==null&&(mode!=='daily'||verified);
  const duration=roundDuration(mode,seconds);
  const isActive=tasks.length>0&&!finished&&answer===null&&ready&&!verifying&&(mode!=='daily'||clockReady);
+ useLeaveWarning(mode==='daily'&&tasks.length>0&&!finished);
  // Conversion counters: a round started and a round finished (once per run).
  useFunnelStep('game_start',tasks.length>0,game+':'+mode+':'+runId);
  useFunnelStep('game_done',finished,game+':'+mode+':'+runId);
@@ -70,7 +71,7 @@ export default function ArcadeChallenge({game,date,initialMode='practice'}){
  async function markReady(){
   if(mode!=='daily'||!tasks[index])return;
   setReadyPending(true);setSyncError('');
-  try{const status=await daily.progress('ready',index,tasks[index].id,null);setServerStartedAt(status.startedAt);setClockReady(true);}
+  try{const status=await daily.progress('ready',index,tasks[index].id,null);setServerStartedAt(localStartTime(status.startedAt,status.serverNow));setClockReady(true);}
   catch(error){setSyncError(error.message||'تعذر بدء مؤقت السؤال.');}
   finally{setReadyPending(false);}
  }
@@ -83,6 +84,7 @@ export default function ArcadeChallenge({game,date,initialMode='practice'}){
    tasksNow=await daily.reserve();
    setStarting(false);
    if(!tasksNow)return;
+   if(tasksNow.resume){resumeRound(tasksNow.resume);return;}
   }else{
    tasksNow=builders[game]({mode,date,seed:'free-'+Date.now()+'-'+Math.random(),seen:readPracticeSeen(game)});
    if(!tasksNow.length)return;
@@ -92,6 +94,16 @@ export default function ArcadeChallenge({game,date,initialMode='practice'}){
   setRunId(x=>x+1);setTasks(tasksNow);setIndex(0);setRecords([]);setAnswer(null);
   setReady(game==='timeline'||(game==='map'&&Boolean(mapData)));
   setFinished(false);setShareStatus('');setVerified(false);setSyncError('');setOfficialResult(null);setClockReady(false);setServerStartedAt(null);
+ }
+ // Continue an unfinished official round (see QuizGame): answered steps keep verdict and reveal.
+ function resumeRound(saved){
+  const list=saved.tasks.map((task,i)=>saved.reveals[i]?{...task,...saved.reveals[i]}:task);
+  const kept=saved.answers.map(answer=>({correct:answer.correct,points:answer.points,choice:null,timedOut:false}));
+  const review=saved.phase==='review'&&kept.length>saved.step;
+  answerLocked.current=review;
+  setRunId(x=>x+1);setTasks(list);setIndex(saved.step);setRecords(kept);setAnswer(review?kept[saved.step]:null);
+  setReady(game==='timeline'||(game==='map'&&Boolean(mapData)));
+  setFinished(false);setShareStatus('');setVerified(review);setSyncError('');setOfficialResult(null);setClockReady(false);setServerStartedAt(null);
  }
  async function verifyAnswer(value,taskId,step){
   setVerifying(true);setSyncError('');
@@ -166,7 +178,7 @@ export default function ArcadeChallenge({game,date,initialMode='practice'}){
    {mode==='daily'&&<p className={styles.dailyNote}>تحدي {date} بتوقيت UTC: المهام وترتيبها موحدة لهذا اليوم، والمهلة 7 ثوانٍ لكل مهمة.</p>}
    {game==='map'&&mapError&&<div role="alert" className={styles.mapFailure}>{mapError}<button type="button" onClick={()=>{setMapError('');setMapAttempt(x=>x+1);}}>إعادة التحميل</button></div>}
    <div className={friendStyles.actionRow}>
-    <button type="button" className={styles.primary} disabled={starting||!daily.canStart||(game==='map'&&!mapData)} onClick={start}><Play size={18}/> {starting?'جارٍ حجز المحاولة…':'ابدأ التحدي'} <ArrowLeft size={18}/></button>
+    <button type="button" className={styles.primary} disabled={starting||!daily.canStart||(game==='map'&&!mapData)} onClick={start}><Play size={18}/> {starting?'جارٍ حجز المحاولة…':daily.kind==='resume'?'أكمل جولة اليوم':'ابدأ التحدي'} <ArrowLeft size={18}/></button>
     <FriendInviteAction game={game} seconds={seconds} disabled={starting}/>
    </div>
    <aside className={styles.playerStats}><span><Trophy size={18}/> أفضل نتيجة: {stats.best||0} XP</span><span>الجولات المكتملة: {stats.plays||0}</span><span>النتائج الرسمية فقط تظهر في لوحة المتصدرين</span></aside>
@@ -176,9 +188,9 @@ export default function ArcadeChallenge({game,date,initialMode='practice'}){
    <div className={styles.progress} role="progressbar" aria-label="تقدم الجولة" aria-valuemin={0} aria-valuemax={tasks.length} aria-valuenow={index+1}><span style={{width:((index+1)/tasks.length*100)+'%'}}/></div>
    <h2 ref={titleRef} tabIndex={-1} className={styles.taskTitle}>{game==='place'?'ما اسم المكان في الصورة؟':game==='timeline'?'رتّب الأحداث من الأقدم إلى الأحدث':'أين تقع محافظة '+task.name+'؟'}</h2>
    <div className={styles.taskBody} key={task.id}>
-    {game==='place'&&<PlaceBoard task={task} locked={revealed} onAnswer={submitAnswer} onReady={setReady}/>}
-    {game==='timeline'&&<TimelineBoard task={task} locked={revealed} onAnswer={submitAnswer}/>}
-    {game==='map'&&<MapBoard task={task} locked={revealed} onAnswer={submitAnswer} data={mapData} selectedId={answer?.choice}/>}
+    {game==='place'&&<PlaceBoard task={task} locked={revealed||Boolean(answer)} onAnswer={submitAnswer} onReady={setReady}/>}
+    {game==='timeline'&&<TimelineBoard task={task} locked={revealed||Boolean(answer)} onAnswer={submitAnswer}/>}
+    {game==='map'&&<MapBoard task={task} locked={revealed||Boolean(answer)} onAnswer={submitAnswer} data={mapData} selectedId={answer?.choice}/>}
    </div>
    {!ready&&<p className={styles.loading} role="status">{game==='place'?'جاري تجهيز الصورة… يبدأ الوقت عند ظهورها.':'جاري تجهيز الخريطة…'}</p>}
    <GameTimer remaining={timer.remaining} duration={duration} paused={!isActive}/>
@@ -193,7 +205,7 @@ export default function ArcadeChallenge({game,date,initialMode='practice'}){
    </div>}
    {(verifying||readyPending)&&<p className={styles.loading} role="status">{readyPending?'جارٍ تفعيل توقيت السؤال الرسمي…':'جارٍ توثيق الإجابة على الخادم…'}</p>}
    {syncError&&<p className={styles.syncError} role="alert">{syncError} <button type="button" onClick={()=>!answer?markReady():!verified?verifyAnswer(answer.choice,task.id,index):next()}>إعادة المحاولة</button></p>}
-   <div className={styles.actions}><button type="button" className={styles.secondary} onClick={reset}><ArrowRight size={16}/> إنهاء الجولة</button>
+   <div className={styles.actions}><button type="button" className={styles.secondary} onClick={()=>{if(mode==='daily'&&!confirm('إنهاء الجولة الرسمية الآن ينهي محاولتك لليوم ولا يمكن إعادتها. هل تريد الخروج؟'))return;reset();}}><ArrowRight size={16}/> إنهاء الجولة</button>
     <button type="button" className={styles.primary} disabled={!answer||verifying||(mode==='daily'&&!verified)} onClick={next}>{index+1===tasks.length?'عرض النتيجة':'المهمة التالية'} <ArrowLeft size={17}/></button></div>
   </div>}
   {finished&&<div className={styles.result} role="status">

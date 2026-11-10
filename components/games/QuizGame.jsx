@@ -7,10 +7,10 @@ import Link from 'next/link';
 import {ArrowLeft,ArrowRight,BookOpen,CheckCircle2,Flame,Medal,RotateCcw,Share2,Target,Trophy,Zap,XCircle} from 'lucide-react';
 import {buildQuizRound,scoreRound,gameLevels,quizCategories,difficultyLabels} from '@/lib/gameEngine';
 import styles from './QuizGame.module.css';
-import {roundDuration} from '@/lib/gameClock';
+import {roundDuration,localStartTime} from '@/lib/gameClock';
 import useQuestionTimer from './useQuestionTimer';
 import {TimeControls,GameTimer} from './TimeControls';
-import useDailyAttempt,{DailyAttemptNotice} from './useDailyAttempt';
+import useDailyAttempt,{DailyAttemptNotice,useLeaveWarning} from './useDailyAttempt';
 import {readPracticeSeen,rememberPracticeTasks} from '@/lib/practiceRotation';
 import FriendInviteAction from './FriendInviteAction';
 import friendStyles from './FriendInviteAction.module.css';
@@ -43,6 +43,7 @@ export default function QuizGame({questions,date,initialMode='practice'}){
  // Daily answers are only known after the server has committed the choice.
  const revealed=picked!==null&&(mode!=='daily'||verified);
  const duration=roundDuration(mode,seconds);
+ useLeaveWarning(mode==='daily'&&round.length>0&&!result);
  // Conversion counters: a round started and a round finished (once per run).
  useFunnelStep('game_start',round.length>0,'quiz:'+mode+':'+runId);
  useFunnelStep('game_done',Boolean(result),'quiz:'+mode+':'+runId);
@@ -67,7 +68,7 @@ export default function QuizGame({questions,date,initialMode='practice'}){
  async function markReady(){
   if(!round[step])return;
   setReadyPending(true);setSyncError('');
-  try{const status=await daily.progress('ready',step,round[step].id,null);setServerStartedAt(status.startedAt);setClockReady(true);}
+  try{const status=await daily.progress('ready',step,round[step].id,null);setServerStartedAt(localStartTime(status.startedAt,status.serverNow));setClockReady(true);}
   catch(error){setSyncError(error.message||'تعذر بدء مؤقت السؤال.');}
   finally{setReadyPending(false);}
  }
@@ -80,12 +81,23 @@ export default function QuizGame({questions,date,initialMode='practice'}){
    list=await daily.reserve();
    setStarting(false);
    if(!list)return;
+   if(list.resume){resumeRound(list.resume);return;}
   }else{
    list=buildQuizRound(questions,{mode,category,difficulty,seed:'practice-'+Date.now()+'-'+Math.random(),seen:readPracticeSeen('quiz')});
    if(!list.length)return;
    rememberPracticeTasks('quiz',list.map(task=>task.id));
   }
   setRunId(id=>id+1);setRound(list);setStep(0);setPicked(null);setAnswers([]);setResult(null);setShareNote('');setVerified(false);setSyncError('');setOfficialResult(null);setOfficialRaw(0);setClockReady(false);setServerStartedAt(null);setOfficialVerdict(null);
+ }
+ // Continue an unfinished official round: answered questions keep their verdict and reveal; a
+ // question in review shows its result; the current question restarts its (server) timer.
+ function resumeRound(saved){
+  const list=saved.tasks.map((task,i)=>saved.reveals[i]?{...task,...saved.reveals[i]}:task);
+  const given=saved.answers.map((answer,i)=>answer.correct&&Number.isInteger(list[i]?.correct)?list[i].correct:-1);
+  const review=saved.phase==='review'&&given.length>saved.step;
+  setRunId(id=>id+1);setRound(list);setStep(saved.step);setAnswers(given);setResult(null);setShareNote('');setSyncError('');setOfficialResult(null);
+  setOfficialRaw(saved.answers.reduce((sum,answer)=>sum+answer.points,0));setClockReady(false);setServerStartedAt(null);
+  setPicked(review?given[saved.step]:null);setVerified(review);setOfficialVerdict(review?Boolean(saved.answers[saved.step]?.correct):null);
  }
  async function verifyAnswer(index,questionId,atStep){
   setVerifying(true);setSyncError('');
@@ -159,7 +171,7 @@ export default function QuizGame({questions,date,initialMode='practice'}){
      <TimeControls mode={mode} seconds={seconds} onChange={setSeconds}/>
      <DailyAttemptNotice daily={daily} mode={mode} date={date}/>
      <div className={friendStyles.actionRow}>
-    <button type="button" className={styles.primary} onClick={start} disabled={!canStart||starting}>{starting?'جارٍ حجز المحاولة…':canStart?'ابدأ الجولة':mode==='daily'?'تحدي اليوم غير متاح لبدء محاولة جديدة':'لا توجد أسئلة منشورة لهذا الاختيار'} <ArrowLeft size={18}/></button>
+    <button type="button" className={styles.primary} onClick={start} disabled={!canStart||starting}>{starting?'جارٍ حجز المحاولة…':canStart?(daily.kind==='resume'?'أكمل جولة اليوم':'ابدأ الجولة'):mode==='daily'?'تحدي اليوم غير متاح لبدء محاولة جديدة':'لا توجد أسئلة منشورة لهذا الاختيار'} <ArrowLeft size={18}/></button>
     <FriendInviteAction game="quiz" seconds={seconds} disabled={starting}/>
    </div>
      <p className={styles.privacy}>الجولة الحرة بلا تسجيل؛ يتطلب تحدي اليوم حساباً موثقاً ومحاولة واحدة فقط. نتائج الجولات الحرة محلية، أما تحدي اليوم فيُوثّق على الخادم ويظهر في لوحة المتصدرين.</p>
@@ -198,7 +210,7 @@ export default function QuizGame({questions,date,initialMode='practice'}){
     </div>
     {(verifying||readyPending)&&<p className={styles.syncError} role="status">{readyPending?'جارٍ تشغيل المؤقت الرسمي…':'جارٍ توثيق الإجابة…'}</p>}
     {syncError&&<p className={styles.syncError} role="alert">{syncError} <button type="button" onClick={()=>picked===null?markReady():!verified?verifyAnswer(picked,current.id,step):next()}>إعادة المحاولة</button></p>}
-    <div className={styles.playActions}><button type="button" className={styles.secondary} onClick={()=>{setRound([]);setPicked(null);setAnswers([]);}}><ArrowRight size={16}/> إنهاء الجولة</button><button type="button" className={styles.primary} onClick={next} disabled={picked===null||verifying||(mode==='daily'&&!verified)}>{step===round.length-1?'عرض النتيجة':'السؤال التالي'} <ArrowLeft size={18}/></button></div>
+    <div className={styles.playActions}><button type="button" className={styles.secondary} onClick={()=>{if(mode==='daily'&&!confirm('إنهاء الجولة الرسمية الآن ينهي محاولتك لليوم ولا يمكن إعادتها. هل تريد الخروج؟'))return;setRound([]);setPicked(null);setAnswers([]);}}><ArrowRight size={16}/> إنهاء الجولة</button><button type="button" className={styles.primary} onClick={next} disabled={picked===null||verifying||(mode==='daily'&&!verified)}>{step===round.length-1?'عرض النتيجة':'السؤال التالي'} <ArrowLeft size={18}/></button></div>
    </div>}
    {result&&<div className={styles.finish} role="status">
     <div className={styles.finishSparks} aria-hidden="true"><span>✦</span><span>◆</span><span>✦</span></div>

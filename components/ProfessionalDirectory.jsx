@@ -48,7 +48,7 @@ export default function ProfessionalDirectory({professionals}) {
       <label className="professionals-select"><UserSearch size={17}/><select value={mode} onChange={event => {setMode(event.target.value);setPage(1);}} aria-label="طريقة تقديم الخدمة"><option>كل طرق الخدمة</option>{serviceModes.map(item => <option key={item}>{item}</option>)}</select><ChevronDown size={16}/></label>
     </div>
 
-    <ActiveFilters filters={[query&&{key:'q',label:'البحث: '+query,onRemove:()=>setQuery('')},category!=='الكل'&&{key:'category',label:'المهنة: '+category,onRemove:()=>setCategory('الكل')},location!=='كل المحافظات'&&{key:'location',label:'المنطقة: '+location,onRemove:()=>setLocation('كل المحافظات')},mode!=='كل طرق الخدمة'&&{key:'mode',label:'الخدمة: '+mode,onRemove:()=>setMode('كل طرق الخدمة')}]} onClear={clearFilters}/>
+    <ActiveFilters filters={[query&&{key:'q',label:'البحث: '+query,onRemove:()=>setQuery('')},category!=='الكل'&&{key:'category',label:'المهنة: '+category,onRemove:()=>setCategory('الكل')},location!=='كل المحافظات'&&{key:'location',label:'المنطقة: '+location,onRemove:()=>setLocation('كل المحافظات')},mode!=='كل طرق الخدمة'&&{key:'mode',label:'طريقة الخدمة: '+mode,onRemove:()=>setMode('كل طرق الخدمة')}]} onClear={clearFilters}/>
     <div className="professionals-results" aria-live="polite"><span>المهنيون المطابقون لبحثك</span><strong>عدد النتائج: {formatNumber(results.length)}</strong></div>
 
     {results.length ? <div className={'professional-grid collection-results results-count-'+Math.min(results.length,3)}>{results.slice((currentPage-1)*12,currentPage*12).map(person => <ContentSurface kind="profile" className="professional-card" key={person.id}>

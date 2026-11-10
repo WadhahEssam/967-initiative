@@ -189,7 +189,7 @@
 .ed-numbers .ed-entry-foot .ed-chip-data, .ed-numbers .ed-entry-foot .ed-status { min-height: 0; padding: 0; border: 0; background: none; color: var(--c-ink-3); font-size: 12px; }
 .ed-numbers .ed-entry-foot .ed-status[data-tone="caution"] { color: var(--c-caution); }
 .ed-numbers .ed-entry-source { max-width: 100%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.ed-numbers .ed-entry-save :is(button, a) { min-height: 32px; }
+.ed-numbers .ed-entry-save :is(button, a) { min-height: 44px; }
 .ed-numbers .ed-entry-note { grid-area: note; font-size: 12px; }
 /* Tighter on phones: no empty band after the knowledge chips, filter labels
    kept for screen readers only (selects show their current value). */
@@ -207,7 +207,7 @@
 .ed-numbers .ed-entry-foot > * { flex: none; }
 .ed-numbers .ed-entry-foot .ed-entry-source { flex: 1 1 auto; min-width: 0; }
 .ed-numbers .ed-entry-save { margin-inline-start: 0; }
-.ed-numbers .ed-entry-save :is(button, a) { min-height: 30px; min-width: 30px; padding: 0 6px; }
+.ed-numbers .ed-entry-save :is(button, a) { min-height: 44px; min-width: 44px; padding: 0 6px; }
 /* Facts as one quiet line of text instead of chips. */
 @media (max-width: 760px) {
   .ed-numbers .ed-pagehead .ed-facts { gap: 0 12px; margin-top: 6px !important; }

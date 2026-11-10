@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
+import {localStartTime} from '@/lib/gameClock';
 import LoginLink from '@/components/LoginLink';
 import Link from 'next/link';
 import {ArrowLeft,ArrowRight,CheckCircle2,Clock3,Copy,Flame,Gamepad2,Link2,LockKeyhole,RefreshCw,Share2,ShieldCheck,Swords,Timer,Trophy,UserRound,Users,Zap} from 'lucide-react';
@@ -147,7 +148,7 @@ export default function FriendDuel({id}){
  const timer=useQuestionTimer({
   seconds,token:questionKey,
   active:started&&!busy&&!!task,
-  startTime:mine?.startedAt||null,
+  startTime:mine?.startedAt?localStartTime(mine.startedAt,match?.serverNow):null,
   onExpire:()=>answer(null,true)
  });
  async function next(){

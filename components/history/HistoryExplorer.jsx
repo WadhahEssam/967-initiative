@@ -1,5 +1,6 @@
 'use client';
 import {useMemo,useState,useEffect} from 'react';
+import {countOf} from '@/lib/arabicCount';
 import Link from '@/components/SiteLink';
 import {ArrowUpLeft,BookOpen,CalendarDays,MapPinned,Search,ScrollText,SlidersHorizontal,ListOrdered} from 'lucide-react';
 import {historyEras,historyKinds,historyEntryPath,historyYear,historySourceCount} from '@/lib/yemenHistory';
@@ -62,7 +63,7 @@ export default function HistoryExplorer({entries:index,details:initialDetails,de
      <div className={styles.cardTop}><span className={styles.kind}>{historyKinds[entry.kind]}</span><small className={styles.period}>{entry.period}</small></div>
      <h3><Link href={historyEntryPath(entry.slug)}>{entry.title}</Link></h3>
      {entry.pending?<HistoryPending status={status} onRetry={load}/>:<p>{entry.summary}</p>}
-     <div className={styles.cardBottom}>{!entry.pending&&<span><BookOpen size={14}/> {historySourceCount(entry)} مصادر</span>}{entry.location&&<span><MapPinned size={14}/>{entry.location}</span>}<Link href={historyEntryPath(entry.slug)} aria-label={'قراءة '+entry.title}>اقرأ الملف <ArrowUpLeft size={15}/></Link></div>
+     <div className={styles.cardBottom}>{!entry.pending&&<span><BookOpen size={14}/> {countOf(historySourceCount(entry),'source')}</span>}{entry.location&&<span><MapPinned size={14}/>{entry.location}</span>}<Link href={historyEntryPath(entry.slug)} aria-label={'قراءة '+entry.title}>اقرأ الملف <ArrowUpLeft size={15}/></Link></div>
     </div>
     <div className={styles.cardThumb}>{!entry.pending&&<HistoryMedia entry={entry} variant="thumbnail"/>}</div>
    </article>)}</div>}

@@ -9,7 +9,7 @@ import {publishedSchoolCatalog,publishedSchoolStageList} from '@/lib/schoolConte
 import styles from '../school.module.css';
 import SchoolTrackTrail from '@/components/school/SchoolTrackTrail';
 export const dynamic='force-dynamic';
-export const metadata=pageMetadata({title:'الفلك والطبيعة | مدرسة 967',description:'اكتشف المجموعة الشمسية والطقس والأرض من الداخل وأسرار الكون عبر 48 محطة وتجارب علمية.',path:'/school/nature'});
+export const metadata=pageMetadata({title:'الفلك والطبيعة | مدرسة 967',description:'اكتشف المجموعة الشمسية والطقس والأرض من الداخل وأسرار الكون عبر 48 درسًا وتجارب علمية.',path:'/school/nature'});
 const TRACKS=[
  {slug:'solar-system',icon:Orbit,glyph:'☉',tag:'المجموعة الشمسية'},
  {slug:'weather-climate',icon:CloudSun,glyph:'☁',tag:'الطقس والمناخ'},
@@ -31,12 +31,12 @@ export default async function SchoolNaturePage(){
    <div className={styles.breadcrumb}><Link href="/school">مدرسة 967</Link><ChevronLeft size={14}/> الفلك والطبيعة</div>
    <span className={styles.eyebrow}><Stars size={19}/> القسم الثاني / مدرسة 967</span>
    <h1>افهم العالم، <em>واختبر كيف يعمل.</em></h1>
-   <p>من حركة الكواكب إلى تكوّن السحب وطبقات الأرض وأعماق الكون. 48 محطة تعليمية، تتضمن الشرح والأمثلة وتوقع النتيجة وتجربة علمية قابلة للتغيير.</p>
+   <p>من حركة الكواكب إلى تكوّن السحب وطبقات الأرض وأعماق الكون. 48 درسًا قصيرًا، فيها أمثلة وتوقع للنتيجة وتجارب علمية تغيّر متغيراتها بنفسك.</p>
    <Link className={styles.primaryLink} href="/school/dashboard">رحلتي التعليمية <ArrowLeft size={17}/></Link>
   </div></section>
   <section className={styles.catalogSection}><div className="container">
    <div className={styles.sectionTitle}><div><span>المسارات الأربعة</span><h2>اختر موضوعًا لتجربته</h2></div>
-    <p>12 محطة في كل مسار. تعلم أولًا، ثم توقع نتيجة التجربة، وغيّر المتغيرات قبل بدء الاختبار. اجتياز 5 من 6 يفتح المحطة التالية.</p></div>
+    <p>12 درسًا في كل مسار؛ أول ثلاثة مفتوحة دون حساب، وإنهاء الدرس يفتح التالي، والنجوم تقيس إتقانك.</p></div>
    <SchoolTrackTrail theme="nature" tracks={tracks.filter(Boolean).map(({slug,icon,glyph,course,stageCount,tag})=>({slug,icon,glyph,title:course.title,description:course.description,count:stageCount,label:tag}))} intro="من أقرب الكواكب إلى أبعد المجرات: افتح رحلة علمية واختر التجربة التي تثير فضولك."/>
    {!tracks.some(Boolean)&&<p className={styles.logicEmpty}>لم تُنشر مسارات هذا القسم بعد.</p>}
    <div className={styles.natureFootnote}><FlaskConical size={18}/> نماذج علمية مبسطة مع مصادر موثقة، وليست توقعات جوية أو جيولوجية أو فلكية تشغيلية.</div>

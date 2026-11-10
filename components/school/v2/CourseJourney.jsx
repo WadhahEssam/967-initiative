@@ -2,6 +2,7 @@
 // مدرسة 967 — الإصدار الثاني: خريطة رحلة المسار. وحدات، عقد بحسب نوع الدرس، نجوم الإتقان، وزر متابعة واحد.
 // الفتح بالإكمال كما في الخادم؛ الزائر يرى الدرس الأول مفتوحًا والباقي يحتاج حسابًا.
 import {useEffect, useMemo, useState} from 'react';
+import {countOf} from '@/lib/arabicCount';
 import Link from 'next/link';
 import {ArrowLeft, ArrowRight, BookOpen, FlaskConical, Hammer, Signpost, Search, Sparkles, Trophy, LockKeyhole, Star, MapPin} from 'lucide-react';
 import {currentSession} from '@/lib/browserSession';
@@ -60,7 +61,7 @@ export default function CourseJourney({backHref, slug, title, description, units
       <div className={styles.headText}>
         <h1>{title}</h1>
         {description && <p>{description}</p>}
-        <p className={styles.stats}>{progress.guest ? `${stages.length} درسًا · أول ${GUEST_LESSONS} دروس مفتوحة للجميع${state.done ? ` · أنهيت ${state.done} كزائر` : ''}` : `${state.done} من ${stages.length} درسًا · ${state.stars} نجوم`}</p>
+        <p className={styles.stats}>{progress.guest ? `${countOf(stages.length,'lesson')} · أول ${GUEST_LESSONS} دروس مفتوحة للجميع${state.done ? ` · أنهيت ${countOf(state.done,'lesson')} كزائر` : ''}` : `${state.done} من ${countOf(stages.length,'lesson')} · ${countOf(state.stars,'star')}`}</p>
         <div className={styles.bar} role="progressbar" aria-label="تقدمك في المسار" aria-valuemin={0} aria-valuemax={stages.length} aria-valuenow={state.done}><span style={{width: (stages.length ? state.done / stages.length * 100 : 0) + '%'}}/></div>
       </div>
       {current && !progress.loading && !progress.error && <Link className={styles.continue} href={href(current.index)}>
@@ -68,7 +69,7 @@ export default function CourseJourney({backHref, slug, title, description, units
       </Link>}
       {state.finished && <p className={styles.finished}><Trophy size={18} aria-hidden="true"/> أنهيت دروس هذا المسار. يمكنك العودة إلى أي درس لرفع نجومه.</p>}
       {progress.guest && <SignupInvite className={styles.guest} showLogin cta="إنشاء حساب" next={back}
-        text={state.done ? `أنهيت ${state.done} ${state.done === 1 ? 'درسًا' : 'دروس'} كزائر، وتقدمك محفوظ في هذا المتصفح فقط. أنشئ حسابًا لنحفظه لك ونفتح بقية الدروس.` : `أول ${GUEST_LESSONS} دروس مفتوحة دون حساب. أنشئ حسابًا لتحفظ تقدمك ونجومك وتفتح بقية الدروس.`}/>}
+        text={state.done ? `أنهيت ${countOf(state.done,'lesson')} كزائر، وتقدمك محفوظ في هذا المتصفح فقط. أنشئ حسابًا لنحفظه لك ونفتح بقية الدروس.` : `أول ${GUEST_LESSONS} دروس مفتوحة دون حساب. أنشئ حسابًا لتحفظ تقدمك ونجومك وتفتح بقية الدروس.`}/>}
       {!progress.guest && !progress.loading && <GuestProgressClaim/>}
       {progress.loading && <p className={styles.muted} role="status">جارٍ تحميل تقدمك…</p>}
       {progress.error && <p className={styles.error} role="alert">تعذر تحميل تقدمك: {progress.error}</p>}
@@ -102,7 +103,7 @@ export default function CourseJourney({backHref, slug, title, description, units
         })}
       </ol>;
       const headText = <><span className={styles.unitNo}>الوحدة {u + 1}</span><h2>{unit.title}</h2>
-        <span className={styles.unitState}>{doneCount === items.length && items.length ? 'مكتملة' : allLocked ? `${items.length} دروس مقفلة` : `${doneCount} من ${items.length}`}</span></>;
+        <span className={styles.unitState}>{doneCount === items.length && items.length ? 'مكتملة' : allLocked ? `مقفلة (${countOf(items.length,'lesson')})` : `${doneCount} من ${items.length}`}</span></>;
       return <section key={u} className={styles.unit} aria-label={`الوحدة ${u + 1}: ${unit.title}`} data-locked={allLocked || undefined}>
         {allLocked && !progress.loading
           ? <details className={styles.unitDetails}><summary className={styles.unitHead}>{headText}</summary>{body}</details>
