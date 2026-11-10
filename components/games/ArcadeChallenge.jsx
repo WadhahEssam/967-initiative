@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
+import GameSignupInvite from './GameSignupInvite';
 import {useFunnelStep} from '@/components/analytics/funnel';
 import Link from 'next/link';
 import {ArrowLeft,ArrowRight,CheckCircle2,Clock3,Flame,Play,RotateCcw,Share2,Target,Trophy,XCircle,Zap} from 'lucide-react';
@@ -198,6 +199,7 @@ export default function ArcadeChallenge({game,date,initialMode='practice'}){
    <h2>{correctCount===tasks.length?'أنت خبير حقيقي!':correctCount>=6?'نتيجة رائعة!':'تحدٍ جديد في انتظارك'}</h2>
    <div className={styles.resultStats}><div><strong>{correctCount} / {tasks.length}</strong><span>إجابات صحيحة</span></div><div><strong>{mode==='daily'?officialResult?.score??'—':total}</strong><span>{mode==='daily'?'النقاط الرسمية / 1000':'نقاط الجولة'}</span></div><div><strong>{stats.best}</strong><span>أفضل نتيجة محلية</span></div></div>
    <p>{mode==='daily'?'نتيجتك موثقة ومحفوظة في حسابك؛ تدخل تلقائياً في الترتيب الرسمي الموحد.':'انتهت الجولة. الإجابات الخاطئة أو التي انتهى وقتها لا تحصل على نقاط.'}</p>
+   {mode!=='daily'&&<GameSignupInvite/>}
    {mode==='daily'&&<Link className={styles.secondary} href="/games/leaderboard">شاهد ترتيبك في لوحة المتصدرين <Trophy size={16}/></Link>}
    <div className={styles.actions}><button className={styles.primary} type="button" onClick={reset}><RotateCcw size={18}/> جولة جديدة</button><button className={styles.secondary} type="button" onClick={share}><Share2 size={17}/> مشاركة</button><Link className={styles.secondary} href="/games">جميع الألعاب <ArrowRight size={17}/></Link></div>
    {shareStatus&&<p role="status" className={styles.credit}>{shareStatus}</p>}

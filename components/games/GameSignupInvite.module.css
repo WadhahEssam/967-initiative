@@ -1,0 +1,6 @@
+.invite{margin:14px 0 0;padding:14px;border-radius:16px;background:var(--c-accent-soft,#dcefe9);color:var(--c-ink,#1f1b16);text-align:start;display:flex;flex-direction:column;gap:10px}
+.invite p{margin:0;font-size:14px;line-height:1.75}
+.invite>div{display:flex;flex-wrap:wrap;gap:8px}
+.primary,.secondary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 16px;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none}
+.primary{background:var(--c-accent,#1f6f5c);color:#fff}
+.secondary{background:var(--c-surface,#fff);color:var(--c-accent-strong,#155447);border:1px solid var(--c-line,#d9d2c6)}

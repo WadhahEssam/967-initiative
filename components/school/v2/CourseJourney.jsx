@@ -3,8 +3,11 @@
 // الفتح بالإكمال كما في الخادم؛ الزائر يرى الدرس الأول مفتوحًا والباقي يحتاج حسابًا.
 import {useEffect, useMemo, useState} from 'react';
 import Link from 'next/link';
-import {ArrowLeft, ArrowRight, BookOpen, FlaskConical, Hammer, Signpost, Search, Sparkles, Trophy, LockKeyhole, Star, MapPin, LogIn, UserRoundPlus} from 'lucide-react';
+import {ArrowLeft, ArrowRight, BookOpen, FlaskConical, Hammer, Signpost, Search, Sparkles, Trophy, LockKeyhole, Star, MapPin} from 'lucide-react';
 import {currentSession} from '@/lib/browserSession';
+import {GUEST_LESSONS, guestCourseProgress} from '@/lib/schoolGuest';
+import SignupInvite from '@/components/SignupInvite';
+import GuestProgressClaim from './GuestProgressClaim';
 import {journeyUnits, journeyState} from '@/lib/schoolJourney';
 import styles from './CourseJourney.module.css';
 
@@ -26,13 +29,16 @@ function Stars({n, label}) {
 
 export default function CourseJourney({backHref, slug, title, description, units: authoredUnits, capstone, stages, fixtures = null}) {
   const [progress, setProgress] = useState({loading: true, guest: false, error: '', stages: null, staff: false});
+  // Reloaded when lessons finished as a guest have been moved into the account.
+  const [reload, setReload] = useState(0);
+  useEffect(() => { const again = () => setReload(n => n + 1); window.addEventListener('967:school-progress', again); return () => window.removeEventListener('967:school-progress', again); }, []);
   useEffect(() => {
     let alive = true;
     (async () => {
       try {
         const data = {session: await currentSession()};
         const token = data?.session?.access_token;
-        if (!token) { if (alive) setProgress({loading: false, guest: true, error: '', stages: null, staff: false}); return; }
+        if (!token) { let local = {}; try { local = guestCourseProgress(localStorage, slug); } catch { local = {}; } if (alive) setProgress({loading: false, guest: true, local, error: '', stages: null, staff: false}); return; }
         const res = await fetch('/api/school/custom?slug=' + encodeURIComponent(slug), {cache: 'no-store', headers: {Authorization: 'Bearer ' + token}});
         const json = await res.json().catch(() => ({}));
         if (!res.ok) throw Error(json.error || 'تعذر قراءة تقدمك.');
@@ -40,7 +46,7 @@ export default function CourseJourney({backHref, slug, title, description, units
       } catch (e) { if (alive) setProgress({loading: false, guest: false, error: e.message, stages: null, staff: false}); }
     })();
     return () => { alive = false; };
-  }, [slug]);
+  }, [slug, reload]);
 
   const units = useMemo(() => journeyUnits(stages, authoredUnits), [stages, authoredUnits]);
   const state = useMemo(() => journeyState(stages, progress), [stages, progress]);
@@ -54,17 +60,16 @@ export default function CourseJourney({backHref, slug, title, description, units
       <div className={styles.headText}>
         <h1>{title}</h1>
         {description && <p>{description}</p>}
-        <p className={styles.stats}>{progress.guest ? `${stages.length} درسًا · الدرس الأول مفتوح للجميع` : `${state.done} من ${stages.length} درسًا · ${state.stars} نجوم`}</p>
+        <p className={styles.stats}>{progress.guest ? `${stages.length} درسًا · أول ${GUEST_LESSONS} دروس مفتوحة للجميع${state.done ? ` · أنهيت ${state.done} كزائر` : ''}` : `${state.done} من ${stages.length} درسًا · ${state.stars} نجوم`}</p>
         <div className={styles.bar} role="progressbar" aria-label="تقدمك في المسار" aria-valuemin={0} aria-valuemax={stages.length} aria-valuenow={state.done}><span style={{width: (stages.length ? state.done / stages.length * 100 : 0) + '%'}}/></div>
       </div>
       {current && !progress.loading && !progress.error && <Link className={styles.continue} href={href(current.index)}>
         {state.done === 0 ? 'ابدأ' : 'تابع'}: الدرس {current.index + 1} · {current.title} <ArrowLeft size={18} aria-hidden="true"/>
       </Link>}
       {state.finished && <p className={styles.finished}><Trophy size={18} aria-hidden="true"/> أنهيت دروس هذا المسار. يمكنك العودة إلى أي درس لرفع نجومه.</p>}
-      {progress.guest && <div className={styles.guest}>
-        <p>أنشئ حسابًا لتحفظ تقدمك ونجومك وتفتح بقية الدروس.</p>
-        <div><Link href={'/register?next=' + encodeURIComponent(back)}><UserRoundPlus size={16} aria-hidden="true"/> إنشاء حساب</Link><Link href={'/login?next=' + encodeURIComponent(back)}><LogIn size={16} aria-hidden="true"/> تسجيل الدخول</Link></div>
-      </div>}
+      {progress.guest && <SignupInvite className={styles.guest} showLogin cta="إنشاء حساب" next={back}
+        text={state.done ? `أنهيت ${state.done} ${state.done === 1 ? 'درسًا' : 'دروس'} كزائر، وتقدمك محفوظ في هذا المتصفح فقط. أنشئ حسابًا لنحفظه لك ونفتح بقية الدروس.` : `أول ${GUEST_LESSONS} دروس مفتوحة دون حساب. أنشئ حسابًا لتحفظ تقدمك ونجومك وتفتح بقية الدروس.`}/>}
+      {!progress.guest && !progress.loading && <GuestProgressClaim/>}
       {progress.loading && <p className={styles.muted} role="status">جارٍ تحميل تقدمك…</p>}
       {progress.error && <p className={styles.error} role="alert">تعذر تحميل تقدمك: {progress.error}</p>}
     </header>

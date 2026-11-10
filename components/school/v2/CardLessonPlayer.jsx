@@ -1,9 +1,12 @@
 'use client';
 // مدرسة 967 — الإصدار الثاني: مشغّل دروس البطاقات بملء الشاشة.
 // المسجّل: البدء والتصحيح والإنهاء عبر /api/school/custom (المفاتيح على الخادم).
-// الزائر: الدرس الأول فقط، يُصحح في المتصفح ويُحفظ محليًا، بلا نقاط.
+// الزائر: أول GUEST_LESSONS دروس، تُصحح في المتصفح وتُحفظ محليًا مع الإجابات، وتُنقل إلى حسابه بعد التسجيل
+// (components/school/v2/GuestProgressClaim يعيد تصحيحها على الخادم).
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {trackFunnel} from '@/components/analytics/funnel';
+import SignupInvite from '@/components/SignupInvite';
+import {GUEST_LESSONS, finishedGuestLessons, guestLessonKey, guestLessonOpen, recordGuestAnswer} from '@/lib/schoolGuest';
 import {createPortal} from 'react-dom';
 import useFullScreenDialog from './useFullScreenDialog';
 import Link from 'next/link';
@@ -14,7 +17,7 @@ import CardVisual from './CardVisual';
 import CardTask, {taskReady} from './CardTask';
 import styles from './CardLessonPlayer.module.css';
 
-const guestKey = (slug, index) => `967-school-v2:${slug}:${index}`;
+const guestKey = guestLessonKey;
 const readLocal = key => { try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch { return null; } };
 const writeLocal = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* private mode */ } };
 
@@ -42,6 +45,7 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
   const [error, setError] = useState('');
   const [hint, setHint] = useState(false);
   const [result, setResult] = useState(null);
+  const [guestDone, setGuestDone] = useState(0);
   const touch = useRef(null);
   const guest = !attempt;
   const card = cards[index];
@@ -50,6 +54,7 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
 
   // Conversion counters: a lesson opened and a lesson finished, as guest or member (never in the editor preview).
   useEffect(() => { if (mode === 'playing' && !preview) trackFunnel('lesson_start_' + (guest ? 'guest' : 'member'), slug + ':' + stageIndex); }, [mode, preview, guest, slug, stageIndex]);
+  useEffect(() => { if (mode === 'done' && result?.guest) { try { setGuestDone(finishedGuestLessons(localStorage).length); } catch { setGuestDone(1); } } }, [mode, result]);
   useEffect(() => { if (mode === 'done' && result && !result.preview) trackFunnel('lesson_done_' + (guest ? 'guest' : 'member'), slug + ':' + stageIndex); }, [mode, result, guest, slug, stageIndex]);
 
   const firstOpen = useCallback(state => { const i = cards.findIndex(c => c.task && !state[c.id]?.done); return i < 0 ? cards.length - 1 : i; }, [cards]);
@@ -84,7 +89,8 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
       if (guest) {
         const local = applyCardCheck(guestSnapshot, {cards: progress}, card.id, values[card.id]);
         if (local.error) throw Error(local.error);
-        if (!preview) writeLocal(guestKey(slug, stageIndex), {cards: local.draft.cards});
+        // The answers are kept so the lesson can be graded again on the server after signing in.
+        if (!preview) writeLocal(guestKey(slug, stageIndex), {...recordGuestAnswer(readLocal(guestKey(slug, stageIndex)), card.id, values[card.id]), cards: local.draft.cards});
         setProgress(local.draft.cards); outcome = local.result;
       } else {
         outcome = await api({action: 'check', slug, attemptId: attempt.id, cardId: card.id, answer: values[card.id]});
@@ -102,6 +108,7 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
       if (guest) {
         const r = finishCards(guestSnapshot, {cards: progress});
         if (r.error) throw Error(r.error);
+        if (!preview) writeLocal(guestKey(slug, stageIndex), {...(readLocal(guestKey(slug, stageIndex)) || {}), cards: progress, finished: true, stars: r.stars});
         setResult({...r, guest: !preview, preview});
       } else setResult(await api({action: 'submit', slug, attemptId: attempt.id}));
       setMode('done');
@@ -142,11 +149,10 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
   if (mode === 'login' || mode === 'error') return <div className={styles.shell} dir="rtl">
     <div className={styles.center}>
       <h1 className={styles.doneTitle}>{mode === 'login' ? 'سجّل الدخول لتتابع هذا الدرس' : 'تعذر فتح الدرس'}</h1>
-      <p>{mode === 'login' ? 'الدرس الأول من كل مسار مفتوح للجميع؛ أنشئ حسابًا لتتابع وتحفظ تقدمك ونقاطك.' : error}</p>
-      {mode === 'login' && <div className={styles.doneActions}>
-        <Link className={styles.primary} href={'/register?next=' + encodeURIComponent('/school/courses/' + slug + '/' + (stageIndex + 1))}>أنشئ حسابًا</Link>
-        <Link className={styles.secondary} href={'/login?next=' + encodeURIComponent('/school/courses/' + slug + '/' + (stageIndex + 1))}>تسجيل الدخول</Link>
-      </div>}
+      {mode === 'error' && <p>{error}</p>}
+      {mode === 'login' && <SignupInvite className={styles.loginInvite} primaryClassName={styles.primary} secondaryClassName={styles.secondary} showLogin cta="أنشئ حسابًا"
+        text={`أول ${GUEST_LESSONS} دروس من كل مسار مفتوحة للجميع. أنشئ حسابًا لتتابع بقية الدروس؛ وما أنجزته كزائر يُنقل إلى حسابك تلقائيًا.`}
+        next={'/school/courses/' + slug + '/' + (stageIndex + 1)}/>}
       <Link className={styles.secondary} href={mapHref}>العودة إلى خريطة المسار</Link>
     </div>
   </div>;
@@ -165,13 +171,11 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
       <h2>ما تعلمته</h2>
       <ol>{lesson.summary.map((s, i) => <li key={i}>{s}</li>)}</ol>
     </section>
-    {result.guest && <section className={styles.guestNote}>
-      <p>أنشئ حسابًا لتحفظ تقدمك وتجمع النقاط وتتابع بقية الدروس.</p>
-      <Link className={styles.primary} href={'/register?next=' + encodeURIComponent(mapHref)}>أنشئ حسابًا مجانًا</Link>
-    </section>}
+    {result.guest && <SignupInvite className={styles.guestNote} primaryClassName={styles.primary} next={mapHref}
+      text={guestInviteText(guestDone, stageIndex)}/>}
     <div className={styles.doneActions}>
       {preview && <button type="button" className={styles.primary} onClick={onClose}>{closeLabel}</button>}
-      {!preview && hasNext && !result.guest && <Link className={styles.primary} href={'/school/courses/' + slug + '/' + (stageIndex + 2)}>الدرس التالي <ArrowLeft size={18} aria-hidden="true"/></Link>}
+      {!preview && hasNext && (!result.guest || guestLessonOpen(stageIndex + 1)) && <Link className={styles.primary} href={'/school/courses/' + slug + '/' + (stageIndex + 2)}>الدرس التالي <ArrowLeft size={18} aria-hidden="true"/></Link>}
       {!preview && <Link className={styles.secondary} href={mapHref}>العودة إلى خريطة المسار</Link>}
     </div>
   </div>;
@@ -211,6 +215,15 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
 
 // يُرسم المشغّل داخل body مباشرة: عنصر main في الموقع يعزل الطبقات (isolation)، فيبقى الرأس فوق أي طبقة ثابتة داخله.
 // المشغّل نافذة حوارية تملأ الشاشة (useFullScreenDialog): ما خلفه من الموقع يصبح inert ما دام مفتوحًا.
+// Finished guest lessons in this browser, counted when the result screen opens.
+function guestInviteText(done, stageIndex) {
+  const count = done > 0 ? done : 1;
+  const lessons = count === 1 ? 'درسًا واحدًا' : count === 2 ? 'درسين' : count + ' دروس';
+  return guestLessonOpen(stageIndex + 1)
+    ? `أنهيت ${lessons} كزائر، وتقدمك محفوظ في هذا المتصفح فقط. أنشئ حسابًا مجانًا لنحفظه لك ونضيف نجومك ونقاطك.`
+    : `أنهيت ${lessons} كزائر. أنشئ حسابًا مجانًا لتتابع بقية دروس المسار؛ ننقل ما أنجزته إلى حسابك تلقائيًا.`;
+}
+
 export default function CardLessonPlayer(props) {
   const host = useFullScreenDialog(props.lesson?.title ? 'درس: ' + props.lesson.title : 'درس');
   if (!host) return <div className={styles.shell}><p className={styles.center}>جارٍ تحضير الدرس…</p></div>;
