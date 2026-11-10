@@ -1,0 +1,73 @@
+name: Live site monitor
+
+# Every hour: checks 967ye.com with scripts/site-monitor.mjs (read-only). When a check fails,
+# one issue labelled site-monitor is opened (GitHub emails the repository's watchers); it gets a
+# comment only when the list of problems changes, and is closed when every check passes again.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '7 * * * *'
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: live-site-monitor
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: scripts/site-monitor.mjs
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check the live site
+        id: check
+        continue-on-error: true
+        run: node scripts/site-monitor.mjs --report="$RUNNER_TEMP/report.json"
+
+      - name: Open, update or close the alert issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OUTCOME: ${{ steps.check.outcome }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh label create site-monitor --color B60205 --description "Live site check failed" --force >/dev/null
+          open=$(gh issue list --label site-monitor --state open --json number --jq '.[0].number // empty')
+          if [[ "$OUTCOME" == "success" ]]; then
+            if [[ -n "$open" ]]; then
+              gh issue comment "$open" --body "الموقع يعمل من جديد: نجحت كل الفحوص في $(date -u '+%Y-%m-%d %H:%M') UTC. ($RUN_URL)"
+              gh issue close "$open"
+            fi
+            exit 0
+          fi
+          report="$RUNNER_TEMP/report.json"
+          if [[ -f "$report" ]]; then
+            problems=$(node -e "const r=require(process.argv[1]);console.log(r.problems.map(p=>'- '+p.name+': '+p.problem).join('\n'))" "$report")
+          else
+            problems="- تعذر تشغيل الفحص نفسه؛ راجع السجل."
+          fi
+          signature=$(printf '%s' "$problems" | sha1sum | cut -c1-12)
+          body=$(printf 'فشل فحص الموقع الحي 967ye.com.\n\n%s\n\nآخر تشغيل: %s\n\nيُغلق هذا التنبيه تلقائيًا عند نجاح كل الفحوص.\n\n<!-- problems:%s -->' "$problems" "$RUN_URL" "$signature")
+          if [[ -z "$open" ]]; then
+            gh issue create --title "تنبيه: فحص الموقع الحي فشل" --label site-monitor --body "$body"
+          else
+            previous=$(gh issue view "$open" --json body --jq .body | grep -o 'problems:[0-9a-f]*' | cut -d: -f2 || true)
+            if [[ "$previous" != "$signature" ]]; then
+              gh issue edit "$open" --body "$body"
+              gh issue comment "$open" --body "$(printf 'تغيّرت المشكلات:\n\n%s\n\n%s' "$problems" "$RUN_URL")"
+            fi
+          fi
+          exit 1
