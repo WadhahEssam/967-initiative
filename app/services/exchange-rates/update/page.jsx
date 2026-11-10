@@ -13,6 +13,7 @@ export default function RatesUpdatePage(){
    <span className={styles.kicker}><Link href="/services/exchange-rates">أسعار الصرف</Link> / الإدخال اليومي</span>
    <h1>إدخال أسعار اليوم</h1>
    <p>الخانات تبدأ بآخر الأسعار: عدّل ما تغيّر ثم احفظ. الحفظ يعني أن كل الأسعار المعبأة صحيحة الآن، فيتجدد وقت تحديثها. امسح شراء وبيع عملة إن لم تتأكد منهما اليوم.</p>
+   <p>أسعار المواد الأساسية تُدخل أسبوعيًا من <Link href="/services/food-prices/update">صفحتها</Link>.</p>
   </header>
   <RatesEntry/>
  </div>;
