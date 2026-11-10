@@ -12,6 +12,7 @@
 // The build goes to .next-preview, so it never collides with `npm run dev` (.next).
 import {readFileSync, existsSync} from 'node:fs';
 import {spawn} from 'node:child_process';
+import net from 'node:net';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 
@@ -51,6 +52,16 @@ export function previewEnvironment(localFile, developmentFile, base = process.en
   return {env, problems};
 }
 
+// True when something already listens on the port (usually a preview started earlier).
+export function portInUse(port) {
+  return new Promise(resolve => {
+    const probe = net.createServer();
+    probe.once('error', error => resolve(error.code === 'EADDRINUSE'));
+    probe.once('listening', () => probe.close(() => resolve(false)));
+    probe.listen(port);
+  });
+}
+
 // Runs the Next.js CLI with this Node binary (no shell, so arguments are passed as they are).
 function runNext(commandArgs, env) {
   const cli = path.join(root, 'node_modules', 'next', 'dist', 'bin', 'next');
@@ -68,6 +79,9 @@ async function main() {
   if (problems.length) throw new Error('Refusing to start: these settings are not local: ' + problems.join(', '));
   const health = await fetch(env.NEXT_PUBLIC_SUPABASE_URL.replace(/\/$/, '') + '/rest/v1/', {headers: {apikey: env.NEXT_PUBLIC_SUPABASE_ANON_KEY}}).then(response => response.status).catch(() => 0);
   if (!health) throw new Error('The local Supabase is not running. Start it with: npx supabase start');
+  // Checked before building: a new build replaces the files under a preview that is still
+  // running, which then serves pages whose scripts no longer exist (the page never loads).
+  if (await portInUse(port)) throw new Error('Port ' + port + ' is already in use: a preview is probably still running at http://localhost:' + port + '.\nNothing was rebuilt. Stop it first (Ctrl+C in its terminal), or use another port: npm run preview -- --port=3090');
   if (!skipBuild) await runNext(['build'], env);
   console.log('\nPreview (local database only): http://localhost:' + port + '\n');
   await runNext(['start', '-p', String(port)], env);
