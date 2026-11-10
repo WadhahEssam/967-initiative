@@ -147,7 +147,8 @@ export default function YemenRankingExplorer({indicators = [], initialIndicator,
   const [shareMessage,setShareMessage]=useState(''),[manualLink,setManualLink]=useState(''),[imageBusy,setImageBusy]=useState(false);
   const listId=useId(), statusId=useId();
   const indicator=indicators.find(item=>item.slug===selection.indicator) || initialMeta;
-  const narrative=splitRankingDescription(indicator?.description);
+  // The list arrives without descriptions; the selected indicator's comes with its dataset.
+  const narrative=splitRankingDescription((dataState.slug===selection.indicator&&dataState.indicator?.description)||indicator?.description);
   const dataset=dataState.slug===selection.indicator ? dataState.dataset : null;
   const pending=loading || !dataset && !error;
   const commit=useCallback((patch,replace=false)=>{

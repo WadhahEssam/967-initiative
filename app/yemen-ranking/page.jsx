@@ -24,7 +24,7 @@ export default async function YemenRankingPage({searchParams}) {
   return <KnowledgeTheme area="ranking">
     <PageIntro tone="blue" title="ترتيب اليمن" category="اليمن بين دول العالم" description="غيّر المعيار، واختر السنة، واكتشف موقع اليمن والدول الأقرب إليه. لكل رقم مصدر وسنة، ولكل ترتيب سياقه."><div className="directory-summary"><Link href="/yemen-in-numbers">استكشف مرصد اليمن بالأرقام</Link></div></PageIntro>
     <KnowledgeNavigation/>
-    <section className="section"><div className="container">{error?<div role="alert"><h2>تعذر تحميل بيانات الترتيب</h2><p>يرجى إعادة المحاولة لاحقاً.</p></div>:<YemenRankingExplorer indicators={indicators} initialIndicator={initialIndicator} initialDataset={initialDataset} initialYear={initialYear} initialScope={query.scope==='arab'?'arab':'world'} initialCompare={typeof query.compare==='string'?query.compare:''}/>}</div></section>
+    <section className="section"><div className="container">{error?<div role="alert"><h2>تعذر تحميل بيانات الترتيب</h2><p>يرجى إعادة المحاولة لاحقاً.</p></div>:<YemenRankingExplorer indicators={indicators.map(({description,...item})=>item)} initialIndicator={initialIndicator} initialDataset={initialDataset} initialYear={initialYear} initialScope={query.scope==='arab'?'arab':'world'} initialCompare={typeof query.compare==='string'?query.compare:''}/>}</div></section>
     <KnowledgeReadingGuide kind="ranking"/>
   </KnowledgeTheme>;
 }

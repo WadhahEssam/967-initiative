@@ -5,7 +5,8 @@ import {readFileSync} from 'node:fs';
 import {historyDetailsMap, historyEntryDetails, historyIndexEntry, historySourceCount} from '../lib/yemenHistory.js';
 import {toFigureDetails, toFigureIndexEntry} from '../lib/yemeniFigures.js';
 import {figureFilterDefaults, filterFigures} from '../lib/figureFilters.js';
-import {institutionListItems, institutionSearchFields} from '../lib/institutionDirectories.js';
+import {filterInstitutions, institutionDetailsMap, institutionIndexItems, institutionListItems, institutionSearchFields} from '../lib/institutionDirectories.js';
+import {collectionDefaults} from '../lib/listState.js';
 
 const read = p => readFileSync(new URL('../' + p, import.meta.url), 'utf8');
 
@@ -63,8 +64,21 @@ test('institution list items keep every field the cards, filters and search read
   assert.equal(medical.operatingStatusAsOf, '2020-01');
   assert.equal(medical.hours, undefined);
   assert.deepEqual(institutionSearchFields(medical, 'medical'), institutionSearchFields(center, 'medical'));
-  assert.match(read('app/universities/page.jsx'), /items=\{institutionListItems\(institutions,'university'\)\}/);
-  assert.match(read('app/medical-centers/page.jsx'), /items=\{institutionListItems\(centers,'medical'\)\}/);
+  // Light rows for the page, details later: filters work before the details arrive, and
+  // filtering the merged rows finds the same records as the full list.
+  const [row] = institutionIndexItems([university], 'university');
+  assert.equal(row.summary, undefined);
+  assert.equal(row.programs, undefined);
+  assert.deepEqual([row.programFields, row.qualifications, row.programModes, row.programCount, row.topics], [['صحة'], ['q'], ['m'], 1, ['صحة', 'بكالوريوس']]);
+  const details = institutionDetailsMap([university], 'university');
+  assert.deepEqual(Object.keys(details.u).sort(), ['programs', 'summary']);
+  const defaults = collectionDefaults.universities;
+  assert.equal(filterInstitutions([row], {...defaults, focus: 'صحة', level: 'q', mode: 'm'}, 'university').length, 1);
+  assert.equal(filterInstitutions([{...row, ...details.u}], {...defaults, q: 'dep'}, 'university').length, 1, 'search reads programme details once they arrive');
+  const [medicalRow] = institutionIndexItems([center], 'medical');
+  assert.deepEqual(medicalRow.services, [{name: 'أشعة'}]);
+  assert.equal(filterInstitutions([medicalRow], {...collectionDefaults.medicalCenters, service: 'أشعة', specialty: 'قلب'}, 'medical').length, 1);
+  for (const file of ['app/universities/page.jsx', 'app/medical-centers/page.jsx']) assert.ok(read(file).includes('{...directoryProps('), file);
 });
 
 test('figure photos from our storage go through the image optimiser; static files get a cache lifetime', () => {
