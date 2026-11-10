@@ -11,7 +11,7 @@ export default function OperationalMonitor(){
    last.set(key,Date.now());sent++;
    fetch('/api/telemetry',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({event,route,...extra}),keepalive:true,credentials:'omit'}).catch(()=>{});
   };
-  const error=()=>send('client_error',{kind:'error'}),rejection=()=>send('client_error',{kind:'unhandledrejection'});
+  const error=()=>send('client_error',{kind:'error'}),rejection=event=>{if(!event.defaultPrevented)send('client_error',{kind:'unhandledrejection'});};
   window.addEventListener('error',error);window.addEventListener('unhandledrejection',rejection);
   let observer;
   if(typeof PerformanceObserver!=='undefined'){
