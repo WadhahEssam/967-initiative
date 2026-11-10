@@ -88,3 +88,20 @@ test('guides are written by editors or guide editors, never read raw by browsers
   assert.ok(ADMIN_TAB_IDS.includes('guides'));
   assert.ok(read('lib/accessLists.js').includes("new Set(['exchange_rate_reporters', 'transaction_guide_editors'])"));
 });
+
+test('questions, related guides and the «الأكثر طلبًا» flag are cleaned and limited', async () => {
+  const {guideStats} = await import('../lib/transactionGuides.js');
+  const guide = validateGuide(base({category: 'business', featured: true, related: ['tax-card', 'passport', 'tax-card', 'Bad Slug'], faqs: [{q: 'هل؟', a: 'نعم.'}, {q: '', a: ''}], variants: {sanaa: {delegate: 'نعم بتوكيل', steps: [{kind: 'visit', title: 'اذهب'}], documents: ['أ', 'ب']}}}));
+  assert.deepEqual(guide.related, ['tax-card']);
+  assert.deepEqual(guide.faqs, [{q: 'هل؟', a: 'نعم.'}]);
+  assert.equal(guide.featured, true);
+  assert.equal(guide.variants.sanaa.delegate, 'نعم بتوكيل');
+  assert.deepEqual(guideStats(guide), {steps: 1, documents: 2, cities: ['صنعاء']});
+  assert.throws(() => validateGuide(base({faqs: [{q: 'سؤال بلا جواب', a: ''}]})), /أكمل السؤال/);
+  assert.throws(() => validateGuide(base({related: ['a', 'b', 'c', 'd', 'e', 'f', 'g']})), /الحد 6/);
+  const sql = read('supabase/migrations/20261110220000_transaction_guides_extra.sql');
+  assert.ok(sql.includes("'business'") && sql.includes('add column if not exists faqs jsonb'));
+  // The page answers with FAQ structured data, and falls back to the first columns before the migration.
+  assert.ok(read('app/transactions/[slug]/page.jsx').includes("'@type':'FAQPage'"));
+  assert.ok(read('lib/transactionGuidesServer.js').includes('missingColumn(error)'));
+});

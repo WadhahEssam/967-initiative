@@ -3,7 +3,7 @@ import {notFound} from 'next/navigation';
 import {getSiteSettings} from '@/lib/data';
 import {sectionGate} from '@/lib/pageVisibility';
 import {serverDb} from '@/lib/supabase-server';
-import {getPublishedGuide} from '@/lib/transactionGuidesServer';
+import {getPublishedGuide,getPublishedGuides} from '@/lib/transactionGuidesServer';
 import {guideCategory,guideRegions} from '@/lib/transactionGuides';
 import {pageMetadata,siteUrl} from '@/lib/seo';
 import {JsonLd} from '@/lib/seo-schema';
@@ -27,6 +27,10 @@ export default async function TransactionGuidePage({params}){
  const guide=await load(slug);
  if(!guide)notFound();
  const url=siteUrl('/transactions/'+guide.slug);
+ // Related guides: the ones chosen by the editor, else others in the same category.
+ const all=await getPublishedGuides(serverDb()).catch(()=>[]);
+ const chosen=(guide.related||[]).map(slug=>all.find(item=>item.slug===slug)).filter(Boolean);
+ const related=(chosen.length?chosen:all.filter(item=>item.category===guide.category&&item.slug!==guide.slug)).slice(0,4).map(({slug,title,category})=>({slug,title,category}));
  const first=guideRegions(guide)[0];
  const steps=first?guide.variants[first.id].steps:[];
  return <div className={'ed-wrap '+styles.page}>
@@ -39,6 +43,7 @@ export default async function TransactionGuidePage({params}){
    {guide.summary&&<p>{guide.summary}</p>}
    {guide.audience&&<p className={styles.audience}><strong>لمن هذه المعاملة: </strong>{guide.audience}</p>}
   </header>
-  <GuideView guide={guide} shareUrl={url}/>
+  {guide.faqs?.length>0&&<JsonLd data={{'@context':'https://schema.org','@type':'FAQPage',mainEntity:guide.faqs.map(item=>({'@type':'Question',name:item.q,acceptedAnswer:{'@type':'Answer',text:item.a}}))}}/>}
+  <GuideView guide={guide} shareUrl={url} related={related}/>
  </div>;
 }

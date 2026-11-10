@@ -5,6 +5,7 @@ import {sectionGate} from '@/lib/pageVisibility';
 import {serverDb} from '@/lib/supabase-server';
 import {getPublishedGuides} from '@/lib/transactionGuidesServer';
 import {pageMetadata} from '@/lib/seo';
+import {guideStats} from '@/lib/transactionGuides';
 import GuideIndex from '@/components/transactions/GuideIndex';
 import {StepArt} from '@/components/transactions/GuideView';
 import styles from '@/components/transactions/Transactions.module.css';
@@ -26,7 +27,7 @@ export default async function TransactionsPage(){
    <div className={styles.heroArt} aria-hidden="true">{['documents','counter','payment','receive'].map(kind=><StepArt key={kind} kind={kind}/>)}</div>
   </header>
   {!guides?<p className={styles.notice} role="alert">تعذر تحميل الأدلة الآن. أعد المحاولة بعد قليل.</p>
-   :guides.length?<GuideIndex guides={guides.map(({slug,title,summary,category,verifiedAt})=>({slug,title,summary,category,verifiedAt}))}/>
+   :guides.length?<GuideIndex guides={guides.map(guide=>({slug:guide.slug,title:guide.title,summary:guide.summary,category:guide.category,verifiedAt:guide.verifiedAt,featured:guide.featured,keywords:(guide.faqs||[]).map(item=>item.q).join(' '),...guideStats(guide)}))}/>
    :<p className={styles.empty}>تُضاف الأدلة قريبًا.</p>}
  </div>;
 }
