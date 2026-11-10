@@ -49,7 +49,7 @@
 .navigation h2,.districts h2{color:var(--knowledge-strong,#195848)}
 .navigation a:hover,.districts a:hover{color:var(--knowledge-strong,#195848)}
 .districts li{min-width:0}
-.districts a{display:block;border-radius:7px;padding:6px 7px;background:var(--knowledge-soft,#e5f3ed);color:var(--knowledge-strong,#195848);overflow-wrap:anywhere;min-height:38px}
+.districts a{display:block;border-radius:7px;padding:6px 7px;background:var(--knowledge-soft,#e5f3ed);color:var(--knowledge-strong,#195848);overflow-wrap:anywhere;min-height:44px;display:flex;align-items:center}
 .districts a:focus-visible,.navigation a:focus-visible{outline:3px solid var(--knowledge-accent,#287463);outline-offset:3px}
 .sources{border-color:var(--knowledge-edge,#bcdcd1);background:var(--knowledge-soft-alt,#ebf5f8)}
 .figureLink{border-color:var(--knowledge-accent,#287463);background:var(--knowledge-soft,#e5f3ed);color:var(--knowledge-strong,#195848)}
@@ -112,7 +112,7 @@
 .districtDisclosure{border-top:1px solid var(--c-line);margin-top:12px}
 .districtDisclosure summary{display:list-item;list-style-position:inside;cursor:pointer;color:var(--c-accent);font-size:14px;font-weight:750;min-height:44px;align-content:center;padding-block:9px}
 .districtDisclosure ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0}
-.districtDisclosure a{min-height:38px;display:flex;align-items:center;padding:8px;color:var(--c-ink);background:var(--c-surface-2);border-radius:8px;border:1px solid var(--c-line);overflow-wrap:anywhere}
+.districtDisclosure a{min-height:44px;display:flex;align-items:center;padding:8px;color:var(--c-ink);background:var(--c-surface-2);border-radius:8px;border:1px solid var(--c-line);overflow-wrap:anywhere}
 .districtDisclosure a:hover{color:var(--c-accent);border-color:var(--c-accent)}
 
 @media(max-width:950px){.layout{grid-template-columns:minmax(0,1fr)}.sidebar{position:static;max-height:none;grid-row:auto;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.figureLink{grid-column:1/-1}.navigation{display:none}}

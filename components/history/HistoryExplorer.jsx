@@ -1,5 +1,6 @@
 'use client';
 import {useMemo,useState,useEffect} from 'react';
+import {countOf} from '@/lib/arabicCount';
 import Link from '@/components/SiteLink';
 import {ArrowUpLeft,BookOpen,CalendarDays,MapPinned,Search,ScrollText,SlidersHorizontal,ListOrdered} from 'lucide-react';
 import {historyEras,historyKinds,historyEntryPath,historyYear,historySourceCount} from '@/lib/yemenHistory';
@@ -9,25 +10,34 @@ import HistoryMedia from './HistoryMedia';
 import HistoryComparison from './HistoryComparison';
 import HistoryPending from './HistoryPending';
 import useDeferredDetails,{withDetails} from '@/components/useDeferredDetails';
+import {matchesSearch} from '@/lib/search';
 
-function normalized(s){return String(s||'').normalize('NFKD').replace(/[\u064B-\u065F]/g,'').replace(/[أإآ]/g,'ا').toLowerCase();}
+// The explorer's choices live in the address (era, type, q, view, more), so the back button and
+// shared links reopen the same view. Unknown values fall back to the defaults.
+function viewFromAddress(search){
+ const p=new URLSearchParams(search),era=p.get('era')||'',type=p.get('type')||'';
+ return {era:historyEras.some(item=>item.id===era)?era:'',type:Object.hasOwn(historyKinds,type)?type:'',query:(p.get('q')||'').slice(0,120),
+  mode:p.get('view')==='cards'?'cards':'timeline',more:Math.min(600,Math.max(12,Math.round(Number(p.get('more'))/12)*12||12))};
+}
 export default function HistoryExplorer({entries:index,details:initialDetails,detailsUrl,initialEra='',initialType=''}) {
  const {details,status,load}=useDeferredDetails(detailsUrl,initialDetails);
  const entries=useMemo(()=>withDetails(index,details),[index,details]);
- const [era,setEra]=useState(initialEra),[type,setType]=useState(initialType),[query,setQuery]=useState(''),[mode,setMode]=useState('timeline'),[more,setMore]=useState(12);
+ const start=viewFromAddress(new URLSearchParams({era:initialEra,type:initialType}).toString());
+ const [era,setEra]=useState(start.era),[type,setType]=useState(start.type),[query,setQuery]=useState(''),[mode,setMode]=useState('timeline'),[more,setMore]=useState(12),[restored,setRestored]=useState(false);
  useEffect(()=>{
-  const onBack=()=>{const p=new URLSearchParams(location.search);setEra(p.get('era')||'');setType(p.get('type')||'');};
-  addEventListener('popstate',onBack);return()=>removeEventListener('popstate',onBack);
+  const restore=()=>{const view=viewFromAddress(location.search);setEra(view.era);setType(view.type);setQuery(view.query);setMode(view.mode);setMore(view.more);setRestored(true);};
+  restore();addEventListener('popstate',restore);return()=>removeEventListener('popstate',restore);
  },[]);
- const change=(nextEra,nextType)=>{
-  setEra(nextEra);setType(nextType);setMore(12);
+ useEffect(()=>{
+  if(!restored)return;
   const p=new URLSearchParams(location.search);
-  if(nextEra)p.set('era',nextEra);else p.delete('era');
-  if(nextType)p.set('type',nextType);else p.delete('type');
-  history.replaceState(history.state,'',location.pathname+(p.size?'?'+p:'')+location.hash);
- };
+  for(const [key,value,fallback] of [['era',era,''],['type',type,''],['q',query.trim(),''],['view',mode,'timeline'],['more',String(more),'12']]){if(value&&value!==fallback)p.set(key,value);else p.delete(key);}
+  const url=location.pathname+(p.size?'?'+p:'')+location.hash;
+  if(url!==location.pathname+location.search+location.hash)history.replaceState(null,'',url);
+ },[era,type,query,mode,more,restored]);
+ const change=(nextEra,nextType)=>{setEra(nextEra);setType(nextType);setMore(12);};
  const published=useMemo(()=>entries.filter(e=>e.isPublished!==false),[entries]);
- const selected=useMemo(()=>published.filter(e=>(!era||e.era===era)&&(!type||e.kind===type)&&(!query||normalized([e.title,e.summary,e.period,e.location].join(' ')).includes(normalized(query)))),[published,era,type,query]);
+ const selected=useMemo(()=>published.filter(e=>(!era||e.era===era)&&(!type||e.kind===type)&&matchesSearch(query,[e.title,e.summary,e.period,e.location])),[published,era,type,query]);
  const states=published.filter(e=>e.kind==='state');
  // Any use of the explorer fetches the remaining summaries at once.
  return <div className={styles.wrap} onPointerDownCapture={load} onFocusCapture={load}>
@@ -53,7 +63,7 @@ export default function HistoryExplorer({entries:index,details:initialDetails,de
      <div className={styles.cardTop}><span className={styles.kind}>{historyKinds[entry.kind]}</span><small className={styles.period}>{entry.period}</small></div>
      <h3><Link href={historyEntryPath(entry.slug)}>{entry.title}</Link></h3>
      {entry.pending?<HistoryPending status={status} onRetry={load}/>:<p>{entry.summary}</p>}
-     <div className={styles.cardBottom}>{!entry.pending&&<span><BookOpen size={14}/> {historySourceCount(entry)} مصادر</span>}{entry.location&&<span><MapPinned size={14}/>{entry.location}</span>}<Link href={historyEntryPath(entry.slug)} aria-label={'قراءة '+entry.title}>اقرأ الملف <ArrowUpLeft size={15}/></Link></div>
+     <div className={styles.cardBottom}>{!entry.pending&&<span><BookOpen size={14}/> {countOf(historySourceCount(entry),'source')}</span>}{entry.location&&<span><MapPinned size={14}/>{entry.location}</span>}<Link href={historyEntryPath(entry.slug)} aria-label={'قراءة '+entry.title}>اقرأ الملف <ArrowUpLeft size={15}/></Link></div>
     </div>
     <div className={styles.cardThumb}>{!entry.pending&&<HistoryMedia entry={entry} variant="thumbnail"/>}</div>
    </article>)}</div>}

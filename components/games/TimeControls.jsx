@@ -13,7 +13,9 @@ export function TimeControls({mode,seconds,onChange}){
 }
 export function GameTimer({remaining,duration,paused}){
  const seconds=Math.ceil(remaining/1000),percent=duration?Math.max(0,Math.min(100,remaining/(duration*1000)*100)):0;
- return <div className={[styles.timer,seconds<=3&&!paused?styles.danger:''].join(' ')} aria-label={paused?'المؤقت متوقف':('الوقت المتبقي '+seconds+' ثانية')}>
+ // role=timer is not announced on every tick; a single live message warns at three seconds.
+ return <div role="timer" className={[styles.timer,seconds<=3&&!paused?styles.danger:''].join(' ')} aria-label={paused?'المؤقت متوقف':('الوقت المتبقي '+seconds+' ثانية')}>
+  <span className="sr-only" aria-live="assertive">{!paused&&seconds===3?'بقيت ثلاث ثوانٍ':''}</span>
   <div className={styles.counter}><Clock3 size={18}/><strong dir="ltr">{String(seconds).padStart(2,'0')}</strong><span>{paused?'متوقف حتى السؤال التالي':'ثانية متبقية'}</span></div>
   <div className={styles.track} role="progressbar" aria-valuemin={0} aria-valuemax={duration} aria-valuenow={seconds} aria-label="الوقت المتبقي"><span style={{width:percent+'%'}}/></div>
  </div>;

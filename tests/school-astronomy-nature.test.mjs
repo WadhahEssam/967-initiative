@@ -122,7 +122,7 @@ test('public section, protected progression and migration remain compatible with
  assert.ok(landing.includes('<SchoolWorldMap/>'));
  const worlds=read('components/school/SchoolWorldMap.jsx');
  assert.ok(worlds.includes("href:'/school/nature'"));
- assert.ok(landing.includes('180 محطة'));
+ assert.ok(landing.includes('180 درسًا'));
  assert.ok(worlds.includes("href:'/school/civic'"));
  assert.ok(section.includes("course.category!=='الفلك والطبيعة'"));
  assert.ok(section.includes("publishedSchoolCatalog"));

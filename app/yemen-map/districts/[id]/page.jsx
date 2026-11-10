@@ -1,4 +1,5 @@
 import KnowledgeTheme from '@/components/knowledge/KnowledgeTheme';
+import {countOf} from '@/lib/arabicCount';
 import KnowledgeNavigation from '@/components/knowledge/KnowledgeNavigation';
 import JumpNav from '@/components/knowledge/JumpNav';
 import CrossSectionPaths from '@/components/knowledge/CrossSectionPaths';
@@ -88,7 +89,8 @@ export default async function DistrictProfilePage({params}){
  const population=profile.population!==null&&profile.population!==undefined?Number(profile.population):null;
  const density=population&&area?Math.round(population/area):null;
  const image=safeImageUrl(profile.image_url)&&profile.image_credit&&safeExternalUrl(profile.image_source_url)?safeImageUrl(profile.image_url):null;
- const shown=sections.filter(item=>paragraphs(profile[item.key]).length);
+ // The first description paragraph is the page intro, so «نبذة» is a section (and a jump link) only with more.
+ const shown=sections.filter(item=>paragraphs(profile[item.key]).length>(item.key==='description'?1:0));
  const pending=sections.filter(item=>!paragraphs(profile[item.key]).length);
  const sources=(Array.isArray(profile.sources)?profile.sources:[]).filter(item=>safeExternalUrl(item?.url));
  const governorateHref='/yemen-map/governorates/'+encodeURIComponent(region.governorateId);
@@ -140,7 +142,7 @@ export default async function DistrictProfilePage({params}){
     {pending.length>0&&<p className={styles.pending}>قيد التوثيق: {pending.map(item=>item.title).join('، ')}.</p>}
     {facilities.length>0&&<section id="facilities" className={base.section}>
      <h2>المرافق الصحية في المديرية</h2>
-     <p>{formatNumber(facilities.length)} {facilities.length===1?'مرفق مسجل':'مرافق مسجلة'} في دليل المراكز الطبية. تحقق من ساعات العمل والخدمات قبل الزيارة.</p>
+     <p>{facilities.length===1?'مرفق واحد مسجل':facilities.length===2?'مرفقان مسجلان':countOf(facilities.length,'facility')+(facilities.length<=10?' مسجلة':' مسجلًا')} في دليل المراكز الطبية. تحقق من ساعات العمل والخدمات قبل الزيارة.</p>
      <ul className={styles.facilityList}>{facilities.slice(0,12).map(item=><li key={item.id}><Link href={detailPath('medical-centers',item.id)}><strong>{item.name}</strong><span>{[item.typeLabel,item.city].filter(Boolean).join(' · ')}</span></Link></li>)}</ul>
      {facilities.length>12&&<Link className="text-link" href={'/medical-centers?q='+encodeURIComponent(name)}>عرض كل المرافق ({formatNumber(facilities.length)})</Link>}
     </section>}
@@ -160,7 +162,7 @@ export default async function DistrictProfilePage({params}){
     </section>
     <section className={base.districts}>
      <h2>مديريات محافظة {govName}</h2>
-     <details className={base.districtDisclosure}><summary>عرض {formatNumber(siblings.length)} مديرية أخرى</summary><ul>{siblings.map(item=><li key={item.id}><Link href={districtPath(item.id)}>{nameOf(item)}</Link></li>)}</ul></details>
+     <details className={base.districtDisclosure}><summary>المديريات الأخرى ({countOf(siblings.length,'district')})</summary><ul>{siblings.map(item=><li key={item.id}><Link href={districtPath(item.id)}>{nameOf(item)}</Link></li>)}</ul></details>
     </section>
     <Link className={base.figureLink} href={governorateHref}>الملف الكامل لمحافظة {govName}</Link>
     <Link className={base.figureLink} href={'/yemen-map/compare?a='+encodeURIComponent(id)}>قارن مديرية {name} بمكان آخر</Link>

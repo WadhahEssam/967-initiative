@@ -115,7 +115,7 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
       setMode('done');
     } catch (e) { setError(e.message); }
     finally { setBusy(false); }
-  }, [guest, guestSnapshot, progress, slug, attempt, preview]);
+  }, [guest, guestSnapshot, progress, slug, stageIndex, attempt, preview]);
 
   const next = useCallback(() => {
     setHint(false);
@@ -132,7 +132,7 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
   }, [card, cardDone, fb, index, cards.length, next, retry, check, busy, values]);
 
   useEffect(() => {
-    const onKey = e => { if (e.key === 'Enter' && primary?.enabled && mode === 'playing' && !(e.target instanceof HTMLButtonElement)) { e.preventDefault(); primary.action(); } };
+    const onKey = e => { if (e.key === 'Enter' && primary?.enabled && mode === 'playing' && !(e.target instanceof HTMLButtonElement) && !(e.target instanceof HTMLAnchorElement) && !(e.target instanceof HTMLTextAreaElement) && !e.target?.closest?.('a,button,[role=button]')) { e.preventDefault(); primary.action(); } };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [primary, mode]);

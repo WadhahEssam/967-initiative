@@ -39,7 +39,7 @@ export default async function SharedResultPage({searchParams}){
    <p className={styles.scoreLabel}>{card.art.label}</p>
    <h1>{card.title}</h1>
    <p className={styles.subtitle}>{card.subtitle}</p>
-   <p className={styles.challenge}>{result.kind==='game'?'هل تتفوق على هذه النتيجة؟ الجولة مجانية ولا تحتاج حسابًا.':'الدرس قصير وتفاعلي، ويمكنك تجربته دون حساب.'}</p>
+   <p className={styles.challenge}>{card.challenge}</p>
    <div className={styles.actions}>
     <Link className={styles.primary} href={card.cta.href}>{card.cta.label}</Link>
     <Link className={styles.secondary} href={card.more.href}>{card.more.label}</Link>

@@ -21,11 +21,11 @@ test('inline API: server sessions, validation, redaction and per-item review out
  const moderate=async(kind,id,status,user=A.id,extra={})=>request('',{action:'moderate',kind,id,data:{status,updated_at:(await getItem(kind,id)).updated_at,reason:'مراجعة موثقة من الصفحة',...extra}},user);
  let c,c2,q;
  await t.test('session is verified on server, ordinary/forged/revoked roles and cross-origin requests denied',async()=>{
-  assert.equal((await api(null)).status,401);assert.equal((await api('forged-token')).status,401);assert.equal((await api(U.id)).status,403);
+  assert.equal((await api(null)).status,401);assert.equal((await api('forged-token')).status,401);assert.equal((await api(U.id)).status,200);assert.deepEqual(ok(await api(U.id)).actor,null,'a member is told «not an editor», with no data');assert.equal((await api(U.id,'view=counts')).status,403);
   const state=ok(await api(A.id));assert.deepEqual(state.actor,{id:A.id,role:'admin'});
   assert.equal((await api(A.id,'view=session',null,{headers:{origin:'https://evil.invalid'}})).status,403);
   assert.equal((await api(A.id,'view=session',null,{headers:{'sec-fetch-site':'cross-site'}})).status,403);
-  await db.pg.query('delete from public.editors where user_id=$1',[B.id]);assert.equal((await api(B.id)).status,403);await db.pg.query("insert into public.editors(user_id,role) values($1,'admin')",[B.id]);
+  await db.pg.query('delete from public.editors where user_id=$1',[B.id]);assert.deepEqual(ok(await api(B.id)).actor,null);assert.equal((await api(B.id,'view=counts')).status,403);await db.pg.query("insert into public.editors(user_id,role) values($1,'admin')",[B.id]);
   const outage=await handleInlineEditorRequest(new Request('http://localhost/api/admin/inline',{headers:{authorization:'Bearer '+A.id}}),()=>null);assert.equal(outage.status,503);
  });
  await t.test('private no-store headers and bounded validated parameters apply on every response',async()=>{

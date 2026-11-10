@@ -24,8 +24,9 @@ export default function SchoolContinueCard() {
     })();
     return () => { alive = false; };
   }, []);
-  // Lessons finished as a guest move into the account on the first visit after signing in.
-  if (!data) return <GuestProgressClaim/>;
+  // Lessons finished as a guest move into the account on the first visit after signing in. The
+  // claim keeps the same place in the tree whether or not the card has loaded, so it is not remounted mid-transfer.
+  if (!data) return <><GuestProgressClaim/>{null}</>;
   const {resume, xp} = data;
   return <><GuestProgressClaim/><section className={styles.card} aria-label="تابع من حيث توقفت">
     <span className={styles.icon} aria-hidden="true"><PlayCircle size={30}/></span>

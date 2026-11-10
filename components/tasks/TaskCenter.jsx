@@ -39,7 +39,7 @@ export default function TaskCenter(){
  useEffect(()=>{if(workspace&&initialTask.current){const id=initialTask.current;initialTask.current=null;openTask(id,initialComment.current);}
  // eslint-disable-next-line react-hooks/exhaustive-deps
  },[workspace]);
- useEffect(()=>{if(session===undefined)return;const p=new URLSearchParams();for(const key of filterKeys)if(filters[key])p.set(key,filters[key]);if(detail){p.set('task',detail.task.id);if(focusedComment)p.set('comment',focusedComment);}window.history.replaceState(history.state,'',window.location.pathname+(p.size?'?'+p:'')+(detail&&focusedComment?'#task-comment-'+focusedComment:''));},[filters,detail,focusedComment,session]);
+ useEffect(()=>{if(session===undefined)return;const p=new URLSearchParams();for(const key of filterKeys)if(filters[key])p.set(key,filters[key]);if(detail){p.set('task',detail.task.id);if(focusedComment)p.set('comment',focusedComment);}window.history.replaceState(null,'',window.location.pathname+(p.size?'?'+p:'')+(detail&&focusedComment?'#task-comment-'+focusedComment:''));},[filters,detail,focusedComment,session]);
  // Clock-based hints and notifications refresh when the center opens; no background scheduler.
  useEffect(()=>{if(!session||!db)return;let live=true;taskApi(db,{method:'POST',body:{action:'reminders'}}).then(()=>{if(live)load();}).catch(()=>{});return()=>{live=false;};/* load/filter changes must not recreate reminders. */
  // eslint-disable-next-line react-hooks/exhaustive-deps

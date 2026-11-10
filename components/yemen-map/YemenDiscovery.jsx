@@ -1,6 +1,7 @@
 'use client';
 
 import {useState,useEffect} from 'react';
+import {normalizeArabic} from './mapGeometry';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import ExplorationProgress, {useExplorationTrail} from '@/components/ExplorationProgress';
@@ -14,7 +15,8 @@ export default function YemenDiscovery({showFigures=true, initialGovernorateId =
   const [selectedGovernorateId, setSelectedGovernorateId] = useState(initialGovernorateId);
   const [selectedDistrictId,setSelectedDistrictId]=useState(initialDistrictId);
   const [governorateSearch,setGovernorateSearch]=useState('');
-  const normalized=value=>String(value||'').normalize('NFKD').replace(/[\u064b-\u065f]/g,'').replace(/[أإآ]/g,'ا').trim().toLowerCase();
+  // Same folding as the map search: «الحديده», «حجه» and «شبوه» find their governorates.
+  const normalized=normalizeArabic;
   const visibleGovernorates=yemenGovernorates.filter(item=>normalized(item.name).includes(normalized(governorateSearch)));
   useEffect(()=>{const sync=()=>{const p=new URLSearchParams(location.search);setSelectedGovernorateId(p.get('region')||null);setSelectedDistrictId(p.get('district')||null);};window.addEventListener('popstate',sync);return()=>window.removeEventListener('popstate',sync);},[]);
   const [exploredPlaces, explorePlace, restartTour, tourSaved] = useExplorationTrail('967-map-tour-v1', yemenGovernorates);
@@ -29,7 +31,7 @@ export default function YemenDiscovery({showFigures=true, initialGovernorateId =
   function handleMapGovernorateChange(governorateId,districtId=null) {
     setSelectedGovernorateId(governorateId);
     setSelectedDistrictId(districtId);
-    const p=new URLSearchParams(location.search);if(governorateId)p.set('region',governorateId);else p.delete('region');if(districtId)p.set('district',districtId);else p.delete('district');history.replaceState(history.state,'',location.pathname+(p.size?'?'+p:'')+location.hash);
+    const p=new URLSearchParams(location.search);if(governorateId)p.set('region',governorateId);else p.delete('region');if(districtId)p.set('district',districtId);else p.delete('district');history.replaceState(null,'',location.pathname+(p.size?'?'+p:'')+location.hash);
   }
 
   return <>

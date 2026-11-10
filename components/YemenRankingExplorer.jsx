@@ -159,7 +159,7 @@ export default function YemenRankingExplorer({indicators = [], initialIndicator,
   useEffect(()=>{
     const onPop=()=>{
       const next=rankingLocation(window.location.search,indicators,{indicator:initialMeta?.slug});
-      currentSelection.current=next;setSelection(next);setCategory(indicators.find(item=>item.slug===next.indicator)?.category||'all');setQuery('');setShareMessage('');setManualLink('');
+      currentSelection.current=next;yearIndicator.current=next.indicator;setSelection(next);setCategory(indicators.find(item=>item.slug===next.indicator)?.category||'all');setQuery('');setShareMessage('');setManualLink('');
     };
     window.addEventListener('popstate',onPop);
     changeAddress(currentSelection.current,true);
@@ -189,10 +189,13 @@ export default function YemenRankingExplorer({indicators = [], initialIndicator,
 
   const years=useMemo(()=>dataset?getRankingYears(dataset):[],[dataset]);
   const scopeCountries=useMemo(()=>dataset?(dataset.countries||[]).filter(item=>selection.scope!=='arab'||item.arab):[],[dataset,selection.scope]);
+  // A new indicator opens on its own default year; the year from the address is kept only for the first one.
+  const yearIndicator=useRef(selection.indicator);
   useEffect(()=>{
     if(!dataset)return;
     const state=currentSelection.current;
-    const year=years.includes(Number(state.year))?Number(state.year):getDefaultRankingYear(dataset)||years[0]||null;
+    const switched=yearIndicator.current!==state.indicator;yearIndicator.current=state.indicator;
+    const year=!switched&&years.includes(Number(state.year))?Number(state.year):getDefaultRankingYear(dataset)||years[0]||null;
     const compare=scopeCountries.some(item=>item.code===state.compare)&&state.compare!=='YEM'?state.compare:'';
     if(year!==state.year||compare!==state.compare)commit({year,compare},true);
   },[dataset,years,scopeCountries,commit]);

@@ -23,8 +23,9 @@ async function snapshot(db,id){
   db.from('account_preferences').select('*').eq('user_id',id).maybeSingle(),
   ownerRows(db,'account_collections',id),
   ownerRows(db,'account_saved_items',id),
-  db.from('account_notifications').select('*').eq('user_id',id).order('created_at',{ascending:false}).limit(50),
-  db.from('account_notifications').select('id',{head:true,count:'exact'}).eq('user_id',id).is('read_at',null),
+  // Message notices live in the messages inbox (as in /api/notifications), so they are neither listed nor counted here.
+  db.from('account_notifications').select('*').eq('user_id',id).or('href.is.null,href.not.like./messages%').order('created_at',{ascending:false}).limit(50),
+  db.from('account_notifications').select('id',{head:true,count:'exact'}).eq('user_id',id).is('read_at',null).or('href.is.null,href.not.like./messages%'),
   db.from('messages').select('id,type,message,status,created_at',{count:'exact'}).eq('user_id',id).order('created_at',{ascending:false}).limit(50)
  ]);
  failed(prefs.error);failed(notifications.error);failed(unread.error);failed(submissions.error);

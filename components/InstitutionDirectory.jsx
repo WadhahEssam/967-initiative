@@ -42,7 +42,7 @@ export default function InstitutionDirectory({kind,items:index,details:initialDe
   const page=Math.min(state.page,Math.max(1,Math.ceil(results.length/pageSize))),basePath=medical?'/medical-centers':'/universities',anchor=medical?'#medical-directory':'#universities-directory';
   const returnTo=basePath+listStateSearch('',{...state,page},defaults)+anchor;
   const clear=()=>update(defaults);
-  const active=Object.entries(state).filter(([key,value])=>!['page','sort'].includes(key)&&value!==defaults[key]&&value!=='').map(([key,value])=>({key,label:(key==='q'?'البحث':{governorate:'المحافظة',city:'المدينة',type:'النوع',ownership:'الجهة',focus:'المجال',level:'المستوى',mode:'نمط الدراسة',specialty:'التخصص',service:'الخدمة',emergency:'الطوارئ'}[key])+': '+value,onRemove:()=>set(key,defaults[key])}));
+  const active=Object.entries(state).filter(([key,value])=>!['page','sort'].includes(key)&&value!==defaults[key]&&value!=='').map(([key,value])=>({key,label:(key==='q'?'البحث':{governorate:'المحافظة',city:'المدينة',type:'النوع',ownership:'الجهة',focus:'المجال',level:'المستوى',mode:'نمط الدراسة',specialty:'التخصص',service:'الخدمة',emergency:'الطوارئ'}[key])+': '+(key==='type'?(medical?medicalTypeLabels:universityTypeLabels)[value]||value:key==='ownership'?ownershipLabels[value]||value:value),onRemove:()=>set(key,defaults[key])}));
   const typeLabels=medical?medicalTypeLabels:universityTypeLabels;
   // Any use of the directory fetches the remaining details at once.
   return <div className={'institution-directory '+(medical?'medical':'education')} onPointerDownCapture={load} onFocusCapture={load}>

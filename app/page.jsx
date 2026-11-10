@@ -1,4 +1,5 @@
 import NextLink from 'next/link';
+import OpenFoldOnHash from '@/components/OpenFoldOnHash';
 import {BarChart3, ChevronDown, Compass, Flame, GraduationCap, Handshake, LayoutGrid, MapPin, MapPinned, MessagesSquare, Newspaper, Sparkles, UsersRound} from 'lucide-react';
 import SearchForm from '@/components/SearchForm';
 import HomeSmartStart from '@/components/home/HomeSmartStart';
@@ -60,14 +61,14 @@ export default async function Home() {
     visible('games') && {href: dailyGameUrl(today), label: 'تحدي اليوم', sub: DAILY_GAME_TITLES[dailyGame], icon: Flame, hue: 'var(--c-violet)'},
     visible('school') && {href: '/school', label: 'تعلّم اليوم', sub: '15 مسارًا تفاعليًا', icon: GraduationCap, hue: 'var(--c-leaf)'},
     visible('debates') && debate && {href: '/debates/' + encodeURIComponent(debate.slug), label: debate.stage === 'live' ? 'مناظرة مباشرة' : 'مناظرة', sub: debate.title, icon: MessagesSquare, hue: 'var(--c-plum)', live: debate.stage === 'live'},
-    leadNumber && {href: '/yemen-in-numbers/indicator/' + encodeURIComponent(leadNumber.slug), label: 'رقم اليوم', sub: leadNumber.name + ': ' + formatCompact(leadNumber.latestValue.value), icon: BarChart3, hue: 'var(--c-indigo)'},
+    leadNumber && {href: '/yemen-in-numbers/indicator/' + encodeURIComponent(leadNumber.slug), label: 'رقم اليوم', sub: leadNumber.name + ': ' + formatCompact(leadNumber.latestValue.value) + (leadNumber.unit ? ' ' + leadNumber.unit : '') + (leadNumber.latestValue.year ? ' (' + leadNumber.latestValue.year + ')' : ''), icon: BarChart3, hue: 'var(--c-indigo)'},
     visible('atlas') && {href: '/yemen-map', label: 'خريطة اليمن', sub: '22 محافظة ومديرياتها', icon: MapPinned, hue: 'var(--c-teal)'},
   ];
 
   return <div className={`ed-page ${home.home}`}>
     {/* 1 · Greeting: date, the editable title and description, search */}
     <section className={home.greet} aria-labelledby="home-title"><div className="ed-wrap">
-      <p className={home.greetTop}><span className={home.pill}><span className={home.dot}/>{settings.heroEyebrow}</span><time dateTime={today}>{formatArabicDate(new Date(), {weekday:'long', day:'numeric', month:'long'})}</time></p>
+      <p className={home.greetTop}><span className={home.pill}><span className={home.dot}/>{settings.heroEyebrow}</span><time dateTime={today}>{formatArabicDate(new Date(), {weekday:'long', day:'numeric', month:'long', timeZone:'Asia/Aden'})}</time></p>
       <h1 id="home-title" className={home.title}>{settings.heroTitle}{settings.heroHighlight && <> <span className={home.highlight}>{settings.heroHighlight}</span></>}</h1>
       <p className={home.lead}>{settings.heroDescription}</p>
       <div className={home.search}><SearchForm compact placeholder={settings.searchPlaceholder}/></div>
@@ -132,6 +133,7 @@ export default async function Home() {
 
     {/* 12 · عن المبادرة ومشاريعها */}
     <section className={home.block} aria-label="عن المبادرة ومشاريعها"><div className={`ed-wrap ${styles.about}`}>
+      <OpenFoldOnHash/>
       <details id="about" className={styles.fold}><summary><span><span className="ed-kicker">تعرّف على 967</span><h2>مساحة تتسع لنا جميعًا.</h2></span><ChevronDown size={22} aria-hidden="true"/></summary><div className={styles.foldBody}>
         <h3>{settings.aboutTitle}</h3><p>{settings.aboutDescription}</p>
         {settings.aboutTags?.length > 0 && <ul className={styles.tags}>{settings.aboutTags.map((tag, index) => <li key={index}>{tag}</li>)}</ul>}

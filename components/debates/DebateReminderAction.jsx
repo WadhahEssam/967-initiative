@@ -17,7 +17,8 @@ export default function DebateReminderAction({debate}){
   if(!user)return()=>{alive=false;};
   audienceRequest('/api/debates/reminders?id='+encodeURIComponent(debate.id))
    .then(data=>{if(alive)setStatus({subscribed:!!data.subscribed,eligible:!!data.eligible,loading:false});})
-   .catch(e=>{if(alive){setStatus(current=>({...current,loading:false}));setError(e.message);}});
+   // A 403 (email not confirmed, suspended) is explained when the reader taps the button, not as an error on every page.
+   .catch(e=>{if(alive){setStatus(current=>({...current,loading:false}));if(e.status!==403)setError(e.message);}});
   return()=>{alive=false;};
  // eslint-disable-next-line react-hooks/exhaustive-deps -- re-run only when the signed-in account changes, not on every session token refresh
  },[user?.id,debate.id,fallbackEligible]);
