@@ -103,3 +103,4 @@
 .loginInvite{align-self:stretch;display:flex;flex-direction:column;gap:14px}
 .loginInvite p{margin:0}
 .loginInvite>div{display:flex;flex-direction:column;gap:10px}
+.shareNote{margin:0;text-align:center;font-size:13px;color:var(--c-ink-2,#5c554c);overflow-wrap:anywhere}

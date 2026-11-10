@@ -1,7 +1,8 @@
 'use client';
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
+import {resultSharePath} from '@/lib/resultShare';
 import GameSignupInvite from './GameSignupInvite';
-import {useFunnelStep} from '@/components/analytics/funnel';
+import {trackFunnel,useFunnelStep} from '@/components/analytics/funnel';
 import Link from 'next/link';
 import {ArrowLeft,ArrowRight,CheckCircle2,Clock3,Flame,Play,RotateCcw,Share2,Target,Trophy,XCircle,Zap} from 'lucide-react';
 import {buildPlaceChallenges,buildTimelineChallenges,buildMapChallenges,gameTypes,isTimelineCorrect} from '@/lib/arcadeChallenges';
@@ -141,7 +142,9 @@ export default function ArcadeChallenge({game,date,initialMode='practice'}){
  function reset(){setTasks([]);setIndex(0);setRecords([]);setAnswer(null);setFinished(false);answerLocked.current=false;setShareStatus('');setSyncError('');setVerified(false);setOfficialResult(null);setClockReady(false);setServerStartedAt(null);}
  async function share(){
   const total=records.reduce((sum,r)=>sum+r.points,0);
-  const url=location.origin+'/games/'+game+(mode==='daily'?'?mode=daily':'');
+  // A result link: its page and preview image show the score as a challenge (app/share/result).
+  const url=location.origin+(resultSharePath({kind:'game',game,score:mode==='daily'&&officialResult?officialResult.correct:correctCount,total:tasks.length,daily:mode==='daily'})||'/games/'+game);
+  trackFunnel('share_click',game);
   const text='حصلت على '+total+' نقطة في «'+gameTypes[game].title+'» ضمن ألعاب 967. هل تتفوق عليّ؟';
   try{if(navigator.share)await navigator.share({title:'ألعاب 967',text,url});
    else if(navigator.clipboard){await navigator.clipboard.writeText(text+' '+url);setShareStatus('تم نسخ رابط المشاركة ونتيجتك.');}

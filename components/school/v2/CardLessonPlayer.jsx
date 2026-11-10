@@ -6,11 +6,12 @@
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import {trackFunnel} from '@/components/analytics/funnel';
 import SignupInvite from '@/components/SignupInvite';
+import {resultSharePath} from '@/lib/resultShare';
 import {GUEST_LESSONS, finishedGuestLessons, guestLessonKey, guestLessonOpen, recordGuestAnswer} from '@/lib/schoolGuest';
 import {createPortal} from 'react-dom';
 import useFullScreenDialog from './useFullScreenDialog';
 import Link from 'next/link';
-import {X, Lightbulb, Check, RotateCcw, Star, ArrowLeft} from 'lucide-react';
+import {X, Lightbulb, Check, RotateCcw, Star, ArrowLeft, Share2} from 'lucide-react';
 import {browserDb} from '@/lib/supabase';
 import {applyCardCheck, finishCards} from '@/lib/schoolCardProgress';
 import CardVisual from './CardVisual';
@@ -176,6 +177,7 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
     <div className={styles.doneActions}>
       {preview && <button type="button" className={styles.primary} onClick={onClose}>{closeLabel}</button>}
       {!preview && hasNext && (!result.guest || guestLessonOpen(stageIndex + 1)) && <Link className={styles.primary} href={'/school/courses/' + slug + '/' + (stageIndex + 2)}>الدرس التالي <ArrowLeft size={18} aria-hidden="true"/></Link>}
+      {!preview && <LessonShare slug={slug} stageIndex={stageIndex} stars={result.stars} title={lesson.title}/>}
       {!preview && <Link className={styles.secondary} href={mapHref}>العودة إلى خريطة المسار</Link>}
     </div>
   </div>;
@@ -215,6 +217,25 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
 
 // يُرسم المشغّل داخل body مباشرة: عنصر main في الموقع يعزل الطبقات (isolation)، فيبقى الرأس فوق أي طبقة ثابتة داخله.
 // المشغّل نافذة حوارية تملأ الشاشة (useFullScreenDialog): ما خلفه من الموقع يصبح inert ما دام مفتوحًا.
+// Shares a result link (app/share/result): its preview image shows the lesson and the stars.
+function LessonShare({slug, stageIndex, stars, title}) {
+  const [note, setNote] = useState('');
+  async function share() {
+    const url = location.origin + (resultSharePath({kind: 'lesson', course: slug, lesson: stageIndex + 1, stars}) || '/school/courses/' + slug);
+    const text = 'أنهيت درس «' + title + '» في مدرسة 967. جرّبه مجانًا:';
+    trackFunnel('share_click', slug + ':' + stageIndex);
+    try {
+      if (navigator.share) await navigator.share({title: 'مدرسة 967', text, url});
+      else if (navigator.clipboard) { await navigator.clipboard.writeText(text + ' ' + url); setNote('نُسخ رابط نتيجتك.'); }
+      else setNote(url);
+    } catch (e) { if (e?.name !== 'AbortError') setNote('انسخ الرابط: ' + url); }
+  }
+  return <>
+    <button type="button" className={styles.secondary} onClick={share}><Share2 size={17} aria-hidden="true"/> شارك نتيجتك</button>
+    {note && <p role="status" className={styles.shareNote}>{note}</p>}
+  </>;
+}
+
 // Finished guest lessons in this browser, counted when the result screen opens.
 function guestInviteText(done, stageIndex) {
   const count = done > 0 ? done : 1;
