@@ -86,12 +86,14 @@ export default function FoodEntry(){
     </div>)}
    </fieldset>)}
    <label className={styles.field}>ملاحظة (اختياري)<input maxLength={200} value={note} onChange={event=>setNote(event.target.value)} placeholder="مثل: أسعار سوق شميلة، أو سوق الشيخ عثمان"/></label>
+   <div className={styles.saveBar}>
    {message&&<p className={styles.message} data-tone={message.tone} role={message.tone==='error'?'alert':'status'}>{message.text}</p>}
    <div className={styles.actions}>
     {moves?<>
      <button type="button" className={styles.primary} disabled={busy} onClick={()=>save(true)}>{busy?'جارٍ الحفظ…':'نعم، الأرقام صحيحة'}</button>
      <button type="button" className={styles.secondary} onClick={()=>{setMoves(null);setMessage(null);}}>سأراجعها</button>
     </>:<button className={styles.primary} disabled={busy||!filled}>{busy?'جارٍ الحفظ…':'احفظ وانشر الأسعار ('+formatNumber(filled)+')'}</button>}
+   </div>
    </div>
   </form>
   <section aria-labelledby="food-history">
