@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
+import {useFunnelStep} from '@/components/analytics/funnel';
 import Link from 'next/link';
 import {ArrowLeft,ArrowRight,BookOpen,CheckCircle2,Flame,Medal,RotateCcw,Share2,Target,Trophy,Zap,XCircle} from 'lucide-react';
 import {buildQuizRound,scoreRound,gameLevels,quizCategories,difficultyLabels} from '@/lib/gameEngine';
@@ -40,6 +41,9 @@ export default function QuizGame({questions,date,initialMode='practice'}){
  // Daily answers are only known after the server has committed the choice.
  const revealed=picked!==null&&(mode!=='daily'||verified);
  const duration=roundDuration(mode,seconds);
+ // Conversion counters: a round started and a round finished (once per run).
+ useFunnelStep('game_start',round.length>0,'quiz:'+mode+':'+runId);
+ useFunnelStep('game_done',Boolean(result),'quiz:'+mode+':'+runId);
  const timer=useQuestionTimer({seconds:duration,token:runId+':'+step,startTime:mode==='daily'?serverStartedAt:null,active:round.length>0&&!result&&picked===null&&!verifying&&(mode!=='daily'||clockReady),onExpire:()=>choose(-1,true)});
  // Align the timer AND question before the first paint after each transition.
  // The global page may use smooth scrolling; never animate while the clock runs.

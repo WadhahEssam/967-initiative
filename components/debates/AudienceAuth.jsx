@@ -1,5 +1,6 @@
 'use client';
 import ValidatedForm,{FormInput,FormTextarea,FormSelect,FormLabel} from './ValidatedForm';
+import {trackFunnel} from '@/components/analytics/funnel';
 import {useEffect,useRef,useState} from 'react';
 import Link from '@/components/SiteLink';
 import {browserDb} from '@/lib/supabase';
@@ -49,7 +50,7 @@ export default function AudienceAuth({mode='login'}){
    }
    if(result?.error)throw Error(accountAuthErrorMessage(result.error,mode));
    if(mode==='login'){claimSessionDebateDraft(safeTabStorage(),next,result.data.session);location.assign(next);return;}
-   if(mode==='register'){if(result.data.session){claimSessionDebateDraft(safeTabStorage(),next,result.data.session);location.assign(next);return;}setNotice('تحقق من بريدك وافتح رسالة تأكيد الحساب، ثم سجل الدخول.');}
+   if(mode==='register'){trackFunnel('signup_done');if(result.data.session){claimSessionDebateDraft(safeTabStorage(),next,result.data.session);location.assign(next);return;}setNotice('تحقق من بريدك وافتح رسالة تأكيد الحساب، ثم سجل الدخول.');}
    if(mode==='forgot')setNotice('إذا كان البريد مرتبطاً بحساب، ستصلك رسالة لاستعادة كلمة المرور.');
    if(mode==='update'){setNotice('تم تحديث كلمة المرور. يمكنك العودة إلى حسابك.');formElement.reset();setFormVersion(value=>value+1);}
    if(mode!=='update')formElement.reset();

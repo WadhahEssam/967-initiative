@@ -130,3 +130,26 @@ test('anonymous analytics only trusts same-origin HTTPS tunnel requests for loca
  assert.ok(route.includes('analyticsOriginAllowed(request,isSameOrigin)'));
  assert.ok(!read('lib/requestSecurity.js').includes('analyticsOriginAllowed'),'do not broaden auth/admin origin validation');
 });
+
+test('conversion steps are anonymous counters accepted by both the API and the database',async()=>{
+ const {FUNNEL_STEPS,funnelOverview}=await import('../lib/siteAnalytics.js');
+ for(const step of Object.keys(FUNNEL_STEPS)){
+  assert.deepEqual(usageEvent({event:'funnel',section:step}),{event:'funnel',section:step});
+  assert.match(step,/^[a-z_]{2,40}$/);
+ }
+ for(const section of ['page_view','home','lesson_start',''])assert.equal(usageEvent({event:'funnel',section}),null,section);
+ const sql=read('supabase/migrations/20261110060000_site_usage_funnel.sql');
+ assert.ok(sql.includes("'page_view','search_miss','funnel'"));
+ for(const step of Object.keys(FUNNEL_STEPS))assert.ok(sql.includes("'"+step+"'"),step);
+ const overview=funnelOverview(new Map([['lesson_start_guest',10],['lesson_done_guest',4],['signup_prompt_shown',20]]));
+ assert.equal(overview.rates.find(rate=>rate.id==='lesson_guest').value,40);
+ assert.equal(overview.rates.find(rate=>rate.id==='prompt_click').value,0);
+ assert.equal(overview.rates.find(rate=>rate.id==='game_guest').value,null,'no rate without a first step');
+ const day=new Date().toISOString().slice(0,10);
+ assert.equal(usageOverview([{day,metric:'funnel',section:'lesson_start_guest',total:3}]).funnel.steps.find(step=>step.id==='lesson_start_guest').count,3);
+ const tracker=read('components/analytics/funnel.js');
+ assert.ok(tracker.includes('sessionStorage'),'one count per step and item per tab session');
+ assert.ok(!/userId|email|location\.href/.test(tracker),'no identifiers');
+ for(const [file,token] of [['components/school/v2/CardLessonPlayer.jsx',"trackFunnel('lesson_start_"],['components/school/v2/CardLessonPlayer.jsx',"trackFunnel('lesson_done_"],['components/games/QuizGame.jsx',"useFunnelStep('game_done'"],['components/games/ArcadeChallenge.jsx',"useFunnelStep('game_start'"],['components/games/ExtraArcadeChallenge.jsx',"useFunnelStep('game_done'"],['components/debates/AudienceAuth.jsx',"trackFunnel('signup_done')"]])
+  assert.ok(read(file).includes(token),file+' '+token);
+});

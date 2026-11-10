@@ -92,6 +92,16 @@ export default function AnalyticsDashboard(){
     <RowBars items={usage.sections} title="الأقسام الأكثر مشاهدة" label={item=>item.title}/>
     <RowBars items={usage.searches} title="البحث بلا نتائج بحسب التصنيف" label={item=>TYPE_NAMES[item.id]||item.title} empty="لا توجد عمليات بحث بلا نتائج مسجلة."/>
    </div>
+   {usage.funnel&&<div className={styles.two}>
+    <section className={styles.panel} aria-labelledby="funnel-rates-title"><h2 id="funnel-rates-title">التحويل: من يكمل ما بدأه؟</h2>
+     <div className={styles.barList}>{usage.funnel.rates.map(rate=><div className={styles.barRow} key={rate.id}>
+      <div className={styles.barTitle}><span>{rate.title}</span><strong dir="ltr">{rate.value===null?'—':rate.value+'%'}</strong></div>
+      <div className={styles.bar} role="img" aria-label={rate.title+' — '+(rate.value===null?'لا توجد بيانات':rate.value+'%')}><span style={{width:Math.min(100,rate.value||0)+'%'}}/></div>
+     </div>)}</div>
+     <p className={styles.help}>عدادات مجمعة بلا هوية، يُحسب كل خطوة مرة واحدة لكل جلسة تصفح. «زائر» و«عضو» تقديريان من وجود جلسة في المتصفح. بدأ القياس في 10 نوفمبر 2026.</p>
+    </section>
+    <RowBars items={usage.funnel.steps.filter(step=>step.count>0)} title="خطوات التحويل" label={item=>item.title} empty="لم تُسجل خطوات تحويل في هذه الفترة بعد."/>
+   </div>}
    <div className={styles.schoolHeading}><span><BookOpenCheck size={21}/> مدرسة 967</span><h2>أين يتقدم الطلاب، وأين يواجهون صعوبة؟</h2><p>تُحسب نسب إكمال المحطات من الطلاب الذين حاولوا اجتيازها داخل العينة، وليس من جميع زوار المدرسة. لا تظهر المجموعات الصغيرة.</p></div>
    <div className={styles.two}>
     <section className={styles.panel}><h2>إكمال المحطات</h2>
