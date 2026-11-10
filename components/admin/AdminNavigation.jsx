@@ -1,7 +1,7 @@
 'use client';
 import {useEffect,useRef} from 'react';
 import {useEditorProtection} from './EditorProtection';
-const groups=[['المحتوى',['issues','works','pages','history','games']],['الأدلة والبيانات',['companies','professionals','universities','medicalCenters','figures','statistics','rankings','map','rates']],['الإدارة والمتابعة',['messages','settings','admins']]];
+const groups=[['المحتوى',['issues','works','pages','history','games']],['الأدلة والبيانات',['companies','professionals','universities','medicalCenters','figures','statistics','rankings','map','rates','guides']],['الإدارة والمتابعة',['messages','settings','admins']]];
 export default function AdminNavigation({tabs,tab,onChange,onRefresh}) {
   const protection=useEditorProtection();
   const canManageUsers=tabs.some(item=>item.id==='admins');
