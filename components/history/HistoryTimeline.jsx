@@ -1,20 +1,32 @@
 'use client';
-import {useEffect,useMemo,useRef,useState} from 'react';
+import {startTransition,useEffect,useMemo,useRef,useState} from 'react';
 import Link from '@/components/SiteLink';
 import {ArrowLeft,ArrowUpLeft,BookOpen,CalendarDays,ChevronLeft,ChevronRight,MapPin,MoveHorizontal} from 'lucide-react';
 import {chronologicalHistory,boundedTimelineIndex,timelineAdjacentIndex} from '@/lib/historyTimeline';
 import {historyEras,historyKinds,historyEntryPath,historyYear,historySourceCount} from '@/lib/yemenHistory';
 import styles from './HistoryTimeline.module.css';
 import HistoryMedia from './HistoryMedia';
+import HistoryPending from './HistoryPending';
 
-export default function HistoryTimeline({entries}){
+const FIRST_STOPS=24;
+export default function HistoryTimeline({entries,detailsStatus='ready',onRetry}){
  const stops=useMemo(()=>chronologicalHistory(entries),[entries]);
  const [selectedSlug,setSelectedSlug]=useState(()=>stops[0]?.slug||'');
+ // The page arrives with the first stops only; the rest are drawn once it has loaded, so a phone
+ // does not build hundreds of stops before the reader can scroll.
+ const [allStops,setAllStops]=useState(false);
+ useEffect(()=>{
+  if(allStops)return;
+  const show=()=>startTransition(()=>setAllStops(true));
+  const idle=window.requestIdleCallback?requestIdleCallback(show,{timeout:2000}):setTimeout(show,300);
+  return()=>{if(window.cancelIdleCallback)cancelIdleCallback(idle);clearTimeout(idle);};
+ },[allStops]);
  const railRef=useRef(null),stopRefs=useRef([]);
  const selectedIndex=Math.max(0,stops.findIndex(item=>item.slug===selectedSlug));
  const selected=stops[selectedIndex];
  const size=stops.length;
  const chooseIndex=(value,{focus=false}={})=>{
+  if(!allStops)setAllStops(true);
   const index=boundedTimelineIndex(value,size);
   const item=stops[index];if(!item)return;
   setSelectedSlug(item.slug);
@@ -61,7 +73,7 @@ export default function HistoryTimeline({entries}){
     }
    }}>
    <div className={styles.track} role="list" aria-label="المحطات الزمنية مرتبة من الأقدم إلى الأحدث">
-    {stops.map((entry,index)=>{
+    {(allStops?stops:stops.slice(0,FIRST_STOPS)).map((entry,index)=>{
      const active=index===selectedIndex,top=index%2===0;
      const era=historyEras.find(item=>item.id===entry.era);
      return <div className={styles.stop} role="listitem" key={entry.slug}>
@@ -87,12 +99,12 @@ export default function HistoryTimeline({entries}){
   </div>
   <div className={styles.axisFoot}><span>نقطة البداية</span><span>نقطة النهاية</span></div>
   <article className={styles.spotlight} aria-live="polite" aria-atomic="true">
-   <HistoryMedia entry={selected} variant="spotlight"/>
+   {!selected?.pending&&<HistoryMedia entry={selected} variant="spotlight"/>}
    <div className={styles.spotlightBody}>
     <div className={styles.spotlightMeta}><span>{activeEra?.title}</span><span>{historyKinds[selected?.kind]}</span><span>{historyYear(selected?.year)}</span></div>
     <h4>{selected?.title}</h4>
-    <p>{selected?.summary}</p>
-    <div className={styles.spotlightFacts}><span><CalendarDays size={15}/>{selected?.period}</span>{selected?.location&&<span><MapPin size={15}/>{selected.location}</span>}<span><BookOpen size={15}/>{historySourceCount(selected)} مصادر</span></div>
+    {selected?.pending?<HistoryPending status={detailsStatus} onRetry={onRetry}/>:<p>{selected?.summary}</p>}
+    {!selected?.pending&&<div className={styles.spotlightFacts}><span><CalendarDays size={15}/>{selected?.period}</span>{selected?.location&&<span><MapPin size={15}/>{selected.location}</span>}<span><BookOpen size={15}/>{historySourceCount(selected)} مصادر</span></div>}
    </div>
    <Link className={styles.readButton} href={historyEntryPath(selected.slug)}>اقرأ الملف التاريخي <ArrowUpLeft size={18}/></Link>
   </article>

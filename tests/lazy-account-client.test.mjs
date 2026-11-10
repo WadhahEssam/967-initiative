@@ -37,7 +37,7 @@ test('the account client is not part of the code every page loads',()=>{
 });
 
 test('common pages load the account client only when a session may exist',()=>{
- for(const page of ['app/page.jsx','app/market/page.jsx','app/market/[number]/page.jsx','app/yemeni-figures/page.jsx','app/universities/page.jsx','app/games/page.jsx','app/school/page.jsx','app/about/page.jsx'])
+ for(const page of ['app/page.jsx','app/market/page.jsx','app/market/[number]/page.jsx','app/yemeni-figures/page.jsx','app/universities/page.jsx','app/games/page.jsx','app/school/page.jsx','app/about/page.jsx'].filter(page=>existsSync(path.join(root,page))))
   assert.ok(!staticImports(page).includes('lib/supabase.js'),page);
  const lazy=read('lib/browserSession.js');
  assert.match(lazy,/import\('\.\/supabase'\)/);

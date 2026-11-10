@@ -1,8 +1,11 @@
 'use client';
-import {useEffect,useState} from 'react';
+import {useEffect,useMemo,useState} from 'react';
 import YemeniFiguresDirectory from './YemeniFiguresDirectory';
+import useDeferredDetails,{withDetails} from '@/components/useDeferredDetails';
 
-export default function YemeniFiguresExplorer({figures,initialGovernorateId=null}){
+export default function YemeniFiguresExplorer({figures:index,details:initialDetails,detailsUrl,initialGovernorateId=null}){
+ const {details,status,load}=useDeferredDetails(detailsUrl,initialDetails);
+ const figures=useMemo(()=>withDetails(index,details),[index,details]);
  const [governorateId,setGovernorateId]=useState(initialGovernorateId);
  useEffect(()=>{
   const sync=()=>setGovernorateId(new URLSearchParams(window.location.search).get('region')||null);
@@ -16,5 +19,5 @@ export default function YemeniFiguresExplorer({figures,initialGovernorateId=null
   const url='/yemeni-figures'+(params.size?'?'+params:'');
   window.history.replaceState(window.history.state,'',url);
  };
- return <YemeniFiguresDirectory figures={figures} selectedGovernorateId={governorateId} onGovernorateChange={selectGovernorate}/>;
+ return <YemeniFiguresDirectory figures={figures} selectedGovernorateId={governorateId} onGovernorateChange={selectGovernorate} detailsStatus={status} onNeedDetails={load}/>;
 }
