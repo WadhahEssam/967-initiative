@@ -28,7 +28,8 @@ test('the national indicator catalogue retains its published values, status and 
  const page=read('app/yemen-in-numbers/page.jsx');
  for(const token of ['indicator.latestValue','formatNumber(latest.value','formatYear(latest.year)','valueStatusLabels[latest.value_status]','dataStatusHelp[indicator.data_status]','sourceLabel(latest?.source','indicatorMeasurementEvidence(latest.year)','SaveForLater'])assert.ok(card.includes(token),token);
  assert.ok(card.includes("dir=\"ltr\""));
- assert.ok(explorer.includes('rankSearchResults(query, candidates)'));
+ assert.ok(explorer.includes('filterIndicatorList(indicators, {q: query, domain, year})'));
+ assert.ok(read('lib/yemenNumbers.js').includes('rankSearchResults(q, candidates)'));
  assert.ok(explorer.includes('Pagination page={currentPage}'));
  assert.ok(explorer.includes("useListState({q:'',domain:'all',year:'all',page:1})"));
  assert.ok(page.includes('indicators.filter(x=>x.latestValue)'));

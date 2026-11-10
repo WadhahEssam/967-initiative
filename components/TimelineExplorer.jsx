@@ -54,7 +54,7 @@ export default function TimelineExplorer({indicators}) {
     if(exporting)return;
     setExporting(true);setExportMessage('جارٍ تجهيز صورة الرسم…');
     try{
-      const blob=await timelineChartPng({chartElement:chartRef.current,fromYear,toYear,unit:activeUnit,percent:effectiveMode==='percent',series:selected.map((item,index)=>({name:item.name,source:item.adopted_source?.name||item.latestValue?.source?.name,color:colors[index]}))});
+      const blob=await timelineChartPng({chartElement:chartRef.current,fromYear,toYear,unit:activeUnit,percent:effectiveMode==='percent',series:selected.map((item,index)=>({name:item.name,source:item.source,color:colors[index]}))});
       downloadBlob(blob,'image/png','yemen-across-time.png');
       setExportMessage('تم تجهيز صورة الرسم مع الفترة والوحدة والمصادر.');
     }catch{
@@ -87,7 +87,7 @@ export default function TimelineExplorer({indicators}) {
       </div>
       {exportMessage&&<p role="status" className="stat-warning">{exportMessage}</p>}
       {selected.length>0&&<details className="timeline-data"><summary>عرض بيانات المقارنة في جدول</summary><div className="table-scroll"><table><caption>القيم المعروضة ({effectiveMode==='percent'?'نسبة التغير من أول قيمة متاحة في الفترة':activeUnit})</caption><thead><tr><th scope="col">السنة</th>{selected.map(item=><th scope="col" key={item.id}>{item.name}</th>)}</tr></thead><tbody>{chartData.map(row=><tr key={row.year}><th scope="row">{formatYear(row.year)}</th>{selected.map(item=><td key={item.id}>{row[item.id]===null?'غير متوفر':formatNumber(row[item.id],{maximumFractionDigits:3})}</td>)}</tr>)}</tbody></table></div></details>}
-      <div className="timeline-sources">{selected.map(item => <span key={item.id}><b>{item.name}:</b> {item.adopted_source?.name || item.latestValue?.source?.name || 'المصدر غير محدد'}</span>)}</div>
+      <div className="timeline-sources">{selected.map(item => <span key={item.id}><b>{item.name}:</b> {item.source || 'المصدر غير محدد'}</span>)}</div>
       <p className="timeline-note">الفراغات في الخط الزمني تعني عدم وجود قيمة منشورة. لا تُستكمل السنوات المفقودة ولا تُقدّر آلياً.</p>
     </section>
   </div>;
