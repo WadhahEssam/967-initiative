@@ -1,7 +1,8 @@
 'use client';
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
+import {resultSharePath} from '@/lib/resultShare';
 import GameSignupInvite from './GameSignupInvite';
-import {useFunnelStep} from '@/components/analytics/funnel';
+import {trackFunnel,useFunnelStep} from '@/components/analytics/funnel';
 import Link from 'next/link';
 import {ArrowLeft,ArrowRight,CheckCircle2,Clock3,Flame,Play,RotateCcw,Share2,Target,Trophy,XCircle,Zap} from 'lucide-react';
 import {extraGameBuilders,extraGameTypes} from '@/lib/extraGames';
@@ -160,7 +161,9 @@ export default function ExtraArcadeChallenge({game,date,initialMode='practice'})
  }
  async function share(){
   const score=mode==='daily'?officialResult?.score??0:total;
-  const url=location.origin+'/games/'+game+(mode==='daily'?'?mode=daily':'');
+  // A result link: its page and preview image show the score as a challenge (app/share/result).
+  const url=location.origin+(resultSharePath({kind:'game',game,score:correctCount,total:tasks.length,daily:mode==='daily'})||'/games/'+game);
+  trackFunnel('share_click',game);
   const message='حققت '+score+' نقطة في «'+meta.title+'» ضمن ألعاب 967. هل تتفوق عليّ؟';
   try{
    if(navigator.share)await navigator.share({title:'ألعاب 967',text:message,url});

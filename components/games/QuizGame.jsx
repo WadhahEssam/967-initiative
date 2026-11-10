@@ -1,7 +1,8 @@
 'use client';
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
+import {resultSharePath} from '@/lib/resultShare';
 import GameSignupInvite from './GameSignupInvite';
-import {useFunnelStep} from '@/components/analytics/funnel';
+import {trackFunnel,useFunnelStep} from '@/components/analytics/funnel';
 import Link from 'next/link';
 import {ArrowLeft,ArrowRight,BookOpen,CheckCircle2,Flame,Medal,RotateCcw,Share2,Target,Trophy,Zap,XCircle} from 'lucide-react';
 import {buildQuizRound,scoreRound,gameLevels,quizCategories,difficultyLabels} from '@/lib/gameEngine';
@@ -130,7 +131,9 @@ export default function QuizGame({questions,date,initialMode='practice'}){
  async function share(){
   const title='تحدي ألعاب 967';
   const shareText='حققت '+result.correct+' من '+round.length+' في اختبار معرفتي باليمن! هل تتفوق على نتيجتي؟';
-  const url=location.origin+'/games/quiz'+(mode==='daily'?'?mode=daily':'');
+  // A result link: its page and preview image show the score as a challenge (app/share/result).
+  const url=location.origin+(resultSharePath({kind:'game',game:'quiz',score:answerNumber,total:round.length,daily:mode==='daily'})||'/games/quiz');
+  trackFunnel('share_click','quiz');
   try{
    if(navigator.share){await navigator.share({title,text:shareText,url});setShareNote('تم فتح خيارات المشاركة.');}
    else if(navigator.clipboard){await navigator.clipboard.writeText(shareText+' '+url);setShareNote('نُسخ رابط التحدي ونتيجتك.');}
