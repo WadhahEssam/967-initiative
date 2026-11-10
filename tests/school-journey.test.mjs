@@ -3,6 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {journeyUnits, journeyState} from '../lib/schoolJourney.js';
+import {GUEST_LESSONS} from '../lib/schoolGuest.js';
 
 const read = p => readFileSync(new URL('../' + p, import.meta.url), 'utf8');
 const stages = Array.from({length: 12}, (_, index) => ({index, title: 'درس ' + (index + 1)}));
@@ -33,10 +34,13 @@ test('state for a learner: stars, current lesson, locks and totals', () => {
   assert.equal(all.current, null);
 });
 
-test('guests see the first lesson open; loading shows nothing as locked yet', () => {
+test('guests see the first lessons open, their own finished lessons done; loading shows nothing as locked yet', () => {
   const guest = journeyState(stages, {guest: true});
   assert.equal(guest.byIndex[0].status, 'current');
-  assert.ok(stages.slice(1).every(s => guest.byIndex[s.index].status === 'locked'));
+  assert.ok(stages.slice(1, GUEST_LESSONS).every(s => guest.byIndex[s.index].status === 'open'));
+  assert.ok(stages.slice(GUEST_LESSONS).every(s => guest.byIndex[s.index].status === 'locked'));
+  const local = journeyState(stages, {guest: true, local: {0: {stars: 3}}});
+  assert.deepEqual([local.byIndex[0].status, local.byIndex[0].stars, local.current, local.done], ['done', 3, 1, 1]);
   const loading = journeyState(stages, {loading: true});
   assert.ok(stages.every(s => loading.byIndex[s.index].status === 'pending'));
 });

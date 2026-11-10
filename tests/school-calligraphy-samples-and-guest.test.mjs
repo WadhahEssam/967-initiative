@@ -50,12 +50,13 @@ test('School Studio rejects unknown scripts and preserves optional script metada
 test('guest receives sign-up/login prompt not a misleading progression lock',()=>{
  // SchoolCourseMap was retired in phase 8; the card journey shows the guest prompt.
  const map=read('components/school/v2/CourseJourney.jsx');
- assert.ok(map.includes('if (!token) { if (alive) setProgress({loading: false, guest: true'));
+ assert.ok(map.includes("if (alive) setProgress({loading: false, guest: true, local"));
  assert.ok(map.includes('أنشئ حسابًا لتحفظ تقدمك ونجومك وتفتح بقية الدروس.'));
- assert.ok(map.includes('إنشاء حساب'));
- assert.ok(map.includes('تسجيل الدخول'));
- assert.ok(map.includes("'/login?next=' + encodeURIComponent(back)"));
- assert.ok(map.includes("'/register?next=' + encodeURIComponent(back)"));
+ assert.ok(map.includes('<SignupInvite className={styles.guest} showLogin cta="إنشاء حساب" next={back}'));
+ const invite=read('components/SignupInvite.jsx');
+ assert.ok(invite.includes('تسجيل الدخول'));
+ assert.ok(invite.includes("'/login?next=' + target"));
+ assert.ok(invite.includes("'/register?next=' + target"));
  assert.ok(map.includes("progress.guest ? 'يحتاج حسابًا' : 'يُفتح بعد إكمال الدرس السابق'"));
 });
 test('login/register redirect back to School URL, not another origin or privileged dashboard',()=>{
