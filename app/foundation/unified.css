@@ -1745,3 +1745,10 @@ body,
 /* Editorial directory accent links and metadata on night surfaces. */
 :root[data-ed-theme="dark"] .site-experience .figure-profile-directory-link{color:#17121d!important}
 :root[data-ed-theme="dark"] .site-experience .yfigures-extra-filters>p{color:#b7c2bf!important}
+
+/* Editors' preview of a hidden section (components/SectionPreviewNote.jsx). */
+.section-preview-note {display:flex;align-items:center;flex-wrap:wrap;gap:8px 10px;margin:12px 0;padding:10px 14px;border:1px dashed var(--c-amber);border-radius:10px;background:var(--c-amber-soft);color:var(--c-ink);font-size:13px;}
+.section-preview-note svg {color:var(--c-amber);flex-shrink:0;}
+.section-preview-note span {flex:1 1 200px;}
+.section-preview-note button {min-height:36px;padding:6px 12px;border:1px solid var(--c-line-2);border-radius:999px;background:var(--c-surface);color:var(--c-ink);font:inherit;font-size:12px;cursor:pointer;}
+.page-visibility-item .page-visibility-actions {display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end;}

@@ -3,7 +3,8 @@ import {notFound} from 'next/navigation';
 import {AlertTriangle,ArrowDown,ArrowUp,Clock3,ShoppingBasket} from 'lucide-react';
 import FoodBoard from '@/components/services/FoodBoard';
 import {getSiteSettings} from '@/lib/data';
-import {sectionGate} from '@/lib/pageVisibility';
+import {sectionAccess} from '@/lib/sectionPreview';
+import SectionPreviewNote from '@/components/SectionPreviewNote';
 import {serverDb} from '@/lib/supabase-server';
 import {getPublicFoodPrices} from '@/lib/foodPricesServer';
 import {getPublicRates} from '@/lib/exchangeRatesServer';
@@ -21,7 +22,8 @@ const CITY_HUE={sanaa:'var(--c-teal)',aden:'var(--c-indigo)'};
 
 export default async function FoodPricesPage(){
  const settings=await getSiteSettings();
- if(!sectionGate('foodPrices',settings))notFound();
+ const access=await sectionAccess('foodPrices',settings);
+ if(!access)notFound();
  const db=serverDb();
  const [data,rateData]=await Promise.all([getPublicFoodPrices(db).catch(()=>null),getPublicRates(db).catch(()=>null)]);
  const now=Date.now(),rates=usableRates(rateData?.latest||{},now);
@@ -42,6 +44,7 @@ export default async function FoodPricesPage(){
  const moves=topMoves(pairs);
  const canUseDollars=FOOD_REGIONS.some(region=>rates[region.id+':USD']);
  return <div className={'ed-wrap '+styles.page}>
+  {access==='preview'&&<SectionPreviewNote/>}
   <header className={styles.head}>
    <span className={styles.kicker}><Link href="/services">الخدمات</Link> / أسعار المواد الأساسية</span>
    <h1>أسعار المواد الأساسية</h1>

@@ -1,7 +1,8 @@
 import Link from '@/components/SiteLink';
 import {notFound} from 'next/navigation';
 import {getSiteSettings} from '@/lib/data';
-import {sectionGate} from '@/lib/pageVisibility';
+import {sectionAccess} from '@/lib/sectionPreview';
+import SectionPreviewNote from '@/components/SectionPreviewNote';
 import {serverDb} from '@/lib/supabase-server';
 import {getPublishedGuide,getPublishedGuides} from '@/lib/transactionGuidesServer';
 import {guideCategory,guideRegions} from '@/lib/transactionGuides';
@@ -22,7 +23,8 @@ export async function generateMetadata({params}){
 
 export default async function TransactionGuidePage({params}){
  const settings=await getSiteSettings();
- if(!sectionGate('transactions',settings))notFound();
+ const access=await sectionAccess('transactions',settings);
+ if(!access)notFound();
  const {slug}=await params;
  const guide=await load(slug);
  if(!guide)notFound();
@@ -34,6 +36,7 @@ export default async function TransactionGuidePage({params}){
  const first=guideRegions(guide)[0];
  const steps=first?guide.variants[first.id].steps:[];
  return <div className={'ed-wrap '+styles.page}>
+  {access==='preview'&&<SectionPreviewNote/>}
   {steps.length>0&&<JsonLd data={{'@context':'https://schema.org','@type':'HowTo',name:guide.title,description:guide.summary||undefined,inLanguage:'ar',url,
    supply:(guide.variants[first.id].documents||[]).map(name=>({'@type':'HowToSupply',name})),
    step:steps.map((step,index)=>({'@type':'HowToStep',position:index+1,name:step.title,text:step.text||step.title}))}}/>}
