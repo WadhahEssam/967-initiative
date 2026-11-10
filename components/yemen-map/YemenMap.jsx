@@ -12,8 +12,11 @@ import {
   viewBoxToString,
   zoomViewBox,
 } from './mapGeometry';
+import {visibleLabelIds} from '@/lib/mapLabels';
 
 const DATA_URL = '/data/yemen-map/yemen-boundaries.json';
+// Shown before smaller neighbours when labels compete for space: Taiz, Aden, Marib, Hodeidah.
+const MAIN_CITIES = ['YE15', 'YE24', 'YE26', 'YE18'];
 
 export default function YemenMap({focusedGovernorateId, onGovernorateChange, onGovernorateExplore, initialDistrictId = null,showFigures=true}) {
   const canvasRef = useRef(null);
@@ -33,6 +36,8 @@ export default function YemenMap({focusedGovernorateId, onGovernorateChange, onG
   const [selectedDistrict, setSelectedDistrict] = useState(null);
   const [labelsVisible, setLabelsVisible] = useState(true);
   const [labelSizeMode, setLabelSizeMode] = useState('medium');
+  // The map's size on screen, so labels keep a readable size on phones.
+  const [canvasSize, setCanvasSize] = useState(null);
   const [districtsVisible, setDistrictsVisible] = useState(false);
 
   useEffect(() => {
@@ -147,6 +152,17 @@ export default function YemenMap({focusedGovernorateId, onGovernorateChange, onG
     }
     resetMap();
   }, [fitBounds, resetMap, selectedDistrict, selectedGovernorate,onGovernorateChange]);
+
+  const mapReady = Boolean(data && viewBox);
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg || typeof ResizeObserver === 'undefined') return;
+    const measure = () => { const rect = svg.getBoundingClientRect(); if (rect.width && rect.height) setCanvasSize({width: rect.width, height: rect.height}); };
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(svg);
+    return () => observer.disconnect();
+  }, [mapReady]);
 
   const zoom = useCallback((factor) => {
     setViewBox(current => {
@@ -264,8 +280,15 @@ export default function YemenMap({focusedGovernorateId, onGovernorateChange, onG
   const labelItems = selectedDistrict ? [selectedDistrict] : selectedGovernorate && viewBox.width < 2.8 ? visibleDistricts : data.governorates;
   const selectedType = selectedDistrict ? 'district' : selectedGovernorate ? 'governorate' : null;
   const labelSizeScale = {small: 0.75, medium: 1, large: 1.5}[labelSizeMode];
-  const governorateLabelSize = Math.min(0.48, Math.max(0.018, viewBox.width * 0.022 * labelSizeScale));
-  const districtLabelSize = Math.min(0.2, Math.max(0.007, viewBox.width * 0.022 * labelSizeScale));
+  // Labels were 2.2% of the map's width: about 7 px on a phone, where the small western
+  // governorates piled on top of each other. They now keep at least 11 px (districts 10 px) on
+  // screen, and a name that would overlap a more important one waits for the reader to zoom in.
+  const pixelsPerUnit = canvasSize ? Math.min(canvasSize.width / viewBox.width, canvasSize.height / viewBox.height) : 0;
+  const atLeast = (size, pixels) => pixelsPerUnit ? Math.max(size, pixels * labelSizeScale / pixelsPerUnit) : size;
+  const governorateLabelSize = Math.min(0.48, Math.max(0.018, atLeast(viewBox.width * 0.022 * labelSizeScale, 11)));
+  const districtLabelSize = Math.min(0.2, Math.max(0.007, atLeast(viewBox.width * 0.022 * labelSizeScale, 10)));
+  const shownLabels = visibleLabelIds(labelItems, {sizeOf: item => item.governorateId ? districtLabelSize : governorateLabelSize,
+    pinned: [selectedDistrict?.id, selectedGovernorate?.id, hovered].filter(Boolean), important: MAIN_CITIES});
   const labelStrokeWidth = Math.min(0.055, Math.max(0.0008, viewBox.width * 0.0023 * Math.sqrt(labelSizeScale)));
 
   return <div className="ymap-app">
@@ -347,7 +370,7 @@ export default function YemenMap({focusedGovernorateId, onGovernorateChange, onG
           >
             <title>{item.nameAr}</title>
           </path>)}
-          {labelsVisible && labelItems.map(item => {
+          {labelsVisible && labelItems.filter(item => shownLabels.has(item.id)).map(item => {
             const isDistrict = Boolean(item.governorateId);
             const labelType = isDistrict ? 'district' : 'governorate';
             const isSelected = isDistrict ? selectedDistrict?.id === item.id : selectedGovernorate?.id === item.id;
