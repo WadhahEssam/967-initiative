@@ -29,7 +29,7 @@ test('JSON reader accepts Arabic but rejects malformed values and unsupported me
   await assert.rejects(readJsonObject(request('{}', {'content-type': 'text/plain'})), error => error.status === 415);
 });
 test('the public site address is accepted behind the proxy, nothing else is',()=>{
- // On Coolify the app sees its container address; the browser sends the public origin.
+ // On Coolify the app sees its internal address; the browser sends the public origin.
  const behindProxy=(origin,extra={})=>new Request('http://0.0.0.0:3000/api/contact',{method:'POST',headers:{origin,host:'967ye.com','x-forwarded-proto':'https','sec-fetch-site':'same-origin',...extra}});
  assert.ok(isSameOrigin(behindProxy('https://967ye.com')));
  for(const origin of ['http://967ye.com','https://967ye.com.evil.test','https://evil.test','https://www.967ye.com','https://967ye.com/','https://user@967ye.com','null'])
