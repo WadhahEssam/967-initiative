@@ -3,6 +3,7 @@
 // المسجّل: البدء والتصحيح والإنهاء عبر /api/school/custom (المفاتيح على الخادم).
 // الزائر: الدرس الأول فقط، يُصحح في المتصفح ويُحفظ محليًا، بلا نقاط.
 import {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import {trackFunnel} from '@/components/analytics/funnel';
 import {createPortal} from 'react-dom';
 import useFullScreenDialog from './useFullScreenDialog';
 import Link from 'next/link';
@@ -46,6 +47,10 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
   const card = cards[index];
   const fb = feedback[card?.id];
   const cardDone = !card?.task || progress[card.id]?.done;
+
+  // Conversion counters: a lesson opened and a lesson finished, as guest or member (never in the editor preview).
+  useEffect(() => { if (mode === 'playing' && !preview) trackFunnel('lesson_start_' + (guest ? 'guest' : 'member'), slug + ':' + stageIndex); }, [mode, preview, guest, slug, stageIndex]);
+  useEffect(() => { if (mode === 'done' && result && !result.preview) trackFunnel('lesson_done_' + (guest ? 'guest' : 'member'), slug + ':' + stageIndex); }, [mode, result, guest, slug, stageIndex]);
 
   const firstOpen = useCallback(state => { const i = cards.findIndex(c => c.task && !state[c.id]?.done); return i < 0 ? cards.length - 1 : i; }, [cards]);
 

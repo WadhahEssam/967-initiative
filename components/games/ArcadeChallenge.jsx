@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
+import {useFunnelStep} from '@/components/analytics/funnel';
 import Link from 'next/link';
 import {ArrowLeft,ArrowRight,CheckCircle2,Clock3,Flame,Play,RotateCcw,Share2,Target,Trophy,XCircle,Zap} from 'lucide-react';
 import {buildPlaceChallenges,buildTimelineChallenges,buildMapChallenges,gameTypes,isTimelineCorrect} from '@/lib/arcadeChallenges';
@@ -55,6 +56,9 @@ export default function ArcadeChallenge({game,date,initialMode='practice'}){
  const revealed=answer!==null&&(mode!=='daily'||verified);
  const duration=roundDuration(mode,seconds);
  const isActive=tasks.length>0&&!finished&&answer===null&&ready&&!verifying&&(mode!=='daily'||clockReady);
+ // Conversion counters: a round started and a round finished (once per run).
+ useFunnelStep('game_start',tasks.length>0,game+':'+mode+':'+runId);
+ useFunnelStep('game_done',finished,game+':'+mode+':'+runId);
  const timer=useQuestionTimer({seconds:duration,token:runId+':'+index,active:isActive,startTime:mode==='daily'?serverStartedAt:null,onExpire:()=>submitAnswer(null,true)});
  useEffect(()=>{if(tasks.length&&!finished)titleRef.current?.focus({preventScroll:true});},[index,finished,tasks.length]);
  useEffect(()=>{
