@@ -109,6 +109,13 @@ test('S-04 HMAC rate identity ignores spoofable forwarding headers and stores no
  assert.match(a,/^[a-f0-9]{64}$/);assert.ok(!a.includes('192.0.2.1'));
  assert.notEqual(a,contactRateKey(req(payload,{'x-vercel-forwarded-for':'192.0.2.2'}),env));
  assert.equal(contactRateKey(req(payload,{'x-forwarded-for':'192.0.2.1'}),env),contactRateKey(req(payload,{'x-forwarded-for':'192.0.2.2'}),env));
+ // Behind Coolify the proxy sets X-Real-IP / X-Forwarded-For: each visitor gets their own bucket,
+ // and a signed-in sender is keyed by account.
+ const coolify={CONTACT_RATE_LIMIT_SECRET:'local-test-key'};
+ assert.notEqual(contactRateKey(req(payload,{'x-real-ip':'192.0.2.1'}),coolify),contactRateKey(req(payload,{'x-real-ip':'192.0.2.2'}),coolify));
+ assert.ok(!contactRateKey(req(payload,{'x-real-ip':'192.0.2.1'}),coolify).includes('192.0.2.1'));
+ assert.equal(contactRateKey(req(payload,{'x-real-ip':'not-an-ip'}),coolify),contactRateKey(req(payload),coolify),'junk falls back to the shared bucket');
+ assert.notEqual(contactRateKey(req(payload,{'x-real-ip':'192.0.2.1'}),coolify,'user-a'),contactRateKey(req(payload,{'x-real-ip':'192.0.2.1'}),coolify,'user-b'));
 });
 
 test('L-07 ambiguous committed response reuses identity only for unchanged message; edits get a new identity',()=>{

@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useState} from 'react';
+import LoginLink from '@/components/LoginLink';
 import Link from 'next/link';
 import {ArrowUpLeft,CalendarDays,CheckCircle2,Compass,Crosshair,Crown,Flame,Flag,Gem,LockKeyhole,Map,Medal,RefreshCw,ScrollText,Shapes,Shield,ShieldCheck,Star,Target,Trophy,UsersRound} from 'lucide-react';
 import {browserMayBeSignedIn,whenBrowserDb} from '@/lib/browserSession';
@@ -112,7 +113,7 @@ export default function GameAchievementGallery({preview=false}){
    {preview?<Link href="/games/achievements" className={styles.more}>جميع الإنجازات <ArrowUpLeft size={17}/></Link>:null}
   </div>
   {state==='guest'&&<div className={styles.notice}><LockKeyhole size={17}/>
-   <span>سجّل الدخول لعرض شاراتك المكتسبة وحفظ إنجازاتك على حسابك. <Link href="/login">تسجيل الدخول</Link></span>
+   <span>سجّل الدخول لعرض شاراتك المكتسبة وحفظ إنجازاتك على حسابك. <LoginLink>تسجيل الدخول</LoginLink></span>
   </div>}
   {state==='unavailable'&&<div className={styles.notice} role="alert"><ShieldCheck size={17}/>
    <span>تعذر تحميل سجل الإنجازات حاليًا.</span><button type="button" onClick={()=>setRetry(v=>v+1)}>إعادة المحاولة <RefreshCw size={14}/></button>

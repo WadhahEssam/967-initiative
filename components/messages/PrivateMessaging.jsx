@@ -1,5 +1,6 @@
 'use client';
 import {useCallback,useEffect,useLayoutEffect,useRef,useState} from 'react';
+import LoginLink from '@/components/LoginLink';
 import {createPortal} from 'react-dom';
 import Link from 'next/link';
 import {ArrowRight,Ban,Bell,BellOff,Check,CheckCheck,ChevronLeft,Inbox,MailPlus,MessageCircle,RefreshCcw,Search,Send,Settings2,ShieldAlert,Store,UserRound,Pin,PinOff,Trash2,X} from 'lucide-react';
@@ -531,7 +532,7 @@ export default function PrivateMessaging(){
  return <div className={styles.page} dir="rtl"><div className={styles.wrap}>
   <header className={styles.heading}><div><span className={styles.kicker}>تواصل الأعضاء</span><h1>الرسائل الخاصة</h1><p>محادثاتك وطلبات التواصل في مكان واحد.</p></div><div className={styles.headingLinks}><button type="button" className={styles.accountLink} onClick={goBack}><ArrowRight size={16} aria-hidden="true"/> العودة</button><Link href="/account" className={styles.accountLink}><UserRound size={15} aria-hidden="true"/> حسابي</Link></div></header>
   {!ready?<div className={styles.gate}>جارٍ التحقق من الحساب…</div>:!user?
-   <div className={styles.gate}><ShieldAlert size={29}/><h2>سجّل الدخول أولًا</h2><p>الرسائل الخاصة متاحة للمستخدمين المسجلين فقط.</p><Link href="/login">تسجيل الدخول</Link></div>:
+   <div className={styles.gate}><ShieldAlert size={29}/><h2>سجّل الدخول أولًا</h2><p>الرسائل الخاصة متاحة للمستخدمين المسجلين فقط.</p><LoginLink>تسجيل الدخول</LoginLink></div>:
   <div className={styles.layout} data-view={tab} data-chat-open={tab==='inbox'&&Boolean(selected)}>
    <nav className={styles.tabs} aria-label="أقسام الرسائل">
     <button type="button" data-active={tab==='inbox'} aria-pressed={tab==='inbox'} onClick={()=>selectTab('inbox')}><MessageCircle size={19}/><span>المحادثات</span>{unread>0&&<b>{unread}</b>}</button>

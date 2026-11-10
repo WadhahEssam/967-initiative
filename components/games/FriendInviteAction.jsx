@@ -1,6 +1,7 @@
 'use client';
 
 import {useState} from 'react';
+import LoginLink from '@/components/LoginLink';
 import Link from 'next/link';
 import {ArrowLeft,Check,Copy,ExternalLink,Link2,Swords,Users} from 'lucide-react';
 import {currentSession} from '@/lib/browserSession';
@@ -51,7 +52,7 @@ export default function FriendInviteAction({game,seconds=15,disabled=false}){
   <button type="button" className={styles.friendButton} disabled={creating||disabled} onClick={create}>
    <Swords size={19}/>{creating?'جارٍ إنشاء المواجهة…':'تحدَّ صديقًا'} <ArrowLeft size={17}/>
   </button>
-  {error&&<p className={styles.error} role="alert">{error} {error.includes('الدخول')&&<Link href="/login">تسجيل الدخول</Link>}</p>}
+  {error&&<p className={styles.error} role="alert">{error} {error.includes('الدخول')&&<LoginLink>تسجيل الدخول</LoginLink>}</p>}
   {created&&<section className={styles.invite} aria-label="رابط تحدي الصديق" role="status">
    <div className={styles.inviteHeading}><span className={styles.inviteIcon}><Users size={23}/></span>
     <div><strong>التحدي جاهز! أرسل الرابط لصديقك</strong>
