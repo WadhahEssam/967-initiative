@@ -1,6 +1,7 @@
 'use client';
 import {useEffect, useState} from 'react';
 import {CheckCircle2} from 'lucide-react';
+import {countOf} from '@/lib/arabicCount';
 import {currentSession} from '@/lib/browserSession';
 import {finishedGuestLessons, guestLessonKey} from '@/lib/schoolGuest';
 
@@ -70,6 +71,6 @@ export default function GuestProgressClaim({onClaimed}) {
   }, [onClaimed]);
   if (!moved) return null;
   return <p role="status" style={{display: 'flex', alignItems: 'center', gap: 8, margin: '12px 0 0', padding: '10px 14px', borderRadius: 14, background: 'var(--c-accent-soft,#dcefe9)', fontSize: 14, lineHeight: 1.7}}>
-    <CheckCircle2 size={18} aria-hidden="true"/> نقلنا {moved === 1 ? 'درسًا واحدًا' : moved === 2 ? 'درسين' : moved + ' دروس'} أنجزتها كزائر إلى حسابك، وأُضيفت نجومها ونقاطها.
+    <CheckCircle2 size={18} aria-hidden="true"/> نقلنا {moved === 1 ? 'درسًا واحدًا أنجزته كزائر إلى حسابك، وأُضيفت نجومه ونقاطه' : moved === 2 ? 'درسين أنجزتهما كزائر إلى حسابك، وأُضيفت نجومهما ونقاطهما' : countOf(moved, 'lesson') + ' أنجزتها كزائر إلى حسابك، وأُضيفت نجومها ونقاطها'}.
   </p>;
 }

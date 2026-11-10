@@ -59,3 +59,8 @@ test('copy and accessibility fixes from the 2026-11-10 review stay in place', ()
   assert.ok(!read('components/members/MemberProfile.jsx').includes('<main'));
   assert.ok(read('app/share/result/page.jsx').includes('{card.challenge}'));
 });
+
+test('a skipped page transition is not reported as a site error', () => {
+  assert.ok(read('app/layout.jsx').includes("r.name==='AbortError'&&/Transition was skipped/.test(r.message))e.preventDefault()"));
+  assert.ok(read('components/OperationalMonitor.jsx').includes("if(!event.defaultPrevented)send('client_error',{kind:'unhandledrejection'})"));
+});

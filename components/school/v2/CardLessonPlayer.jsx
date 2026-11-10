@@ -115,7 +115,7 @@ function Player({slug, stageIndex, lesson, guestSnapshot, courseTitle, hasNext, 
       setMode('done');
     } catch (e) { setError(e.message); }
     finally { setBusy(false); }
-  }, [guest, guestSnapshot, progress, slug, attempt, preview]);
+  }, [guest, guestSnapshot, progress, slug, stageIndex, attempt, preview]);
 
   const next = useCallback(() => {
     setHint(false);
