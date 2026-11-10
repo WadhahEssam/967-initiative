@@ -10,7 +10,10 @@ import {readPublicHistoryCatalog} from '@/lib/historyRepository';
 import {yemenGovernorates} from '@/lib/yemeniFigures';
 import {pageMetadata} from '@/lib/seo';
 import HistoryExplorer from '@/components/history/HistoryExplorer';
-import {historyListEntries} from '@/lib/yemenHistory';
+import {historyDetailsMap,historyIndexEntry} from '@/lib/yemenHistory';
+import {chronologicalHistory} from '@/lib/historyTimeline';
+import {defaultHistoryPair} from '@/lib/historyComparisons';
+import {pickDetails,versionedDetails} from '@/lib/deferredDetails';
 import {KnowledgeReadingGuide} from '@/components/knowledge/KnowledgeGuides';
 import KnowledgePageIntro from '@/components/knowledge/KnowledgePageIntro';
 import styles from './HistoryPage.module.css';
@@ -29,6 +32,14 @@ export default async function YemenHistoryPage({searchParams}){
  try{catalog=await readPublicHistoryCatalog(serverDb());}
  catch{return <div className="container" style={{padding:'80px 0'}}><h1>تعذر تحميل تاريخ اليمن</h1><p role="alert">حاول تحديث الصفحة لاحقاً؛ لا نعرض نسخة قديمة إذا تعذر التحقق من آخر التعديلات.</p></div>;}
  const locations=[...new Map(catalog.entries.filter(x=>x.isPublished!==false&&x.governorate).map(x=>[x.governorate,x])).values()].map(x=>({...x,governorateName:yemenGovernorates.find(g=>g.id===x.governorate)?.name})).filter(x=>x.governorateName);
+ const era=typeof params.era==='string'?params.era:'',type=typeof params.type==='string'?params.type:'';
+ const published=catalog.entries.filter(x=>x.isPublished!==false);
+ // The page carries full details only for what the first screen shows: the first stop of the
+ // timeline and the two states being compared. /api/history/details brings the rest after load.
+ const {details,version}=versionedDetails(catalog.entries,historyDetailsMap);
+ const states=published.filter(x=>x.kind==='state'),stateSlugs=new Set(states.map(x=>x.slug));
+ const firstStop=chronologicalHistory(published.filter(x=>(!era||x.era===era)&&(!type||x.kind===type)))[0]?.slug;
+ const pair=[...defaultHistoryPair(states),...['compareA','compareB'].map(key=>params[key]).filter(slug=>stateSlugs.has(slug))];
  return <KnowledgeTheme area="history"><div>
   <KnowledgePageIntro
    area="history"
@@ -42,7 +53,7 @@ export default async function YemenHistoryPage({searchParams}){
    </div>
   </KnowledgePageIntro>
   <KnowledgeNavigation/>
-  <div id="eras"><HistoryExplorer entries={historyListEntries(catalog.entries)} initialEra={typeof params.era==='string'?params.era:''} initialType={typeof params.type==='string'?params.type:''}/></div>
+  <div id="eras"><HistoryExplorer entries={published.map(historyIndexEntry)} details={pickDetails(details,[firstStop,...pair])} detailsUrl={'/api/history/details?v='+version} initialEra={era} initialType={type}/></div>
   <KnowledgeReadingGuide kind="history"/>
   <section className={styles.locations} aria-labelledby="history-location-title"><div className="container"><span className="eyebrow">الأماكن على الخريطة</span><h2 id="history-location-title">أين دارت هذه الحكايات؟</h2><p>استكشف المواقع المرتبطة بالمواد التاريخية على <strong>خريطة المحافظات المعاصرة</strong>. هذه الروابط لا تمثل حدود الممالك القديمة.</p><div className={styles.locationGrid}>{locations.map(x=><Link key={x.governorate} href={'/yemen-map?region='+x.governorate+'#map'}><strong>{x.governorateName}</strong><span>{x.title}</span></Link>)}</div></div></section>
  </div></KnowledgeTheme>;

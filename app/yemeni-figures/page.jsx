@@ -3,7 +3,9 @@ import KnowledgeNavigation from '@/components/knowledge/KnowledgeNavigation';
 import {notFound} from 'next/navigation';
 import {getSiteSettings,getYemeniFigures} from '@/lib/data';
 import {sectionGate} from '@/lib/pageVisibility';
-import {toFigureDirectoryCard,yemenGovernorates} from '@/lib/yemeniFigures';
+import {figureDetailsMap,toFigureDirectoryCard,toFigureIndexEntry,yemenGovernorates} from '@/lib/yemeniFigures';
+import {figureFilterDefaults,filterFigures,readFigureFilters} from '@/lib/figureFilters';
+import {pickDetails,versionedDetails} from '@/lib/deferredDetails';
 import {pageMetadata} from '@/lib/seo';
 import YemeniFiguresExplorer from '@/components/yemen-map/YemeniFiguresExplorer';
 import {KnowledgeReadingGuide} from '@/components/knowledge/KnowledgeGuides';
@@ -22,7 +24,16 @@ export default async function YemeniFiguresPage({searchParams}){
  if(!sectionGate('figures',settings))notFound();
  const params=await searchParams;
  const region=yemenGovernorates.some(item=>item.id===params?.region)?params.region:null;
- const figures=(await getYemeniFigures()).map(toFigureDirectoryCard);
+ const stored=await getYemeniFigures(),figures=stored.map(toFigureDirectoryCard);
+ // Full card details only for the cards the first screen shows (default order, and the filters in
+ // the address); /api/figures/details brings the rest after the page loads.
+ const {details,version}=versionedDetails(stored,rows=>figureDetailsMap(rows.map(toFigureDirectoryCard)));
+ const query=new URLSearchParams(Object.entries(params||{}).flatMap(([key,value])=>(Array.isArray(value)?value:[value]).map(item=>[key,String(item)])));
+ const fromAddress=readFigureFilters(query.toString());
+ const firstCards=[
+  ...filterFigures(figures,{...figureFilterDefaults,region}).slice(0,figureFilterDefaults.visible),
+  ...filterFigures(figures,{...fromAddress,region}).slice(0,Math.min(fromAddress.visible,48)),
+ ].map(figure=>figure.slug);
  return <KnowledgeTheme area="figures"><div className="yemeni-figures-page">
   <KnowledgePageIntro
    area="figures"
@@ -35,7 +46,7 @@ export default async function YemeniFiguresPage({searchParams}){
    </div>
   </KnowledgePageIntro>
   <KnowledgeNavigation/>
-  <YemeniFiguresExplorer figures={figures} initialGovernorateId={region}/>
+  <YemeniFiguresExplorer figures={figures.map(toFigureIndexEntry)} details={pickDetails(details,firstCards)} detailsUrl={'/api/figures/details?v='+version} initialGovernorateId={region}/>
   <KnowledgeReadingGuide kind="figures"/>
  </div></KnowledgeTheme>;
 }

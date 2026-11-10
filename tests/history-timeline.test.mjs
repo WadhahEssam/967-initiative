@@ -33,7 +33,7 @@ test('actual horizontal milestone track is default, accessible and does not remo
  const timeline=read('components/history/HistoryTimeline.jsx');
  const styling=read('components/history/HistoryTimeline.module.css');
  assert.ok(explorer.includes("useState('timeline')"));
- assert.ok(explorer.includes("<HistoryTimeline entries={selected}/>"));
+ assert.ok(explorer.includes("<HistoryTimeline entries={selected} detailsStatus={status} onRetry={load}/>"));
  assert.ok(explorer.includes("mode==='cards'"));
  assert.ok(timeline.includes('type="range"'));
  assert.ok(timeline.includes('aria-pressed={active}'));
