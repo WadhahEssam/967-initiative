@@ -97,3 +97,9 @@
 /* Musnad letters can appear anywhere in a lesson (options, text, buttons). The site fonts have no glyphs
    for them, so the Musnad web font (loaded on course pages) is appended as a fallback for those characters only. */
 .shell,.shell button,.shell input,.shell textarea{font-family:'IBM Plex Sans Arabic','Tahoma','Noto Sans Old South Arabian','Segoe UI Historic',sans-serif}
+
+/* Signup invitation (components/SignupInvite): the link row under the text. */
+.guestNote>div{display:flex;flex-wrap:wrap;gap:10px}
+.loginInvite{align-self:stretch;display:flex;flex-direction:column;gap:14px}
+.loginInvite p{margin:0}
+.loginInvite>div{display:flex;flex-direction:column;gap:10px}

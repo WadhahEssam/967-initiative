@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
+import GameSignupInvite from './GameSignupInvite';
 import {useFunnelStep} from '@/components/analytics/funnel';
 import Link from 'next/link';
 import {ArrowLeft,ArrowRight,CheckCircle2,Clock3,Flame,Play,RotateCcw,Share2,Target,Trophy,XCircle,Zap} from 'lucide-react';
@@ -230,6 +231,7 @@ export default function ExtraArcadeChallenge({game,date,initialMode='practice'})
     <div><strong>{stats.best}</strong><span>أفضل نتيجة محلية</span></div>
    </div>
    <p>{mode==='daily'?'نتيجتك محفوظة وموثقة في لوحة المتصدرين الموحدة.':'تُحفظ نتائج الجولات الحرة في هذا المتصفح فقط.'}</p>
+   {mode!=='daily'&&<GameSignupInvite/>}
    <div className={styles.actions}>
     {mode==='daily'&&<Link href="/games/leaderboard" className={styles.primary}>لوحة المتصدرين <Trophy size={17}/></Link>}
     <button type="button" className={styles.primary} onClick={reset}><RotateCcw size={17}/> جولة جديدة</button>

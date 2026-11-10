@@ -7,6 +7,7 @@ import {publishedSchoolCatalog,publishedSchoolStage,publishedSchoolStageList} fr
 import CardLessonPlayer from '@/components/school/v2/CardLessonPlayer';
 import {validateCardLesson} from '@/lib/schoolCards';
 import {cardSnapshot} from '@/lib/schoolCardProgress';
+import {guestLessonOpen} from '@/lib/schoolGuest';
 import {resolveCardVisuals} from '@/lib/schoolCardVisualsServer';
 import {readFile} from 'node:fs/promises';
 import path from 'node:path';
@@ -39,11 +40,12 @@ export default async function CourseStagePage({params,searchParams}){
  const stage=fixture?{...fixture,index}:published&&{index,...published};
  if(!stage)notFound();
  // Card lessons (format 2): the public lesson goes to the browser; answer keys stay on the server,
- // except for the first lesson, which guests may try without an account (graded in the browser, no points).
+ // except for the first lessons (lib/schoolGuest GUEST_LESSONS), which guests may take without an
+ // account: graded in the browser, then graded again on the server after they sign in.
  // Every lesson is a card lesson now (phase 8); anything else is not playable.
  if(stage.format!==2)notFound();
  let lesson;try{lesson=validateCardLesson(stage).lesson;}catch{notFound();}
  lesson=await resolveCardVisuals(lesson);
- return <CardLessonPlayer slug={slug} stageIndex={index} lesson={lesson} guestSnapshot={index===0?cardSnapshot(stage):null}
+ return <CardLessonPlayer slug={slug} stageIndex={index} lesson={lesson} guestSnapshot={guestLessonOpen(index)?cardSnapshot(stage):null}
   courseTitle={course.title} hasNext={list.some(x=>x.index===index+1)}/>;
 }
