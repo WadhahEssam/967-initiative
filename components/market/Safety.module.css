@@ -1,0 +1,36 @@
+/* Report and block forms (inside the shared Sheet), and the small «إبلاغ / حظر» links. */
+.form{display:grid;gap:14px}
+.text{margin:0;font-size:var(--t-size-ui);line-height:1.8;color:var(--c-ink-2)}
+.hint{margin:0;font-size:var(--t-size-meta);line-height:1.7;color:var(--c-ink-2)}
+.hint a{color:var(--c-accent)}
+.reasons{display:grid;gap:8px;margin:0;padding:0;border:0}
+.reasons legend{margin-bottom:8px;font-size:var(--t-size-ui);font-weight:600;color:var(--c-ink)}
+.reason,.reasonOn{display:flex;align-items:center;gap:10px;min-height:48px;padding:0 14px;border:1px solid var(--c-control);border-radius:var(--r-2);background:var(--c-surface);font-size:var(--t-size-body);cursor:pointer}
+.reasonOn{border-color:var(--c-accent);background:var(--c-accent-soft);font-weight:600}
+.reason:has(input:focus-visible),.reasonOn:has(input:focus-visible){outline:3px solid var(--c-focus);outline-offset:2px}
+.reason input,.reasonOn input{inline-size:20px;block-size:20px;margin:0;accent-color:var(--c-accent)}
+.field{composes:field from './ui.module.css'}
+.field textarea{inline-size:100%;min-height:80px;padding:10px 12px;border:1px solid var(--c-control);border-radius:var(--r-2);background:var(--c-surface);color:var(--c-ink);font:inherit;font-size:16px;line-height:1.8;resize:vertical}
+.field textarea:focus-visible{outline:3px solid var(--c-focus);outline-offset:1px;border-color:var(--c-accent)}
+.check{display:flex;align-items:center;gap:10px;min-height:var(--target);font-size:var(--t-size-ui)}
+.check input{inline-size:20px;block-size:20px;margin:0;accent-color:var(--c-accent)}
+.error{composes:error from './ui.module.css'}
+.actions{display:flex;gap:8px;margin-top:4px}
+.primary{composes:button primary large from './ui.module.css';flex:1}
+.danger{composes:button danger large from './ui.module.css';flex:1}
+.secondary{composes:button ghost large from './ui.module.css'}
+.link{composes:textButton from './ui.module.css';color:var(--c-ink-2);text-decoration:none}
+.link:hover{color:var(--c-danger)}
+.memberActions{display:flex;gap:14px}
+/* Shown in place of a listing or a seller page the member may not see (a block either way). */
+.unavailable{max-width:520px;margin:40px auto;padding:28px 16px;text-align:center;display:grid;gap:10px;justify-items:center;color:var(--c-ink-2)}
+.unavailable h1{margin:0;font-size:20px;color:var(--c-ink)}
+.unavailable a{color:var(--c-accent)}
+/* /market/notices */
+.notices{display:grid;gap:8px;max-width:760px;margin:0;padding:0;list-style:none}
+.notice,.noticeNew{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid var(--c-line-2);border-radius:14px;background:var(--c-surface)}
+.noticeNew{border-color:var(--c-accent)}
+.notice>svg,.noticeNew>svg{flex:none;margin-top:2px;color:var(--c-accent)}
+.notice div,.noticeNew div{display:grid;gap:4px;min-width:0}
+.notice p,.noticeNew p{margin:0;font-size:14px;line-height:1.8;color:var(--c-ink-2);white-space:pre-wrap;overflow-wrap:anywhere}
+.notice small,.noticeNew small{font-size:12px;color:var(--c-ink-3)}

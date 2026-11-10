@@ -14,12 +14,13 @@ test('mobile uses one screen for the list and one for an open conversation',()=>
  assert.match(css,/\.threadArea\{display:none\}/);
 });
 
-test('four navigation tabs remain usable on phones and desktop',()=>{
+test('navigation tabs (four, and «السوق» for market members) remain usable on phones and desktop',()=>{
  const ui=read('components/messages/PrivateMessaging.jsx'),css=read('components/messages/PrivateMessaging.module.css');
- for(const tab of ['inbox','requests','search','settings']){
+ for(const tab of ['inbox','market','requests','search','settings']){
   assert.match(ui,new RegExp("aria-pressed=\\{tab==='"+tab+"'\\}"));
  }
- assert.match(css,/\.tabs\{display:grid;grid-template-columns:repeat\(4,minmax\(0,1fr\)\)/);
+ assert.match(ui,/\{\(market\.available\|\|tab==='market'\)&&<button/,'the market tab shows only to members who can use the market');
+ assert.match(css,/\.tabs\{display:grid;grid-auto-flow:column;grid-auto-columns:minmax\(0,1fr\)/,'equal columns for four or five tabs');
  assert.match(css,/@media\(max-width:680px\)/);
  assert.match(css,/\.tabs button\{min-height:58px/);
  assert.match(ui,/\{\(error\|\|notice\|\|loading\)\&\&<div className=\{styles\.statusArea\}/);

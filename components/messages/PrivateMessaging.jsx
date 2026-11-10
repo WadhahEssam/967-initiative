@@ -3,7 +3,7 @@ import {useCallback,useEffect,useLayoutEffect,useRef,useState} from 'react';
 import LoginLink from '@/components/LoginLink';
 import {createPortal} from 'react-dom';
 import Link from 'next/link';
-import {ArrowRight,Ban,Bell,BellOff,Check,CheckCheck,ChevronLeft,Inbox,MailPlus,MessageCircle,RefreshCcw,Search,Send,Settings2,ShieldAlert,UserRound,Pin,PinOff,Trash2,X} from 'lucide-react';
+import {ArrowRight,Ban,Bell,BellOff,Check,CheckCheck,ChevronLeft,Inbox,MailPlus,MessageCircle,RefreshCcw,Search,Send,Settings2,ShieldAlert,Store,UserRound,Pin,PinOff,Trash2,X} from 'lucide-react';
 import useAudience from '@/components/debates/useAudience';
 import {browserDb} from '@/lib/supabase';
 import {REPORT_REASONS,isMessageRead} from '@/lib/privateMessaging';
@@ -12,7 +12,12 @@ import {buildMessageTimeline,messageClock} from '@/lib/messageTimeline';
 import {placeMessageMenu} from '@/lib/messageMenuPlacement';
 import MemberLink from '@/components/members/MemberLink';
 import ProfileAvatar from '@/components/design/ProfileAvatar';
+import dynamic from 'next/dynamic';
+import useMarketChatCount from '@/components/market/useMarketChatCount';
 import styles from './PrivateMessaging.module.css';
+
+// «سوق 967» chats load only when their tab is opened (most visits to /messages never open it).
+const MarketChats=dynamic(()=>import('@/components/market/MarketChats'),{ssr:false,loading:()=><p style={{padding:'20px 16px',color:'var(--c-ink-2)'}}>جارٍ تحميل محادثات السوق…</p>});
 
 const date=value=>value?new Intl.DateTimeFormat('ar',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(new Date(value)):'';
 const defaults={discoverable:true,allow_requests:true,notify_messages:true};
@@ -21,7 +26,11 @@ const defaults={discoverable:true,allow_requests:true,notify_messages:true};
 function goBack(){let sameSite=false;try{sameSite=Boolean(sessionStorage.getItem('967-came-from'))||Boolean(document.referrer)&&new URL(document.referrer).origin===location.origin;}catch{}if(sameSite&&history.length>1)history.back();else location.assign('/');}
 export default function PrivateMessaging(){
  const {user,ready}=useAudience();
+ // «سوق 967» chats: their own tab and count, shown only to members who can use the market.
+ const market=useMarketChatCount(ready&&user?user.id:null);
  const [tab,setTab]=useState('inbox'),[items,setItems]=useState([]);
+ // /messages?tab=market opens the market tab (links from listings and «إعلاناتي»).
+ useEffect(()=>{const wanted=new URLSearchParams(window.location.search).get('tab');if(wanted==='market'||wanted==='settings')setTab(wanted);},[]);
  const [selected,setSelected]=useState(null),[thread,setThread]=useState(null);
  const [query,setQuery]=useState(''),[results,setResults]=useState([]);
  const [settings,setSettings]=useState(defaults),[blocked,setBlocked]=useState([]);
@@ -527,6 +536,7 @@ export default function PrivateMessaging(){
   <div className={styles.layout} data-view={tab} data-chat-open={tab==='inbox'&&Boolean(selected)}>
    <nav className={styles.tabs} aria-label="أقسام الرسائل">
     <button type="button" data-active={tab==='inbox'} aria-pressed={tab==='inbox'} onClick={()=>selectTab('inbox')}><MessageCircle size={19}/><span>المحادثات</span>{unread>0&&<b>{unread}</b>}</button>
+    {(market.available||tab==='market')&&<button type="button" data-active={tab==='market'} aria-pressed={tab==='market'} onClick={()=>selectTab('market')}><Store size={19}/><span>السوق</span>{market.unread>0&&<b>{market.unread}</b>}</button>}
     <button type="button" data-active={tab==='requests'} aria-pressed={tab==='requests'} onClick={()=>selectTab('requests')}><Inbox size={19}/><span>الطلبات</span>{pending.length>0&&<b>{pending.length}</b>}</button>
     <button type="button" data-active={tab==='search'} aria-pressed={tab==='search'} onClick={()=>selectTab('search')}><MailPlus size={19}/><span>محادثة جديدة</span></button>
     <button type="button" data-active={tab==='settings'} aria-pressed={tab==='settings'} onClick={()=>selectTab('settings')}><Settings2 size={19}/><span>الخصوصية</span></button>
@@ -536,7 +546,7 @@ export default function PrivateMessaging(){
     {notice&&<p className={styles.success} role="status">{notice}</p>}
     {loading&&<p className={styles.hint}>جارٍ تحميل الرسائل…</p>}
    </div>}
-   <div className={styles.workspace}>
+   {tab==='market'?<MarketChats onCount={market.setUnread}/>:<div className={styles.workspace}>
    <aside className={styles.sidebar} aria-label="محتوى قسم الرسائل">
     {tab==='inbox'&&<div className={styles.listHeading}><strong>المحادثات <small>{visible.length}</small></strong><button type="button" onClick={()=>selectTab('search')} aria-label="بدء محادثة جديدة"><MailPlus size={17}/><span>جديدة</span></button></div>}
     <div className={styles.list}>
@@ -685,7 +695,7 @@ export default function PrivateMessaging(){
      </>:<div className={styles.empty}><Bell size={26}/><h3>بانتظار الموافقة</h3><p>{thread.conversation.intro}</p><p>يمكن إرسال رسائل جديدة بعد قبول الطرف الآخر فقط.</p></div>}
     </section>:tab==='inbox'&&selected?<div className={styles.threadLoading} role="status">{error?'تعذر فتح المحادثة. يمكنك العودة للقائمة.':'جارٍ فتح المحادثة…'}<button type="button" onClick={backToList}>العودة للمحادثات</button></div>:tab==='inbox'?<div className={styles.placeholder}><MessageCircle size={35}/><h2>اختر محادثة للبدء</h2><p>ستظهر الرسائل هنا عند اختيار أي محادثة من القائمة.</p><button type="button" onClick={()=>selectTab('search')} className={styles.secondaryButton}><MailPlus size={17}/> محادثة جديدة</button></div>:null}
    </main>
-   </div>
+   </div>}
   </div>}
   {messageMenu&&selectedMenuMessage&&!selectedMenuMessage.deleted_at&&typeof document!=='undefined'&&createPortal(
    <div ref={messageMenuRef} className={styles.messageMenu} dir="rtl" role="group" aria-label="خيارات الرسالة"

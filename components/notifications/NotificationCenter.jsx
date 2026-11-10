@@ -14,7 +14,7 @@ export default function NotificationCenter(){
  const {user,ready}=useAudience(),router=useRouter();
  const [category,setCategory]=useState('all'),[items,setItems]=useState([]);
  const [page,setPage]=useState(1),[count,setCount]=useState(0),[total,setTotal]=useState(0),[markableCount,setMarkableCount]=useState(0);
- const [hasMore,setHasMore]=useState(false),[busy,setBusy]=useState(false);
+ const [hasMore,setHasMore]=useState(false),[busy,setBusy]=useState(false),[marketEnabled,setMarketEnabled]=useState(false);
  const [loading,setLoading]=useState(false),[error,setError]=useState('');
  const [preferences,setPreferences]=useState(null),[preferencesOpen,setPreferencesOpen]=useState(false);
  const [savingKey,setSavingKey]=useState(null),[savedMessage,setSavedMessage]=useState('');
@@ -30,7 +30,7 @@ export default function NotificationCenter(){
     const keys=new Set(previous.map(item=>item.id));
     return [...previous,...(response.items||[]).filter(item=>!keys.has(item.id))];
    });
-   setPage(nextPage);setCount(response.count||0);setTotal(response.total||0);setMarkableCount(response.markable_count||0);
+   setPage(nextPage);setCount(response.count||0);setTotal(response.total||0);setMarkableCount(response.markable_count||0);setMarketEnabled(Boolean(response.market_enabled));
    setPreferences(response.preferences||null);
    setHasMore(Boolean(response.hasMore));
   }catch(e){if(version===seq.current)setError(e.message);}
@@ -111,7 +111,7 @@ export default function NotificationCenter(){
    <header className={styles.centerHeader}><strong>{count?noticeCountLabel(count)+' إشعارات جديدة':'لا توجد إشعارات جديدة'}</strong>
     <span>{total} في القسم الحالي</span></header>
    <nav className={styles.filters} aria-label="تصفية الإشعارات">
-    {NOTIFICATION_CATEGORIES.map(key=><button key={key} type="button" onClick={()=>setCategory(key)}
+    {NOTIFICATION_CATEGORIES.filter(key=>key!=='market'||marketEnabled||category==='market').map(key=><button key={key} type="button" onClick={()=>setCategory(key)}
      aria-pressed={category===key} data-active={category===key||undefined}>{noticeCategoryLabel[key]}</button>)}
    </nav>
    {error&&<p className={styles.error} role="alert">{error} <button type="button" onClick={()=>load(page,false)}>إعادة المحاولة</button></p>}

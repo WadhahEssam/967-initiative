@@ -173,7 +173,10 @@ export default function Header({actionLabel = 'ساهم معنا', contentLinks 
         if (response.ok) {
           const result = await response.json();
           if (active) {
-            setMessageCounts({unread:result.unread,requests:result.requests});
+            setMessageCounts({unread:result.unread,requests:result.requests,market:result.market});
+            // «سوق 967» shows its own chat count from this same summary (no second request).
+            window.__967MarketUnread=Number(result.market)||0;
+            window.dispatchEvent(new CustomEvent('967:market-unread',{detail:window.__967MarketUnread}));
             const decision=advanceMessageAlert(messageAlertRef.current,result,pathRef.current);
             messageAlertRef.current=decision.state;
             if(decision.play)playMessageChime(messageAudioRef.current);
