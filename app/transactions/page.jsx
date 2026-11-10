@@ -1,7 +1,8 @@
 import Link from '@/components/SiteLink';
 import {notFound} from 'next/navigation';
 import {getSiteSettings} from '@/lib/data';
-import {sectionGate} from '@/lib/pageVisibility';
+import {sectionAccess} from '@/lib/sectionPreview';
+import SectionPreviewNote from '@/components/SectionPreviewNote';
 import {serverDb} from '@/lib/supabase-server';
 import {getPublishedGuides} from '@/lib/transactionGuidesServer';
 import {pageMetadata} from '@/lib/seo';
@@ -15,9 +16,11 @@ export const metadata=pageMetadata({title:'دليل المعاملات',descript
 
 export default async function TransactionsPage(){
  const settings=await getSiteSettings();
- if(!sectionGate('transactions',settings))notFound();
+ const access=await sectionAccess('transactions',settings);
+ if(!access)notFound();
  const guides=await getPublishedGuides(serverDb()).catch(()=>null);
  return <div className={'ed-wrap '+styles.page}>
+  {access==='preview'&&<SectionPreviewNote/>}
   <header className={styles.hero}>
    <div className={styles.head}>
    <span className={styles.kicker}><Link href="/explore">الأدلة</Link> / دليل المعاملات</span>

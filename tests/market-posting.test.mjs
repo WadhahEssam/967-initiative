@@ -55,7 +55,7 @@ test('the market API only serves members while the market is hidden',()=>{
  assert.match(route,/marketMember\(request\)/);
  assert.doesNotMatch(route,/export const (?!dynamic|runtime)/);
  const layout=read('app/market/layout.jsx');
- assert.match(layout,/sectionGate\('market',/);
+ assert.match(layout,/sectionAccess\('market',/);
  assert.match(layout,/notFound\(\)/);
 });
 

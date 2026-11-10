@@ -5,7 +5,8 @@ import RateConverter from '@/components/services/RateConverter';
 import RateTrend from '@/components/services/RateTrend';
 import Sparkline from '@/components/services/Sparkline';
 import {getSiteSettings} from '@/lib/data';
-import {sectionGate} from '@/lib/pageVisibility';
+import {sectionAccess} from '@/lib/sectionPreview';
+import SectionPreviewNote from '@/components/SectionPreviewNote';
 import {serverDb} from '@/lib/supabase-server';
 import {getPublicRates} from '@/lib/exchangeRatesServer';
 import {RATE_CURRENCIES,RATE_REGIONS,adenDay,formatRateDay,formatRateTime,rateFreshness,usableRates} from '@/lib/exchangeRates';
@@ -35,13 +36,15 @@ function Change({series,row}){
 
 export default async function ExchangeRatesPage(){
  const settings=await getSiteSettings();
- if(!sectionGate('services',settings))notFound();
+ const access=await sectionAccess('services',settings);
+ if(!access)notFound();
  const data=await getPublicRates(serverDb()).catch(()=>null);
  const now=Date.now(),rates=usableRates(data?.latest||{},now);
  const times=Object.values(rates).map(row=>Date.parse(row.recorded_at));
  const newest=times.length?new Date(Math.max(...times)).toISOString():null;
  const stale=Object.values(rates).some(row=>rateFreshness(row.recorded_at,now)==='stale');
  return <div className={'ed-wrap '+styles.page}>
+  {access==='preview'&&<SectionPreviewNote/>}
   <header className={styles.head}>
    <span className={styles.kicker}><Link href="/services">الخدمات</Link> / أسعار الصرف</span>
    <h1>أسعار الصرف اليوم</h1>

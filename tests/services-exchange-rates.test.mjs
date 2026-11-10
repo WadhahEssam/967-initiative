@@ -91,7 +91,7 @@ test('«الخدمات» is a section that starts hidden and appears in navigati
   assert.equal(pageViewBucket('/services/exchange-rates'), 'services');
   assert.ok(ACTIVITY_SECTIONS.services);
   assert.ok(read('supabase/migrations/20261110120000_exchange_rates.sql').includes("'professionals','services','search'"));
-  for (const path of ['app/services/page.jsx', 'app/services/exchange-rates/page.jsx']) assert.ok(read(path).includes("sectionGate('services',settings)"), path);
+  for (const path of ['app/services/page.jsx', 'app/services/exchange-rates/page.jsx']) assert.ok(read(path).includes("sectionAccess('services',settings)"), path);
 });
 
 test('rates are entered by editors or by reporters management added, never read raw by browsers', () => {
