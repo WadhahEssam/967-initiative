@@ -22,7 +22,7 @@ export default async function SchoolDashboardPage(){
    <nav className={school.breadcrumb} aria-label="مسار التنقل"><Link href="/school">مدرسة 967</Link><ChevronLeft size={14}/> رحلتي التعليمية</nav>
    <span className={styles.eyebrow}><GraduationCap size={18}/> حسابك في المدرسة</span>
    <h1>رحلتك، <em>في مكان واحد.</em></h1>
-   <p>شاهد ما أنجزته في المسند والعروض، وواصل تعلمك من المحطة التالية. النتائج تأتي من محاولاتك المحفوظة، لا من تقديرات.</p>
+   <p>شاهد ما أنجزته في مسارات المدرسة، وواصل تعلمك من الدرس التالي. النتائج تأتي من محاولاتك المحفوظة، لا من تقديرات.</p>
   </div></header>
   <SchoolDashboard/>
  </div>;

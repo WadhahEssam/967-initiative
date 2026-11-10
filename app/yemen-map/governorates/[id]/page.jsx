@@ -1,4 +1,5 @@
 import KnowledgeTheme from '@/components/knowledge/KnowledgeTheme';
+import {countOf} from '@/lib/arabicCount';
 import KnowledgeNavigation from '@/components/knowledge/KnowledgeNavigation';
 import JumpNav from '@/components/knowledge/JumpNav';
 import Link from '@/components/SiteLink';
@@ -104,7 +105,7 @@ export default async function GovernorateProfilePage({params}){
         <section className={styles.districts} id="districts">
           <h2>المديريات التابعة</h2>
           <p>لكل مديرية صفحة بملفها الكامل، وفق حدود الخريطة الإدارية في 967.</p>
-          <details className={styles.districtDisclosure}><summary>عرض {formatNumber(districts.length)} مديرية</summary><ul>{districts.map(d=><li key={d.id}><Link href={districtPath(d.id)}>{displayPlaceName(d.nameAr,[profiles[d.id]?.description,profiles[d.id]?.history])}</Link></li>)}</ul></details>
+          <details className={styles.districtDisclosure}><summary>عرض المديريات ({countOf(districts.length,'district')})</summary><ul>{districts.map(d=><li key={d.id}><Link href={districtPath(d.id)}>{displayPlaceName(d.nameAr,[profiles[d.id]?.description,profiles[d.id]?.history])}</Link></li>)}</ul></details>
         </section>
         <Link className={styles.figureLink} href={'/yemen-map/compare?a='+encodeURIComponent(id)}>قارن محافظة {heading} بمكان آخر</Link>
         {sectionIsVisible('figures',settings.pageVisibility)&&<Link className={styles.figureLink} href={'/yemeni-figures?region='+encodeURIComponent(id)}>تصفح الشخصيات المرتبطة بمحافظة {heading}</Link>}

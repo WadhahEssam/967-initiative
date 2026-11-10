@@ -7,10 +7,10 @@ import Link from 'next/link';
 import {ArrowLeft,ArrowRight,CheckCircle2,Clock3,Flame,Play,RotateCcw,Share2,Target,Trophy,XCircle,Zap} from 'lucide-react';
 import {extraGameBuilders,extraGameTypes} from '@/lib/extraGames';
 import {questionPoints} from '@/lib/gameEngine';
-import {roundDuration} from '@/lib/gameClock';
+import {roundDuration,localStartTime} from '@/lib/gameClock';
 import useQuestionTimer from './useQuestionTimer';
 import {TimeControls,GameTimer} from './TimeControls';
-import useDailyAttempt,{DailyAttemptNotice} from './useDailyAttempt';
+import useDailyAttempt,{DailyAttemptNotice,useLeaveWarning} from './useDailyAttempt';
 import {ExtraBoard} from './ExtraBoards';
 import {readPracticeSeen,rememberPracticeTasks} from '@/lib/practiceRotation';
 import FriendInviteAction from './FriendInviteAction';
@@ -65,6 +65,7 @@ export default function ExtraArcadeChallenge({game,date,initialMode='practice'})
  const revealed=answer!==null&&(mode!=='daily'||verified);
  const duration=roundDuration(mode,seconds);
  const active=!!task&&!finished&&answer===null&&mediaReady&&!verifying&&(mode!=='daily'||clockReady);
+ useLeaveWarning(mode==='daily'&&tasks.length>0&&!finished);
  // Conversion counters: a round started and a round finished (once per run).
  useFunnelStep('game_start',tasks.length>0,game+':'+mode+':'+runId);
  useFunnelStep('game_done',finished,game+':'+mode+':'+runId);
@@ -82,7 +83,7 @@ export default function ExtraArcadeChallenge({game,date,initialMode='practice'})
   setReadyPending(true);setSyncError('');
   try{
    const state=await daily.progress('ready',index,current.id,null);
-   setServerStartedAt(state.startedAt);
+   setServerStartedAt(localStartTime(state.startedAt,state.serverNow));
    setClockReady(true);
   }catch(e){setSyncError(e.message||'تعذر بدء توقيت السؤال الرسمي.');}
   finally{setReadyPending(false);}
@@ -96,6 +97,7 @@ export default function ExtraArcadeChallenge({game,date,initialMode='practice'})
    list=await daily.reserve();
    setStarting(false);
    if(!list)return;
+   if(list.resume){resumeRound(list.resume);return;}
   }else{
    list=extraGameBuilders[game]({mode,date,seed:'practice-'+Date.now()+'-'+Math.random(),seen:readPracticeSeen(game)});
    if(list.length!==10)return;
@@ -105,6 +107,16 @@ export default function ExtraArcadeChallenge({game,date,initialMode='practice'})
   setTasks(list);setRunId(i=>i+1);setIndex(0);setAnswer(null);setRecords([]);setFinished(false);
   setMediaReady(game!=='object');setClockReady(false);setServerStartedAt(null);
   setSyncError('');setVerified(false);setOfficialResult(null);setShareNote('');
+ }
+ // Continue an unfinished official round (see QuizGame): answered steps keep verdict and reveal.
+ function resumeRound(saved){
+  const list=saved.tasks.map((task,i)=>saved.reveals[i]?{...task,...saved.reveals[i]}:task);
+  const kept=saved.answers.map(answer=>({correct:answer.correct,points:answer.points,choice:null,timedOut:false}));
+  const review=saved.phase==='review'&&kept.length>saved.step;
+  answerLocked.current=review;
+  setTasks(list);setRunId(i=>i+1);setIndex(saved.step);setAnswer(review?kept[saved.step]:null);setRecords(kept);setFinished(false);
+  setMediaReady(game!=='object');setClockReady(false);setServerStartedAt(null);
+  setSyncError('');setVerified(review);setOfficialResult(null);setShareNote('');
  }
  async function verifyAnswer(value,taskId,step){
   setVerifying(true);setSyncError('');
@@ -186,7 +198,7 @@ export default function ExtraArcadeChallenge({game,date,initialMode='practice'})
    {mode==='daily'&&<p className={styles.dailyNote}>تحدي {date} بتوقيت UTC · محاولة واحدة لكل حساب · 7 ثوانٍ ثابتة لكل مهمة · النتائج موثقة على الخادم.</p>}
    <div className={friendStyles.actionRow}>
     <button type="button" className={styles.primary} disabled={starting||!daily.canStart} onClick={start}>
-    <Play size={17}/>{starting?'جارٍ حجز المحاولة…':'ابدأ الجولة'}<ArrowLeft size={17}/>
+    <Play size={17}/>{starting?'جارٍ حجز المحاولة…':daily.kind==='resume'?'أكمل جولة اليوم':'ابدأ الجولة'}<ArrowLeft size={17}/>
    </button>
     <FriendInviteAction game={game} seconds={seconds} disabled={starting}/>
    </div>
@@ -218,7 +230,7 @@ export default function ExtraArcadeChallenge({game,date,initialMode='practice'})
    {syncError&&<p className={styles.syncError} role="alert">{syncError}
     <button type="button" onClick={()=>!answer?markReady():!verified?verifyAnswer(answer.choice,task.id,index):next()}>إعادة المحاولة</button></p>}
    <div className={styles.actions}>
-    <button type="button" className={styles.secondary} onClick={reset}><ArrowRight size={16}/> إنهاء الجولة</button>
+    <button type="button" className={styles.secondary} onClick={()=>{if(mode==='daily'&&!confirm('إنهاء الجولة الرسمية الآن ينهي محاولتك لليوم ولا يمكن إعادتها. هل تريد الخروج؟'))return;reset();}}><ArrowRight size={16}/> إنهاء الجولة</button>
     <button type="button" className={styles.primary} disabled={!answer||verifying||(mode==='daily'&&!verified)} onClick={next}>
      {index===tasks.length-1?'عرض النتيجة':'المهمة التالية'} <ArrowLeft size={16}/>
     </button>

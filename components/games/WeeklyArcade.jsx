@@ -1,6 +1,7 @@
 'use client';
 
 import {useEffect,useRef,useState} from 'react';
+import {countOf} from '@/lib/arabicCount';
 import LoginLink from '@/components/LoginLink';
 import Link from 'next/link';
 import {ArrowUpLeft,CalendarDays,CheckCircle2,Clock3,Crown,Flame,LockKeyhole,Medal,Puzzle,RefreshCw,ShieldCheck,Target,Trophy,Zap} from 'lucide-react';
@@ -159,7 +160,7 @@ export default function WeeklyArcade(){
        {rankings.map((player,index)=><li className={[styles.player,styles['player'+index]].join(' ')} key={index}>
         <span className={styles.place} aria-label={'الترتيب '+player.rank}>{index===0?<Crown size={24}/>:<Medal size={23}/>}<small>#{fmt(player.rank)}</small></span>
         <span className={styles.avatar} aria-hidden="true">{player.name?.trim().slice(0,1)||'٩'}</span>
-        <span className={styles.playerInfo}><strong>{player.name}{player.isMe&&<span className={styles.me}>أنت</span>}</strong><small>{fmt(player.played)} تحدٍّ مكتمل</small></span>
+        <span className={styles.playerInfo}><strong>{player.name}{player.isMe&&<span className={styles.me}>أنت</span>}</strong><small>المكتملة: {countOf(player.played,'challenge')}</small></span>
         <span className={styles.score} dir="ltr"><strong>{fmt(player.score)}</strong><small>XP</small></span>
        </li>)}
       </ol>

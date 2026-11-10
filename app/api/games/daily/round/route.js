@@ -35,7 +35,7 @@ export async function POST(request){
   if(body.action==='ready'){
    if(attempt.phase!=='question'||attempt.step_index!==step||attempt.answers.length!==step
     ||attempt.question_bank[step]?.id!==body.questionId)throw new RequestValidationError('السؤال غير جاهز.',409);
-   if(attempt.question_started_at)return respond({ok:true,step,startedAt:attempt.question_started_at});
+   if(attempt.question_started_at)return respond({ok:true,step,startedAt:attempt.question_started_at,serverNow:new Date().toISOString()});
    const now=new Date().toISOString();
    const {data,error}=await db.from('game_daily_attempts')
     .update({question_started_at:now}).eq('id',attempt.id).eq('phase','question')
@@ -46,9 +46,9 @@ export async function POST(request){
     const {data:current}=await db.from('game_daily_attempts').select('question_started_at')
      .eq('id',attempt.id).maybeSingle();
     if(!current?.question_started_at)throw new RequestValidationError('تعذر تفعيل مؤقت السؤال.',409);
-    return respond({ok:true,step,startedAt:current.question_started_at});
+    return respond({ok:true,step,startedAt:current.question_started_at,serverNow:new Date().toISOString()});
    }
-   return respond({ok:true,step,startedAt:data.question_started_at});
+   return respond({ok:true,step,startedAt:data.question_started_at,serverNow:new Date().toISOString()});
   }
   if(body.action==='next'){
    // Repeated retries cannot reset a running question timer.
