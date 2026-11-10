@@ -64,7 +64,9 @@ test('login/register redirect back to School URL, not another origin or privileg
  assert.equal(safeAccountReturn('/school/courses/arabic-calligraphy/1'),'/school/courses/arabic-calligraphy/1');
  assert.equal(safeAccountReturn('//evil.example.com/school'),'/account');
  assert.equal(safeAccountReturn('/admin'),'/account');
- assert.equal(safeAccountReturn('/schooling/fake'),'/account');
+ assert.equal(safeAccountReturn('/schooling/fake'),'/schooling/fake','any same-site page (it may 404, never leaves the site)');
+ assert.equal(safeAccountReturn('/games/friends/x?y=1'),'/games/friends/x?y=1');
+ for(const bad of ['/admin/users','/api/x','/login?next=/x','/auth/callback','/school//x'])assert.equal(safeAccountReturn(bad),'/account',bad);
  assert.equal(safeAccountReturn('https://evil.example.com/school'),'/account');
 });
 test('script migration is version guarded and preserves attempts and XP',()=>{

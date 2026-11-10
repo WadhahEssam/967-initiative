@@ -14,7 +14,8 @@ test('the school home is a four-world adventure map, not a grid of duplicate cou
  for(const href of ['/school/writing','/school/nature','/school/logic','/school/civic'])assert.ok(map.includes("href:'"+href+"'"),href);
  assert.ok(map.includes("id:'writing'")&&map.includes("id:'nature'")&&map.includes("id:'logic'")&&map.includes("id:'civic'"));
  assert.ok(map.includes('const worlds=['));
- assert.ok(map.includes('قيد الإعداد'));
+ // Only open worlds are shown: no «قيد الإعداد» teaser that leads nowhere (2026-11-10).
+ assert.ok(!map.includes('قيد الإعداد'));
  assert.ok(!map.includes('href="/school/art"'));
  for(const cls of ['.worldList','.worldItem','.roadNode','.scene','.worldAction','.worldPending','.mapEnd'])assert.ok(css.includes(cls),cls);
  assert.ok(css.includes(':global(:root[data-ed-theme="dark"])'));

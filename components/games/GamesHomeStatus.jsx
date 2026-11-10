@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useState} from 'react';
+import LoginLink from '@/components/LoginLink';
 import Link from 'next/link';
 import {ArrowUpLeft,CircleCheck,Flame,Medal,ShieldCheck,Trophy,UserRound,CalendarCheck2} from 'lucide-react';
 import {browserMayBeSignedIn,whenBrowserDb} from '@/lib/browserSession';
@@ -107,7 +108,7 @@ export default function GamesHomeStatus({initialDate}){
      {stats.played===0&&<> أكمل تحدي اليوم لبدء تسجيل إنجازاتك.</>}</p>
    </>:state.kind==='guest'?<div className={styles.guest}>
     <div><strong>سجّل الدخول لتتابع أداءك</strong><p>شاهد عدد تحدياتك، أفضل نتائجك، ترتيبك، وسلسلة مشاركاتك الرسمية. اللعب الحر متاح دون حساب.</p></div>
-    <Link href="/login" className={styles.login}>تسجيل الدخول <ArrowUpLeft size={17}/></Link>
+    <LoginLink className={styles.login}>تسجيل الدخول <ArrowUpLeft size={17}/></LoginLink>
    </div>:state.kind==='unavailable'?<div className={styles.guest}>
     <div><strong>إحصائيات اللاعب غير متاحة مؤقتًا</strong><p>يمكنك متابعة الألعاب الحرة، أو المحاولة مجددًا عندما تتوفر خدمة الحسابات.</p></div>
     <button type="button" className={styles.login} onClick={()=>setRevision(x=>x+1)}>إعادة المحاولة</button>

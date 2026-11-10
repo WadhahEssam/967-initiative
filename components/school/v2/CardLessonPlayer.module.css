@@ -25,7 +25,7 @@
 .context{margin:0;font-size:15px;line-height:1.75;color:var(--c-ink-2,#5c554c)}
 .prompt{margin:0;font-size:20px;line-height:1.55}
 .instruction{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#fff4e0;color:#6b4410;border-radius:12px;padding:9px 12px;font-size:14px;font-weight:600}
-.howButton{margin-inline-start:auto;display:inline-flex;align-items:center;gap:4px;border:0;background:transparent;color:#8a5a12;font:inherit;font-size:13px;text-decoration:underline;cursor:pointer;min-height:32px}
+.howButton{margin-inline-start:auto;display:inline-flex;align-items:center;gap:4px;border:0;background:transparent;color:#8a5a12;font:inherit;font-size:13px;text-decoration:underline;cursor:pointer;min-height:44px}
 .how{margin:0;font-size:13.5px;line-height:1.8;color:var(--c-ink-2,#5c554c);background:var(--c-surface-2,#f6f2ea);border-radius:12px;padding:10px 12px}
 
 .options{display:flex;flex-direction:column;gap:8px}

@@ -42,7 +42,7 @@ test('homepage shows player summary and has a completion-aware daily challenge',
  assert.ok(ui.includes("fetch('/api/games/leaderboard?period=all'"));
  assert.ok(ui.includes("db.auth.getSession()"));
  assert.ok(ui.includes("onAuthStateChange"));
- assert.ok(ui.includes("href=\"/login\""));
+ assert.ok(ui.includes("<LoginLink"));
  assert.ok(ui.includes('stats.bestScore'));
  assert.ok(ui.includes('stats.streak'));
  assert.ok(ui.includes('state.rank'));

@@ -59,7 +59,7 @@ test('school expedition map and homepage tablet layouts are responsive',()=>{
  assert.ok(school.includes('href="#school-paths"'));
  assert.ok(school.includes('id="school-paths"'));
  assert.ok(school.includes('<SchoolWorldMap/>'));
- assert.ok(world.includes('الفنون والمهارات'));
+ assert.ok(!world.includes('الفنون والمهارات'),'no teaser world without lessons');
  assert.ok(css.includes('@media(max-width:700px)'));
  assert.ok(css.includes('@media(max-width:360px)'));
  assert.ok(startCss.includes('.grid>*:last-child:nth-child(odd){grid-column:1/-1}'));

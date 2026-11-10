@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useState} from 'react';
+import LoginLink from '@/components/LoginLink';
 import Link from 'next/link';
 import {ArrowLeft,BookOpenCheck,CheckCircle2,GraduationCap,RefreshCw,ShieldCheck,Target,Zap,Flame,Brain,CalendarCheck,Settings2} from 'lucide-react';
 import {browserDb} from '@/lib/supabase';
@@ -74,7 +75,7 @@ export default function SchoolDashboard(){
   {kind==='loading'&&<div className={styles.notice} role="status"><RefreshCw size={20} aria-hidden="true"/> جارٍ تحميل تقدمك التعليمي…</div>}
   {kind==='guest'&&<div className={styles.notice}>
    <GraduationCap size={27} aria-hidden="true"/><div><strong>سجّل الدخول لتظهر رحلتك</strong><p>تقدمك ونتائجك لا تظهر إلا في حسابك. يمكنك استكشاف المسارات قبل التسجيل.</p></div>
-   <Link className={styles.action} href="/login">تسجيل الدخول <ArrowLeft size={17}/></Link>
+   <LoginLink className={styles.action}>تسجيل الدخول <ArrowLeft size={17}/></LoginLink>
   </div>}
   {kind==='error'&&<div className={styles.notice} role="alert"><p>{message}</p><button type="button" className={styles.action} onClick={()=>setRevision(x=>x+1)}>إعادة المحاولة <RefreshCw size={17}/></button></div>}
   {kind==='ready'&&data&&<>

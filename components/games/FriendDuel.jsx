@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
+import LoginLink from '@/components/LoginLink';
 import Link from 'next/link';
 import {ArrowLeft,ArrowRight,CheckCircle2,Clock3,Copy,Flame,Gamepad2,Link2,LockKeyhole,RefreshCw,Share2,ShieldCheck,Swords,Timer,Trophy,UserRound,Users,Zap} from 'lucide-react';
 import {browserDb} from '@/lib/supabase';
@@ -179,7 +180,7 @@ export default function FriendDuel({id}){
   {phase==='loading'&&<div className={styles.notice} role="status">جارٍ تحميل التحدي والتحقق من حسابك…</div>}
   {phase==='guest'&&<div className={styles.join}>
    <LockKeyhole size={33}/><h2>سجّل الدخول أولًا</h2><p>التحدي محفوظ برابطه الخاص، ويلزم حساب مؤكد لكل واحد من اللاعبين لضمان صحة النتائج.</p>
-   <Link href="/login" className={styles.primary}>تسجيل الدخول <ArrowLeft size={17}/></Link>
+   <LoginLink className={styles.primary}>تسجيل الدخول <ArrowLeft size={17}/></LoginLink>
   </div>}
   {phase==='error'&&<div className={styles.notice} role="alert">{error} <button type="button" onClick={()=>setReload(x=>x+1)}>إعادة المحاولة <RefreshCw size={15}/></button></div>}
   {match&&phase==='ready'&&<>
