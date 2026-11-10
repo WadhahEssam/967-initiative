@@ -8,7 +8,7 @@ test('mobile tabs represent route groups and non-primary sections',()=>{
  const header=read('components/Header.jsx');
  const shell=read('app/foundation/shell.css');
  // The Explore tab covers every content section and the search page.
- assert.ok(header.includes("const exploreActive = path === '/explore' || path === '/search' || ['media', 'knowledge', 'directories', 'initiative'].some(id => mobileSectionActive(id));"));
+ assert.ok(header.includes("const exploreActive = path === '/explore' || path === '/search' || ['media', 'knowledge', 'directories', 'services', 'initiative'].some(id => mobileSectionActive(id));"));
  assert.ok(header.includes("aria-current={exploreActive ? 'page' : undefined}"));
  // The phone menu opener moved from the tab bar to the top bar (commit 1276571).
  assert.ok(header.includes('<button ref={mobileToggle} type="button" className="ed-tool ed-menu-toggle ed-mobile-menu-toggle" aria-controls="main-navigation"'));
