@@ -12,7 +12,7 @@ import school from '../school.module.css';
 import styles from './civic.module.css';
 import SchoolTrackTrail from '@/components/school/SchoolTrackTrail';
 export const dynamic='force-dynamic';
-export const metadata=pageMetadata({title:'السياسة والاقتصاد | مدرسة 967',description:'تعلّم الدولة وأنظمة الحكم والاقتصاد والبنوك عبر محطات ومحاكاة قرارات حيادية.',path:'/school/civic'});
+export const metadata=pageMetadata({title:'السياسة والاقتصاد | مدرسة 967',description:'تعلّم الدولة وأنظمة الحكم والاقتصاد والبنوك عبر دروس قصيرة ومحاكاة قرارات حيادية.',path:'/school/civic'});
 const TRACKS=[
  {slug:'how-state-works',icon:Landmark,area:'السياسة'},
  {slug:'political-systems',icon:Scale,area:'السياسة'},

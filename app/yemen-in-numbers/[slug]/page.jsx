@@ -1,4 +1,5 @@
 import KnowledgeTheme from '@/components/knowledge/KnowledgeTheme';
+import {countLabel} from '@/lib/arabicCount';
 import KnowledgeNavigation from '@/components/knowledge/KnowledgeNavigation';
 import ContextBackLink from '@/components/ContextBackLink';
 import Link from '@/components/SiteLink';
@@ -28,7 +29,7 @@ export default async function StatDomainPage({params}) {
     <section className="stat-page-head"><div className="container">
       <ContextBackLink fallback="/yemen-in-numbers" label="العودة إلى اليمن بالأرقام"/>
       <span className="eyebrow">{domain.section?.name || 'مجال وطني'}</span>
-      <div className="stat-page-title"><div><h1>{domain.name}</h1><p>{domain.description}</p></div><strong>{formatNumber(domain.indicators.filter(x=>x.latestValue).length)}<span>ذات قيم متاحة من {formatNumber(domain.indicators.length)} مؤشر معرّف</span></strong></div>
+      <div className="stat-page-title"><div><h1>{domain.name}</h1><p>{domain.description}</p></div><strong>{formatNumber(domain.indicators.filter(x=>x.latestValue).length)}<span>لها قيم منشورة، من أصل {countLabel(domain.indicators.length,{one:'مؤشر واحد',two:'مؤشرين',few:'مؤشرات',many:'مؤشرًا',hundred:'مؤشر'})}</span></strong></div>
     </div></section>
     <KnowledgeNavigation/>
     <section className="section stat-domain-body"><div className="container">

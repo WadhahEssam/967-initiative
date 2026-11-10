@@ -147,7 +147,7 @@ export default function ScienceLab({lab,source,onComplete}){
  return <section className={styles.scienceLab} aria-labelledby="science-lab-title">
   <div className={styles.scienceLabHead}><FlaskConical size={23}/><div>
    <h3 id="science-lab-title">{config.title}</h3>
-   <p>تجربة محطة «{lab.scenario||'الفلك والطبيعة'}»</p>
+   <p>تجربة درس «{lab.scenario||'الفلك والطبيعة'}»</p>
   </div></div>
   <div className={styles.scienceLearningInstructions}>
    <strong>كيف تستخدم المختبر؟</strong>
