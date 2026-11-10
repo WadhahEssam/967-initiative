@@ -212,18 +212,22 @@ export async function GET(request){
   if(mode==='summary'){
    const rows=await inbox(db,user.id);
    const unreadRows=rows.filter(c=>c.status==='accepted'&&!c.muted&&Number(c.unread)>0);
-   const [preferences,recent]=await Promise.all([
+   const [preferences,recent,market]=await Promise.all([
     db.from('private_messaging_settings').select('notify_messages').eq('user_id',user.id).maybeSingle(),
     unreadRows.length?db.from('private_messages').select('created_at')
      .in('conversation_id',unreadRows.map(c=>c.id)).neq('sender_id',user.id)
      .order('created_at',{ascending:false}).limit(1).maybeSingle()
-     :Promise.resolve({data:null,error:null})
+     :Promise.resolve({data:null,error:null}),
+    // «سوق 967» chats have their own tab and count; a failure there never hides the private ones.
+    db.rpc('market_unread_summary',{p_user:user.id}).then(result=>result.error?null:result.data?.[0]||null,()=>null)
    ]);
    if(preferences.error||recent.error)throw preferences.error||recent.error;
+   const latest=[recent.data?.created_at,market?.latest].filter(Boolean).sort().at(-1)||null;
    return json({requests:rows.filter(c=>c.status==='pending'&&c.requested_by!==user.id).length,
     unread:rows.reduce((n,c)=>n+(c.muted?0:Number(c.unread||0)),0),
+    market:Number(market?.unread||0),
     notify_messages:preferences.data?.notify_messages!==false,
-    latest_incoming_unread_at:recent.data?.created_at||null});
+    latest_incoming_unread_at:latest});
   }
   if(mode==='thread')return json(await getThread(db,user.id,id,before,around));
   if(mode==='receipt')return json(await readReceipt(db,user.id,id));

@@ -15,7 +15,7 @@ async function call(method,body){
  const response=await fetch(ENDPOINT,{method,cache:'no-store',headers:{Authorization:'Bearer '+session.access_token,...(body?{'Content-Type':'application/json'}:{})},body:body?JSON.stringify(body):undefined});
  return {status:response.status,json:await response.json().catch(()=>({}))};
 }
-const blank=()=>({slug:'',title:'',summary:'',audience:'',category:'identity',status:'draft',variants:Object.fromEntries(GUIDE_REGIONS.map(region=>[region.id,emptyVariant()])),sources:[],verifiedAt:'',verifiedBy:'',editorNote:''});
+const blank=()=>({slug:'',title:'',summary:'',audience:'',category:'identity',status:'draft',variants:Object.fromEntries(GUIDE_REGIONS.map(region=>[region.id,emptyVariant()])),sources:[],verifiedAt:'',verifiedBy:'',editorNote:'',faqs:[],related:[],featured:false});
 const editable=guide=>({...blank(),...guide,verifiedAt:guide.verifiedAt||'',variants:Object.fromEntries(GUIDE_REGIONS.map(region=>[region.id,{...emptyVariant(),...(guide.variants?.[region.id]||{})}]))});
 const today=()=>new Date(Date.now()+3*3600e3).toISOString().slice(0,10);
 const statusName=id=>GUIDE_STATUSES.find(status=>status.id===id)?.name||id;
@@ -105,6 +105,7 @@ export default function GuidesEditor(){
     </div>
     <label className={styles.field}>وصف مختصر<textarea rows={2} value={guide.summary} onChange={event=>set({summary:event.target.value})}/></label>
     <label className={styles.field}>لمن هذه المعاملة<textarea rows={2} value={guide.audience} onChange={event=>set({audience:event.target.value})}/></label>
+    <label className={styles.check}><input type="checkbox" checked={guide.featured} onChange={event=>set({featured:event.target.checked})}/> تظهر في «الأكثر طلبًا» أعلى الفهرس</label>
    </fieldset>
    <fieldset className={styles.panel}>
     <legend>الإجراءات حسب المدينة</legend>
@@ -119,6 +120,8 @@ export default function GuidesEditor(){
      <Field label="أوقات الدوام" value={variant.hours} onChange={event=>setVariant({hours:event.target.value})}/>
      <Field label="الرسوم" value={variant.fees} onChange={event=>setVariant({fees:event.target.value})} hint="اكتبها كما يدفعها الناس، مع العملة"/>
      <Field label="المدة المتوقعة" value={variant.duration} onChange={event=>setVariant({duration:event.target.value})}/>
+     <Field label="هل ينوب عنك أحد؟" value={variant.delegate} onChange={event=>setVariant({delegate:event.target.value})} hint="مثل: نعم بتوكيل موثق، أو لا، الحضور شخصي"/>
+     <Field label="الخدمة الإلكترونية" value={variant.online} onChange={event=>setVariant({online:event.target.value})} hint="إن وُجد حجز أو تقديم عبر الإنترنت"/>
     </div>
     <Lines label="الأوراق المطلوبة" hint="ورقة في كل سطر" value={variant.documents} onChange={documents=>setVariant({documents})} rows={5}/>
     <div className={styles.stepsEditor}>
@@ -144,6 +147,19 @@ export default function GuidesEditor(){
      <Lines label="نصائح توفر الوقت" hint="نصيحة في كل سطر" value={variant.tips} onChange={tips=>setVariant({tips})}/>
      <Lines label="أخطاء شائعة" hint="خطأ في كل سطر" value={variant.mistakes} onChange={mistakes=>setVariant({mistakes})}/>
     </div>
+   </fieldset>
+   <fieldset className={styles.panel}>
+    <legend>أسئلة شائعة ومعاملات مرتبطة</legend>
+    <p className={styles.help}>الأسئلة واحدة للمدينتين. اكتب السؤال كما يسأله الناس.</p>
+    {guide.faqs.map((item,index)=><div key={index} className={styles.stepEdit}>
+     <div className={styles.stepFields}>
+      <Field label={'السؤال '+(index+1)} value={item.q} onChange={event=>set({faqs:guide.faqs.map((faq,i)=>i===index?{...faq,q:event.target.value}:faq)})}/>
+      <label className={styles.field}>الجواب<textarea rows={2} value={item.a} onChange={event=>set({faqs:guide.faqs.map((faq,i)=>i===index?{...faq,a:event.target.value}:faq)})}/></label>
+      <div className={styles.stepTools}><button type="button" onClick={()=>set({faqs:guide.faqs.filter((_,i)=>i!==index)})}>إزالة السؤال</button></div>
+     </div>
+    </div>)}
+    <button type="button" className={styles.secondary} style={{justifySelf:'start'}} onClick={()=>set({faqs:[...guide.faqs,{q:'',a:''}]})}><Plus size={16} aria-hidden="true"/> أضف سؤالًا</button>
+    <div className={styles.field}>معاملات مرتبطة (حتى 6)<div className={styles.relatedPick}>{state.guides.filter(item=>item.slug!==guide.slug).map(item=><label key={item.id} className={styles.check}><input type="checkbox" checked={guide.related.includes(item.slug)} disabled={!guide.related.includes(item.slug)&&guide.related.length>=6} onChange={event=>set({related:event.target.checked?[...guide.related,item.slug]:guide.related.filter(slug=>slug!==item.slug)})}/> {item.title}</label>)}</div></div>
    </fieldset>
    <fieldset className={styles.panel}>
     <legend>التحقق والنشر</legend>

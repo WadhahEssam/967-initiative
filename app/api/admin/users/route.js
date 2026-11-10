@@ -2,6 +2,7 @@ import {authorizeEditorRequest} from '@/lib/adminAuthorization';
 import {serverDb} from '@/lib/supabase-server';
 import {readJsonObject,RequestValidationError} from '@/lib/requestSecurity';
 import {accountRow,accountSummary,filterAccountRows,validateManagementAction} from '@/lib/managementUsers';
+import {releaseMarketAccount} from '@/lib/market/accountServer';
 
 export const dynamic='force-dynamic';
 export const runtime='nodejs';
@@ -80,6 +81,8 @@ async function deleteAccount(db,actor,target,editor){
  if(profile.data.display_name!=='حساب محذوف')throw new RequestValidationError('نفّذ «معالجة طلب الحذف وإخفاء الهوية» أولًا.',409);
  const released=await db.rpc('release_deleted_account',{p_user:target.id,p_successor:actor.id});
  if(released.error)throw released.error;
+ // «سوق 967»: archive their listings and remove the photos and WhatsApp number first.
+ await releaseMarketAccount(db,target.id);
  const {error}=await db.auth.admin.deleteUser(target.id);
  if(error)throw error;
  const moved=released.data?.reassigned||0;
