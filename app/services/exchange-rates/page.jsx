@@ -79,7 +79,7 @@ export default async function ExchangeRatesPage(){
     <li>قد يختلف السعر الفعلي قليلًا بين محل وآخر وخلال اليوم نفسه.</li>
     <li>يظهر تحذير إذا مضى على السعر أكثر من يوم، ويُخفى بعد يومين.</li>
    </ul>
-   <p>رأيت سعرًا مختلفًا؟ <Link href={'/contribute?type='+encodeURIComponent('تصحيح سعر صرف')}>أخبرنا</Link>.</p>
+   <p>رأيت سعرًا مختلفًا؟ <Link href={'/contribute?type='+encodeURIComponent('تصحيح معلومة')}>أخبرنا</Link>.</p>
   </aside>
  </div>;
 }
