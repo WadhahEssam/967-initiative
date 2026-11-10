@@ -10,7 +10,7 @@ test('the school home is a four-world adventure map, not a grid of duplicate cou
  assert.ok(home.includes('id="school-paths"'));
  assert.ok(home.includes('<SchoolWorldMap/>'));
  assert.ok(home.includes('href="/school/dashboard"'));
- assert.ok(home.includes('15 مسارًا و180 محطة'));
+ assert.ok(home.includes('15 مسارًا و180 درسًا'));
  for(const href of ['/school/writing','/school/nature','/school/logic','/school/civic'])assert.ok(map.includes("href:'"+href+"'"),href);
  assert.ok(map.includes("id:'writing'")&&map.includes("id:'nature'")&&map.includes("id:'logic'")&&map.includes("id:'civic'"));
  assert.ok(map.includes('const worlds=['));
