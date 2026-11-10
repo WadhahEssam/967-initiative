@@ -28,6 +28,14 @@ test('JSON reader accepts Arabic but rejects malformed values and unsupported me
   for (const body of ['null', '[]', 'true', '1', '"string"', '{']) await assert.rejects(readJsonObject(request(body)), error => error.status === 400);
   await assert.rejects(readJsonObject(request('{}', {'content-type': 'text/plain'})), error => error.status === 415);
 });
+test('the public site address is accepted behind the proxy, nothing else is',()=>{
+ // On Coolify the app sees its container address; the browser sends the public origin.
+ const behindProxy=(origin,extra={})=>new Request('http://0.0.0.0:3000/api/contact',{method:'POST',headers:{origin,host:'967ye.com','x-forwarded-proto':'https','sec-fetch-site':'same-origin',...extra}});
+ assert.ok(isSameOrigin(behindProxy('https://967ye.com')));
+ for(const origin of ['http://967ye.com','https://967ye.com.evil.test','https://evil.test','https://www.967ye.com','https://967ye.com/','https://user@967ye.com','null'])
+  assert.equal(isSameOrigin(behindProxy(origin)),false,origin);
+ assert.equal(isSameOrigin(behindProxy('https://967ye.com',{'sec-fetch-site':'cross-site'})),false);
+});
 test('loopback aliases require the actual matching host, scheme and port',()=>{
  const local=(origin,host,extra={})=>new Request('http://localhost:3105/api/admin/pages',{headers:{origin,host,...extra}});
  assert.ok(isSameOrigin(local('http://127.0.0.1:3105','127.0.0.1:3105')));
