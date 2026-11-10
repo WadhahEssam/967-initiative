@@ -2,28 +2,47 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {historyListEntries, historySourceCount} from '../lib/yemenHistory.js';
+import {historyDetailsMap, historyEntryDetails, historyIndexEntry, historySourceCount} from '../lib/yemenHistory.js';
+import {toFigureDetails, toFigureIndexEntry} from '../lib/yemeniFigures.js';
+import {figureFilterDefaults, filterFigures} from '../lib/figureFilters.js';
 import {institutionListItems, institutionSearchFields} from '../lib/institutionDirectories.js';
 
 const read = p => readFileSync(new URL('../' + p, import.meta.url), 'utf8');
 
-test('history list: cards keep their fields, states keep what the comparison uses, drafts are dropped', () => {
+test('history page: light rows for every entry, details for cards and states, drafts dropped', () => {
   const event = {slug: 'e', title: 'حدث', summary: 'ملخص', period: 'فترة', location: 'مأرب', kind: 'event', era: 'origins', year: -700, governorate: 'YE26',
-    hideImages: false, images: [{file: 'a.jpg'}, {file: 'b.jpg'}], sources: [{url: 'u1'}, {url: 'u2'}, {url: 'u3'}], paragraphs: ['p1', 'p2', 'p3'], related: ['x'], certainty: 'c'};
+    hideImages: false, images: [{file: 'a.jpg', caption: 'c', alt: 'c', credit: 'x', license: 'y', kind: 'context'}, {file: 'b.jpg'}], sources: [{url: 'u1', title: 't1', note: 'n'}, {url: 'u2'}, {url: 'u3'}], paragraphs: ['p1', 'p2', 'p3'], related: ['x'], certainty: 'c'};
   const state = {...event, slug: 's', kind: 'state', comparison: {capital: 'مأرب'}};
-  const [card, kept] = historyListEntries([event, state, {...event, slug: 'draft', isPublished: false}]);
-  assert.equal(historyListEntries([event, {...event, isPublished: false}]).length, 1);
-  assert.deepEqual(Object.keys(card).sort(), ['era', 'governorate', 'hideImages', 'images', 'kind', 'location', 'period', 'slug', 'sourceCount', 'summary', 'title', 'year']);
-  assert.deepEqual(card.images, [{file: 'a.jpg'}]);
-  assert.equal(historySourceCount(card), 3);
+  assert.deepEqual(historyIndexEntry(event), {slug: 'e', title: 'حدث', kind: 'event', era: 'origins', year: -700, governorate: 'YE26'});
+  const map = historyDetailsMap([event, state, {...event, slug: 'draft', isPublished: false}]);
+  assert.deepEqual(Object.keys(map), ['e', 's']);
+  const card = map.e, kept = map.s;
+  assert.deepEqual(Object.keys(card).sort(), ['images', 'location', 'period', 'sourceCount', 'summary']);
+  assert.deepEqual(card.images, [{file: 'a.jpg', caption: 'c', kind: 'context'}], 'one photo, no credit, alt only when it differs');
+  assert.equal(historySourceCount({...historyIndexEntry(event), ...card}), 3);
   assert.equal(historySourceCount(state), 3, 'full entries still count their sources');
   assert.deepEqual(kept.paragraphs, ['p1', 'p2']);
-  assert.deepEqual(kept.images, [{file: 'a.jpg'}]);
-  assert.deepEqual(kept.sources, state.sources);
+  assert.deepEqual(kept.sources, [{url: 'u1', title: 't1'}, {url: 'u2', title: undefined}, {url: 'u3', title: undefined}]);
   assert.deepEqual(kept.related, ['x']);
   assert.deepEqual(kept.comparison, {capital: 'مأرب'});
+  assert.equal(historyEntryDetails({...event, hideImages: true}).hideImages, true);
   assert.equal(state.paragraphs.length, 3, 'the cached catalog is not changed');
-  assert.match(read('app/yemen-history/page.jsx'), /<HistoryExplorer entries=\{historyListEntries\(catalog\.entries\)\}/);
+  const page = read('app/yemen-history/page.jsx');
+  assert.ok(page.includes("<HistoryExplorer entries={published.map(historyIndexEntry)} details={pickDetails(details,[firstStop,...pair])} detailsUrl={'/api/history/details?v='+version}"));
+});
+
+test('figures page: light rows keep every filter and sort field, details carry the card', () => {
+  const figure = {id: 'id1', slug: 'f', fullName: 'اسم', knownFor: 'عمل', shortBio: 'نبذة', field: 'أدب', governorateId: 'YE11', governorateName: 'صنعاء', era: 'معاصر', birthYear: 1950, deathYear: null,
+    imageUrl: 'https://x/a.jpg', imageCredit: 'c', imageKind: 'portrait', imageSourceUrl: 'https://x', createdAt: '2026-01-01T00:00:00Z', isDemo: false, displayOrder: 3, website: '', facebookUrl: 'https://fb', instagramUrl: null, xUrl: null, youtubeUrl: null};
+  const row = toFigureIndexEntry(figure);
+  assert.deepEqual(row, {slug: 'f', fullName: 'اسم', field: 'أدب', governorateId: 'YE11', era: 'معاصر', birthYear: 1950, createdAt: '2026-01-01T00:00:00Z', hasPhoto: true, hasSocial: true});
+  assert.deepEqual(toFigureDetails(figure), {id: 'id1', knownFor: 'عمل', shortBio: 'نبذة', imageUrl: 'https://x/a.jpg', imageCredit: 'c', imageKind: 'portrait', imageSourceUrl: 'https://x', governorateName: 'صنعاء', facebookUrl: 'https://fb'});
+  const filters = {...figureFilterDefaults, social: true, photo: true, century: '20'};
+  assert.equal(filterFigures([row], filters).length, 1, 'filters work before the details arrive');
+  assert.equal(filterFigures([{...row, hasSocial: undefined, hasPhoto: undefined}], filters).length, 0);
+  const page = read('app/yemeni-figures/page.jsx');
+  assert.ok(page.includes("figures={figures.map(toFigureIndexEntry)} details={pickDetails(details,firstCards)} detailsUrl={'/api/figures/details?v='+version}"));
+  for (const route of ['app/api/history/details/route.js', 'app/api/figures/details/route.js']) assert.ok(read(route).includes("gate==='hidden'?"), route);
 });
 
 test('institution list items keep every field the cards, filters and search read', () => {
