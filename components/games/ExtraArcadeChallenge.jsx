@@ -1,5 +1,8 @@
 'use client';
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
+import {resultSharePath} from '@/lib/resultShare';
+import GameSignupInvite from './GameSignupInvite';
+import {trackFunnel,useFunnelStep} from '@/components/analytics/funnel';
 import Link from 'next/link';
 import {ArrowLeft,ArrowRight,CheckCircle2,Clock3,Flame,Play,RotateCcw,Share2,Target,Trophy,XCircle,Zap} from 'lucide-react';
 import {extraGameBuilders,extraGameTypes} from '@/lib/extraGames';
@@ -62,6 +65,9 @@ export default function ExtraArcadeChallenge({game,date,initialMode='practice'})
  const revealed=answer!==null&&(mode!=='daily'||verified);
  const duration=roundDuration(mode,seconds);
  const active=!!task&&!finished&&answer===null&&mediaReady&&!verifying&&(mode!=='daily'||clockReady);
+ // Conversion counters: a round started and a round finished (once per run).
+ useFunnelStep('game_start',tasks.length>0,game+':'+mode+':'+runId);
+ useFunnelStep('game_done',finished,game+':'+mode+':'+runId);
  const timer=useQuestionTimer({seconds:duration,token:runId+':'+index,active,
   startTime:mode==='daily'?serverStartedAt:null,onExpire:()=>submit(null,true)});
  // eslint-disable-next-line react-hooks/exhaustive-deps -- keyed on task id; the task object is replaced when its answer is revealed
@@ -155,7 +161,9 @@ export default function ExtraArcadeChallenge({game,date,initialMode='practice'})
  }
  async function share(){
   const score=mode==='daily'?officialResult?.score??0:total;
-  const url=location.origin+'/games/'+game+(mode==='daily'?'?mode=daily':'');
+  // A result link: its page and preview image show the score as a challenge (app/share/result).
+  const url=location.origin+(resultSharePath({kind:'game',game,score:correctCount,total:tasks.length,daily:mode==='daily'})||'/games/'+game);
+  trackFunnel('share_click',game);
   const message='حققت '+score+' نقطة في «'+meta.title+'» ضمن ألعاب 967. هل تتفوق عليّ؟';
   try{
    if(navigator.share)await navigator.share({title:'ألعاب 967',text:message,url});
@@ -226,6 +234,7 @@ export default function ExtraArcadeChallenge({game,date,initialMode='practice'})
     <div><strong>{stats.best}</strong><span>أفضل نتيجة محلية</span></div>
    </div>
    <p>{mode==='daily'?'نتيجتك محفوظة وموثقة في لوحة المتصدرين الموحدة.':'تُحفظ نتائج الجولات الحرة في هذا المتصفح فقط.'}</p>
+   {mode!=='daily'&&<GameSignupInvite/>}
    <div className={styles.actions}>
     {mode==='daily'&&<Link href="/games/leaderboard" className={styles.primary}>لوحة المتصدرين <Trophy size={17}/></Link>}
     <button type="button" className={styles.primary} onClick={reset}><RotateCcw size={17}/> جولة جديدة</button>

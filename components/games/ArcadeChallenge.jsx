@@ -1,5 +1,8 @@
 'use client';
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
+import {resultSharePath} from '@/lib/resultShare';
+import GameSignupInvite from './GameSignupInvite';
+import {trackFunnel,useFunnelStep} from '@/components/analytics/funnel';
 import Link from 'next/link';
 import {ArrowLeft,ArrowRight,CheckCircle2,Clock3,Flame,Play,RotateCcw,Share2,Target,Trophy,XCircle,Zap} from 'lucide-react';
 import {buildPlaceChallenges,buildTimelineChallenges,buildMapChallenges,gameTypes,isTimelineCorrect} from '@/lib/arcadeChallenges';
@@ -55,6 +58,9 @@ export default function ArcadeChallenge({game,date,initialMode='practice'}){
  const revealed=answer!==null&&(mode!=='daily'||verified);
  const duration=roundDuration(mode,seconds);
  const isActive=tasks.length>0&&!finished&&answer===null&&ready&&!verifying&&(mode!=='daily'||clockReady);
+ // Conversion counters: a round started and a round finished (once per run).
+ useFunnelStep('game_start',tasks.length>0,game+':'+mode+':'+runId);
+ useFunnelStep('game_done',finished,game+':'+mode+':'+runId);
  const timer=useQuestionTimer({seconds:duration,token:runId+':'+index,active:isActive,startTime:mode==='daily'?serverStartedAt:null,onExpire:()=>submitAnswer(null,true)});
  useEffect(()=>{if(tasks.length&&!finished)titleRef.current?.focus({preventScroll:true});},[index,finished,tasks.length]);
  useEffect(()=>{
@@ -136,7 +142,9 @@ export default function ArcadeChallenge({game,date,initialMode='practice'}){
  function reset(){setTasks([]);setIndex(0);setRecords([]);setAnswer(null);setFinished(false);answerLocked.current=false;setShareStatus('');setSyncError('');setVerified(false);setOfficialResult(null);setClockReady(false);setServerStartedAt(null);}
  async function share(){
   const total=records.reduce((sum,r)=>sum+r.points,0);
-  const url=location.origin+'/games/'+game+(mode==='daily'?'?mode=daily':'');
+  // A result link: its page and preview image show the score as a challenge (app/share/result).
+  const url=location.origin+(resultSharePath({kind:'game',game,score:mode==='daily'&&officialResult?officialResult.correct:correctCount,total:tasks.length,daily:mode==='daily'})||'/games/'+game);
+  trackFunnel('share_click',game);
   const text='حصلت على '+total+' نقطة في «'+gameTypes[game].title+'» ضمن ألعاب 967. هل تتفوق عليّ؟';
   try{if(navigator.share)await navigator.share({title:'ألعاب 967',text,url});
    else if(navigator.clipboard){await navigator.clipboard.writeText(text+' '+url);setShareStatus('تم نسخ رابط المشاركة ونتيجتك.');}
@@ -194,6 +202,7 @@ export default function ArcadeChallenge({game,date,initialMode='practice'}){
    <h2>{correctCount===tasks.length?'أنت خبير حقيقي!':correctCount>=6?'نتيجة رائعة!':'تحدٍ جديد في انتظارك'}</h2>
    <div className={styles.resultStats}><div><strong>{correctCount} / {tasks.length}</strong><span>إجابات صحيحة</span></div><div><strong>{mode==='daily'?officialResult?.score??'—':total}</strong><span>{mode==='daily'?'النقاط الرسمية / 1000':'نقاط الجولة'}</span></div><div><strong>{stats.best}</strong><span>أفضل نتيجة محلية</span></div></div>
    <p>{mode==='daily'?'نتيجتك موثقة ومحفوظة في حسابك؛ تدخل تلقائياً في الترتيب الرسمي الموحد.':'انتهت الجولة. الإجابات الخاطئة أو التي انتهى وقتها لا تحصل على نقاط.'}</p>
+   {mode!=='daily'&&<GameSignupInvite/>}
    {mode==='daily'&&<Link className={styles.secondary} href="/games/leaderboard">شاهد ترتيبك في لوحة المتصدرين <Trophy size={16}/></Link>}
    <div className={styles.actions}><button className={styles.primary} type="button" onClick={reset}><RotateCcw size={18}/> جولة جديدة</button><button className={styles.secondary} type="button" onClick={share}><Share2 size={17}/> مشاركة</button><Link className={styles.secondary} href="/games">جميع الألعاب <ArrowRight size={17}/></Link></div>
    {shareStatus&&<p role="status" className={styles.credit}>{shareStatus}</p>}

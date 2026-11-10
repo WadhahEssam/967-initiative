@@ -1,5 +1,8 @@
 'use client';
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
+import {resultSharePath} from '@/lib/resultShare';
+import GameSignupInvite from './GameSignupInvite';
+import {trackFunnel,useFunnelStep} from '@/components/analytics/funnel';
 import Link from 'next/link';
 import {ArrowLeft,ArrowRight,BookOpen,CheckCircle2,Flame,Medal,RotateCcw,Share2,Target,Trophy,Zap,XCircle} from 'lucide-react';
 import {buildQuizRound,scoreRound,gameLevels,quizCategories,difficultyLabels} from '@/lib/gameEngine';
@@ -40,6 +43,9 @@ export default function QuizGame({questions,date,initialMode='practice'}){
  // Daily answers are only known after the server has committed the choice.
  const revealed=picked!==null&&(mode!=='daily'||verified);
  const duration=roundDuration(mode,seconds);
+ // Conversion counters: a round started and a round finished (once per run).
+ useFunnelStep('game_start',round.length>0,'quiz:'+mode+':'+runId);
+ useFunnelStep('game_done',Boolean(result),'quiz:'+mode+':'+runId);
  const timer=useQuestionTimer({seconds:duration,token:runId+':'+step,startTime:mode==='daily'?serverStartedAt:null,active:round.length>0&&!result&&picked===null&&!verifying&&(mode!=='daily'||clockReady),onExpire:()=>choose(-1,true)});
  // Align the timer AND question before the first paint after each transition.
  // The global page may use smooth scrolling; never animate while the clock runs.
@@ -125,7 +131,9 @@ export default function QuizGame({questions,date,initialMode='practice'}){
  async function share(){
   const title='تحدي ألعاب 967';
   const shareText='حققت '+result.correct+' من '+round.length+' في اختبار معرفتي باليمن! هل تتفوق على نتيجتي؟';
-  const url=location.origin+'/games/quiz'+(mode==='daily'?'?mode=daily':'');
+  // A result link: its page and preview image show the score as a challenge (app/share/result).
+  const url=location.origin+(resultSharePath({kind:'game',game:'quiz',score:answerNumber,total:round.length,daily:mode==='daily'})||'/games/quiz');
+  trackFunnel('share_click','quiz');
   try{
    if(navigator.share){await navigator.share({title,text:shareText,url});setShareNote('تم فتح خيارات المشاركة.');}
    else if(navigator.clipboard){await navigator.clipboard.writeText(shareText+' '+url);setShareNote('نُسخ رابط التحدي ونتيجتك.');}
@@ -199,6 +207,7 @@ export default function QuizGame({questions,date,initialMode='practice'}){
     <h2>{result.correct===round.length?'أحسنت! جميع الإجابات صحيحة.':result.correct>=round.length/2?'جولة جيدة! واصل الاستكشاف.':'كل جولة فرصة لتعرف اليمن أكثر.'}</h2>
     <div className={styles.resultGrid}><div><strong>{answerNumber} / {round.length}</strong><span>إجابات صحيحة</span></div><div><strong>{mode==='daily'?officialResult?.score??'—':result.total}</strong><span>{mode==='daily'?'النقاط الرسمية / 1000':'نقاط هذه الجولة'}</span></div><div><strong>{stats.best}</strong><span>أفضل نتيجة على الجهاز</span></div></div>
     <p>{mode==='daily'?'تم حفظ نتيجتك الرسمية في Supabase. يمكنك مشاهدة ترتيبك في المنافسة الموحدة.':'يمكنك العودة للأسئلة أو بدء جولة أخرى. النتيجة محفوظة في متصفحك.'}</p>
+   {mode!=='daily'&&<GameSignupInvite/>}
     {mode==='daily'&&<Link href="/games/leaderboard" className={styles.primary}>شاهد لوحة المتصدرين <Trophy size={17}/></Link>}
     <div className={styles.finishActions}><button type="button" className={styles.primary} onClick={()=>{setRound([]);setResult(null);setPicked(null);setAnswers([]);}}>ابدأ جولة أخرى <RotateCcw size={18}/></button><button type="button" className={styles.secondary} onClick={share}>شارك التحدي <Share2 size={17}/></button><Link href="/games" className={styles.secondary}>جميع الألعاب <ArrowRight size={17}/></Link></div>
     {shareNote&&<p className={styles.shareNote} role="status">{shareNote}</p>}
