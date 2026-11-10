@@ -2,7 +2,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {parseEnvFile, pointsOutside, previewEnvironment} from '../scripts/preview-local.mjs';
+import net from 'node:net';
+import {parseEnvFile, pointsOutside, portInUse, previewEnvironment} from '../scripts/preview-local.mjs';
 
 const development = [
   'NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321',
@@ -57,4 +58,14 @@ test('the preview build has its own directory and npm script', () => {
   assert.match(config, /process\.env\.NEXT_PREVIEW_LOCAL === '1' \? '\.next-preview'/);
   assert.equal(JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')).scripts.preview, 'node scripts/preview-local.mjs');
   assert.match(readFileSync(new URL('../.gitignore', import.meta.url), 'utf8'), /^\.next-preview\/$/m);
+});
+
+test('a preview already running on the port is detected before anything is rebuilt', async () => {
+  const server = net.createServer();
+  await new Promise(resolve => server.listen(0, resolve));
+  const {port} = server.address();
+  assert.equal(await portInUse(port), true);
+  await new Promise(resolve => server.close(resolve));
+  assert.equal(await portInUse(port), false);
+  assert.ok(readFileSync(new URL('../scripts/preview-local.mjs', import.meta.url), 'utf8').indexOf('portInUse(port)') < readFileSync(new URL('../scripts/preview-local.mjs', import.meta.url), 'utf8').indexOf("runNext(['build']"));
 });

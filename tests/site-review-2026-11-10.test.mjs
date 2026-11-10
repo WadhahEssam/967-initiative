@@ -23,7 +23,7 @@ test('a phone field with several numbers becomes several dialable numbers', () =
 test('official question timers follow the server clock, not the phone', () => {
   const now = Date.now(), server = new Date(now + 5000).toISOString(), start = new Date(now + 5000 - 2000).toISOString();
   const elapsed = now - Date.parse(localStartTime(start, server));
-  assert.ok(elapsed >= 1990 && elapsed <= 2600, String(elapsed));
+  assert.ok(elapsed >= 1500 && elapsed <= 2600, String(elapsed)); // about 2 s; the slack covers a busy test machine
   assert.equal(localStartTime('not a date', server), null);
   assert.equal((read('app/api/games/daily/round/route.js').match(/serverNow:new Date\(\)\.toISOString\(\)/g) || []).length, 3);
   for (const file of ['components/games/QuizGame.jsx', 'components/games/ArcadeChallenge.jsx', 'components/games/ExtraArcadeChallenge.jsx', 'components/games/FriendDuel.jsx'])

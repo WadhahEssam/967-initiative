@@ -36,7 +36,7 @@
 .section > h2 { margin: 0 0 6px; font: 700 var(--t-size-h2)/var(--t-lh-heading) var(--t-display); color: var(--c-ink); }
 .section > p { margin: 0 0 var(--s-3, 12px); color: var(--c-ink-2); font-size: var(--t-size-ui); line-height: var(--t-lh-ui); max-width: var(--t-measure); }
 .tool { padding: var(--s-4, 16px); border-radius: var(--r-3, 16px); background: var(--c-surface); border: 1px solid var(--c-line); }
-.tabs { display: inline-flex; gap: 4px; padding: 4px; margin-bottom: var(--s-4, 16px); border-radius: var(--r-pill, 999px); background: var(--c-surface-3); }
+.tabs { display: inline-flex; justify-self: start; gap: 4px; padding: 4px; margin-bottom: var(--s-4, 16px); border-radius: var(--r-pill, 999px); background: var(--c-surface-3); }
 .tabs button { min-height: var(--target); padding: 0 16px; border: 0; border-radius: var(--r-pill, 999px); background: transparent; color: var(--c-ink-2); font: 600 var(--t-size-ui)/1 var(--t-text); cursor: pointer; }
 .tabs button[aria-pressed="true"] { background: var(--c-surface); color: var(--c-ink); box-shadow: var(--e-1); }
 .fields { display: grid; gap: var(--s-3, 12px); grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); }
@@ -105,3 +105,29 @@
 .history li[data-hidden="true"] { opacity: .6; text-decoration: line-through; }
 .history time { font-weight: 600; color: var(--c-ink); }
 .history button { margin-inline-start: auto; min-height: 36px; padding: 0 12px; border-radius: var(--r-pill, 999px); border: 1px solid var(--c-line-2); background: var(--c-surface-2); color: var(--c-ink-2); font: 600 var(--t-size-meta)/1 var(--t-text); cursor: pointer; }
+
+/* Staple prices: one table, cities as columns, items grouped. */
+.foodWrap { max-width: 860px; border-radius: var(--r-3, 16px); background: var(--c-surface); border: 1px solid var(--c-line); box-shadow: var(--e-1); overflow: clip; }
+.food { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; table-layout: fixed; }
+.food thead th { padding: 12px; background: var(--c-surface-2); text-align: start; font: 700 var(--t-size-ui)/1.3 var(--t-text); color: var(--c-ink); border-bottom: 1px solid var(--c-line); }
+.food thead th:first-child { width: 38%; }
+.food th, .food td { padding: 10px 12px; text-align: start; vertical-align: top; border-top: 1px solid var(--c-line); }
+.food tbody th { font: 600 var(--t-size-ui)/1.35 var(--t-text); color: var(--c-ink); }
+.food tbody th small, .food td small { display: block; margin-top: 2px; font: 400 var(--t-size-meta)/1.35 var(--t-text); color: var(--c-ink-3); }
+.foodGroup th { padding-top: 14px; padding-bottom: 6px; background: var(--c-surface-2); font-size: var(--t-size-meta) !important; font-weight: 700 !important; color: var(--c-accent) !important; letter-spacing: 0; }
+.foodPrice { display: inline-block; margin-inline-end: 6px; font: 700 1.05rem/1.25 var(--t-text); color: var(--c-ink); }
+.food td small.up, .food td small.down { display: inline-flex; margin-top: 0; }
+.food td small.up { color: var(--c-danger); }
+.food td small.down { color: var(--c-success); }
+.food td[data-stale] .foodPrice { color: var(--c-ink-2); }
+.food td small.foodStale { color: var(--c-caution); font-weight: 600; }
+.foodEmpty { color: var(--c-ink-3); }
+@media (max-width: 480px) {
+  .food th, .food td { padding: 9px 8px; }
+  .food thead th:first-child { width: 34%; }
+}
+.entryHead { font-size: var(--t-size-meta) !important; color: var(--c-ink-3) !important; }
+.batchDetails { flex-basis: 100%; }
+.batchDetails summary { cursor: pointer; min-height: 32px; display: flex; align-items: center; color: var(--c-accent); font-weight: 600; }
+.batchDetails ul { margin: 4px 0 0; padding-inline-start: 1.2em; display: grid; gap: 2px; }
+.head p a { color: var(--c-accent); font-weight: 600; }
