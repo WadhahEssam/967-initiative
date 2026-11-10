@@ -1,5 +1,6 @@
 'use client';
 import {useCallback,useEffect,useState} from 'react';
+import {countOf} from '@/lib/arabicCount';
 import {Award,BookOpenCheck,CalendarCheck,Flame,GraduationCap,LockKeyhole,Medal,PenLine,Route,ShieldCheck,Sparkles,Target,Trophy,Waves} from 'lucide-react';
 import {browserDb} from '@/lib/supabase';
 import styles from '@/app/school/dashboard/dashboard.module.css';
@@ -75,7 +76,7 @@ export default function SchoolCompetition({achievements}){
      return <li key={entry.nickname+'-'+i} className={[styles.leaderboardEntry,mine?styles.leaderboardMine:''].join(' ')}>
       <span className={styles.leaderboardRank} dir="ltr">#{entry.rank}</span>
       <strong>{entry.nickname}{mine?' (أنت)':''}</strong>
-      <span className={styles.leaderboardPoints} dir="ltr">{entry.xp} XP<small>{entry.stages} محطة</small></span>
+      <span className={styles.leaderboardPoints} dir="ltr">{entry.xp} XP<small>{countOf(entry.stages,'lesson')}</small></span>
      </li>;
     })}</ol>:<p className={styles.leaderboardEmpty}>لا توجد نقاط تنافسية منشورة لهذه الفترة حتى الآن.</p>}
    <div className={styles.participationPanel}>

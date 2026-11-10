@@ -39,7 +39,7 @@ export default async function SchoolLogicPage(){
     <p>12 درسًا متدرجًا في كل مسار؛ أول ثلاثة مفتوحة دون حساب، وإنهاء الدرس يفتح التالي، والنجوم تقيس إتقانك.</p></div>
    <SchoolTrackTrail theme="logic" tracks={tracks.filter(Boolean).map(({slug,icon,visual,course,stageCount})=>({slug,icon,glyph:visual,title:course.title,description:course.description,count:stageCount,label:'تجارب في التفكير'}))} intro="كل مسار مغامرة مستقلة: استدلال وألغاز، كشف المغالطات، إشارات مورس والدوائر الرقمية."/>
    {tracks.every(c=>c===null)&&<p className={styles.logicEmpty}>لا توجد مسارات منشورة في هذا القسم حاليًا.</p>}
-   <div className={styles.logicBottomNote}><BookOpen size={18}/> يمكنك التنقل بين المسارات الأربعة بحرية، لكن المحطات داخل كل مسار تُفتح بالترتيب.</div>
+   <div className={styles.logicBottomNote}><BookOpen size={18}/> يمكنك التنقل بين المسارات الأربعة بحرية، لكن الدروس داخل كل مسار تُفتح بالترتيب، وأول ثلاثة منها مفتوحة للجميع.</div>
   </div></section>
  </div>;
 }

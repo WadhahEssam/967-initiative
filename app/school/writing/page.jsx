@@ -26,7 +26,7 @@ export default async function WritingPage(){
   <div className={styles.breadcrumb}><Link href="/school">مدرسة 967</Link><ChevronLeft size={14}/> الكتابة والأدب</div>
   <span className={styles.eyebrow}><PenTool size={17}/> الكتابة والأدب</span>
   <h1>من شكل الحرف، <em>إلى فن التعبير.</em></h1>
-  <p>مسارات تساعدك على إتقان الكتابة والنظم خطوة بخطوة. تعلم خط المسند والعروض والخطوط العربية عبر 36 محطة تفاعلية، وتابع رحلتك من مكان واحد.</p><Link className={styles.primaryLink} href="/school/dashboard">عرض رحلتي التعليمية <ArrowLeft size={18}/></Link>
+  <p>مسارات تساعدك على إتقان الكتابة والنظم خطوة بخطوة. تعلم خط المسند والعروض والخطوط العربية عبر 36 درسًا تفاعليًا، وتابع رحلتك من مكان واحد.</p><Link className={styles.primaryLink} href="/school/dashboard">عرض رحلتي التعليمية <ArrowLeft size={18}/></Link>
   </div></section>
   <section className={styles.catalogSection}><div className="container">
    <div className={styles.sectionTitle}><div><span>مسارات هذا القسم</span><h2>رحلتك تبدأ من هنا</h2></div></div>
