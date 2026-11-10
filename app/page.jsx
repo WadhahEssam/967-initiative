@@ -60,7 +60,7 @@ export default async function Home() {
     visible('games') && {href: dailyGameUrl(today), label: 'تحدي اليوم', sub: DAILY_GAME_TITLES[dailyGame], icon: Flame, hue: 'var(--c-violet)'},
     visible('school') && {href: '/school', label: 'تعلّم اليوم', sub: '15 مسارًا تفاعليًا', icon: GraduationCap, hue: 'var(--c-leaf)'},
     visible('debates') && debate && {href: '/debates/' + encodeURIComponent(debate.slug), label: debate.stage === 'live' ? 'مناظرة مباشرة' : 'مناظرة', sub: debate.title, icon: MessagesSquare, hue: 'var(--c-plum)', live: debate.stage === 'live'},
-    leadNumber && {href: '/yemen-in-numbers/indicator/' + encodeURIComponent(leadNumber.slug), label: 'رقم اليوم', sub: leadNumber.name + ': ' + formatCompact(leadNumber.latestValue.value), icon: BarChart3, hue: 'var(--c-indigo)'},
+    leadNumber && {href: '/yemen-in-numbers/indicator/' + encodeURIComponent(leadNumber.slug), label: 'رقم اليوم', sub: leadNumber.name + ': ' + formatCompact(leadNumber.latestValue.value) + (leadNumber.unit ? ' ' + leadNumber.unit : '') + (leadNumber.latestValue.year ? ' (' + leadNumber.latestValue.year + ')' : ''), icon: BarChart3, hue: 'var(--c-indigo)'},
     visible('atlas') && {href: '/yemen-map', label: 'خريطة اليمن', sub: '22 محافظة ومديرياتها', icon: MapPinned, hue: 'var(--c-teal)'},
   ];
 

@@ -80,8 +80,8 @@ export default function PrivateMessaging(){
    method:isAction?'POST':'GET',
    headers:{Authorization:'Bearer '+data.session.access_token,...(isAction?{'Content-Type':'application/json'}:{})},
    body:isAction?JSON.stringify(payload):undefined,cache:'no-store'
-  });
-  const body=await res.json();
+  }).catch(()=>{throw Error('تعذر الاتصال. تحقق من الإنترنت ثم أعد المحاولة.');});
+  const body=await res.json().catch(()=>({}));
   if(!res.ok)throw Error(body.error||'تعذر تنفيذ الطلب.');
   // Refresh the shared header badge immediately after reads, sends or decisions.
   if(isAction&&typeof window!=='undefined')window.dispatchEvent(new Event('967:messages-changed'));
@@ -718,14 +718,14 @@ export default function PrivateMessaging(){
     {!c.blocked&&<button type="button" role="menuitem" className={styles.deleteAction} disabled={busy} onClick={()=>{close();block({id:c.partner_id,name:c.partner_name});}}><Ban size={16} aria-hidden="true"/> حظر المستخدم</button>}
    </div>,document.body);})()}
   {copyToast>0&&<div key={copyToast} className={styles.copyToast} role="status">تم النسخ</div>}
-  {dialog&&<div className={styles.modalBackdrop} onMouseDown={e=>{if(e.target===e.currentTarget&&!busy)setDialog(null);}}><section className={styles.modal} role="dialog" aria-modal="true" aria-label={dialog.type==='request'?'طلب محادثة':'الإبلاغ عن إساءة'}>
+  {dialog&&<div className={styles.modalBackdrop} onMouseDown={e=>{if(e.target===e.currentTarget&&!busy)setDialog(null);}}><section className={styles.modal} role="dialog" aria-modal="true" aria-label={dialog.type==='request'?'طلب محادثة':'الإبلاغ عن إساءة'} onKeyDown={e=>{if(e.key==='Escape'&&!busy)setDialog(null);}}>
    <header><h2>{dialog.type==='request'?'طلب محادثة مع '+dialog.person.name:'الإبلاغ عن محتوى'}</h2><button onClick={()=>setDialog(null)} disabled={busy} aria-label="إغلاق"><X size={19}/></button></header>
    {dialog.type==='request'?<><p>اكتب رسالة تعريفية واحدة. لن تتمكن من إرسال المزيد حتى قبول الطلب.</p>
-    <textarea value={intro} maxLength={500} rows={4} onChange={e=>setIntro(e.target.value)} placeholder="مرحبًا، أود التواصل معك بشأن…"/>
+    <textarea autoFocus aria-label="رسالة تعريفية" value={intro} maxLength={500} rows={4} onChange={e=>setIntro(e.target.value)} placeholder="مرحبًا، أود التواصل معك بشأن…"/>
     <button className={styles.primary} disabled={busy||!intro.trim()} onClick={()=>create(dialog.person.id)}>إرسال الطلب</button></>:
     <><p>عند إرسال البلاغ، تستطيع الإدارة مراجعة الرسائل السابقة في هذه المحادثة حتى وقت البلاغ للتحقق من السياق. تُسجّل عمليات اطلاع الإدارة.</p>
-    <label>سبب البلاغ<select value={reason} onChange={e=>setReason(e.target.value)}>{Object.entries(REPORT_REASONS).map(([k,v])=><option key={k} value={k}>{v}</option>)}</select></label>
-    <textarea rows={3} maxLength={1000} value={detail} onChange={e=>setDetail(e.target.value)} placeholder="ملاحظات إضافية (اختيارية)"/>
+    <label>سبب البلاغ<select autoFocus value={reason} onChange={e=>setReason(e.target.value)}>{Object.entries(REPORT_REASONS).map(([k,v])=><option key={k} value={k}>{v}</option>)}</select></label>
+    <textarea aria-label="ملاحظات إضافية (اختيارية)" rows={3} maxLength={1000} value={detail} onChange={e=>setDetail(e.target.value)} placeholder="ملاحظات إضافية (اختيارية)"/>
     <button className={styles.primary} disabled={busy} onClick={review}>إرسال البلاغ</button></>}
    {error&&<p className={styles.error} role="alert">{error}</p>}
   </section></div>}

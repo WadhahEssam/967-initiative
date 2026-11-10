@@ -158,7 +158,7 @@ export default async function YemeniFigureProfilePage({params}) {
 
           <section className="figure-profile-significance">
             <BookOpenText size={27}/>
-            <div><span className="eyebrow">معروف بـ</span><h2>{toLatinDigits(figure.knownFor)}</h2><p>يُصنّف هذا الملف ضمن {figure.field} ويرتبط بمحافظة {figure.governorateName} في دليل شخصيات يمنية.</p></div>
+            <div><span className="eyebrow">معروف بـ</span><h2>{toLatinDigits(figure.knownFor)}</h2><p>يُصنّف هذا الملف ضمن {figure.field}{figure.governorateName?<> ويرتبط بمحافظة {figure.governorateName}</>:null} في دليل شخصيات يمنية.</p></div>
           </section>
           </>}
           <CrossSectionPaths items={crossLinks} id="figure-cross-paths" title="ضع السيرة في سياق أوسع"/>

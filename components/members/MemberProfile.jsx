@@ -25,8 +25,8 @@ export default function MemberProfile({memberId}){
   if(error||!data.session?.access_token)throw Error('انتهت جلسة تسجيل الدخول.');
   const res=await fetch(endpoint,{method,cache:'no-store',headers:{
    Authorization:'Bearer '+data.session.access_token,...(payload?{'Content-Type':'application/json'}:{})
-  },body:payload?JSON.stringify(payload):undefined});
-  const response=await res.json();
+  },body:payload?JSON.stringify(payload):undefined}).catch(()=>{throw Error('تعذر الاتصال. تحقق من الإنترنت ثم أعد المحاولة.');});
+  const response=await res.json().catch(()=>({}));
   if(!res.ok)throw Error(response.error||'تعذر تنفيذ الإجراء.');
   return response;
  },[memberId]);
