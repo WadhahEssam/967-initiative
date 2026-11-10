@@ -1,5 +1,6 @@
 'use client';
 import {useEffect,useLayoutEffect,useRef,useState} from 'react';
+import {useFunnelStep} from '@/components/analytics/funnel';
 import Link from 'next/link';
 import {ArrowLeft,ArrowRight,CheckCircle2,Clock3,Flame,Play,RotateCcw,Share2,Target,Trophy,XCircle,Zap} from 'lucide-react';
 import {extraGameBuilders,extraGameTypes} from '@/lib/extraGames';
@@ -62,6 +63,9 @@ export default function ExtraArcadeChallenge({game,date,initialMode='practice'})
  const revealed=answer!==null&&(mode!=='daily'||verified);
  const duration=roundDuration(mode,seconds);
  const active=!!task&&!finished&&answer===null&&mediaReady&&!verifying&&(mode!=='daily'||clockReady);
+ // Conversion counters: a round started and a round finished (once per run).
+ useFunnelStep('game_start',tasks.length>0,game+':'+mode+':'+runId);
+ useFunnelStep('game_done',finished,game+':'+mode+':'+runId);
  const timer=useQuestionTimer({seconds:duration,token:runId+':'+index,active,
   startTime:mode==='daily'?serverStartedAt:null,onExpire:()=>submit(null,true)});
  // eslint-disable-next-line react-hooks/exhaustive-deps -- keyed on task id; the task object is replaced when its answer is revealed
