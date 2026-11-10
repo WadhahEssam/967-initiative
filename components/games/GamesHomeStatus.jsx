@@ -2,7 +2,7 @@
 import {useEffect,useState} from 'react';
 import Link from 'next/link';
 import {ArrowUpLeft,CircleCheck,Flame,Medal,ShieldCheck,Trophy,UserRound,CalendarCheck2} from 'lucide-react';
-import {browserDb} from '@/lib/supabase';
+import {browserMayBeSignedIn,whenBrowserDb} from '@/lib/browserSession';
 import {utcDay} from '@/lib/dailyGame';
 import {createAccountWatch,shouldReloadOnAuth,createRefreshThrottle} from '@/lib/authEvents';
 import DailyCountdown from './DailyCountdown';
@@ -14,9 +14,12 @@ export default function GamesHomeStatus({initialDate}){
  const [revision,setRevision]=useState(0);
 
  useEffect(()=>{
+  // A visitor who never signed in sees the guest panel without loading the account client;
+  // signing in (here or in another tab) starts it.
+  if(!browserMayBeSignedIn())setState({kind:'guest',overview:null,rank:null,ranking:false});
+  return whenBrowserDb(db=>{
   let alive=true,sequence=0,authTimer=null,lastDate=utcDay();
-  const db=browserDb(),throttle=createRefreshThrottle(),account=createAccountWatch();
-  if(!db){setState({kind:'unavailable',overview:null,rank:null,ranking:false});return;}
+  const throttle=createRefreshThrottle(),account=createAccountWatch();
   const refresh=async()=>{
    const id=++sequence;throttle.mark();
    try{
@@ -75,6 +78,7 @@ export default function GamesHomeStatus({initialDate}){
    window.removeEventListener('focus',onFocus);
    subscription.unsubscribe();
   };
+  });
  },[revision]);
 
  const overview=state.kind==='ready'?{...state.overview,rank:state.rank}:null;

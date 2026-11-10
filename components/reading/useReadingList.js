@@ -1,7 +1,7 @@
 'use client';
 
 import {useSyncExternalStore} from 'react';
-import {browserDb} from '@/lib/supabase';
+import {currentSession} from '@/lib/browserSession';
 import {audienceRequest} from '@/components/debates/useAudience';
 import {parseReadingList, readingContentItem, READING_LIST_KEY, READING_LIST_LIMIT} from '@/lib/readingList';
 
@@ -32,13 +32,10 @@ function subscribe(listener) {
 // user-initiated change to the private account library. Existing anonymous items
 // are never silently imported into a possibly different person's account.
 function mirrorToAccount(body) {
- try {
-  const db=browserDb();
-  if(!db)return;
-  void db.auth.getSession().then(({data,error})=>{
-   if(!error&&data.session)return audienceRequest('/api/account/workspace',body);
-  }).catch(()=>{ /* Local copy remains; account offers explicit import. */ });
- }catch{ /* Local-only fallback when Supabase is unavailable. */ }
+ // currentSession() skips loading the account client for visitors who never signed in.
+ currentSession().then(session=>{
+  if(session)return audienceRequest('/api/account/workspace',body);
+ }).catch(()=>{ /* Local copy remains; account offers explicit import. */ });
 }
 function write(items) {
   localStorage.setItem(READING_LIST_KEY, JSON.stringify(items));

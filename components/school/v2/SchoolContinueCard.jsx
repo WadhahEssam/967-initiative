@@ -3,7 +3,7 @@
 import {useEffect, useState} from 'react';
 import Link from 'next/link';
 import {ArrowLeft, PlayCircle, CalendarCheck2} from 'lucide-react';
-import {browserDb} from '@/lib/supabase';
+import {currentSession} from '@/lib/browserSession';
 import styles from './SchoolContinueCard.module.css';
 
 export default function SchoolContinueCard() {
@@ -12,7 +12,7 @@ export default function SchoolContinueCard() {
     let alive = true;
     (async () => {
       try {
-        const db = browserDb(), {data: auth} = await db?.auth.getSession() || {};
+        const auth = {session: await currentSession()};
         const token = auth?.session?.access_token;
         if (!token) return;
         const res = await fetch('/api/school/dashboard', {cache: 'no-store', headers: {Authorization: 'Bearer ' + token}});
