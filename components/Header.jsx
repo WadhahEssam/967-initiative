@@ -249,7 +249,7 @@ export default function Header({actionLabel = 'ساهم معنا', contentLinks 
   // App bar (phones): where you are, and on detail pages a tap back to the list.
   const place = appBarPlace(path);
   // Phone tabs are jobs, not content types: today, explore, learn, play, you.
-  const exploreActive = path === '/explore' || path === '/search' || ['media', 'knowledge', 'directories', 'initiative'].some(id => mobileSectionActive(id));
+  const exploreActive = path === '/explore' || path === '/search' || ['media', 'knowledge', 'directories', 'services', 'initiative'].some(id => mobileSectionActive(id));
   const youHref = signedIn ? '/account' : loginHref;
   const youActive = /^\/(account|messages|notifications|read-later|login|register)(\/|$)/.test(path || '');
 
