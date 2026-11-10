@@ -19,6 +19,8 @@ import {readPublicHistoryCatalog} from '@/lib/historyRepository';
 import {serverDb} from '@/lib/supabase-server';
 import {getMapBoundaries} from '@/lib/mapProfileRepository';
 import {publishedSchoolCatalog,publishedSchoolStageList} from '@/lib/schoolContentServer';
+import {getPublishedGuides} from '@/lib/transactionGuidesServer';
+import {sectionStatus} from '@/lib/pageVisibility';
 
 export const dynamic = 'force-dynamic';
 
@@ -37,5 +39,7 @@ export default async function sitemap() {
   let school=[];
   try{const db=serverDb();const catalog=await publishedSchoolCatalog(db);school=await Promise.all(catalog.map(async course=>({slug:course.slug,lessons:(await publishedSchoolStageList(db,course.slug).catch(()=>[])).map(stage=>stage.index)})));}
   catch{recordOperationalEvent('source_unavailable',{source:'school',area:'sitemap'});}
-  return buildSitemap({...data,history,places,school,pageVisibility:settings.pageVisibility});
+  let guides=[];
+  if(sectionStatus('transactions',settings)==='visible'){try{guides=await getPublishedGuides(serverDb());}catch{recordOperationalEvent('source_unavailable',{source:'guides',area:'sitemap'});}}
+  return buildSitemap({...data,history,places,school,guides,pageVisibility:settings.pageVisibility});
 }

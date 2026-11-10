@@ -99,7 +99,7 @@ test('rates are entered by editors or by reporters management added, never read 
   assert.ok(sql.includes('revoke all on public.exchange_rates from public,anon,authenticated'));
   assert.ok(sql.includes('revoke all on public.exchange_rate_reporters from public,anon,authenticated'));
   const server = read('lib/exchangeRatesServer.js');
-  assert.ok(server.includes("authorizeEditorRequest(request,db,{allowMember:true})") && server.includes("from('exchange_rate_reporters')"));
+  assert.ok(server.includes("authorizeEditorRequest(request,db,{allowMember:true})") && server.includes("hasAccess(db,'exchange_rate_reporters',auth.user.id)"));
   assert.ok(read('app/api/admin/exchange-rate-reporters/route.js').includes("auth.role!=='management'"));
   // The entry page is not behind the section switch, so rates can be entered before launch.
   assert.ok(!read('app/services/exchange-rates/update/page.jsx').includes('sectionGate'));
