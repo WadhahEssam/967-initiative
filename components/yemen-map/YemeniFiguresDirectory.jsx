@@ -30,7 +30,7 @@ function figureInitials(name) {
     .map(word => word.replace(/^ال/, '').slice(0, 1)).join(' ');
 }
 
-export default function YemeniFiguresDirectory({figures, selectedGovernorateId,onGovernorateChange}) {
+export default function YemeniFiguresDirectory({figures, selectedGovernorateId,onGovernorateChange,detailsStatus='ready',onNeedDetails}) {
   const [filters,setFilters]=useState(figureFilterDefaults),[ready,setReady]=useState(false),[more,setMore]=useState(false);
   const {figureQ:query,field,era,social:withSocial,photo,century,birthFrom,birthTo,figureSort,visible:visibleCount}=filters;
   const change=patch=>setFilters(f=>({...f,visible:12,...patch}));
@@ -51,7 +51,8 @@ export default function YemeniFiguresDirectory({figures, selectedGovernorateId,o
   const returnParams=figureFilterSearch('',filters);if(selectedGovernorateId)returnParams.set('region',selectedGovernorateId);
   const returnTo='/yemeni-figures'+(returnParams.size?'?'+returnParams:'');
 
-  return <section className="yfigures-section" id="yemeni-figures">
+  // Any use of the directory fetches the remaining card details at once.
+  return <section className="yfigures-section" id="yemeni-figures" onPointerDownCapture={onNeedDetails} onFocusCapture={onNeedDetails}>
     <div className="container yfigures-container">
       <h2 className="sr-only">دليل الشخصيات اليمنية</h2>
 
@@ -78,12 +79,12 @@ export default function YemeniFiguresDirectory({figures, selectedGovernorateId,o
         <label><span>سنة الميلاد إلى</span><input type="number" min="500" max="2100" value={birthTo} onChange={e=>change({birthTo:e.target.value})}/></label>
       </div><p>الارتباط بالمحافظة لا يعني مكان الميلاد. التصفية الزمنية تستخدم سنوات الميلاد المسجلة فقط وتستبعد التواريخ المجهولة.</p></details>
       <ActiveFilters filters={[query&&{key:'q',label:'البحث: '+query,onRemove:()=>change({figureQ:''})},field!=='الكل'&&{key:'field',label:'المجال: '+field,onRemove:()=>change({field:'الكل'})},selectedGovernorateId&&{key:'region',label:'المحافظة: '+(yemenGovernorates.find(g=>g.id===selectedGovernorateId)?.name||'غير متاحة'),onRemove:()=>onGovernorateChange(null)},era!=='الكل'&&{key:'era',label:'الفترة: '+era,onRemove:()=>change({era:'الكل'})},withSocial&&{key:'social',label:'روابط تواصل',onRemove:()=>change({social:false})},photo&&{key:'photo',label:'صورة مسجلة',onRemove:()=>change({photo:false})},century&&{key:'century',label:'قرن الميلاد: '+century,onRemove:()=>change({century:''})},birthFrom&&{key:'birthFrom',label:'الميلاد من: '+birthFrom,onRemove:()=>change({birthFrom:''})},birthTo&&{key:'birthTo',label:'الميلاد إلى: '+birthTo,onRemove:()=>change({birthTo:''})}]} onClear={resetFilters}/>
-      <div className="yfigures-results-bar"><span role="status" aria-live="polite"><strong>{formatNumber(filteredFigures.length)}</strong> شخصية مطابقة</span>{selectedGovernorateId&&<small>تظهر الشخصيات المرتبطة بالمحافظة المحددة</small>}<label className="yfigures-sort">الترتيب<select value={figureSort} onChange={e=>change({figureSort:e.target.value})}><option value="default">ترتيب الدليل</option><option value="alpha">أبجديًا</option><option value="field">حسب المجال</option><option value="oldest">الميلاد: الأقدم أولًا</option><option value="youngest">الميلاد: الأحدث أولًا</option>{hasAddedDates&&<option value="newest">الأحدث إضافة في قاعدة البيانات</option>}</select></label></div>
+      <div className="yfigures-results-bar"><span role="status" aria-live="polite"><strong>{formatNumber(filteredFigures.length)}</strong> شخصية مطابقة{query&&detailsStatus!=='ready'&&<small> · البحث في الأسماء فقط حتى يكتمل تحميل النبذات</small>}</span>{selectedGovernorateId&&<small>تظهر الشخصيات المرتبطة بالمحافظة المحددة</small>}<label className="yfigures-sort">الترتيب<select value={figureSort} onChange={e=>change({figureSort:e.target.value})}><option value="default">ترتيب الدليل</option><option value="alpha">أبجديًا</option><option value="field">حسب المجال</option><option value="oldest">الميلاد: الأقدم أولًا</option><option value="youngest">الميلاد: الأحدث أولًا</option>{hasAddedDates&&<option value="newest">الأحدث إضافة في قاعدة البيانات</option>}</select></label></div>
 
       {filteredFigures.length ? <div className="yfigures-grid">
         {visibleFigures.map(figure => {
           const links = socialLinks(figure);
-          return <article className="yfigure-card" key={figure.id}>
+          return <article className="yfigure-card" key={figure.slug}>
             <Link className="yfigure-card-hitarea" href={'/yemeni-figures/'+figure.slug+'?from='+encodeURIComponent(returnTo)} aria-label={`عرض صفحة ${figure.fullName}`}><span className="sr-only">عرض صفحة {figure.fullName}</span></Link>
             <div className="yfigure-image">
               {hasFigureImageProvenance(figure) ? <Image src={figure.imageUrl} alt={figure.imageKind==='context'?figure.imageCredit:`صورة ${figure.fullName}`} fill sizes="88px" unoptimized={!canOptimizeImage(figure.imageUrl)} /> : <span className="yfigure-initials">{figureInitials(figure.fullName)}</span>}
@@ -92,8 +93,9 @@ export default function YemeniFiguresDirectory({figures, selectedGovernorateId,o
               <div className="yfigure-meta"><span className="yfigure-era">{figure.era}</span><span>{figure.field}</span>{lifeYears(figure) && <span dir="ltr">{lifeYears(figure)}</span>}</div>
               <h3>{figure.fullName}</h3>
               {figure.isDemo && <span className="status-badge">ملف توضيحي — يحتاج مراجعة</span>}
+              {figure.pending?<p role="status" style={{opacity:.75}}>{detailsStatus==='failed'?<>تعذر تحميل نبذة الشخصية. <button type="button" onClick={onNeedDetails} style={{textDecoration:'underline'}}>أعد المحاولة</button></>:'جارٍ تحميل النبذة…'}</p>:<>
               <strong>{toLatinDigits(figure.knownFor)}</strong>
-              <p>{toLatinDigits(figure.shortBio)}</p>
+              <p>{toLatinDigits(figure.shortBio)}</p></>}
               <div className="yfigure-footer">
                 {figure.governorateName&&<span className="yfigure-location"><MapPinned size={17}/>{figure.governorateName}<small>المحافظة المرتبطة</small></span>}
                 {links.length > 0 && <div className="yfigure-socials">{links.map(({url, label, icon: Icon}) => <a href={url} target="_blank" rel="noreferrer" aria-label={`${label} - ${figure.fullName}`} title={label} key={label}><Icon size={17}/></a>)}</div>}

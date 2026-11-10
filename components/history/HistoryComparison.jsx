@@ -4,14 +4,9 @@ import Link from '@/components/SiteLink';
 import {ArrowLeftRight,ArrowUpLeft,BookOpenText,CalendarRange,Check,Copy,ExternalLink,GitCompareArrows,Landmark,MapPinned,ScrollText} from 'lucide-react';
 import {historyEntryPath,historyEras,historyYear} from '@/lib/yemenHistory';
 import {yemenGovernorates} from '@/lib/yemeniFigures';
-import {HISTORY_COMPARISON_GROUPS,comparisonFact,comparisonPeriod,comparisonCoverage,comparisonPairNote,historyComparisonOverlap} from '@/lib/historyComparisons';
+import {HISTORY_COMPARISON_GROUPS,defaultHistoryPair,comparisonFact,comparisonPeriod,comparisonCoverage,comparisonPairNote,historyComparisonOverlap} from '@/lib/historyComparisons';
 import styles from './HistoryComparison.module.css';
 
-const defaultPair=entries=>{
- const first=entries.find(row=>row.slug==='saba')?.slug||entries[0]?.slug||'';
- const second=entries.find(row=>row.slug==='qataban'&&row.slug!==first)?.slug||entries.find(row=>row.slug!==first)?.slug||'';
- return [first,second];
-};
 function citedSource(entry,url){
  return entry.sources?.find(source=>source.url===url)||null;
 }
@@ -95,9 +90,9 @@ function ReferenceList({entry}){
   <ol>{entry.sources?.map((source,index)=><li key={source.url+'-'+index}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.title}<ExternalLink size={14}/></a></li>)}</ol>
  </section>;
 }
-export default function HistoryComparison({entries}){
+export default function HistoryComparison({entries,detailsStatus='ready',onRetry}){
  const states=useMemo(()=>entries.filter(item=>item.kind==='state'&&item.isPublished!==false),[entries]);
- const [initialA,initialB]=useMemo(()=>defaultPair(states),[states]);
+ const [initialA,initialB]=useMemo(()=>defaultHistoryPair(states),[states]);
  const [firstSlug,setFirstSlug]=useState(initialA);
  const [secondSlug,setSecondSlug]=useState(initialB);
  const [activeTab,setActiveTab]=useState('overview');
@@ -133,6 +128,7 @@ export default function HistoryComparison({entries}){
  };
  const first=states.find(item=>item.slug===firstSlug),second=states.find(item=>item.slug===secondSlug);
  const ready=Boolean(first&&second&&first.slug!==second.slug);
+ const waiting=ready&&(first.pending||second.pending);
  const presets=[['saba','qataban'],['saba','himyar'],['rasulids','sulayhids']].filter(([a,b])=>ids.has(a)&&ids.has(b));
  return <section id="compare" className={styles.section} aria-labelledby="history-compare-heading">
   <header className={styles.heading}>
@@ -148,7 +144,7 @@ export default function HistoryComparison({entries}){
    <div className={styles.pickerFoot}><div className={styles.presets} aria-label="مقارنات مقترحة"><span>مقارنات جاهزة:</span>{presets.map(([a,b])=><button key={a+'-'+b} type="button" onClick={()=>preset(a,b)}>{states.find(e=>e.slug===a)?.title} × {states.find(e=>e.slug===b)?.title}</button>)}</div><button className={styles.copy} type="button" onClick={copy} disabled={!ready}><Copy size={15}/> نسخ الرابط</button></div>
    {message&&<p className={styles.feedback} role="status"><Check size={15}/>{message}</p>}
   </div>
-  {!ready?<p className={styles.empty} role="status">اختر دولتين مختلفتين من القائمة لعرض المقارنة التفصيلية.</p>:<>
+  {!ready?<p className={styles.empty} role="status">اختر دولتين مختلفتين من القائمة لعرض المقارنة التفصيلية.</p>:waiting?<p className={styles.empty} role="status">{detailsStatus==='failed'?<>تعذر تحميل بيانات المقارنة. <button type="button" onClick={onRetry}>أعد المحاولة</button></>:'جارٍ تحميل بيانات المقارنة…'}</p>:<>
    <div className={styles.stateCards}>{[first,second].map((entry,index)=><article className={styles.stateCard} key={entry.slug}>
     <span className={styles.stateIndex}>{index===0?'01':'02'} · ملف دولة</span>
     <h3>{entry.title}</h3>

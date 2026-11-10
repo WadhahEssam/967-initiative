@@ -71,7 +71,7 @@ test('public selector, evidence, timeline and mobile comparison are wired',()=>{
  const explorer=read('components/history/HistoryExplorer.jsx');
  const panel=read('components/history/HistoryComparison.jsx');
  const css=read('components/history/HistoryComparison.module.css');
- assert.ok(explorer.includes('<HistoryComparison entries={states}/>'));
+ assert.ok(explorer.includes('<HistoryComparison entries={states} detailsStatus={status} onRetry={load}/>'));
  assert.ok(explorer.includes('location.hash'));
  for(const token of ['role="tablist"','role="tabpanel"','history-comparison-panel','history-compare-heading','comparisonFact(entry,field.key)','comparisonPeriod','historyComparisonOverlap','historyPairNotes','history-comp-sources']) {
   const good=token==='historyPairNotes'?read('lib/historyComparisons.js').includes(token):panel.includes(token);
