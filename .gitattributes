@@ -1,2 +1,11 @@
 # Shell scripts must keep LF line endings so bash can run them on Windows checkouts too.
 *.sh text eol=lf
+# SQL keeps LF everywhere: migrations are hashed and some compare their own text with function
+# definitions, so a Windows checkout with CRLF made them fail locally.
+supabase/migrations/*.sql text eol=lf
+supabase/archive/**/*.sql text eol=lf
+# These were committed with CRLF and are already applied in production: keep them byte for byte.
+supabase/migrations/20261031031038_debate_discussion_privacy.sql -text
+supabase/migrations/20261031031041_debate_auth_ban_guard.sql -text
+supabase/migrations/20261103001023_harden_debate_admin_authorization_before_lock.sql -text
+supabase/migrations/20261103162149_link_debate_speakers_to_existing_members.sql -text
