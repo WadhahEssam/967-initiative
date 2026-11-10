@@ -16,7 +16,7 @@ export default function ContributionsDashboard(){
  useEffect(()=>{if(!db){setSession(null);return;}let live=true;const account=createAccountWatch();db.auth.getSession().then(({data})=>{if(live){account.seen(data.session);setSession(data.session);}});const {data}=db.auth.onAuthStateChange((e,s)=>{if(!shouldReloadOnAuth(account,e,s))return;account.seen(s);setSession(s);setData(null);});return()=>{live=false;data.subscription.unsubscribe();};},[db]);
  useEffect(()=>{
   if(!filters||!session)return;const control=new AbortController();const timer=setTimeout(async()=>{
-   const p=new URLSearchParams();for(const k of contributionKeys)if(filters[k])p.set(k,filters[k]);history.replaceState(history.state,'',location.pathname+(p.size?'?'+p:''));setLoading(true);setError('');
+   const p=new URLSearchParams();for(const k of contributionKeys)if(filters[k])p.set(k,filters[k]);history.replaceState(null,'',location.pathname+(p.size?'?'+p:''));setLoading(true);setError('');
    try{const {data:auth}=await db.auth.getSession();if(!auth.session)throw Error('انتهت الجلسة. سجل الدخول مجددًا.');const response=await fetch('/api/admin/contributions?'+p,{headers:{Authorization:'Bearer '+auth.session.access_token},cache:'no-store',signal:control.signal});const result=await response.json();if(!response.ok)throw Error(result.error||'تعذر تحميل السجل.');setData(result);}catch(e){if(e.name!=='AbortError'){setError(e.message);setData(null);}}finally{if(!control.signal.aborted)setLoading(false);}
   },250);return()=>{clearTimeout(timer);control.abort();};
  },[db,filters,session,refresh]);

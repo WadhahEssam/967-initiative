@@ -1,6 +1,8 @@
 'use client';
 
 import {useEffect,useRef,useState} from 'react';
+import {countOf} from '@/lib/arabicCount';
+import LoginLink from '@/components/LoginLink';
 import Link from 'next/link';
 import {ArrowUpLeft,CalendarDays,CheckCircle2,Clock3,Crown,Flame,LockKeyhole,Medal,Puzzle,RefreshCw,ShieldCheck,Target,Trophy,Zap} from 'lucide-react';
 import {currentSession,whenBrowserDb} from '@/lib/browserSession';
@@ -108,7 +110,7 @@ export default function WeeklyArcade(){
      missions.kind==='error'?<div className={styles.notice} role="alert">تعذر تحميل المهمات. <button type="button" onClick={()=>setVersion(v=>v+1)}>أعد المحاولة</button></div>:
      <>
       {visitor&&<div className={styles.guestNotice}><LockKeyhole size={17}/>
-       <span>سجّل الدخول لعرض تقدمك الرسمي المحفوظ في حسابك. <Link href="/login">تسجيل الدخول</Link></span>
+       <span>سجّل الدخول لعرض تقدمك الرسمي المحفوظ في حسابك. <LoginLink>تسجيل الدخول</LoginLink></span>
       </div>}
       <div className={styles.missions}>
        {payload.missions.map((mission,index)=>{
@@ -158,13 +160,13 @@ export default function WeeklyArcade(){
        {rankings.map((player,index)=><li className={[styles.player,styles['player'+index]].join(' ')} key={index}>
         <span className={styles.place} aria-label={'الترتيب '+player.rank}>{index===0?<Crown size={24}/>:<Medal size={23}/>}<small>#{fmt(player.rank)}</small></span>
         <span className={styles.avatar} aria-hidden="true">{player.name?.trim().slice(0,1)||'٩'}</span>
-        <span className={styles.playerInfo}><strong>{player.name}{player.isMe&&<span className={styles.me}>أنت</span>}</strong><small>{fmt(player.played)} تحدٍّ مكتمل</small></span>
+        <span className={styles.playerInfo}><strong>{player.name}{player.isMe&&<span className={styles.me}>أنت</span>}</strong><small>المكتملة: {countOf(player.played,'challenge')}</small></span>
         <span className={styles.score} dir="ltr"><strong>{fmt(player.score)}</strong><small>XP</small></span>
        </li>)}
       </ol>
       <p className={styles.leaderFoot}><ShieldCheck size={15}/> نتائج أسبوعية موثقة تتجدد عند بداية الأسبوع بالتوقيت العالمي.</p>
      </>:<div className={styles.emptyLeaders}><Trophy size={39}/><strong>المراكز الثلاثة بانتظار أبطالها</strong><p>لا توجد نتائج رسمية مكتملة هذا الأسبوع حتى الآن.</p></div>}
-    <Link className={styles.allRankings} href="/games/leaderboard">عرض الترتيب الأسبوعي الكامل <ArrowUpLeft size={19}/></Link>
+    <Link className={styles.allRankings} href="/games/leaderboard?period=weekly">عرض الترتيب الأسبوعي الكامل <ArrowUpLeft size={19}/></Link>
    </section>
   </div>
  </section>;

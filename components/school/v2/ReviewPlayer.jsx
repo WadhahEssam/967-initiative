@@ -96,7 +96,7 @@ function Review() {
     {fb && <section className={styles.sheet} data-tone={fb.correct ? 'right' : 'reveal'} role="status" aria-live="polite">
       <strong>{fb.correct ? <><Check size={22} aria-hidden="true"/> أحسنت، ثبّتّها!</> : <><RotateCcw size={20} aria-hidden="true"/> هذه الإجابة الصحيحة</>}</strong>
       {fb.explain && <p>{fb.explain}</p>}
-      {!fb.correct && item.again && <p>ستعود إليك هذه البطاقة بعد {item.again} {item.again === 1 ? 'يوم' : 'أيام'}.</p>}
+      {!fb.correct && item.again && <p>ستعود إليك هذه البطاقة بعد {item.again === 1 ? 'يوم' : item.again === 2 ? 'يومين' : item.again <= 10 ? item.again + ' أيام' : item.again + ' يومًا'}.</p>}
     </section>}
     <div className={styles.bottom}>
       <button type="button" className={styles.primary} disabled={!primary.enabled} onClick={primary.action}>{busy ? '…' : primary.label}</button>

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import {countOf} from '@/lib/arabicCount';
 import {ArrowLeft,CheckCircle2,Compass,Flag,MapPinned,Route,Star} from 'lucide-react';
 import styles from './SchoolTrackTrail.module.css';
 
@@ -8,7 +9,7 @@ export default function SchoolTrackTrail({tracks=[],theme='writing',intro='اخ�
  return <section className={styles.trail} data-theme={theme} aria-label="مسارات القسم التعليمية">
   <header className={styles.trailHead}>
    <div><span className={styles.kicker}><Route size={17}/> اختر مغامرتك التالية</span><h3>مسارات مترابطة، تجارب مختلفة</h3><p>{intro}</p></div>
-   <div className={styles.trailCount}><strong>{tracks.length}</strong><span>مسارات منشورة</span>{total>0&&<small>{total} محطة</small>}</div>
+   <div className={styles.trailCount}><strong>{tracks.length}</strong><span>مسارات منشورة</span>{total>0&&tracks.every(t=>Number.isFinite(t.count))&&<small>{countOf(total,'lesson')}</small>}</div>
   </header>
   <ol className={styles.steps}>{tracks.map((track,index)=>{
    const Icon=track.icon||Compass;
@@ -22,15 +23,15 @@ export default function SchoolTrackTrail({tracks=[],theme='writing',intro='اخ�
       <span className={styles.artGround}/>
      </div>
      <div className={styles.questBody}>
-      <div className={styles.questMeta}><span><MapPinned size={14}/> المحطة الكبرى {String(index+1).padStart(2,'0')}</span><span className={styles.isOpen}><span/> مسار متاح</span></div>
+      <div className={styles.questMeta}><span><MapPinned size={14}/> المسار {String(index+1).padStart(2,'0')}</span><span className={styles.isOpen}><span/> مسار متاح</span></div>
       <h4>{track.title}</h4>
       <p>{track.description}</p>
-      <div className={styles.questFacts}><span><Flag size={16}/>{track.count?track.count+' محطة تعليمية':'محطات تفاعلية'}</span>{track.label&&<span><Star size={15}/>{track.label}</span>}</div>
+      <div className={styles.questFacts}><span><Flag size={16}/>{track.count?countOf(track.count,'lesson'):'دروس تفاعلية'}</span>{track.label&&<span><Star size={15}/>{track.label}</span>}</div>
       <span className={styles.questAction}>ادخل المسار <ArrowLeft size={19}/></span>
      </div>
     </Link>
    </li>;
   })}</ol>
-  <footer className={styles.foot}><CheckCircle2 size={20}/><div><strong>كيف تتقدم؟</strong><p>يمكنك اختيار أي مسار منشور. داخل كل مسار تُفتح المحطات بالترتيب وفق نتائجك الفعلية، ولا يعني ترتيب المسارات هنا أنها مقفلة.</p></div></footer>
+  <footer className={styles.foot}><CheckCircle2 size={20}/><div><strong>كيف تتقدم؟</strong><p>يمكنك اختيار أي مسار منشور. داخل كل مسار يُفتح الدرس بعد إنهاء الذي قبله، وأول ثلاثة مفتوحة للجميع. ولا يعني ترتيب المسارات هنا أنها مقفلة.</p></div></footer>
  </section>;
 }

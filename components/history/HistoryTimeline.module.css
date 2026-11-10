@@ -100,7 +100,7 @@
 .heading .kicker{display:none}
 .heading h3{font-size:var(--t-size-h2,17px);margin:0}
 .heading p{font-size:12px;line-height:1.7}
-.buttons button{min-height:38px;padding:6px 11px;font-size:12px}
+.buttons button{min-height:44px;padding:6px 11px;font-size:12px}
 .navigator{padding:8px 12px;margin:12px 0 8px;gap:10px}
 .railHead{padding:0 4px 6px;font-size:11px}
 .track,.stop{height:184px}
@@ -124,7 +124,7 @@
  .timeline{padding:12px 10px}
  .heading p{display:none}
  .buttons{width:auto;margin-inline-start:auto}
- .buttons button{min-height:36px;padding:5px 9px}
+ .buttons button{min-height:44px;padding:5px 9px}
  .navigator{padding:6px 10px;margin:10px 0 8px}
  .navigator label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
  .track,.stop{height:184px}

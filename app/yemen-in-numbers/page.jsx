@@ -1,4 +1,5 @@
 import NextLink from 'next/link';
+import {countOf} from '@/lib/arabicCount';
 import KnowledgeTheme from '@/components/knowledge/KnowledgeTheme';
 import KnowledgeNavigation from '@/components/knowledge/KnowledgeNavigation';
 import Link from '@/components/SiteLink';
@@ -69,7 +70,7 @@ export default async function YemenInNumbersPage({searchParams}) {
   <section className="ed-wrap ed-block" aria-labelledby="domains-title">
    <div className="ed-section-head"><h2 id="domains-title">المجالات</h2><p>تصفّح المؤشرات بحسب ما يهمك.</p></div>
    <ul className="ed-domains">{sections.map(section => <li key={section.id}><details>
-    <summary><span className="ed-domain-name">{section.name}</span><span className="ed-domain-count">{formatNumber(section.domains.length)} مجالات</span></summary>
+    <summary><span className="ed-domain-name">{section.name}</span><span className="ed-domain-count">{countOf(section.domains.length,'domain')}</span></summary>
     {section.description && <p>{section.description}</p>}
     <ul className="ed-domain-links">{section.domains.map(domain => <li key={domain.id}><Link href={'/yemen-in-numbers/' + domain.slug}>{domain.name}</Link></li>)}</ul>
    </details></li>)}</ul>

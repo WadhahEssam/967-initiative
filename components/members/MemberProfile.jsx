@@ -25,8 +25,8 @@ export default function MemberProfile({memberId}){
   if(error||!data.session?.access_token)throw Error('انتهت جلسة تسجيل الدخول.');
   const res=await fetch(endpoint,{method,cache:'no-store',headers:{
    Authorization:'Bearer '+data.session.access_token,...(payload?{'Content-Type':'application/json'}:{})
-  },body:payload?JSON.stringify(payload):undefined});
-  const response=await res.json();
+  },body:payload?JSON.stringify(payload):undefined}).catch(()=>{throw Error('تعذر الاتصال. تحقق من الإنترنت ثم أعد المحاولة.');});
+  const response=await res.json().catch(()=>({}));
   if(!res.ok)throw Error(response.error||'تعذر تنفيذ الإجراء.');
   return response;
  },[memberId]);
@@ -67,7 +67,7 @@ export default function MemberProfile({memberId}){
   try{await navigator.clipboard.writeText(window.location.href);setNotice('تم نسخ رابط الملف الشخصي.');}
   catch{setActionError('تعذر نسخ الرابط من هذا المتصفح.');}
  };
- return <main className={styles.page} dir="rtl"><div className={styles.wrap}>
+ return <div className={styles.page} dir="rtl"><div className={styles.wrap}>
   <nav className={styles.breadcrumb}><Link href={member?.is_demo?'/debates/speakers/'+encodeURIComponent(member.speaker_slug):'/messages'}><ArrowRight size={16}/>{member?.is_demo?'المناظرون':'الرسائل'}</Link><span>/ الملف الشخصي</span></nav>
   {!ready?<p className={styles.status}>جارٍ التحقق من الحساب…</p>:!user?
    <section className={styles.gate}><UserRound size={33}/><h1>الملفات الشخصية للأعضاء</h1><p>سجّل الدخول للتعرف على الأعضاء والتواصل معهم.</p><Link className={styles.primary} href={'/login?next='+encodeURIComponent('/members/'+memberId)}>تسجيل الدخول</Link></section>:
@@ -79,7 +79,7 @@ export default function MemberProfile({memberId}){
      <div><h1>{member.name}</h1><p>{member.is_demo?'مشارك في مناظرات 967'+(member.specialty?' · '+member.specialty:''):'عضو في مبادرة 967'+(joined(member.joined_at)?' · منذ '+joined(member.joined_at):'')}</p>
       <span className={styles.visibility}><ShieldCheck size={14}/>{member.is_demo?'ملف للعرض التجريبي، غير مرتبط بحساب دخول':'الملف يعرض معلومات الحساب العامة فقط'}</span></div>
     </div>
-    {member.is_demo&&<section className={styles.demoInfo} aria-label="تنبيه الملف التجريبي"><strong>ملف تجريبي — ليس حساب مستخدم حقيقي</strong><p>أنشئنا هذا الملف لعرض المناظر وربطه بمناظرات 967. لا يملك صاحب الاسم حساب دخول مرتبطًا به، ولذلك لا يمكن مراسلته أو حظره أو الإبلاغ عن حسابه من هنا.</p>{member.bio&&<p className={styles.demoBio}>{member.bio}</p>}</section>}
+    {member.is_demo&&<section className={styles.demoInfo} aria-label="تنبيه الملف التجريبي"><strong>ملف تجريبي — ليس حساب مستخدم حقيقي</strong><p>أنشأنا هذا الملف لعرض المناظر وربطه بمناظرات 967. لا يملك صاحب الاسم حساب دخول مرتبطًا به، ولذلك لا يمكن مراسلته أو حظره أو الإبلاغ عن حسابه من هنا.</p>{member.bio&&<p className={styles.demoBio}>{member.bio}</p>}</section>}
     {notice&&<p className={styles.success} role="status"><CheckCircle2 size={16}/>{notice}</p>}
     {actionError&&<p className={styles.error} role="alert">{actionError}</p>}
     <div className={styles.actions}>
@@ -100,5 +100,5 @@ export default function MemberProfile({memberId}){
     </form>}
     {!member.is_demo&&<p className={styles.footnote}>يمكنك التحكم في ظهور اسمك في البحث العام وبحث الرسائل، والتحكم في استقبال طلبات المحادثة من صفحة الخصوصية.</p>}
    </div>}
- </div></main>;
+ </div></div>;
 }

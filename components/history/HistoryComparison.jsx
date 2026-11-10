@@ -1,5 +1,6 @@
 'use client';
 import {useCallback,useEffect,useMemo,useState} from 'react';
+import {countOf} from '@/lib/arabicCount';
 import Link from '@/components/SiteLink';
 import {ArrowLeftRight,ArrowUpLeft,BookOpenText,CalendarRange,Check,Copy,ExternalLink,GitCompareArrows,Landmark,MapPinned,ScrollText} from 'lucide-react';
 import {historyEntryPath,historyEras,historyYear} from '@/lib/yemenHistory';
@@ -111,7 +112,7 @@ export default function HistoryComparison({entries,detailsStatus='ready',onRetry
   const p=new URLSearchParams(location.search);
   if(a)p.set('compareA',a);else p.delete('compareA');
   if(b)p.set('compareB',b);else p.delete('compareB');
-  history.replaceState(history.state,'',location.pathname+(p.size?'?'+p:'')+location.hash);
+  history.replaceState(null,'',location.pathname+(p.size?'?'+p:'')+location.hash);
  },[]);
  const choose=(which,value)=>{
   const nextA=which==='first'?value:firstSlug,nextB=which==='second'?value:secondSlug;
@@ -150,7 +151,7 @@ export default function HistoryComparison({entries,detailsStatus='ready',onRetry
     <h3>{entry.title}</h3>
     <p>{entry.summary}</p>
     <details className={styles.context}><summary>قراءة سياق تاريخي أوسع</summary><div>{entry.paragraphs?.slice(0,2).map((paragraph,index)=><p key={index}>{paragraph}</p>)}</div><small>مقتطف من المادة التاريخية العامة؛ راجع مراجع الملف قبل اعتماد أي معلومة دقيقة.</small></details>
-    <dl><div><dt>الفترة المعروضة</dt><dd>{entry.period}</dd></div><div><dt>السنة المرجعية</dt><dd>{historyYear(entry.year)}</dd></div><div><dt>معايير مسندة</dt><dd>{comparisonCoverage(entry)} من 13</dd></div><div><dt>المراجع</dt><dd>{entry.sources?.length||0} مصدر</dd></div></dl>
+    <dl><div><dt>الفترة المعروضة</dt><dd>{entry.period}</dd></div><div><dt>السنة المرجعية</dt><dd>{historyYear(entry.year)}</dd></div><div><dt>معايير مسندة</dt><dd>{comparisonCoverage(entry)} من 13</dd></div><div><dt>المراجع</dt><dd>{countOf(entry.sources?.length||0,'source')}</dd></div></dl>
     <Link href={historyEntryPath(entry.slug)}>اقرأ الملف التاريخي <ArrowUpLeft size={17}/></Link>
    </article>)}</div>
    <div className={styles.tabs} role="tablist" aria-label="جوانب المقارنة">{HISTORY_COMPARISON_GROUPS.map(group=><button type="button" key={group.id} id={'history-comparison-tab-'+group.id} role="tab" aria-controls="history-comparison-panel" aria-selected={activeTab===group.id} tabIndex={activeTab===group.id?0:-1} className={activeTab===group.id?styles.tabActive:styles.tab} onClick={()=>setActiveTab(group.id)} onKeyDown={event=>{

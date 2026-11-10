@@ -19,6 +19,7 @@ import {readPublicHistoryCatalog} from '@/lib/historyRepository';
 import {serverDb} from '@/lib/supabase-server';
 import {getMapBoundaries} from '@/lib/mapProfileRepository';
 import {sectionStatus} from '@/lib/pageVisibility';
+import {publishedSchoolCatalog,publishedSchoolStageList} from '@/lib/schoolContentServer';
 
 export const dynamic = 'force-dynamic';
 
@@ -40,5 +41,9 @@ export default async function sitemap() {
    if(error)recordOperationalEvent('source_unavailable',{source:'market',area:'sitemap'});
    market=rows||[];
   }
-  return buildSitemap({...data,history,places,market,pageVisibility:settings.pageVisibility});
+  // Published school courses with their lesson numbers.
+  let school=[];
+  try{const db=serverDb();const catalog=await publishedSchoolCatalog(db);school=await Promise.all(catalog.map(async course=>({slug:course.slug,lessons:(await publishedSchoolStageList(db,course.slug).catch(()=>[])).map(stage=>stage.index)})));}
+  catch{recordOperationalEvent('source_unavailable',{source:'school',area:'sitemap'});}
+  return buildSitemap({...data,history,places,market,school,pageVisibility:settings.pageVisibility});
 }

@@ -17,10 +17,11 @@ import DebateReminderAction from '@/components/debates/DebateReminderAction';
 import DebateDisclosure from '@/components/debates/DebateDisclosure';
 import MobileFold from '@/components/mobile/MobileFold';
 import InlineTarget from '@/components/inline/InlineTarget';
-export async function generateMetadata({params}){const {slug}=await params,{debate:d}=await getDebateDetail(slug);return pageMetadata({title:d?.seo_title||d?.title||'المناظرة غير متاحة',description:d?.seo_description||d?.question,path:'/debates/'+slug,image:d?.cover_url||'/images/debates-logo.png',noindex:!d});}
+// A database outage answers 5xx (error.jsx), not a 200 page marked noindex that search engines would drop.
+export async function generateMetadata({params}){const {slug}=await params,{debate:d,available}=await getDebateDetail(slug);if(!available)throw new Error('Debate service unavailable');return pageMetadata({title:d?.seo_title||d?.title||'المناظرة غير متاحة',description:d?.seo_description||d?.question,path:'/debates/'+slug,image:d?.cover_url||'/images/debates-logo.png',noindex:!d});}
 export default async function Page({params}){
  const {slug}=await params,{debate:d,available}=await getDebateDetail(slug);
- if(!available)return <div className="container debate-account"><h1>تعذر تحميل المناظرة</h1><p>الخدمة غير متاحة حالياً. حاول مجدداً لاحقاً.</p><Link href="/debates">العودة إلى المناظرات</Link></div>;
+ if(!available)throw new Error('Debate service unavailable');
  if(!d)notFound();
  const {debates}=await getDebateCatalog(),related=debates.filter(x=>x.id!==d.id&&x.category===d.category).slice(0,3);
  const hasRecording=publicRecordingAvailable(d);

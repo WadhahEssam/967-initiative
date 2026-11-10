@@ -1,4 +1,5 @@
 import KnowledgeTheme from '@/components/knowledge/KnowledgeTheme';
+import {countOf} from '@/lib/arabicCount';
 import KnowledgeNavigation from '@/components/knowledge/KnowledgeNavigation';
 import JumpNav from '@/components/knowledge/JumpNav';
 import Link from '@/components/SiteLink';
@@ -35,10 +36,12 @@ export async function generateMetadata({params}) {
   });
 }
 
+// The description's first paragraph is already the page intro; its section shows the rest (if any).
+const sectionParagraphs=(key,text)=>text.split(/\n\s*\n/).filter(Boolean).slice(key==='description'?1:0);
 function ContentSections({profile}) {
-  return governorateProfileSections.filter(item=>profile[item.key]).map(item=><section id={item.key} key={item.key} className={styles.section}>
+  return governorateProfileSections.filter(item=>profile[item.key]&&sectionParagraphs(item.key,profile[item.key]).length).map(item=><section id={item.key} key={item.key} className={styles.section}>
     <h2>{item.title}</h2>
-    {profile[item.key].split(/\n\s*\n/).filter(Boolean).map((text,index)=><p key={index}>{text.trim()}</p>)}
+    {sectionParagraphs(item.key,profile[item.key]).map((text,index)=><p key={index}>{text.trim()}</p>)}
   </section>);
 }
 
@@ -102,7 +105,7 @@ export default async function GovernorateProfilePage({params}){
         <section className={styles.districts} id="districts">
           <h2>المديريات التابعة</h2>
           <p>لكل مديرية صفحة بملفها الكامل، وفق حدود الخريطة الإدارية في 967.</p>
-          <details className={styles.districtDisclosure}><summary>عرض {formatNumber(districts.length)} مديرية</summary><ul>{districts.map(d=><li key={d.id}><Link href={districtPath(d.id)}>{displayPlaceName(d.nameAr,[profiles[d.id]?.description,profiles[d.id]?.history])}</Link></li>)}</ul></details>
+          <details className={styles.districtDisclosure}><summary>عرض المديريات ({countOf(districts.length,'district')})</summary><ul>{districts.map(d=><li key={d.id}><Link href={districtPath(d.id)}>{displayPlaceName(d.nameAr,[profiles[d.id]?.description,profiles[d.id]?.history])}</Link></li>)}</ul></details>
         </section>
         <Link className={styles.figureLink} href={'/yemen-map/compare?a='+encodeURIComponent(id)}>قارن محافظة {heading} بمكان آخر</Link>
         {sectionIsVisible('figures',settings.pageVisibility)&&<Link className={styles.figureLink} href={'/yemeni-figures?region='+encodeURIComponent(id)}>تصفح الشخصيات المرتبطة بمحافظة {heading}</Link>}

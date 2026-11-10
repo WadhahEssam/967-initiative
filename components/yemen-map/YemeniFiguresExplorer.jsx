@@ -9,7 +9,8 @@ export default function YemeniFiguresExplorer({figures:index,details:initialDeta
  const [governorateId,setGovernorateId]=useState(initialGovernorateId);
  useEffect(()=>{
   const sync=()=>setGovernorateId(new URLSearchParams(window.location.search).get('region')||null);
-  window.addEventListener('popstate',sync);
+  // Read the address on mount too: a page restored by the back button may carry an older server prop.
+  sync();window.addEventListener('popstate',sync);
   return()=>window.removeEventListener('popstate',sync);
  },[]);
  const selectGovernorate=id=>{
@@ -17,7 +18,7 @@ export default function YemeniFiguresExplorer({figures:index,details:initialDeta
   const params=new URLSearchParams(window.location.search);
   if(id)params.set('region',id);else params.delete('region');
   const url='/yemeni-figures'+(params.size?'?'+params:'');
-  window.history.replaceState(window.history.state,'',url);
+  window.history.replaceState(null,'',url);
  };
  return <YemeniFiguresDirectory figures={figures} selectedGovernorateId={governorateId} onGovernorateChange={selectGovernorate} detailsStatus={status} onNeedDetails={load}/>;
 }

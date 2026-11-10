@@ -48,6 +48,7 @@ export default function InlineEditorProvider({children}){
     if(!response.ok){if(response.status===403)writeEditorFlag(session.user.id,false);if([401,403].includes(response.status)){if(live&&current===generation.current)clear(actorRef.current?'لم تعد جلسة التحرير أو صلاحياتها متاحة. أُزيلت أدوات الإدارة.':'');return;}throw Error('Unavailable');}
     const data=response.data;
     if(!live||current!==generation.current||owner.current!==session.user.id)return;
+    if(data&&data.actor===null){writeEditorFlag(session.user.id,false);clear(actorRef.current?'لم تعد جلسة التحرير أو صلاحيات الحساب صالحة.':'');return;}
     if(data.actor?.id!==session.user.id||!['admin','management'].includes(data.actor.role)){clear('تعذر تأكيد هوية المحرر. أُزيلت أدوات الإدارة.');return;}
     writeEditorFlag(session.user.id,true);
     const previous=actorRef.current;actorRef.current=data.actor;setActor(data.actor);setPermissionNotice('');

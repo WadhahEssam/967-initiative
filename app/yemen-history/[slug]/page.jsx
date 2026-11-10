@@ -1,4 +1,5 @@
 import KnowledgeTheme from '@/components/knowledge/KnowledgeTheme';
+import {countOf} from '@/lib/arabicCount';
 import KnowledgeNavigation from '@/components/knowledge/KnowledgeNavigation';
 import {notFound} from 'next/navigation';
 import Link from '@/components/SiteLink';
@@ -53,7 +54,7 @@ export default async function YemenHistoryDetail({params}){
    <ContextBackLink className={styles.back} fallback="/yemen-history" label="العودة إلى تاريخ اليمن" leading={<ArrowUpLeft size={16}/>}/>
    <span className="eyebrow">{era?.title||'تاريخ اليمن'} / {historyKinds[item.kind]}</span>
    <h1>{item.title}</h1><p>{item.summary}</p>
-   <div className={styles.articleMeta}><span><CalendarDays size={17}/>{item.period}</span>{item.location&&<span><MapPinned size={17}/>{item.location}</span>}<span><BookOpenText size={17}/>{(item.sources||[]).length} مصادر</span><span><Clock3 size={17}/>{readingMinutes} دقائق قراءة تقريبًا</span></div>
+   <div className={styles.articleMeta}><span><CalendarDays size={17}/>{item.period}</span>{item.location&&<span><MapPinned size={17}/>{item.location}</span>}<span><BookOpenText size={17}/>{countOf((item.sources||[]).length,'source')}</span><span><Clock3 size={17}/>{readingMinutes} دقائق قراءة تقريبًا</span></div>
   </div></header>
     <JumpNav items={[
       {href: '#history-reading', title: 'القصة التاريخية', icon: 'history'},

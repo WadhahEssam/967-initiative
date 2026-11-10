@@ -1,5 +1,6 @@
 'use client';
-import {useEffect,useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
+import {countOf} from '@/lib/arabicCount';
 import Link from 'next/link';
 import {ArrowLeft,CheckCircle2,Clock3,Crown,Flame,Medal,RefreshCw,ShieldCheck,Trophy,Zap} from 'lucide-react';
 import {browserDb} from '@/lib/supabase';
@@ -10,9 +11,15 @@ const periods=[{id:'daily',label:'اليوم'},{id:'weekly',label:'الأسبو�
 const format=n=>Number(n||0).toLocaleString('ar');
 function Badges({items=[]}){return items.length?<div className={styles.badges}>{items.map(b=><span key={b}><Medal size={13}/>{b}</span>)}</div>:null;}
 export default function Leaderboard(){
- const [period,setPeriod]=useState('daily'),[loading,setLoading]=useState(true);
+ const [period,setPeriodState]=useState('daily'),[loading,setLoading]=useState(true);
+ // The tab can be linked to (?period=weekly); changing it keeps the address in step.
+ useEffect(()=>{const wanted=new URLSearchParams(location.search).get('period');if(periods.some(p=>p.id===wanted))setPeriodState(wanted);},[]);
+ const setPeriod=next=>{setPeriodState(next);const p=new URLSearchParams(location.search);if(next==='daily')p.delete('period');else p.set('period',next);history.replaceState(null,'',location.pathname+(p.size?'?'+p:'')+location.hash);};
  const [data,setData]=useState(null),[error,setError]=useState('');
- const [selected,setSelected]=useState(null),[refresh,setRefresh]=useState(0);
+ const [selected,setSelectedState]=useState(null),[refresh,setRefresh]=useState(0);
+ // The stats dialog takes focus on open (autoFocus on «إغلاق»), closes with Escape, and gives focus back.
+ const opener=useRef(null);
+ const setSelected=player=>{if(player)opener.current=document.activeElement;setSelectedState(player);if(!player)requestAnimationFrame(()=>opener.current?.focus?.());};
  useEffect(()=>{
   let active=true;
   (async()=>{
@@ -45,7 +52,7 @@ export default function Leaderboard(){
   :error?<div className={styles.message} role="alert">{error} <button type="button" onClick={()=>setRefresh(x=>x+1)}>إعادة المحاولة</button></div>
   :<div>
    <div className={styles.summary}>
-    <div><strong>{format(data?.participants)}</strong><span>لاعبًا في الترتيب</span></div>
+    <div><strong>{format(data?.participants)}</strong><span>عدد اللاعبين في الترتيب</span></div>
     <div><strong>{format(data?.completed)}</strong><span>تحديًا مكتملًا</span></div>
     <div><strong>1,000</strong><span>الحد الأعلى لنقاط اليوم</span></div>
    </div>
@@ -58,7 +65,7 @@ export default function Leaderboard(){
       {player.isMe&&<span className={styles.meLabel}>أنت</span>}
       <strong className={styles.points} dir="ltr">{format(player.score)} XP</strong>
       <span className={styles.rankNumber}>المركز {format(player.rank)}</span>
-      <small>{format(player.played)} تحديات مكتملة</small>
+      <small>المكتملة: {countOf(player.played,'challenge')}</small>
       <button type="button" className={styles.playerStatsButton} onClick={()=>setSelected(player)}>عرض الإحصاءات</button>
      </div>:<div key={index} className={styles.placeholder} aria-hidden="true"/>)}
     </div>
@@ -73,13 +80,13 @@ export default function Leaderboard(){
     </div>
    </>}
    <div className={styles.bottom}>
-    {data?.mine?<div className={styles.myRank}><div><span className={styles.kicker}>YOUR RANK / ترتيبك</span><h3>المركز #{format(data.mine.rank)}</h3><p>{data.mine.name} · {format(data.mine.played)} تحديات مكتملة</p><Badges items={data.mine.awards.badges}/></div><strong dir="ltr">{format(data.mine.score)} XP</strong></div>
+    {data?.mine?<div className={styles.myRank}><div><span className={styles.kicker}>YOUR RANK / ترتيبك</span><h3>المركز #{format(data.mine.rank)}</h3><p>{data.mine.name} · {countOf(data.mine.played,'challenge')} مكتملة</p><Badges items={data.mine.awards.badges}/></div><strong dir="ltr">{format(data.mine.score)} XP</strong></div>
     :<p className={styles.notice}>لرؤية ترتيبك الخاص، سجّل الدخول وأكمل تحديًا رسميًا في هذه الفترة. الجولات الحرة لا تدخل المنافسة.</p>}
     <p className={styles.notice}><ShieldCheck size={17}/> تُقبل نتائج تحدي اليوم المكتمل فقط. تُحسب النقاط على مقياس موحد من 1,000، والتعادل في النقاط يمنح نفس المركز. يبدأ اليوم الجديد عند منتصف الليل بتوقيت UTC.</p>
    </div>
    {selected&&<div className={styles.profileOverlay} role="presentation" onClick={()=>setSelected(null)}>
-    <div className={styles.profileCard} role="dialog" aria-modal="true" aria-label={'إحصائيات '+selected.name} onClick={e=>e.stopPropagation()}>
-     <button type="button" onClick={()=>setSelected(null)} className={styles.close}>إغلاق ×</button>
+    <div className={styles.profileCard} role="dialog" aria-modal="true" aria-label={'إحصائيات '+selected.name} onClick={e=>e.stopPropagation()} onKeyDown={e=>{if(e.key==='Escape')setSelected(null);}}>
+     <button type="button" autoFocus onClick={()=>setSelected(null)} className={styles.close}>إغلاق ×</button>
      <div className={styles.profileHeader}><MemberLink id={selected.member_id} name={selected.name}/><div><h3>{selected.name}</h3><p>المركز #{format(selected.rank)} · {name}</p></div></div>
      <div className={styles.profileStats}><div><strong>{format(selected.score)}</strong><small>النقاط</small></div><div><strong>{format(selected.played)}</strong><small>تحديات مكتملة</small></div><div><strong>{format(selected.correct)}</strong><small>إجابات صحيحة</small></div><div><strong>{format(selected.awards.streak)}</strong><small>سلسلة الأيام</small></div></div>
      <Badges items={selected.awards.badges}/>

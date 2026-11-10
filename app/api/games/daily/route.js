@@ -48,9 +48,18 @@ async function handle(request,claim){
    return respond({used:true,claimed:true,date,game,nextAt,startedAt:data.started_at,tasks});
   }
   const {data,error}=await db.from('game_daily_attempts')
-   .select('challenge_date,game_type,started_at').eq('user_id',user.id).eq('challenge_date',date).maybeSingle();
+   .select('challenge_date,game_type,started_at,phase,step_index,answers,question_bank,question_started_at').eq('user_id',user.id).eq('challenge_date',date).maybeSingle();
   if(error)throw new RequestValidationError('تعذر التأكد من محاولتك اليومية. حاول مجدداً.',503);
-  return respond({used:!!data,date,game,nextAt,startedAt:data?.started_at||null});
+  // An official round left unfinished (refresh, closed tab, lost connection) can be resumed where
+  // it stopped. The tasks come without answers, as on the first claim; answered steps carry the
+  // reveal the player already saw. The running question keeps its server start time.
+  const resume=data&&data.phase!=='finished'&&Array.isArray(data.question_bank)&&data.question_bank.length===10&&Array.isArray(data.answers)?{
+   tasks:data.question_bank.map(entry=>friendPublicTask(data.game_type,entry.reveal)),
+   reveals:data.answers.map((_,index)=>data.question_bank[index]?.reveal??null),
+   answers:data.answers.map(answer=>({correct:!!answer.correct,points:answer.points||0})),
+   step:data.step_index,phase:data.phase,questionStartedAt:data.question_started_at||null,
+  }:null;
+  return respond({used:!!data,resume,date,game,nextAt,startedAt:data?.started_at||null});
  }catch(error){
   if(error instanceof RequestValidationError)return respond({error:error.message},error.status);
   console.error('Daily game error',error?.name||'unexpected');

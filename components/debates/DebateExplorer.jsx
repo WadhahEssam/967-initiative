@@ -23,7 +23,7 @@ export default function DebateExplorer({debates=[],available=true,initial={}}){
  }),[debates,category,type,stage,query,sort]);
  const {pages,current,featured,items}=debateExplorerPage(filtered,selectFeaturedDebate(debates),page);
  useEffect(()=>{const restore=()=>{const next=debateListState(location.search);setQuery(next.q);setCategory(next.category);setType(next.type);setStage(next.stage);setSort(next.sort);setPage(next.page);setFiltersOpen(Boolean(next.category||next.type||next.sort!=='newest'));};window.addEventListener('popstate',restore);return()=>window.removeEventListener('popstate',restore);},[]);
- useEffect(()=>{const params=new URLSearchParams();for(const [k,v] of Object.entries({q:query,category,type,stage,sort:sort==='newest'?'':sort,page:current>1?String(current):''}))if(v)params.set(k,v);history.replaceState(history.state,'','/debates'+(params.size?'?'+params:'')+location.hash);},[query,category,type,stage,sort,current]);
+ useEffect(()=>{const params=new URLSearchParams();for(const [k,v] of Object.entries({q:query,category,type,stage,sort:sort==='newest'?'':sort,page:current>1?String(current):''}))if(v)params.set(k,v);history.replaceState(null,'','/debates'+(params.size?'?'+params:'')+location.hash);},[query,category,type,stage,sort,current]);
  function filter(setter,value){setter(value);setPage(1);}
  const resetFilters=()=>{setQuery('');setCategory('');setType('');setStage('');setSort('newest');setPage(1);};
  return <div className="debates-page"><PageIntro tone="blue" title="في الاختلاف رحمة." crumb="مناظرات 967" description={DEBATE_DESCRIPTION} art={<DebateLogo decorative priority sizes="150px"/>}><DebateGuide/></PageIntro>

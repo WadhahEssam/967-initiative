@@ -54,7 +54,7 @@ export default function ContactForm({initialType='',initialReference=null,types=
  useEffect(()=>{if(initialType){formRef.current.elements.namedItem('type').value=initialType;saveDraft();}},[initialType,saveDraft]);
  function changeType(event){
   const url=new URL(window.location.href);url.searchParams.set('type',event.target.value);
-  window.history.replaceState(window.history.state,'',url.pathname+url.search+url.hash);
+  window.history.replaceState(null,'',url.pathname+url.search+url.hash);
  }
  function resetFields(){
   const form=formRef.current;if(!form)return;form.reset();

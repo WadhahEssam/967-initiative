@@ -240,7 +240,9 @@ export default function Header({actionLabel = 'ساهم معنا', contentLinks 
   // label tells screen-reader users which of those sections they are in.
   const mobileMenuSection = sections.find(section => !['media','knowledge'].includes(section.id) && sectionActive(section));
   const onlyOneOpen = event => {if (event.currentTarget.open) header.current?.querySelectorAll('.ed-nav-group[open]').forEach(item => {if (item !== event.currentTarget) item.removeAttribute('open');});};
-  const account = signedIn === true ? (canEdit ? utilityLinks.editor : utilityLinks.account) : signedIn === false ? utilityLinks.login : null;
+  // Signing in from the header returns to this page.
+  const loginHref = path && path !== '/' && !/^\/(login|register|forgot-password|update-password|auth)(\/|$)/.test(path) ? '/login?next=' + encodeURIComponent(path) : '/login';
+  const account = signedIn === true ? (canEdit ? utilityLinks.editor : utilityLinks.account) : signedIn === false ? [loginHref, utilityLinks.login[1]] : null;
   const savedVisible = isVisible(utilityLinks.saved[0]);
   // Timed games, lesson stages, the PDF reader and admin keep the whole screen.
   const immersive = /^\/(games\/.+|school\/.+\/.+|magazine\/.+|admin)/.test(path || '');
@@ -248,7 +250,7 @@ export default function Header({actionLabel = 'ساهم معنا', contentLinks 
   const place = appBarPlace(path);
   // Phone tabs are jobs, not content types: today, explore, learn, play, you.
   const exploreActive = path === '/explore' || path === '/search' || ['media', 'knowledge', 'directories', 'initiative'].some(id => mobileSectionActive(id));
-  const youHref = signedIn ? '/account' : '/login';
+  const youHref = signedIn ? '/account' : loginHref;
   const youActive = /^\/(account|messages|notifications|read-later|login|register)(\/|$)/.test(path || '');
 
   return <header className="ed-header" ref={header} data-open={open || undefined} data-tabbar={!immersive || undefined}>

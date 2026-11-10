@@ -33,7 +33,7 @@ export default function useDailyAttempt(mode,game,date){
     if(!res.ok){setState({kind:'error',message:json.error||'تعذر معرفة حالة المحاولة.'});return;}
     if(json.date!==date){setState({kind:'outdated',message:'بدأ يوم جديد؛ حدّث الصفحة.'});return;}
     if(json.game!==game){setState({kind:'other',date:json.date,game:json.game,message:'تحدي اليوم في لعبة أخرى.'});return;}
-    setState({kind:json.used?'used':'ready',nextAt:json.nextAt,message:''});
+    setState({kind:json.resume?'resume':json.used?'used':'ready',resume:json.resume||null,nextAt:json.nextAt,message:''});
    }catch{if(alive)setState({kind:'error',message:'تعذر التحقق من المحاولة. حاول بعد التحقق من اتصالك.'});}
   };
   read();
@@ -51,6 +51,9 @@ export default function useDailyAttempt(mode,game,date){
  // Claims today's single attempt. The server draws the round and returns its
  // tasks without answers; resolves to that array, or null when not granted.
  async function reserve(){
+  // An unfinished official round continues instead of claiming a new one: {resume:{tasks, reveals,
+  // answers, step, phase, questionStartedAt}} (see app/api/games/daily GET).
+  if(mode==='daily'&&state.kind==='resume'&&state.resume){const resume=state.resume;setState({kind:'used',nextAt:state.nextAt,message:''});return {resume};}
   if(mode!=='daily'||pending.current||state.kind!=='ready')return null;
   pending.current=true;setState(previous=>({...previous,kind:'reserving'}));
   try{
@@ -80,13 +83,23 @@ export default function useDailyAttempt(mode,game,date){
   if(!response.ok||!result.ok)throw Error(result.error||'تعذر اعتماد الإجابة.');
   return result;
  }
- return {...state,reserve,progress,canStart:mode!=='daily'||state.kind==='ready'};
+ return {...state,reserve,progress,canStart:mode!=='daily'||state.kind==='ready'||state.kind==='resume'};
+}
+// While an official round is being played, closing or reloading the tab asks first. (The round
+// can be resumed, but the running question's time keeps counting.)
+export function useLeaveWarning(active){
+ useEffect(()=>{
+  if(!active)return;
+  const warn=event=>{event.preventDefault();event.returnValue='';};
+  addEventListener('beforeunload',warn);return()=>removeEventListener('beforeunload',warn);
+ },[active]);
 }
 export function DailyAttemptNotice({daily,mode,date}){
  if(mode!=='daily')return null;
  // Keep the deadline visible even for players who already spent today's attempt.
  const countdown=<DailyCountdown initialDate={date} variant="compact"/>;
  if(daily.kind==='ready')return <>{countdown}<p className={styles.info}>محاولة واحدة فقط اليوم على مستوى حسابك في ألعاب 967. بمجرد الضغط على «ابدأ»، تُستهلك المحاولة حتى لو أغلقت الصفحة. يظهر اسم العرض في لوحة المتصدرين عند اكتمال الجولة.</p></>;
+ if(daily.kind==='resume')return <>{countdown}<div className={styles.notice} role="status"><strong>جولتك الرسمية لليوم لم تكتمل.</strong><p>تابع من حيث توقفت؛ الإجابات السابقة محفوظة، والسؤال الذي بدأ وقته يُحتسب من لحظة بدئه.</p></div></>;
  if(daily.kind==='login')return <>{countdown}<div className={styles.notice} role="status"><strong>سجّل الدخول للمشاركة في تحدي اليوم.</strong><p>يمكنك لعب الجولات الحرة دون حساب. التحدي الرسمي محاولة واحدة لكل حساب يومياً.</p><Link href="/login">تسجيل الدخول</Link></div></>;
  if(daily.kind==='other')return <>{countdown}<div className={styles.notice} role="status"><strong>تحدي اليوم في لعبة أخرى.</strong><p>هناك لعبة رسمية واحدة تتغير يومياً وتكون مشتركة بين جميع المشاركين.</p><Link href={dailyGameUrl(daily.date)}>انتقل إلى تحدي اليوم</Link></div></>;
  if(daily.kind==='used')return <>{countdown}<div className={styles.used} role="status"><strong>استخدمت محاولتك اليومية بالفعل.</strong><p>{daily.message||'يمكنك العودة لتحدي اليوم التالي. الجولات الحرة ما زالت متاحة.'}</p><small>تُفتح محاولة جديدة عند الساعة 00:00 بتوقيت UTC.</small></div></>;

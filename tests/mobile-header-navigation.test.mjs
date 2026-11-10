@@ -15,7 +15,8 @@ test('mobile bottom navigation is five jobs in order: today, explore, learn, pla
  assert.match(bar,/<Gamepad2 size=\{21\}/);
  assert.match(bar,/isVisible\('\/games'\)/);
  assert.match(bar,/isVisible\('\/school'\)/);
- assert.match(header,/const youHref = signedIn \? '\/account' : '\/login';/);
+ assert.match(header,/const youHref = signedIn \? '\/account' : loginHref;/);
+ assert.ok(header.includes("'/login?next=' + encodeURIComponent(path)"),'signing in returns to the page');
  for(const label of ['اليوم','استكشف','تعلّم','العب','أنت'])assert.ok(bar.includes('<span>'+label+'</span>'),label);
 });
 

@@ -13,6 +13,7 @@ import {
   zoomViewBox,
 } from './mapGeometry';
 import {visibleLabelIds} from '@/lib/mapLabels';
+import {yemenGovernorates} from '@/lib/yemeniFigures';
 
 const DATA_URL = '/data/yemen-map/yemen-boundaries.json';
 // Shown before smaller neighbours when labels compete for space: Taiz, Aden, Marib, Hodeidah.
@@ -49,7 +50,12 @@ export default function YemenMap({focusedGovernorateId, onGovernorateChange, onG
     setLoadError(false);
     fetch(DATA_URL).then(response => {if (!response.ok) throw new Error('Map unavailable'); return response.json();}).then(payload => {
       if (!active) return;
-      setData(payload);
+      // The boundary file spells governorates without hamza or ta marbuta («اب», «الحديده»); the
+      // labels, panel and search show the site's spelling («إب», «الحديدة»).
+      const named = Object.fromEntries(yemenGovernorates.map(item => [item.id, item.name]));
+      setData({...payload,
+        governorates: payload.governorates.map(item => ({...item, nameAr: named[item.id] || item.nameAr})),
+        districts: payload.districts.map(item => ({...item, governorateNameAr: named[item.governorateId] || item.governorateNameAr}))});
       setViewBox(boundsToViewBox(payload.country.bounds, 0.1));
     }).catch(() => {if (active) setLoadError(true);});
     return () => { active = false; };
@@ -76,14 +82,21 @@ export default function YemenMap({focusedGovernorateId, onGovernorateChange, onG
     if (!data) return [];
     const normalized = normalizeArabic(query);
     if (!normalized) return [];
-    const governorates = data.governorates
-      .filter(item => [item.nameAr, item.nameEn, item.pcode].some(value => normalizeArabic(value).includes(normalized)))
-      .map(item => ({...item, type: 'governorate'}));
-    const districts = data.districts
-      .filter(item => [item.nameAr, item.nameEn, item.pcode, item.governorateNameAr].some(value => normalizeArabic(value).includes(normalized)))
-      .slice(0, 12)
-      .map(item => ({...item, type: 'district'}));
-    return [...governorates, ...districts].slice(0, 10);
+    // Best match first: the place's own name exactly, then starting with the query, then containing
+    // it; a district that only matches its governorate's name comes last («حجة» finds the district
+    // named حجة before the other districts of the governorate).
+    const rank = item => {
+      const own = [item.nameAr, item.nameEn, item.pcode].map(normalizeArabic);
+      if (own.some(value => value === normalized)) return 0;
+      if (own.some(value => value.startsWith(normalized))) return 1;
+      if (own.some(value => value.includes(normalized))) return 2;
+      return normalizeArabic(item.governorateNameAr).includes(normalized) ? 3 : 9;
+    };
+    const matches = [
+      ...data.governorates.map(item => ({...item, type: 'governorate'})),
+      ...data.districts.map(item => ({...item, type: 'district'})),
+    ].map(item => ({item, score: rank(item)})).filter(entry => entry.score < 9);
+    return matches.sort((a, b) => a.score - b.score || (a.item.type === b.item.type ? 0 : a.item.type === 'governorate' ? -1 : 1)).slice(0, 10).map(entry => entry.item);
   }, [data, query]);
 
   const fitBounds = useCallback((bounds, padding = 0.12) => {
@@ -417,6 +430,8 @@ export default function YemenMap({focusedGovernorateId, onGovernorateChange, onG
           if (selectedGovernorate) {
             setSelectedDistrict(null);
             fitBounds(selectedGovernorate.bounds, 0.12);
+            // Drop &district= from the address too, as the toolbar back button does.
+            onGovernorateChange?.(selectedGovernorate.id);
           }
         }}
       />
