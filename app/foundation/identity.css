@@ -146,7 +146,8 @@
 /* ---------- Redesign v2 — batch B: knowledge page headers ---------- */
 /* The eyebrow stays readable even when a section colour is pale. */
 :root:root:root .site-experience.site-experience .page-intro :is(.eyebrow, .page-intro-eyebrow) {
-  color: color-mix(in srgb, var(--intro-accent) 45%, var(--c-ink)) !important;
+  /* 45% accent read at 3.5:1 on pale section tones (figures); 28% keeps the hue at >= 4.5:1. */
+  color: color-mix(in srgb, var(--intro-accent) 28%, var(--c-ink)) !important;
 }
 /* Header shortcuts become one row of small chips instead of stacked buttons. */
 :root:root:root .site-experience [data-knowledge-intro] .page-intro .directory-summary {

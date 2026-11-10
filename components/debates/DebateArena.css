@@ -111,3 +111,8 @@
 @media(min-width:801px){.visual-foundation .interior-page .arena-post{padding:12px 16px}}
 .visual-foundation .interior-page .arena-post.arena-post-threaded{box-sizing:border-box;width:calc(100% - 22px);max-width:calc(100% - 22px);overflow:visible}
 .visual-foundation .interior-page .arena-post.arena-post-threaded::before{border-color:var(--c-accent,#007f86);opacity:.55}
+
+/* Dark theme: the comment actions and the brand link kept their light-theme blues (2:1 on #1f2639). */
+:root:root[data-ed-theme="dark"] .visual-foundation .interior-page .arena-post-actions>button{color:#7fd3d9}
+:root:root[data-ed-theme="dark"] .interior-page .debate-detail-hero .debate-brand-link{color:#b3c6ff}
+:root:root[data-ed-theme="dark"] .interior-page .debate-detail-hero .reading-save-button{color:#dfe7ff}
