@@ -35,14 +35,15 @@ export default function YemeniFiguresDirectory({figures, selectedGovernorateId,o
   const {figureQ:query,field,era,social:withSocial,photo,century,birthFrom,birthTo,figureSort,visible:visibleCount}=filters;
   const change=patch=>setFilters(f=>({...f,visible:12,...patch}));
   useEffect(()=>{const load=()=>{const f=readFigureFilters(location.search);setFilters(f);setMore(Boolean(f.photo||f.social||f.century||f.birthFrom||f.birthTo));setReady(true);};load();window.addEventListener('popstate',load);return()=>window.removeEventListener('popstate',load);},[]);
-  useEffect(()=>{if(!ready)return;const p=figureFilterSearch(location.search,filters);const url=location.pathname+(p.size?'?'+p:'')+location.hash;if(url!==location.pathname+location.search+location.hash)history.replaceState(history.state,'',url);},[filters,ready]);
+  useEffect(()=>{if(!ready)return;const p=figureFilterSearch(location.search,filters);const url=location.pathname+(p.size?'?'+p:'')+location.hash;if(url!==location.pathname+location.search+location.hash)history.replaceState(null,'',url);},[filters,ready]);
   const fields=useMemo(()=>[...new Set(figures.map(f=>f.field).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ar')),[figures]);
   const featuredFields=useMemo(()=>{
     const counts=new Map();
     for(const figure of figures)if(figure.field)counts.set(figure.field,(counts.get(figure.field)||0)+1);
     return [...counts.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'ar')).slice(0,5);
   },[figures]);
-  const governorates=useMemo(()=>yemenGovernorates.filter(g=>figures.some(f=>f.governorateId===g.id)),[figures]);
+  // The linked governorate stays selectable even before it has figures (links from the map and governorate pages).
+  const governorates=useMemo(()=>yemenGovernorates.filter(g=>g.id===selectedGovernorateId||figures.some(f=>f.governorateId===g.id)),[figures,selectedGovernorateId]);
   const centuries=useMemo(()=>[...new Set(figures.filter(f=>Number.isInteger(f.birthYear)).map(f=>Math.ceil(f.birthYear/100)))].sort((a,b)=>a-b),[figures]);
   const filteredFigures=useMemo(()=>filterFigures(figures,{...filters,region:selectedGovernorateId}),[figures,filters,selectedGovernorateId]);
   const visibleFigures=filteredFigures.slice(0,visibleCount);
@@ -106,7 +107,7 @@ export default function YemeniFiguresDirectory({figures, selectedGovernorateId,o
             <div className="card-save-action">{/* Preserve saved-item identity; old bookmark paths redirect to the new profile. */}<SaveForLater compact item={{kind:'figure',href:'/yemen-map/figures/'+encodeURIComponent(figure.slug),title:figure.fullName}}/></div>
           </article>;
         })}
-      </div> : <div className="yfigures-empty"><Search size={28}/><h3>لا توجد نتائج مطابقة</h3><p>جرّب تغيير المجال أو المحافظة أو مسح عبارة البحث.</p><button type="button" className="btn btn-outline" onClick={resetFilters}>مسح الفلاتر</button></div>}
+      </div> : <div className="yfigures-empty"><Search size={28}/><h3>لا توجد نتائج مطابقة</h3><p>{selectedGovernorateId&&!figures.some(f=>f.governorateId===selectedGovernorateId)?'لم نضف بعد شخصيات مرتبطة بمحافظة '+(yemenGovernorates.find(g=>g.id===selectedGovernorateId)?.name||'')+'. هل تعرف شخصية منها؟':'جرّب تغيير المجال أو المحافظة أو مسح عبارة البحث.'}</p><a className="btn btn-outline" href={'/contribute?type='+encodeURIComponent('اقتراح شخصية أو معلومة تاريخية')}>اقترح شخصية</a><button type="button" className="btn btn-outline" onClick={resetFilters}>مسح الفلاتر</button></div>}
       {visibleCount < filteredFigures.length && <button type="button" className="yfigures-more" onClick={() => setFilters(f=>({...f,visible:f.visible+12}))}>عرض المزيد <span>{Math.min(12, filteredFigures.length - visibleCount)}</span></button>}
     </div>
   </section>;

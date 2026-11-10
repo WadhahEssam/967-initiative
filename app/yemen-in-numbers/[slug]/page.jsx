@@ -33,7 +33,7 @@ export default async function StatDomainPage({params}) {
     <KnowledgeNavigation/>
     <section className="section stat-domain-body"><div className="container">
       <div className="stat-scope-note"><Database size={18}/><span>النطاق الجغرافي لكل البيانات في هذه الصفحة: الجمهورية اليمنية.</span></div>
-      {domain.indicators.length ? <div className="stat-indicator-grid">{domain.indicators.map(indicator => <IndicatorCard key={indicator.id} indicator={{...indicator, domain}}/>)}</div> : <div className="stat-empty"><Database size={30}/><h2>هذا المجال جاهز لاستقبال البيانات</h2><p>لم يُنشر أي مؤشر رقمي هنا بعد. أضف أول مؤشر موثق من لوحة التحرير وسيظهر تلقائياً.</p><Link className="btn btn-outline" href="/yemen-in-numbers">استكشاف مجالات أخرى <ArrowUpLeft size={17}/></Link></div>}
+      {domain.indicators.length ? <div className="stat-indicator-grid">{domain.indicators.map(indicator => <IndicatorCard key={indicator.id} indicator={{...indicator, domain}}/>)}</div> : <div className="stat-empty"><Database size={30}/><h2>لا توجد مؤشرات منشورة في هذا المجال بعد</h2><p>نعمل على توثيق مؤشراته من مصادر رسمية. تصفّح المجالات الأخرى، أو أرسل إلينا مصدرًا موثوقًا.</p><Link className="btn btn-outline" href="/yemen-in-numbers">استكشاف مجالات أخرى <ArrowUpLeft size={17}/></Link></div>}
     </div></section>
   </KnowledgeTheme>;
 }

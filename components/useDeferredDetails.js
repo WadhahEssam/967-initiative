@@ -15,7 +15,8 @@ export default function useDeferredDetails(url,initial){
    .catch(()=>{started.current=false;setStatus('failed');});
  },[url]);
  useEffect(()=>{
-  if(navigator.connection?.saveData)return;
+  // Data Saver: wait for the reader to scroll (they are looking past the first screen), not for idle time.
+ if(navigator.connection?.saveData){addEventListener('scroll',load,{once:true,passive:true});return()=>removeEventListener('scroll',load);}
   let idle=0,timer=0;
   const start=()=>{if(window.requestIdleCallback)idle=requestIdleCallback(load,{timeout:3000});else timer=setTimeout(load,1200);};
   if(document.readyState==='complete')start();else addEventListener('load',start,{once:true});

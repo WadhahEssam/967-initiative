@@ -111,7 +111,7 @@ export default function HistoryComparison({entries,detailsStatus='ready',onRetry
   const p=new URLSearchParams(location.search);
   if(a)p.set('compareA',a);else p.delete('compareA');
   if(b)p.set('compareB',b);else p.delete('compareB');
-  history.replaceState(history.state,'',location.pathname+(p.size?'?'+p:'')+location.hash);
+  history.replaceState(null,'',location.pathname+(p.size?'?'+p:'')+location.hash);
  },[]);
  const choose=(which,value)=>{
   const nextA=which==='first'?value:firstSlug,nextB=which==='second'?value:secondSlug;

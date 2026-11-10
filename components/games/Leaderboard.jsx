@@ -13,7 +13,7 @@ export default function Leaderboard(){
  const [period,setPeriodState]=useState('daily'),[loading,setLoading]=useState(true);
  // The tab can be linked to (?period=weekly); changing it keeps the address in step.
  useEffect(()=>{const wanted=new URLSearchParams(location.search).get('period');if(periods.some(p=>p.id===wanted))setPeriodState(wanted);},[]);
- const setPeriod=next=>{setPeriodState(next);const p=new URLSearchParams(location.search);if(next==='daily')p.delete('period');else p.set('period',next);history.replaceState(history.state,'',location.pathname+(p.size?'?'+p:'')+location.hash);};
+ const setPeriod=next=>{setPeriodState(next);const p=new URLSearchParams(location.search);if(next==='daily')p.delete('period');else p.set('period',next);history.replaceState(null,'',location.pathname+(p.size?'?'+p:'')+location.hash);};
  const [data,setData]=useState(null),[error,setError]=useState('');
  const [selected,setSelected]=useState(null),[refresh,setRefresh]=useState(0);
  useEffect(()=>{
