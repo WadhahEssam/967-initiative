@@ -4,8 +4,9 @@ import {useEffect, useMemo, useRef, useState} from 'react';
 import {AlertTriangle, Check, Download, ImageDown, SlidersHorizontal} from 'lucide-react';
 import {CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 import {csvEscape} from '@/lib/yemenNumbers';
-import {formatNumber, formatYear} from '@/lib/format';
+import {formatNumber, formatYear, formatCompact} from '@/lib/format';
 import {canComparePercent, timelineRows} from '@/lib/timeline';
+import {matchesSearch} from '@/lib/search';
 import {timelineChartPng} from '@/lib/timelineExport';
 
 const colors = ['#176b75', '#a56c12', '#287e62', '#3e70af'];
@@ -22,6 +23,13 @@ export default function TimelineExplorer({indicators}) {
   const available = useMemo(() => indicators.filter(item => item.values?.length), [indicators]);
   const initial = available.length ? [available[0].id] : [];
   const [selectedIds, setSelectedIds] = useState(initial);
+  const [filter, setFilter] = useState('');
+  // About 300 indicators: a search box, and the chosen ones first, so the chart stays in reach on a phone.
+  const listed = useMemo(() => {
+    const chosen = available.filter(item => selectedIds.includes(item.id));
+    const rest = available.filter(item => !selectedIds.includes(item.id) && (!filter.trim() || matchesSearch(filter, [item.name, item.unit])));
+    return [...chosen, ...rest];
+  }, [available, selectedIds, filter]);
   const [mode, setMode] = useState('actual');
   const allYears = [...new Set(available.flatMap(item => item.values.map(value => Number(value.year))).filter(Number.isInteger))].sort((a, b) => a - b);
   const latestYear = allYears.at(-1) || new Date().getFullYear();
@@ -67,10 +75,11 @@ export default function TimelineExplorer({indicators}) {
     <aside className="timeline-controls">
       <h2><SlidersHorizontal size={20}/> إعداد المقارنة</h2>
       <p>اختر حتى 4 مؤشرات من الوحدة نفسها لتجنب مقارنة مضللة.</p>
-      <div className="timeline-indicator-list">{available.map(indicator => {
+      <label className="timeline-filter"><span className="sr-only">ابحث في المؤشرات</span><input type="search" value={filter} onChange={event => setFilter(event.target.value)} placeholder="ابحث عن مؤشر: السكان، التضخم…" style={{width: '100%', minHeight: 44, boxSizing: 'border-box', marginBottom: 10, padding: '0 12px', borderRadius: 12, border: '1px solid var(--c-line,#d9d2c6)', font: 'inherit', background: 'var(--c-surface,#fff)', color: 'inherit'}}/></label>
+      <div className="timeline-indicator-list" style={{maxHeight: 'min(55vh, 440px)', overflowY: 'auto'}}>{listed.map(indicator => {
         const checked = selectedIds.includes(indicator.id);
         const incompatible = !checked && Boolean(activeUnit && indicator.unit !== activeUnit);
-        return <label className={incompatible ? 'disabled' : ''} key={indicator.id}><input type="checkbox" checked={checked} disabled={incompatible || (!checked && selectedIds.length >= 4)} onChange={() => toggleIndicator(indicator)}/><span className="timeline-check">{checked && <Check size={14}/>}</span><span><strong>{indicator.name}</strong><small>{indicator.unit}</small></span></label>;
+        return <label className={incompatible ? 'disabled' : ''} key={indicator.id}><input type="checkbox" checked={checked} disabled={incompatible || (!checked && selectedIds.length >= 4)} onChange={() => toggleIndicator(indicator)}/><span className="timeline-check">{checked && <Check size={14}/>}</span><span><strong>{indicator.name}</strong><small>{indicator.unit}{incompatible ? ' · وحدة مختلفة' : ''}</small></span></label>;
       })}</div>
     </aside>
     <section className="timeline-stage">
@@ -83,7 +92,7 @@ export default function TimelineExplorer({indicators}) {
       </div>
       {!percentageValid && selected.length > 0 && <p className="stat-warning"><AlertTriangle size={17}/> لا تتاح نسبة التغير عندما تكون قيمة الأساس صفراً أو غير موجودة.</p>}
       <div className="timeline-chart" ref={chartRef} role="group" aria-label="رسم مقارنة المؤشرات عبر السنوات">
-        {selected.length ? <ResponsiveContainer width="100%" height={460}><LineChart data={chartData}><CartesianGrid stroke="#d9dfd9" vertical={false}/><XAxis dataKey="year" tickFormatter={formatYear} stroke="#5e6b6d"/><YAxis tickFormatter={value => formatNumber(value, {notation: 'compact', maximumFractionDigits: 1})} stroke="#5e6b6d" width={70}/><Tooltip labelFormatter={formatYear} formatter={value => [formatNumber(value, {maximumFractionDigits: 2}) + (effectiveMode === 'percent' ? '%' : ` ${activeUnit}`), '']}/><Legend/>{selected.map((indicator, index) => <Line key={indicator.id} dataKey={indicator.id} name={indicator.name} stroke={colors[index]} strokeWidth={2.5} connectNulls={false} dot={{r: 3}}/>)}</LineChart></ResponsiveContainer> : <div className="stat-chart-empty"><p>اختر مؤشراً واحداً على الأقل.</p></div>}
+        {selected.length ? <ResponsiveContainer width="100%" height={460}><LineChart data={chartData}><CartesianGrid stroke="#d9dfd9" vertical={false}/><XAxis dataKey="year" tickFormatter={formatYear} stroke="#5e6b6d"/><YAxis tickFormatter={value => formatCompact(value)} stroke="#5e6b6d" width={70}/><Tooltip labelFormatter={formatYear} formatter={value => [formatNumber(value, {maximumFractionDigits: 2}) + (effectiveMode === 'percent' ? '%' : ` ${activeUnit}`), '']}/><Legend/>{selected.map((indicator, index) => <Line key={indicator.id} dataKey={indicator.id} name={indicator.name} stroke={colors[index]} strokeWidth={2.5} connectNulls={false} dot={{r: 3}}/>)}</LineChart></ResponsiveContainer> : <div className="stat-chart-empty"><p>اختر مؤشراً واحداً على الأقل.</p></div>}
       </div>
       {exportMessage&&<p role="status" className="stat-warning">{exportMessage}</p>}
       {selected.length>0&&<details className="timeline-data"><summary>عرض بيانات المقارنة في جدول</summary><div className="table-scroll"><table><caption>القيم المعروضة ({effectiveMode==='percent'?'نسبة التغير من أول قيمة متاحة في الفترة':activeUnit})</caption><thead><tr><th scope="col">السنة</th>{selected.map(item=><th scope="col" key={item.id}>{item.name}</th>)}</tr></thead><tbody>{chartData.map(row=><tr key={row.year}><th scope="row">{formatYear(row.year)}</th>{selected.map(item=><td key={item.id}>{row[item.id]===null?'غير متوفر':formatNumber(row[item.id],{maximumFractionDigits:3})}</td>)}</tr>)}</tbody></table></div></details>}

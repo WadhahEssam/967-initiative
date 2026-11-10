@@ -88,7 +88,8 @@ export default async function DistrictProfilePage({params}){
  const population=profile.population!==null&&profile.population!==undefined?Number(profile.population):null;
  const density=population&&area?Math.round(population/area):null;
  const image=safeImageUrl(profile.image_url)&&profile.image_credit&&safeExternalUrl(profile.image_source_url)?safeImageUrl(profile.image_url):null;
- const shown=sections.filter(item=>paragraphs(profile[item.key]).length);
+ // The first description paragraph is the page intro, so «نبذة» is a section (and a jump link) only with more.
+ const shown=sections.filter(item=>paragraphs(profile[item.key]).length>(item.key==='description'?1:0));
  const pending=sections.filter(item=>!paragraphs(profile[item.key]).length);
  const sources=(Array.isArray(profile.sources)?profile.sources:[]).filter(item=>safeExternalUrl(item?.url));
  const governorateHref='/yemen-map/governorates/'+encodeURIComponent(region.governorateId);

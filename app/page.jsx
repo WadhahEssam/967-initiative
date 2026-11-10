@@ -1,4 +1,5 @@
 import NextLink from 'next/link';
+import OpenFoldOnHash from '@/components/OpenFoldOnHash';
 import {BarChart3, ChevronDown, Compass, Flame, GraduationCap, Handshake, LayoutGrid, MapPin, MapPinned, MessagesSquare, Newspaper, Sparkles, UsersRound} from 'lucide-react';
 import SearchForm from '@/components/SearchForm';
 import HomeSmartStart from '@/components/home/HomeSmartStart';
@@ -67,7 +68,7 @@ export default async function Home() {
   return <div className={`ed-page ${home.home}`}>
     {/* 1 · Greeting: date, the editable title and description, search */}
     <section className={home.greet} aria-labelledby="home-title"><div className="ed-wrap">
-      <p className={home.greetTop}><span className={home.pill}><span className={home.dot}/>{settings.heroEyebrow}</span><time dateTime={today}>{formatArabicDate(new Date(), {weekday:'long', day:'numeric', month:'long'})}</time></p>
+      <p className={home.greetTop}><span className={home.pill}><span className={home.dot}/>{settings.heroEyebrow}</span><time dateTime={today}>{formatArabicDate(new Date(), {weekday:'long', day:'numeric', month:'long', timeZone:'Asia/Aden'})}</time></p>
       <h1 id="home-title" className={home.title}>{settings.heroTitle}{settings.heroHighlight && <> <span className={home.highlight}>{settings.heroHighlight}</span></>}</h1>
       <p className={home.lead}>{settings.heroDescription}</p>
       <div className={home.search}><SearchForm compact placeholder={settings.searchPlaceholder}/></div>
@@ -132,6 +133,7 @@ export default async function Home() {
 
     {/* 12 · عن المبادرة ومشاريعها */}
     <section className={home.block} aria-label="عن المبادرة ومشاريعها"><div className={`ed-wrap ${styles.about}`}>
+      <OpenFoldOnHash/>
       <details id="about" className={styles.fold}><summary><span><span className="ed-kicker">تعرّف على 967</span><h2>مساحة تتسع لنا جميعًا.</h2></span><ChevronDown size={22} aria-hidden="true"/></summary><div className={styles.foldBody}>
         <h3>{settings.aboutTitle}</h3><p>{settings.aboutDescription}</p>
         {settings.aboutTags?.length > 0 && <ul className={styles.tags}>{settings.aboutTags.map((tag, index) => <li key={index}>{tag}</li>)}</ul>}

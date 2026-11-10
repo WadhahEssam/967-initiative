@@ -35,10 +35,12 @@ export async function generateMetadata({params}) {
   });
 }
 
+// The description's first paragraph is already the page intro; its section shows the rest (if any).
+const sectionParagraphs=(key,text)=>text.split(/\n\s*\n/).filter(Boolean).slice(key==='description'?1:0);
 function ContentSections({profile}) {
-  return governorateProfileSections.filter(item=>profile[item.key]).map(item=><section id={item.key} key={item.key} className={styles.section}>
+  return governorateProfileSections.filter(item=>profile[item.key]&&sectionParagraphs(item.key,profile[item.key]).length).map(item=><section id={item.key} key={item.key} className={styles.section}>
     <h2>{item.title}</h2>
-    {profile[item.key].split(/\n\s*\n/).filter(Boolean).map((text,index)=><p key={index}>{text.trim()}</p>)}
+    {sectionParagraphs(item.key,profile[item.key]).map((text,index)=><p key={index}>{text.trim()}</p>)}
   </section>);
 }
 

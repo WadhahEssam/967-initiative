@@ -23,7 +23,7 @@ export default function useListState(defaults) {
     current.current = next;
     setState(next);
     const url = window.location.pathname + listStateSearch(window.location.search, next, initial.current) + window.location.hash;
-    window.history.replaceState(window.history.state, '', url);
+    window.history.replaceState(null, '', url);
   }, []);
   return [state, update];
 }

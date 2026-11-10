@@ -5,7 +5,7 @@ import {
   ResponsiveContainer, Tooltip, XAxis, YAxis,
 } from 'recharts';
 import {ChartNoAxesCombined} from 'lucide-react';
-import {formatNumber, formatYear} from '@/lib/format';
+import {formatNumber, formatYear, formatCompact} from '@/lib/format';
 import {fillAnnualGaps} from '@/lib/yemenNumbers';
 
 function StatTooltip({active, payload, label, unit}) {
@@ -24,7 +24,7 @@ export default function IndicatorChart({values, unit, type = 'line', height = 36
   const common = <>
     <CartesianGrid stroke="#d9dfd9" vertical={false}/>
     <XAxis dataKey="year" tickFormatter={formatYear} stroke="#5e6b6d" tickLine={false}/>
-    <YAxis tickFormatter={value => formatNumber(value, {notation: 'compact', maximumFractionDigits: 1})} stroke="#5e6b6d" tickLine={false} width={64}/>
+    <YAxis tickFormatter={value => formatCompact(value)} stroke="#5e6b6d" tickLine={false} width={64}/>
     <Tooltip content={<StatTooltip unit={unit}/>}/>
   </>;
   return <div className="stat-chart" style={{height}} role="group" aria-label={`رسم زمني للمؤشر بوحدة ${unit}`}>
