@@ -11,10 +11,25 @@ import {statisticsCrossLinks} from '@/lib/knowledgeConnections';
 import CrossSectionPaths from '@/components/knowledge/CrossSectionPaths';
 import {formatNumber} from '@/lib/format';
 import {indicatorListItem} from '@/lib/yemenNumbers';
+import {filterIndicatorList, indicatorCardDetailsMap, indicatorIndexItem} from '@/lib/yemenNumbers';
+import {pickDetails, versionedDetails} from '@/lib/deferredDetails';
+import {readListState} from '@/lib/listState';
+
+// Light rows for every indicator; values, sources and trend lines for the cards on the first page
+// (default view and the filters in the address). /api/numbers/details brings the rest.
+function numbersExplorerProps(listItems, indicators, searchParams = {}) {
+ const {details, version} = versionedDetails(indicators, () => indicatorCardDetailsMap(listItems));
+ const query = new URLSearchParams(Object.entries(searchParams || {}).flatMap(([key, value]) => (Array.isArray(value) ? value : [value]).map(item => [key, String(item)])));
+ const state = readListState('?' + query.toString(), {q: '', domain: 'all', year: 'all', page: 1});
+ const results = filterIndicatorList(listItems, state), page = Math.min(state.page, Math.max(1, Math.ceil(results.length / 12)));
+ const first = [...filterIndicatorList(listItems).slice(0, 12), ...results.slice((page - 1) * 12, page * 12)];
+ return {indicators: listItems.map(indicatorIndexItem), details: pickDetails(details, first.map(item => item.id)), detailsUrl: '/api/numbers/details?v=' + version};
+}
+
 export const dynamic = 'force-dynamic';
 export const metadata = pageMetadata({title:'اليمن بالأرقام', description:'مؤشرات وطنية عن اليمن مع المصدر وسنة القياس والمنهجية والسلسلة الزمنية عند توفر البيانات.', path:'/yemen-in-numbers'});
 
-export default async function YemenInNumbersPage() {
+export default async function YemenInNumbersPage({searchParams}) {
  const [sections, indicators, settings] = await Promise.all([getStatSections(), getStatIndicators(), getSiteSettings()]);
  const withValues = indicators.filter(x => x.allValues.length > 0);
  const conflicts = indicators.filter(x => x.hasSourceConflict).length;
@@ -40,7 +55,7 @@ export default async function YemenInNumbersPage() {
 
   <section className="ed-wrap ed-block" id="indicators" aria-labelledby="indicators-title">
    <div className="ed-section-head"><h2 id="indicators-title">فهرس المؤشرات</h2></div>
-   <StatisticsExplorer indicators={listItems} sections={domainSections}/>
+   <StatisticsExplorer {...numbersExplorerProps(listItems, indicators, await searchParams)} sections={domainSections}/>
   </section>
 
   {highlights.length > 0 && <section className="ed-wrap ed-block" aria-labelledby="latest-title">

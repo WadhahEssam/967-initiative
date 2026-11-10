@@ -9,3 +9,11 @@ test('market pages send their listings in the first HTML, without a loading boun
  for(const file of ['app/market/loading.jsx','app/market/[number]/loading.jsx','app/market/search/loading.jsx','app/market/seller/[id]/loading.jsx'])
   assert.ok(!existsSync(new URL('../'+file,import.meta.url)),file);
 });
+
+// With a loading boundary the browser shows the page only once its whole HTML has arrived. On the
+// ranking page (about 120 KB compressed) that kept the skeleton up for about 10 s on slow 4G
+// (measured 2026-11-10); without it the page paints as it streams. Small pages may keep one.
+test('large data pages stream their content without a loading boundary',()=>{
+ for(const file of ['app/yemen-ranking/loading.jsx','app/yemen-in-numbers/timeline/loading.jsx','app/yemen-in-numbers/loading.jsx','app/yemen-history/loading.jsx','app/yemeni-figures/loading.jsx','app/universities/loading.jsx','app/medical-centers/loading.jsx'])
+  assert.ok(!existsSync(new URL('../'+file,import.meta.url)),file);
+});

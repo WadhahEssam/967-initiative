@@ -10,19 +10,22 @@ import SaveForLater from './reading/SaveForLater';
 import InstitutionLogo from './InstitutionLogo';
 import useListState from './useListState';
 import {collectionDefaults,listStateSearch} from '@/lib/listState';
-import {matchesSearch} from '@/lib/search';
 import {formatNumber} from '@/lib/format';
 import {medicalOperatingEvidence} from '@/lib/contentEvidence';
-import {institutionSearchFields,ownershipLabels,universityTypeLabels,medicalTypeLabels} from '@/lib/institutionDirectories';
+import {filterInstitutions,institutionFilterAll as ALL,ownershipLabels,universityTypeLabels,medicalTypeLabels} from '@/lib/institutionDirectories';
+import useDeferredDetails,{withDetails} from './useDeferredDetails';
 
-const ALL={governorate:'كل المحافظات',city:'كل المدن',type:'كل الأنواع',ownership:'كل الجهات',focus:'كل المجالات',level:'كل المستويات',mode:'كل أنماط الدراسة',specialty:'كل التخصصات',service:'كل الخدمات',emergency:'الكل'};
 const pageSize=12;
 const optionList=(label,values)=>[label,...new Set(values.filter(Boolean))];
 const relationNames=(rows,key='name')=>rows.map(row=>row[key]).filter(Boolean);
 
 function SelectFilter({label,value,onChange,children}){return <label className="institution-filter"><span>{label}</span><span className="institution-select"><select value={value} onChange={event=>onChange(event.target.value)}>{children}</select><ChevronDown size={15}/></span></label>;}
 
-export default function InstitutionDirectory({kind,items}){
+// items are light rows (lib/institutionDirectories institutionIndexItems); summaries and every
+// programme or service detail arrive from detailsUrl after the page loads.
+export default function InstitutionDirectory({kind,items:index,details:initialDetails,detailsUrl}){
+  const {details,status,load}=useDeferredDetails(detailsUrl,initialDetails);
+  const items=useMemo(()=>withDetails(index,details,'id'),[index,details]);
   const medical=kind==='medical',defaults=medical?collectionDefaults.medicalCenters:collectionDefaults.universities;
   const [state,update]=useListState(defaults);
   const [filtersOpen,setFiltersOpen]=useState(false);
@@ -32,31 +35,17 @@ export default function InstitutionDirectory({kind,items}){
     governorates:optionList(ALL.governorate,items.map(item=>item.governorate)),
     cities:optionList(ALL.city,items.filter(item=>state.governorate===ALL.governorate||item.governorate===state.governorate).map(item=>item.city)),
     types:optionList(ALL.type,items.map(item=>item.type)),ownerships:optionList(ALL.ownership,items.map(item=>item.ownership)),
-    focuses:optionList(ALL.focus,items.flatMap(item=>item.programs||[]).map(row=>row.field)),levels:optionList(ALL.level,items.flatMap(item=>[...(item.educationLevels||[]),...(item.programs||[]).map(row=>row.qualification)])),modes:optionList(ALL.mode,items.flatMap(item=>[...(item.studyModes||[]),...(item.programs||[]).map(row=>row.study_mode)])),
+    focuses:optionList(ALL.focus,items.flatMap(item=>item.programFields||[])),levels:optionList(ALL.level,items.flatMap(item=>[...(item.educationLevels||[]),...(item.qualifications||[])])),modes:optionList(ALL.mode,items.flatMap(item=>[...(item.studyModes||[]),...(item.programModes||[])])),
     specialties:optionList(ALL.specialty,items.flatMap(item=>relationNames(item.specialties||[]))),services:optionList(ALL.service,items.flatMap(item=>relationNames(item.services||[]))),
   }),[items,state.governorate]);
-  const results=useMemo(()=>items.filter(item=>{
-    const shared=matchesSearch(state.q,institutionSearchFields(item,medical?'medical':'university'))
-      &&(state.governorate===ALL.governorate||item.governorate===state.governorate)
-      &&(state.city===ALL.city||item.city===state.city)
-      &&(state.type===ALL.type||item.type===state.type)
-      &&(state.ownership===ALL.ownership||item.ownership===state.ownership);
-    if(!shared)return false;
-    return medical
-      &&(state.specialty===ALL.specialty||relationNames(item.specialties).includes(state.specialty))
-      &&(state.service===ALL.service||relationNames(item.services).includes(state.service))
-      &&(state.emergency==='الكل'||state.emergency==='موثق'&&item.emergencyAvailable===true)
-      ||!medical
-      &&(state.focus===ALL.focus||item.programs.some(row=>row.field===state.focus))
-      &&(state.level===ALL.level||item.educationLevels.includes(state.level)||item.programs.some(row=>row.qualification===state.level))
-      &&(state.mode===ALL.mode||item.studyModes.includes(state.mode)||item.programs.some(row=>row.study_mode===state.mode));
-  }).sort((a,b)=>state.sort==='newest'?String(b.createdAt||'').localeCompare(String(a.createdAt||'')):state.sort==='updated'?String(b.updatedAt||b.verifiedAt||'').localeCompare(String(a.updatedAt||a.verifiedAt||'')):a.name.localeCompare(b.name,'ar')),[items,medical,state]);
+  const results=useMemo(()=>filterInstitutions(items,state,kind),[items,kind,state]);
   const page=Math.min(state.page,Math.max(1,Math.ceil(results.length/pageSize))),basePath=medical?'/medical-centers':'/universities',anchor=medical?'#medical-directory':'#universities-directory';
   const returnTo=basePath+listStateSearch('',{...state,page},defaults)+anchor;
   const clear=()=>update(defaults);
   const active=Object.entries(state).filter(([key,value])=>!['page','sort'].includes(key)&&value!==defaults[key]&&value!=='').map(([key,value])=>({key,label:(key==='q'?'البحث':{governorate:'المحافظة',city:'المدينة',type:'النوع',ownership:'الجهة',focus:'المجال',level:'المستوى',mode:'نمط الدراسة',specialty:'التخصص',service:'الخدمة',emergency:'الطوارئ'}[key])+': '+value,onRemove:()=>set(key,defaults[key])}));
   const typeLabels=medical?medicalTypeLabels:universityTypeLabels;
-  return <div className={'institution-directory '+(medical?'medical':'education')}>
+  // Any use of the directory fetches the remaining details at once.
+  return <div className={'institution-directory '+(medical?'medical':'education')} onPointerDownCapture={load} onFocusCapture={load}>
     <div className="institution-toolbar">
       <div className="institution-toolbar-primary">
         <div className="institution-search"><Search size={19} aria-hidden="true"/><input type="search" value={state.q} onChange={event=>set('q',event.target.value)} placeholder={medical?'ابحث عن مستشفى أو تخصص أو خدمة...':'ابحث عن جامعة أو معهد أو برنامج...'} aria-label={medical?'البحث في المراكز الطبية':'البحث في الجامعات والمعاهد'}/>{state.q&&<button type="button" onClick={()=>set('q','')} aria-label="مسح البحث"><X size={17}/></button>}</div>
@@ -82,10 +71,10 @@ export default function InstitutionDirectory({kind,items}){
       </div>
     </div>
     <ActiveFilters filters={active} onClear={clear}/>
-    <div className="institution-results-line" aria-live="polite"><span>{medical?'المنشآت الطبية المطابقة':'المؤسسات التعليمية المطابقة'}</span><strong>{formatNumber(results.length)} نتيجة</strong></div>
+    <div className="institution-results-line" aria-live="polite"><span>{medical?'المنشآت الطبية المطابقة':'المؤسسات التعليمية المطابقة'}</span><strong>{formatNumber(results.length)} نتيجة</strong>{state.q&&status!=='ready'&&<small> · البحث في الأسماء والمواقع فقط حتى يكتمل تحميل التفاصيل</small>}</div>
     {results.length?<div className="institution-grid">{results.slice((page-1)*pageSize,page*pageSize).map(item=>{
-      const topics=uniqCard(medical?[...relationNames(item.specialties),...relationNames(item.services)]:[...item.programs.map(row=>row.field||row.name),...item.educationLevels]).slice(0,3);
-      const offerings=medical?item.specialties.length+item.services.length:item.programs.length;
+      const topics=medical?uniqCard([...relationNames(item.specialties),...relationNames(item.services)]).slice(0,3):item.topics;
+      const offerings=medical?item.specialties.length+item.services.length:item.programCount;
       const OfferingIcon=medical?ClipboardList:BookOpen;
       return <ContentSurface kind="directory" className="institution-card" key={item.id}>
         <Link className="institution-card-link" href={`${basePath}/${encodeURIComponent(item.id)}?from=${encodeURIComponent(returnTo)}`}>
@@ -95,7 +84,7 @@ export default function InstitutionDirectory({kind,items}){
           </div>
           <div className="institution-card-body">
             <p className="institution-location"><MapPin size={15} aria-hidden="true"/>{[item.governorate,item.city].filter(Boolean).join(' · ')||'الموقع التفصيلي غير متاح'}</p>
-            <p className="institution-card-summary">{item.summary}</p>
+            {item.pending?<p className="institution-card-summary" role="status" style={{opacity:.75}}>{status==='failed'?'تعذر تحميل الوصف. المس الصفحة للمحاولة مجددًا.':'جارٍ تحميل الوصف…'}</p>:<p className="institution-card-summary">{item.summary}</p>}
             {medical&&medicalOperatingEvidence(item).kind==='historical'&&<p className="institution-card-evidence" role="note">بيانات تشغيل تاريخية ({item.operatingStatusAsOf})، وليست الحالة الحالية</p>}
             {topics.length>0&&<div className="institution-tags" aria-label={medical?'التخصصات والخدمات':'البرامج الدراسية'}>{topics.map(value=><span key={value}>{value}</span>)}</div>}
             <div className="institution-card-footer">

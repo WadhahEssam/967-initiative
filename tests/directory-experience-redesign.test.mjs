@@ -44,7 +44,8 @@ test('cards preserve full-card navigation, independent saving and honest availab
   assert.match(institution,/<\/Link>\s*<div className="card-save-action">/);
   assert.match(institution,/medicalOperatingEvidence\(item\)/);
   assert.match(institution,/وليست الحالة الحالية/);
-  assert.match(institution,/item\.programs\.map\(row=>row\.field\|\|row\.name\)/);
+  assert.match(institution,/item\.topics/);
+  assert.match(read('lib/institutionDirectories.js'),/programs\.map\(row=>row\.field\|\|row\.name\)/);
   assert.match(read('components/design/ContentSurface.jsx'),/directory: \{label:/);
 });
 
