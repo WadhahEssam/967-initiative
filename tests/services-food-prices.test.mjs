@@ -94,7 +94,7 @@ test('the staple prices page has its own switch inside «الخدمات», hidde
   assert.ok(urls({services: true, foodPrices: true}).includes('https://967ye.com/services/food-prices'));
   assert.ok(read('lib/searchPages.js').includes("href:'/services/food-prices'"));
   assert.equal(pageViewBucket('/services/food-prices'), 'services');
-  assert.ok(read('app/services/food-prices/page.jsx').includes("sectionGate('foodPrices',settings)"));
+  assert.ok(read('app/services/food-prices/page.jsx').includes("sectionAccess('foodPrices',settings)"));
   // The hidden-parent message names the parent instead of always saying «الأطلس».
   assert.ok(!read('components/PageVisibilityPanel.jsx').includes('مخفي لأن الأطلس مخفي'));
 });

@@ -2,7 +2,9 @@ import Link from '@/components/SiteLink';
 import {notFound} from 'next/navigation';
 import {ArrowLeft,Banknote,ListChecks,ShoppingBasket} from 'lucide-react';
 import {getSiteSettings} from '@/lib/data';
-import {sectionGate,sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionIsVisible} from '@/lib/pageVisibility';
+import {sectionAccess} from '@/lib/sectionPreview';
+import SectionPreviewNote from '@/components/SectionPreviewNote';
 import {serverDb} from '@/lib/supabase-server';
 import {getPublicRates} from '@/lib/exchangeRatesServer';
 import {getPublicFoodPrices} from '@/lib/foodPricesServer';
@@ -19,13 +21,15 @@ const CITY_HUE={sanaa:'var(--c-teal)',aden:'var(--c-indigo)'};
 
 export default async function ServicesPage(){
  const settings=await getSiteSettings();
- if(!sectionGate('services',settings))notFound();
- const db=serverDb(),showFood=sectionIsVisible('foodPrices',settings.pageVisibility),showGuides=sectionIsVisible('transactions',settings.pageVisibility);
+ const access=await sectionAccess('services',settings);
+ if(!access)notFound();
+ const db=serverDb(),preview=access==='preview',showFood=preview||sectionIsVisible('foodPrices',settings.pageVisibility),showGuides=preview||sectionIsVisible('transactions',settings.pageVisibility);
  const [data,food]=await Promise.all([getPublicRates(db).catch(()=>null),showFood?getPublicFoodPrices(db).catch(()=>null):null]);
  const flour=FOOD_REGIONS.map(region=>({region,row:food?.prices?.[region.id+':wheat_flour']?.latest})).filter(item=>item.row&&foodFreshness(item.row.recorded_at)!=='expired');
  const rates=usableRates(data?.latest||{});
  const dollar=RATE_REGIONS.map(region=>({region,row:rates[region.id+':USD']})).filter(item=>item.row);
  return <div className={'ed-wrap '+styles.page}>
+  {access==='preview'&&<SectionPreviewNote/>}
   <header className={styles.head}>
    <span className={styles.kicker}>الخدمات</span>
    <h1>خدمات يومية</h1>

@@ -152,6 +152,17 @@ export default function MarketModeration(){
   if(!response.ok)throw Error(value.error||'تعذر تحميل بيانات السوق.');
   return value;
  },[]);
+ // Opens the hidden market for this editor only (signed cookie, 12 hours), in a new tab.
+ async function preview(){
+  const tab=window.open('about:blank','_blank');
+  try{
+   const db=browserDb();const {data:session}=await db.auth.getSession();
+   const response=await fetch('/api/admin/section-preview',{method:'POST',cache:'no-store',headers:{Authorization:'Bearer '+(session?.session?.access_token||'')}});
+   const value=await response.json().catch(()=>({}));
+   if(!response.ok)throw Error(value.error||'تعذر بدء المعاينة.');
+   if(tab)tab.location.href='/market';else location.href='/market';
+  }catch(e){tab?.close();setError(e.message);}
+ }
  const load=useCallback(async()=>{
   const me=owner.current;if(!me)return;
   try{setError('');const value=await call('view='+view+(view==='reports'?'&status='+status:''));if(owner.current===me)setData(value);}
@@ -183,6 +194,7 @@ export default function MarketModeration(){
    <h2>السوق مخفي عن الزوار</h2>
    <ul>
     <li data-ok={data.launch.storage}>{data.launch.storage?'تخزين الصور مضبوط على هذا الخادم.':'تخزين الصور غير مضبوط: أضف متغيرات MARKET_S3_* في إعدادات الخادم (Coolify) ثم أعد النشر.'}</li>
+    <li data-ok="true">جرّبه قبل فتحه: <button type="button" className={styles.link} onClick={preview}>معاينة السوق</button> تفتحه لك وحدك 12 ساعة، ويبقى مخفيًا عن الزوار.</li>
     <li data-ok="true">عند فتح القسم تظهر روابط السوق في القوائم والبحث وخريطة الموقع، ويُضاف قسم «خصوصية سوق 967» إلى سياسة الخصوصية تلقائيًا.</li>
     <li data-ok="true">الفتح من <Link href="/admin?tab=pages">لوحة التحرير ← صفحات الموقع ← ظهور الأقسام</Link>: فعّل «سوق 967».</li>
    </ul>

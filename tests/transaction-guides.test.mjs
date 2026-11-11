@@ -69,7 +69,7 @@ test('«دليل المعاملات» starts hidden and joins navigation, search
   assert.equal(pageViewBucket('/transactions/passport'), 'transactions');
   assert.ok(ACTIVITY_SECTIONS.transactions);
   assert.ok(read('supabase/migrations/20261110200000_transaction_guides.sql').includes("'professionals','services','transactions','search'"));
-  for (const path of ['app/transactions/page.jsx', 'app/transactions/[slug]/page.jsx']) assert.ok(read(path).includes("sectionGate('transactions',settings)"), path);
+  for (const path of ['app/transactions/page.jsx', 'app/transactions/[slug]/page.jsx']) assert.ok(read(path).includes("sectionAccess('transactions',settings)"), path);
 });
 
 test('guides are written by editors or guide editors, never read raw by browsers; nothing deleted', () => {
