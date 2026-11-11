@@ -4,7 +4,7 @@ import {useEffect,useState} from 'react';
 import Link from 'next/link';
 import {Eye,Heart,MessageCircle,Package,HandCoins} from 'lucide-react';
 import {marketApi,marketSession} from '@/lib/market/clientApi';
-import {STATUS_LABELS,formatPrice,listingPath,timeAgo} from '@/lib/market/format';
+import {STATUS_LABELS,formatPrice,listingPath,phoneDisplay,timeAgo} from '@/lib/market/format';
 import ui from './ui.module.css';
 import styles from './MyListings.module.css';
 
@@ -101,6 +101,6 @@ export default function MyListings(){
     </div>
    </li>)}
   </ul>}
-  {phone&&<p className={styles.phone}>رقم واتساب المحفوظ في حسابك: <bdi>{phone}</bdi>. يظهر فقط في الإعلانات التي اخترت فيها زر واتساب. <button type="button" className={styles.link} disabled={busy==='phone'} onClick={forgetPhone}>حذف الرقم</button></p>}
+  {phone&&<p className={styles.phone}>رقم واتساب المحفوظ في حسابك: <bdi dir="ltr">{phoneDisplay(phone)}</bdi>. يظهر فقط في الإعلانات التي اخترت فيها زر واتساب. <button type="button" className={styles.link} disabled={busy==='phone'} onClick={forgetPhone}>حذف الرقم</button></p>}
  </>;
 }

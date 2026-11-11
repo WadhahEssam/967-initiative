@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import {Bell,CheckCheck,X} from 'lucide-react';
+import {Bell,CheckCheck,ChevronLeft,MessageCircle,X} from 'lucide-react';
 import {useCallback,useEffect,useRef,useState} from 'react';
 import {useRouter} from 'next/navigation';
 import {fetchNotifications,markNotification,markNotificationsRead} from './notificationClient';
@@ -8,7 +8,34 @@ import NotificationList from './NotificationList';
 import {noticeCountLabel} from '@/lib/unifiedNotifications';
 import styles from './Notifications.module.css';
 
-export default function NotificationBell({userId,onNavigate}){
+const when=value=>{
+ const date=new Date(value||'');
+ if(!Number.isFinite(date.getTime()))return '';
+ return new Intl.DateTimeFormat('ar-u-nu-latn',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}).format(date);
+};
+
+// The latest private conversation, always shown (even with nothing new): it opens the messages.
+function LatestMessage({latest,count,onOpen}){
+ const href=latest?'/messages?conversation='+encodeURIComponent(latest.id):'/messages';
+ return <section className={styles.messagesBlock} aria-label="الرسائل الخاصة">
+  <div className={styles.messagesHead}><strong><MessageCircle size={16} aria-hidden="true"/> الرسائل الخاصة</strong>{count>0&&<span className={styles.messagesNew}>{noticeCountLabel(count)} جديدة</span>}</div>
+  <Link href={href} className={styles.latestMessage} data-unread={latest?.unread>0||undefined} onClick={onOpen}>
+   {latest?<>
+    {/* eslint-disable-next-line @next/next/no-img-element -- a 36px avatar */}
+    <span className={styles.latestAvatar} aria-hidden="true">{latest.avatar?<img src={latest.avatar} alt="" width={36} height={36}/>:latest.name.trim().charAt(0)}</span>
+    <span className={styles.latestText}>
+     <span className={styles.latestTop}><strong>{latest.name}</strong>{latest.at&&<time dateTime={latest.at}>{when(latest.at)}</time>}</span>
+     <span className={styles.latestExcerpt}>{latest.request?'طلب محادثة: ':''}{latest.excerpt||'افتح المحادثة'}</span>
+    </span>
+    {latest.unread>0&&<i className={styles.dot} aria-label="غير مقروءة"/>}
+   </>:<span className={styles.latestText}><strong>لا توجد محادثات بعد</strong><span className={styles.latestExcerpt}>افتح الرسائل الخاصة</span></span>}
+   <ChevronLeft size={16} aria-hidden="true" className={styles.latestGo}/>
+  </Link>
+  <Link href="/messages" className={styles.allMessages} onClick={onOpen}>كل الرسائل</Link>
+ </section>;
+}
+
+export default function NotificationBell({userId,onNavigate,messages={count:0,latest:null}}){
  const router=useRouter();
  const host=useRef(null),trigger=useRef(null),pending=useRef(false),versionRef=useRef(0);
  const [open,setOpen]=useState(false),[data,setData]=useState({count:0,markable_count:0,items:[]});
@@ -73,21 +100,30 @@ export default function NotificationBell({userId,onNavigate}){
   setBusy(true);setError('');
   markNotificationsRead().then(()=>refresh()).catch(e=>setError(e.message)).finally(()=>setBusy(false));
  };
+ // Messages have their own block on top; the list below holds the other notifications.
+ const others=data.items.filter(item=>item.source!=='message');
+ const messageNotices=data.items.filter(item=>item.source==='message'&&item.unread).length;
+ const otherCount=Math.max(0,data.count-messageNotices);
+ const total=otherCount+(Number(messages.count)||0);
  return <div ref={host} className={styles.bellHost}>
   <button type="button" ref={trigger} className={'ed-tool ed-tool-icon '+styles.bellButton}
-   aria-label={data.count?'الإشعارات: '+data.count+' غير مقروءة':'الإشعارات'}
+   aria-label={total?'الإشعارات والرسائل: '+total+' جديدة':'الإشعارات والرسائل'}
    aria-expanded={open} aria-haspopup="dialog" aria-controls="notifications-preview"
-   title="الإشعارات" onClick={()=>{setOpen(v=>!v);if(!open){onNavigate?.();void refresh();}}}>
+   title="الإشعارات والرسائل" onClick={()=>{setOpen(v=>!v);if(!open){onNavigate?.();void refresh();}}}>
    <Bell size={20} aria-hidden="true"/>
-   {data.count>0&&<span className={styles.bellCount} aria-hidden="true">{noticeCountLabel(data.count)}</span>}
+   {total>0&&<span className={styles.bellCount} aria-hidden="true">{noticeCountLabel(total)}</span>}
   </button>
-  {open&&<section id="notifications-preview" className={styles.popover} role="dialog" aria-label="آخر الإشعارات">
-   <header className={styles.popoverHeader}><strong>الإشعارات</strong><span>{data.count?noticeCountLabel(data.count)+' جديدة':'لا توجد إشعارات جديدة'}</span>
-    <button type="button" aria-label="إغلاق الإشعارات" className={styles.closeButton} onClick={()=>setOpen(false)}><X size={18}/></button>
+  {open&&<section id="notifications-preview" className={styles.popover} role="dialog" aria-label="الرسائل والإشعارات">
+   <header className={styles.popoverHeader}><strong>الرسائل والإشعارات</strong>
+    <button type="button" aria-label="إغلاق" className={styles.closeButton} onClick={()=>setOpen(false)}><X size={18}/></button>
    </header>
+   <div className={styles.popoverBody}>
+   <LatestMessage latest={messages.latest} count={messages.count} onOpen={()=>{setOpen(false);onNavigate?.();}}/>
+   <div className={styles.noticesHead}><strong><Bell size={16} aria-hidden="true"/> الإشعارات</strong><span>{otherCount?noticeCountLabel(otherCount)+' جديدة':'لا جديد'}</span></div>
    {error&&<p className={styles.error} role="alert">{error}</p>}
    {loading&&!data.items.length?<p className={styles.message}>جارٍ تحميل الإشعارات…</p>:
-    <NotificationList items={data.items} compact onOpen={view} onRead={mark} disabled={busy}/>}
+    <NotificationList items={others} compact onOpen={view} onRead={mark} disabled={busy}/>}
+   </div>
    <footer className={styles.popoverFooter}>
     <Link href="/notifications" onClick={()=>{setOpen(false);onNavigate?.();}}>عرض جميع الإشعارات</Link>
     {data.markable_count>0&&

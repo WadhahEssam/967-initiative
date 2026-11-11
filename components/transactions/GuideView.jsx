@@ -1,7 +1,7 @@
 'use client';
 import {useEffect,useRef,useState} from 'react';
 import Link from '@/components/SiteLink';
-import {ArrowLeft,BadgeCheck,Briefcase,Camera,Car,Check,CheckSquare,ChevronDown,CircleAlert,ClipboardCheck,ClipboardPen,Clock3,ExternalLink,FileStack,Fingerprint,Globe,GraduationCap,Hourglass,IdCard,Landmark,Lightbulb,Link2,ListOrdered,MapPin,Plane,Printer,Receipt,RotateCcw,Scale,Share2,Smartphone,Square,Stamp,Stethoscope,Timer,UserRound,Users} from 'lucide-react';
+import {ArrowLeft,BadgeCheck,Briefcase,Camera,Car,Check,CheckSquare,ChevronDown,CircleAlert,ClipboardCheck,ClipboardPen,Clock3,ExternalLink,FileStack,Fingerprint,Globe,GraduationCap,Hourglass,Info,IdCard,Landmark,Lightbulb,Link2,ListOrdered,MapPin,Plane,Printer,Receipt,RotateCcw,Scale,Share2,Smartphone,Square,Stamp,Stethoscope,Timer,UserRound,Users} from 'lucide-react';
 import {checklistMessage,guideCategory,guideIsStale,guideRegions,stepKind} from '@/lib/transactionGuides';
 import {formatArabicDate} from '@/lib/format';
 import styles from './Transactions.module.css';
@@ -151,7 +151,7 @@ export default function GuideView({guide,preview=false,shareUrl='',related=[]}){
    </Link>)}</div>
   </section>}
   <footer className={styles.trust}>
-   {guide.verifiedAt?<p><BadgeCheck size={16} aria-hidden="true"/> تحقق فريق 967 من هذه المعلومات في <strong>{formatArabicDate(guide.verifiedAt)}</strong>.{guideIsStale(guide.verifiedAt)&&' مضى على التحقق أكثر من ستة أشهر؛ تأكد من الجهة قبل الذهاب.'}</p>:<p>لم يُتحقق من هذا الدليل بعد.</p>}
+   {guide.verifiedAt?<p><BadgeCheck size={16} aria-hidden="true"/> تحقق فريق 967 من هذه المعلومات في <strong>{formatArabicDate(guide.verifiedAt)}</strong>.{guideIsStale(guide.verifiedAt)&&' مضى على التحقق أكثر من ستة أشهر؛ تأكد من الجهة قبل الذهاب.'}</p>:<p><Info size={16} aria-hidden="true"/> معلومات أولية جمعناها من مصادر منشورة، ولم يتحقق منها فريق 967 لدى الجهة بعد. تأكد من الجهة قبل الذهاب.</p>}
    <p>الإجراءات والرسوم قد تتغير دون إعلان. {!preview&&<Link href={'/contribute?type='+encodeURIComponent('تصحيح معلومة')}>أبلغنا إن تغيّر شيء</Link>}</p>
    {!preview&&<button type="button" className={styles.tool} onClick={share}><Link2 size={16} aria-hidden="true"/> {shared?'نُسخ الرابط':'شارك الدليل'}</button>}
    {guide.sources?.length>0&&<details><summary>المصادر</summary><ul>{guide.sources.map((item,index)=><li key={index}>{/^https:\/\//.test(item)?<a href={item} target="_blank" rel="noopener noreferrer" dir="ltr">{item}</a>:item}</li>)}</ul></details>}

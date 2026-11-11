@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {formatPrice,listingPath,normalizeYemeniMobile,timeAgo,whatsappLink} from '../lib/market/format.js';
+import {PHONE_COUNTRIES,formatPrice,listingPath,normalizePhone,normalizeYemeniMobile,phoneDisplay,timeAgo,whatsappLink} from '../lib/market/format.js';
 
 const read=path=>readFileSync(new URL('../'+path,import.meta.url),'utf8').replace(/\r\n/g,'\n');
 
@@ -27,6 +27,21 @@ test('Yemeni mobile numbers are stored as 9 digits without the country code',()=
  for(const value of ['771234567','0771234567','+967 771 234 567','00967771234567','٧٧١٢٣٤٥٦٧','733-123-456'])assert.match(normalizeYemeniMobile(value)||'',/^7[0-9]{8}$/,value);
  for(const value of ['','12345','751234567','7712345678','+966501234567','01234567'])assert.equal(normalizeYemeniMobile(value),null,value);
  assert.equal(whatsappLink('771234567','مرحبًا'),'https://wa.me/967771234567?text='+encodeURIComponent('مرحبًا'));
+});
+
+test('sellers outside Yemen can use their own number with its country code',()=>{
+ assert.equal(normalizePhone('+967 771 234 567'),'771234567');
+ assert.equal(normalizePhone('0771234567','967'),'771234567');
+ assert.equal(normalizePhone('0501234567','966'),'966501234567');
+ assert.equal(normalizePhone('+966 50 123 4567','967'),'966501234567');
+ assert.equal(normalizePhone('00971501234567'),'971501234567');
+ assert.equal(normalizePhone('٠٥٠١٢٣٤٥٦٧','966'),'966501234567');
+ assert.equal(normalizePhone('5551234567','1'),'15551234567');
+ for(const [value,country] of [['',''],['12345','966'],['751234567','967'],['+12345','967'],['abc','966'],['+0501234567','967']])assert.equal(normalizePhone(value,country),null,value);
+ assert.equal(whatsappLink('966501234567'),'https://wa.me/966501234567');
+ assert.equal(phoneDisplay('771234567'),'+967771234567');
+ assert.equal(phoneDisplay('966501234567'),'+966501234567');
+ assert.ok(PHONE_COUNTRIES[0][0]==='967'&&PHONE_COUNTRIES.length>=15);
 });
 
 test('the phone number and terms acceptances are private to the server',()=>{

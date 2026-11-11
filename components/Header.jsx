@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import {usePathname} from 'next/navigation';
 import {useEffect, useMemo, useRef, useState} from 'react';
-import {Bookmark, ChevronDown, ChevronRight, Compass, Gamepad2, GraduationCap, House, Menu, Search, MessageCircle, UserRound, X} from 'lucide-react';
+import {Bookmark, ChevronDown, ChevronRight, Compass, Gamepad2, GraduationCap, House, Menu, Search, UserRound, X} from 'lucide-react';
 import BrandLogo from './BrandLogo';
 import ThemeToggle from './ThemeToggle';
 import useSessionDb from './useSessionDb';
@@ -27,6 +27,7 @@ export default function Header({actionLabel = 'ساهم معنا', contentLinks 
   const [canEdit, setCanEdit] = useState(false);
   const [sessionUserId, setSessionUserId] = useState(null);
   const [messageCounts, setMessageCounts] = useState({unread:0,requests:0});
+  const [latestConversation, setLatestConversation] = useState(null);
   const messageAudioRef = useRef(null);
   const messageAlertRef = useRef({initialized:false,latest:0});
   // Read by the message poll without restarting it on every navigation.
@@ -174,6 +175,7 @@ export default function Header({actionLabel = 'ساهم معنا', contentLinks 
           const result = await response.json();
           if (active) {
             setMessageCounts({unread:result.unread,requests:result.requests,market:result.market});
+            setLatestConversation(result.latest||null);
             // «سوق 967» shows its own chat count from this same summary (no second request).
             window.__967MarketUnread=Number(result.market)||0;
             window.dispatchEvent(new CustomEvent('967:market-unread',{detail:window.__967MarketUnread}));
@@ -284,13 +286,13 @@ export default function Header({actionLabel = 'ساهم معنا', contentLinks 
           {signedIn && <Link href="/messages" aria-label={messageLinkLabel} aria-current={path==='/messages'?'page':undefined} onClick={close}>الرسائل{newMessageCount>0&&<span className="ed-message-menu-count" aria-hidden="true">{messageCountText}</span>}</Link>}
           {signedIn && <Link href="/notifications" aria-current={path==='/notifications'?'page':undefined} onClick={close}>الإشعارات</Link>}
           {account && <Link href={account[0]} aria-current={path === account[0] ? 'page' : undefined} onClick={close}>{account[1]}</Link>}
+          <ThemeToggle labelled/>
           {isVisible('/contribute') && <Link href="/contribute" onClick={close}>{actionLabel}</Link>}
         </div>
       </nav>
       <div className="ed-tools">
-        <ThemeToggle/>
-        {signedIn&&<NotificationBell userId={sessionUserId} onNavigate={close}/>}
-        {signedIn&&<Link href="/messages" className="ed-tool ed-tool-icon ed-message-link" aria-label={messageLinkLabel} title={messageLinkLabel} aria-current={path==='/messages'?'page':undefined} onClick={close}><MessageCircle size={20}/>{newMessageCount>0&&<span className="ed-message-count" aria-hidden="true">{messageCountText}</span>}</Link>}
+        {/* One icon for notifications and private messages: the latest conversation sits on top. */}
+        {signedIn&&<NotificationBell userId={sessionUserId} onNavigate={close} messages={{count:newMessageCount,latest:latestConversation}}/>}
         <Link href="/search" className="ed-tool ed-tool-icon ed-top-search" aria-label="البحث في المنصة" aria-current={path === '/search' ? 'page' : undefined} onClick={close}><Search size={20} aria-hidden="true"/></Link>
         {savedVisible && <Link href={utilityLinks.saved[0]} className="ed-tool ed-tool-icon ed-wide-only" aria-label={utilityLinks.saved[1]} title={utilityLinks.saved[1]} aria-current={path === utilityLinks.saved[0] ? 'page' : undefined} onClick={close}><Bookmark size={19} aria-hidden="true"/></Link>}
         {account && <Link href={account[0]} className="ed-tool ed-tool-text ed-wide-only" aria-current={path === account[0] ? 'page' : undefined} onClick={close}>{account[1]}</Link>}

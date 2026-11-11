@@ -289,3 +289,11 @@
 .ed-footer-members { margin-top: var(--s-3); font-size: var(--t-size-ui); color: rgb(255 255 255 / .78); }
 .ed-footer-members strong { color: #fff; font-weight: 600; font-variant-numeric: tabular-nums; }
 .ed-footer-members a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+
+/* The theme switch with its label: in the menu sheet and in the footer (not in the header bar). */
+.ed-theme-switch { display: inline-flex; align-items: center; gap: 8px; min-height: var(--target); padding: 0 18px; border: 1px solid var(--c-line); border-radius: var(--r-pill); background: var(--c-surface); color: var(--c-ink); font: inherit; font-size: .9rem; font-weight: 600; cursor: pointer; }
+.ed-theme-switch[aria-pressed="true"] { background: var(--c-ink); color: var(--c-bg); border-color: var(--c-ink); }
+.ed-theme-switch:focus-visible { outline: 3px solid var(--c-focus); outline-offset: 2px; }
+.ed-footer-bottom .ed-footer-theme { min-height: 36px; padding: 0 14px; font-size: var(--t-size-meta); border-color: var(--c-night-line); background: transparent; color: inherit; }
+.ed-footer-bottom .ed-footer-theme[aria-pressed="true"] { background: transparent; color: inherit; border-color: var(--c-night-line); }
+@media (max-width: 760px) { .ed-nav-utility .ed-theme-switch { min-height: 38px; padding: 0 14px; font-size: .85rem; } }
