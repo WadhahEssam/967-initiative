@@ -7,7 +7,8 @@ const current=()=>document.documentElement.dataset.edTheme==='dark'?'dark':'ligh
 
 // Follows the device setting until the visitor picks a mode. The saved choice
 // (or the system mode) is applied by a tiny script in <head> before paint.
-export default function ThemeToggle(){
+// It lives in the menu and the footer (with its label), not in the crowded header bar.
+export default function ThemeToggle({labelled=false,className=''}){
  const [theme,setTheme]=useState('light');
 
  useEffect(()=>{
@@ -41,10 +42,13 @@ export default function ThemeToggle(){
  };
 
  const dark=theme==='dark';
- return <button type="button" className="ed-tool ed-theme-toggle"
-  aria-label={dark?'تفعيل الوضع الفاتح':'تفعيل الوضع الداكن'}
-  title={dark?'الوضع الفاتح':'الوضع الداكن'} aria-pressed={dark}
+ // The labelled switch keeps one name and reports its state with aria-pressed.
+ const label=labelled?'الوضع الداكن':dark?'الوضع الفاتح':'الوضع الداكن';
+ return <button type="button" className={(labelled?'ed-theme-switch':'ed-tool ed-theme-toggle')+(className?' '+className:'')}
+  aria-label={labelled?undefined:(dark?'تفعيل الوضع الفاتح':'تفعيل الوضع الداكن')}
+  title={labelled?undefined:label} aria-pressed={dark}
   onClick={toggle}>
-  {dark?<Sun size={20} aria-hidden="true"/>:<Moon size={20} aria-hidden="true"/>}
+  {dark?<Sun size={labelled?17:20} aria-hidden="true"/>:<Moon size={labelled?17:20} aria-hidden="true"/>}
+  {labelled&&<span>{label}</span>}
  </button>;
 }

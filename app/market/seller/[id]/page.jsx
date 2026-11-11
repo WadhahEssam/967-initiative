@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element -- avatars and covers are small, already-sized images. */
 import Link from 'next/link';
 import {notFound} from 'next/navigation';
-import {CalendarDays,MapPin,MessageCircle,Package,ShoppingBag,Star} from 'lucide-react';
+import {CalendarDays,MapPin,MessageCircle,Package,ShoppingBag,Star,UserRound} from 'lucide-react';
 import ListingCard from '@/components/market/ListingCard';
 import RatingList from '@/components/market/RatingList';
 import MarketTopBar from '@/components/market/MarketTopBar';
@@ -53,6 +53,8 @@ export default async function SellerPage({params,searchParams}){
     </p>
     <p className={styles.headline}><Star size={16} aria-hidden="true"/>{summary.text}</p>
     {response&&<p className={styles.meta}><span><MessageCircle size={14} aria-hidden="true"/>{response}</span></p>}
+    {/* The seller's ordinary member profile (posts, messages, follow), like any other member. */}
+    <Link className={styles.memberLink} href={'/members/'+encodeURIComponent(seller.id)}><UserRound size={16} aria-hidden="true"/> الملف الشخصي</Link>
     <MemberSafety userId={seller.id} name={seller.name}/>
    </div>
   </header>

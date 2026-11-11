@@ -1,6 +1,6 @@
 import Link from '@/components/SiteLink';
 import {notFound} from 'next/navigation';
-import {AlertTriangle,ArrowDown,ArrowUp,Clock3,ShoppingBasket} from 'lucide-react';
+import {AlertTriangle,ArrowDown,ArrowUp,Clock3,Info,ShoppingBasket} from 'lucide-react';
 import FoodBoard from '@/components/services/FoodBoard';
 import {getSiteSettings} from '@/lib/data';
 import {sectionAccess} from '@/lib/sectionPreview';
@@ -32,6 +32,7 @@ export default async function FoodPricesPage(){
  const latest=Object.fromEntries(Object.entries(pairs).map(([key,pair])=>[key,pair.latest]));
  const shown=Object.values(latest);
  const newest=shown.length?new Date(Math.max(...shown.map(row=>Date.parse(row.recorded_at)))).toISOString():null;
+ const notes=[...new Set(shown.map(row=>row.note).filter(Boolean))].slice(0,2);
  const stale=shown.some(row=>foodFreshness(row.recorded_at,now)==='stale');
  const rows=FOOD_ITEMS.map(item=>({id:item.id,name:item.name,unit:item.unit,group:item.group,cells:Object.fromEntries(FOOD_REGIONS.map(region=>{
   const pair=pairs[foodKey(region.id,item.id)];
@@ -51,6 +52,7 @@ export default async function FoodPricesPage(){
    <p>أسعار الغذاء والغاز والوقود في صنعاء وعدن، بالوحدة التي يشتري بها الناس. الريال مختلف القيمة بين المدينتين، فقارن بالدولار.</p>
    {newest&&<span className={styles.updated}><Clock3 size={15} aria-hidden="true"/> آخر تحديث: <strong>{formatRateTime(newest,{weekday:'long',day:'numeric',month:'long'})}</strong></span>}
   </header>
+  {notes.map(note=><p key={note} className={styles.notice} role="note"><Info size={18} aria-hidden="true"/> {note}</p>)}
   {!data&&<p className={styles.notice} data-tone="warning" role="alert"><AlertTriangle size={18} aria-hidden="true"/> تعذر تحميل الأسعار الآن. أعد المحاولة بعد قليل.</p>}
   {data&&!newest&&<p className={styles.notice} role="status"><Clock3 size={18} aria-hidden="true"/> لا توجد أسعار محدثة خلال الأسابيع الثلاثة الماضية. نعرض السعر فقط حين يكون حديثًا، حتى لا يُبنى قرار على رقم قديم.</p>}
   {stale&&<p className={styles.notice} data-tone="warning" role="status"><AlertTriangle size={18} aria-hidden="true"/> بعض الأسعار مضى عليها أكثر من أسبوع، ومكتوب تحتها متى سُجّلت.</p>}

@@ -25,8 +25,10 @@ try{
   const page=await context.newPage();
   await page.goto(base+'/',{waitUntil:'domcontentloaded',timeout:60000});
   await page.locator('.ed-page').waitFor({timeout:30000});
-  const switcher=page.getByRole('button',{name:'تفعيل الوضع الداكن'});
+  // The switch lives in the footer (and the menu sheet), labelled «الوضع الداكن» with aria-pressed.
+  const switcher=page.locator('.ed-footer .ed-theme-switch');
   await switcher.waitFor({timeout:15000});
+  const pressed=value=>page.locator('.ed-footer .ed-theme-switch[aria-pressed="'+value+'"]').waitFor({timeout:15000});
   const readTheme=()=>page.evaluate(()=>{
    const r=document.documentElement,s=getComputedStyle(r);
    return {mode:r.dataset.edTheme,scheme:s.colorScheme,background:s.getPropertyValue('--c-bg').trim(),overflow:document.documentElement.scrollWidth-window.innerWidth};
@@ -37,14 +39,14 @@ try{
   assert.ok(light.overflow<=2,'home horizontal overflow at '+width+': '+light.overflow);
   await page.screenshot({path:output+'light-'+width+'.png',fullPage:true});
   await switcher.click();
-  await page.getByRole('button',{name:'تفعيل الوضع الفاتح'}).waitFor();
+  await pressed('true');
   const dark=await readTheme();
   assert.equal(dark.mode,'dark');
   assert.equal(dark.scheme,'dark');
   assert.equal(dark.background.toLowerCase(),'#13110f');
   await page.screenshot({path:output+'dark-'+width+'.png',fullPage:true});
   await page.reload({waitUntil:'domcontentloaded'});
-  await page.getByRole('button',{name:'تفعيل الوضع الفاتح'}).waitFor();
+  await pressed('true');
   assert.equal((await readTheme()).mode,'dark','theme must persist after reload');
   await page.goto(base+'/yemen-history',{waitUntil:'domcontentloaded'});
   await page.locator('[data-knowledge-area="history"]').waitFor({timeout:30000});
@@ -52,10 +54,11 @@ try{
   assert.equal(legacy.background.toLowerCase(),'#13110f','legacy pages now use the shared dark palette');
   assert.equal(legacy.scheme,'dark','legacy route must retain dark system controls');
   await page.goto(base+'/',{waitUntil:'domcontentloaded'});
-  await page.getByRole('button',{name:'تفعيل الوضع الفاتح'}).click();
+  await pressed('true');
+  await page.locator('.ed-footer .ed-theme-switch').click();
   assert.equal((await readTheme()).mode,'light');
   await page.reload({waitUntil:'domcontentloaded'});
-  await page.getByRole('button',{name:'تفعيل الوضع الداكن'}).waitFor();
+  await pressed('false');
   results.push({width,light,dark,legacy:legacy.background});
   await context.close();
  }

@@ -12,3 +12,16 @@
 .more:hover{background:color-mix(in srgb,var(--c-clay) 10%,transparent)}
 .title a:focus-visible,.more:focus-visible{outline:3px solid var(--c-clay);outline-offset:2px}
 @media(max-width:640px){.band{grid-template-columns:auto minmax(0,1fr);padding:12px}.more{grid-column:1/-1;justify-self:start}.text{-webkit-line-clamp:3}}
+
+/* Today and yesterday: a two-slide swipe (RTL: yesterday sits to the left). Never a day ahead. */
+.carousel{display:grid;gap:8px;min-width:0}
+.track{display:grid;grid-auto-flow:column;grid-auto-columns:100%;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-radius:16px}
+.track::-webkit-scrollbar{display:none}
+.slide{scroll-snap-align:start;min-width:0}
+.slide .band{block-size:100%}
+.switch{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.switch button{min-height:32px;padding:0 14px;border:1px solid var(--c-line-2);border-radius:999px;background:var(--c-surface);color:var(--c-ink-2);font:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
+.switch button[aria-pressed="true"]{border-color:var(--c-clay);background:color-mix(in srgb,var(--c-clay) 12%,transparent);color:var(--c-clay)}
+.switch button:focus-visible{outline:3px solid var(--c-clay);outline-offset:2px}
+.hint{margin-inline-start:4px;font-size:12px;color:var(--c-ink-3)}
+@media(min-width:900px){.hint{display:none}}

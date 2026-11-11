@@ -1,8 +1,8 @@
 import NextLink from 'next/link';
 import {
-  ArrowLeft, BarChart3, BookOpen, BrainCircuit, Briefcase, CalendarDays, ChevronLeft, Compass, Film, Flame, Gamepad2,
-  GraduationCap, HandHeart, Landmark, LayoutGrid, MapPinned, MessagesSquare, Package, PenTool, ScrollText, Stethoscope,
-  Swords, Telescope, Trophy, UsersRound,
+  ArrowLeft, Banknote, BarChart3, BookOpen, BrainCircuit, Briefcase, CalendarDays, ChevronLeft, Compass, Film, Flame, Gamepad2,
+  GraduationCap, HandHeart, Landmark, LayoutGrid, ListChecks, MapPinned, MessagesSquare, Package, PenTool, ScrollText, Stethoscope,
+  Store, Swords, Telescope, Trophy, UsersRound,
 } from 'lucide-react';
 import {formatCompact, formatYear} from '@/lib/format';
 import {valueStatusLabels} from '@/lib/yemenNumbers';
@@ -28,7 +28,11 @@ export function Shortcuts({items}) {
 }
 
 /* ---------- Section launcher: every part of 967 as an app icon ---------- */
+// Everyday services first (each shows only while its section is visible).
 export const launcherItems = [
+  {href: '/market', label: 'السوق', icon: Store, hue: 'var(--c-ember)'},
+  {href: '/services', label: 'الخدمات', icon: Banknote, hue: 'var(--c-indigo)'},
+  {href: '/transactions', label: 'المعاملات', icon: ListChecks, hue: 'var(--c-teal)'},
   {href: '/works', label: 'الأعمال', icon: Film, hue: 'var(--c-ember)'},
   {href: '/debates', label: 'المناظرات', icon: MessagesSquare, hue: 'var(--c-plum)'},
   {href: '/magazine', label: 'المجلة', icon: BookOpen, hue: 'var(--c-ember)'},

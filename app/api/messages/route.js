@@ -25,6 +25,16 @@ function check(result){
  if(result.error)throw messagingError(result.error)||result.error;
  return result.data;
 }
+// Only what the header needs: who, the last line, when, and whether it is unread.
+function latestConversation(rows,actor){
+ const row=rows.filter(c=>!c.blocked&&(c.status==='accepted'||c.status==='pending'&&c.requested_by!==actor))
+  .sort((a,b)=>Date.parse(b.last_message_at||b.requested_at||b.updated_at||0)-Date.parse(a.last_message_at||a.requested_at||a.updated_at||0))[0];
+ if(!row)return null;
+ const request=row.status==='pending';
+ return {id:row.id,name:row.partner_name||'مستخدم 967',avatar:row.avatar_url||null,request,
+  excerpt:String(request?row.intro||'طلب محادثة جديد':row.last_excerpt||'').slice(0,120),
+  at:row.last_message_at||row.requested_at||row.updated_at||null,unread:request?1:row.muted?0:Number(row.unread||0)};
+}
 async function inbox(db,id){
  return check(await db.rpc('private_messaging_inbox',{p_actor:id}))||[];
 }
@@ -227,7 +237,9 @@ export async function GET(request){
     unread:rows.reduce((n,c)=>n+(c.muted?0:Number(c.unread||0)),0),
     market:Number(market?.unread||0),
     notify_messages:preferences.data?.notify_messages!==false,
-    latest_incoming_unread_at:latest});
+    latest_incoming_unread_at:latest,
+    // The newest conversation (read or not), shown first in the header's notifications menu.
+    latest:latestConversation(rows,user.id)});
   }
   if(mode==='thread')return json(await getThread(db,user.id,id,before,around));
   if(mode==='receipt')return json(await readReceipt(db,user.id,id));

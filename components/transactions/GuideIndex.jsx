@@ -20,7 +20,7 @@ function GuideCard({guide}){
     {guide.documents>0&&<span><FileStack size={13} aria-hidden="true"/>{guide.documents} أوراق</span>}
     {guide.cities.length>0&&<span><MapPin size={13} aria-hidden="true"/>{guide.cities.join(' و')}</span>}
    </span>
-   {guide.verifiedAt&&<small>آخر تحقق: {formatArabicDate(guide.verifiedAt)}</small>}
+   {guide.verifiedAt?<small>آخر تحقق: {formatArabicDate(guide.verifiedAt)}</small>:<small>معلومات أولية</small>}
   </span>
   <ArrowLeft className={styles.cardGo} size={18} aria-hidden="true"/>
  </Link>;
