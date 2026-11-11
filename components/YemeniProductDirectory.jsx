@@ -5,6 +5,7 @@ import Link from '@/components/SiteLink';
 import {useMemo,useState} from 'react';
 import {CheckCircle2, ChevronDown, Factory, MapPin, Package, Search, SlidersHorizontal, X} from 'lucide-react';
 import {formatNumber} from '@/lib/format';
+import {canOptimizeImage} from '@/lib/media';
 import {matchesSearch} from '@/lib/search';
 import useListState from './useListState';
 import {collectionDefaults,listStateSearch} from '@/lib/listState';
@@ -30,7 +31,7 @@ function CompanyCard({company,returnTo}){
             alt={illustrative?'صورة توضيحية لفئة المنتجات، لا تمثل منتجات '+company.name:'صورة منشورة مرتبطة بـ '+company.name}
             fill sizes="(max-width: 680px) 100vw, (max-width: 1100px) 50vw, 33vw"
             onError={()=>setImageFailed(true)}
-            unoptimized={illustrative} style={{objectPosition:company.imagePosition||'center'}}/>:
+            unoptimized={!canOptimizeImage(company.imageUrl)} style={{objectPosition:company.imagePosition||'center'}}/>:
           <CompanyPlaceholder/>}
         <span className={styles.category}>{company.category}</span>
         {illustrative&&!imageFailed&&<span className={styles.illustrative}>صورة توضيحية — ليست صورة الشركة</span>}

@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import {useCallback, useState} from 'react';
-import {canOptimizeImage, safeImageUrl} from '@/lib/media';
+import {canOptimizeImage, commonsFileAt, safeImageUrl} from '@/lib/media';
 
 // One media policy for every card: unsafe URLs never reach next/image, hosts
 // outside the optimizer policy are delivered directly, and a failed request
@@ -11,7 +11,9 @@ import {canOptimizeImage, safeImageUrl} from '@/lib/media';
 // with onError, next/image re-assigns img.src after hydration to replay early
 // errors, which re-downloads any image still in flight (measured: 2x bytes).
 export default function SafeImage({src, alt = '', sizes, priority = false, className, placeholder = null, quality = 60}) {
-  const safe = safeImageUrl(src);
+  // A Commons file (Wikimedia is hard to reach from Yemen) is always fetched by our server.
+  const given = safeImageUrl(src);
+  const safe = commonsFileAt(given, 1200) || given;
   const [failed, setFailed] = useState(null);
   const watch = useCallback(img => {
     if (!img) return;
