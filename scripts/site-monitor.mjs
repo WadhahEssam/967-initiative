@@ -22,7 +22,9 @@ const RETRY_AFTER_MS = 20000;
 const userAgent = '967-site-monitor (GitHub Actions)';
 
 const pages = ['/', '/yemen-history', '/yemeni-figures', '/universities', '/medical-centers', '/yemen-in-numbers',
-  '/yemen-in-numbers/timeline', '/yemen-ranking', '/yemen-map', '/games', '/school', '/debates', '/search', '/contribute', '/about'];
+  '/yemen-in-numbers/timeline', '/yemen-ranking', '/yemen-map', '/games', '/school', '/debates', '/search', '/contribute', '/about',
+  // Launched 2026-11-11: the market, the everyday services and the transactions guide.
+  '/market', '/market/search', '/services', '/services/exchange-rates', '/services/food-prices', '/transactions', '/transactions/passport'];
 const detailRoutes = ['/api/history/details', '/api/figures/details', '/api/numbers/details',
   '/api/directories/details?kind=universities', '/api/directories/details?kind=medical-centers'];
 const sameSitePosts = ['/api/contact', '/api/analytics/event', '/api/telemetry'];
