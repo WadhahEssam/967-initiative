@@ -190,3 +190,18 @@
 .savedLabel{flex:1;min-width:0;display:inline-flex;align-items:center;gap:8px;min-height:var(--target);color:var(--c-ink);text-decoration:none;font-weight:600;overflow-wrap:anywhere}
 .switch{display:inline-flex;align-items:center;gap:6px;min-height:var(--target);font-size:var(--t-size-meta);color:var(--c-ink-2);white-space:nowrap;cursor:pointer}
 .switch input{inline-size:20px;block-size:20px;accent-color:var(--c-accent)}
+
+/* Gallery: a blurred, dimmed copy of the photo behind it instead of black bars (any photo shape). */
+.slide{overflow:hidden}
+.slide img.slideBackdrop{inset:-24px;inline-size:calc(100% + 48px);block-size:calc(100% + 48px);object-fit:cover;filter:blur(22px) brightness(.62) saturate(1.15);transform:scale(1.05)}
+@media(prefers-reduced-transparency:reduce){.slide img.slideBackdrop{display:none}}
+
+/* Wide screens: the contact buttons sit in the summary column under the seller (not floating over
+   the description), and the column stays in view beside the photos, the description and the specs. */
+@media(min-width:900px){
+ .summary .contactBar{position:static;translate:none;inline-size:auto;inset:auto;margin-top:4px;padding:0;border:0;border-radius:0;box-shadow:none;background:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+ .layout{grid-template-areas:"gallery side" "block side";align-items:start}
+ .layout>.gallery,.layout>.galleryEmpty{grid-area:gallery}
+ .layout>.block{grid-area:block;padding:0}
+ .summary{grid-area:side;position:sticky;top:calc(var(--header-h,64px) + 16px);align-self:start;padding:0}
+}

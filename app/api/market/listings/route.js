@@ -2,6 +2,8 @@ import {marketMember} from '@/lib/market/access';
 import {getMarketPlaces,governorateIdByName} from '@/lib/market/places';
 import {MarketActionError,getOwnDraft,getOwnForEdit,publishListing,saveDraft,sellerDefaults,updateListing} from '@/lib/market/listingsServer';
 import {ListingError} from '@/lib/market/listing';
+import {orderCategories} from '@/lib/market/catalog';
+import {marketCategoryCounts} from '@/lib/market/searchServer';
 import {readJsonObject,RequestValidationError} from '@/lib/requestSecurity';
 
 export const dynamic='force-dynamic';
@@ -26,9 +28,11 @@ export async function GET(request){
   const params=new URL(request.url).searchParams;
   const draftId=params.get('draft'),editId=params.get('edit');
   if((draftId&&!UUID.test(draftId))||(editId&&!UUID.test(editId)))throw new RequestValidationError('رابط الإعلان غير صالح.',400);
-  const [defaults,places]=await Promise.all([sellerDefaults(db,user),getMarketPlaces()]);
+  const [defaults,places,counts]=await Promise.all([sellerDefaults(db,user),getMarketPlaces(),marketCategoryCounts(db).catch(()=>({}))]);
   const governorate_id=defaults.governorate_id||governorateIdByName(places,defaults.governorateName);
-  return json({defaults:{...defaults,governorate_id},draft:draftId?await getOwnDraft(db,user,draftId):null,editing:editId?await getOwnForEdit(db,user,editId):null});
+  // The posting form lists the busiest categories first, like the market home.
+  const categoryOrder=orderCategories(counts).map(category=>category.key);
+  return json({defaults:{...defaults,governorate_id,categoryOrder},draft:draftId?await getOwnDraft(db,user,draftId):null,editing:editId?await getOwnForEdit(db,user,editId):null});
  }catch(error){return failure(error);}
 }
 
