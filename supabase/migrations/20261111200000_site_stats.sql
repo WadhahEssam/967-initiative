@@ -127,6 +127,13 @@ language sql stable security invoker set search_path = pg_catalog, public as $$
                (select count(*) from last_view l where l.path = v.path) as exits,
                (select count(*) from entry e join s on s.session = e.session and s.views = 1 where e.path = v.path) as bounces
           from v group by v.path order by count(*) desc, v.path limit 60) p), '[]'::jsonb),
+    'sections', coalesce((select jsonb_agg(x order by x.views desc, x.id) from (
+        select case when path = '/' then 'home' else split_part(path, '/', 2) end as id, count(*) as views,
+               count(distinct visitor) as visitors, coalesce(round(avg(nullif(duration_ms, 0))), 0) as "avgMs"
+          from v group by 1) x), '[]'::jsonb),
+    'entries', coalesce((select jsonb_agg(x order by x.visits desc, x.path) from (
+        select e.path, count(*) as visits, count(*) filter (where s.views = 1) as bounces
+          from entry e join s on s.session = e.session group by e.path order by 2 desc, 1 limit 20) x), '[]'::jsonb),
     'sources', coalesce((select jsonb_agg(x order by x.visits desc) from (select source as id, count(*) as visits from entry group by source) x), '[]'::jsonb),
     'devices', coalesce((select jsonb_agg(x order by x.visitors desc) from (select device as id, count(distinct visitor) as visitors from v group by device) x), '[]'::jsonb),
     'os', coalesce((select jsonb_agg(x order by x.visitors desc) from (select os as id, count(distinct visitor) as visitors from v group by os) x), '[]'::jsonb),

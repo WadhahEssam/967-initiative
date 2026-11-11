@@ -90,3 +90,12 @@ test('the database keeps no IP, user agent or account id, and only the server wr
  // Team devices: marked when an editor or manager signs in.
  assert.ok(read('components/editorFlag.js').includes('if (canEdit === true) markTeamDevice();'));
 });
+
+test('stage 2: pages, read time, sections and entry pages',async()=>{
+ const {sectionName}=await import('../lib/siteStats.js');
+ assert.equal(sectionName('yemen-history'),'تاريخ اليمن');assert.equal(sectionName('home'),'الرئيسية');assert.equal(sectionName('unknown'),'/unknown');
+ const sql=read('supabase/migrations/20261111200000_site_stats.sql');
+ for(const key of ["'pages'","'sections'","'entries'","\"avgMs\"","'exits'"])assert.ok(sql.includes(key),key);
+ const ui=read('components/admin/AnalyticsDashboard.jsx');
+ for(const text of ['الصفحات الأكثر زيارة','متوسط القراءة','غادروا الموقع منها','من أين يبدأ الزوار زياراتهم'])assert.ok(ui.includes(text),text);
+});

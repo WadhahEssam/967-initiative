@@ -46,3 +46,9 @@
 :global(:root[data-ed-theme="dark"]) .page .change[data-trend="down"]{color:#f0a48c}
 :global(:root[data-ed-theme="dark"]) .page .accountsRow strong{color:var(--c-ink)}
 :global(:root[data-ed-theme="dark"]) .page .columnTrack>span,:global(:root[data-ed-theme="dark"]) .page .bar span{background:#3fa58e}
+.pagesTable th[scope="row"]{white-space:normal;min-width:220px;max-width:420px}
+.pageTitle{display:block;font-weight:700;line-height:1.6;overflow-wrap:anywhere}
+.pagePath{display:block;font-size:11px;font-weight:400;color:var(--color-muted);overflow-wrap:anywhere}
+.more{font:inherit;font-size:13px;margin-top:12px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--color-brand-strong);min-height:40px;padding:6px 14px;cursor:pointer;font-weight:700}
+:global(:root[data-ed-theme="dark"]) .page .pagePath{color:var(--c-ink-2)}
+:global(:root[data-ed-theme="dark"]) .page .more{border-color:var(--c-line-2);color:var(--c-ink)}

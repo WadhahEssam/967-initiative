@@ -4,7 +4,7 @@ import Link from 'next/link';
 import {Activity,ArrowLeft,BookOpenCheck,Clock3,Eye,Layers,LogOut,MonitorSmartphone,RefreshCw,Repeat,SearchX,ShieldCheck,UserPlus,Users,UsersRound} from 'lucide-react';
 import {browserDb} from '@/lib/supabase';
 import useAudience from '@/components/debates/useAudience';
-import {RANGES,changePercent} from '@/lib/siteStats';
+import {RANGES,changePercent,sectionName} from '@/lib/siteStats';
 import {clearTeamDevice,isTeamDevice,markTeamDevice} from '@/lib/siteStatsDevice';
 import styles from './AnalyticsDashboard.module.css';
 
@@ -75,6 +75,23 @@ function Trend({daily=[],rangeId}){
   </div></details>
  </section>;
 }
+// «الصفحات»: the most visited pages, how long they are read, and where visits start and end.
+function PageTitle({page}){
+ return <><span className={styles.pageTitle}>{page.title||page.path}</span>{page.title&&<small className={styles.pagePath} dir="ltr">{page.path}</small>}</>;
+}
+function PagesTable({pages}){
+ const [all,setAll]=useState(false);
+ const shown=all?pages:pages.slice(0,15);
+ return <section className={styles.panel} aria-labelledby="pages-title">
+  <div className={styles.panelHeading}><h2 id="pages-title">الصفحات الأكثر زيارة</h2><p>«غادر الموقع منها»: من دخل الموقع من هذه الصفحة وخرج دون أن يفتح غيرها.</p></div>
+  {pages.length?<div className={styles.tableWrap}><table className={styles.table+' '+styles.pagesTable}>
+   <thead><tr><th>الصفحة</th><th>المشاهدات</th><th>الزوار</th><th>متوسط القراءة</th><th>دخلوا منها</th><th>غادروا الموقع منها</th></tr></thead>
+   <tbody>{shown.map(page=><tr key={page.path}><th scope="row"><PageTitle page={page}/></th><td>{number(page.views)}</td><td>{number(page.visitors)}</td><td>{duration(page.avgMs)}</td><td>{number(page.entries)}</td><td>{page.entries?percent(page.bounces,page.entries):'—'}</td></tr>)}</tbody>
+  </table></div>:<p className={styles.empty}>لا توجد مشاهدات في هذه الفترة.</p>}
+  {pages.length>15&&<button type="button" className={styles.more} onClick={()=>setAll(!all)} aria-expanded={all}>{all?'عرض أقل':'عرض كل الصفحات ('+number(pages.length)+')'}</button>}
+ </section>;
+}
+
 function Live({live}){
  const devices=Object.entries(live?.devices||{});
  return <section className={styles.live} aria-labelledby="live-title" aria-live="polite">
@@ -152,6 +169,13 @@ export default function AnalyticsDashboard(){
    </div>
    <Trend daily={stats.daily} rangeId={data.range.id}/>
 
+   <h2 className={styles.sectionTitle}>الصفحات</h2>
+   <PagesTable pages={stats.pages||[]}/>
+   <div className={styles.two}>
+    <RowBars items={stats.sections||[]} value={item=>item.views} title="الأقسام" label={item=>sectionName(item.id)+' · '+duration(item.avgMs)+' في المتوسط'}/>
+    <RowBars items={stats.entries||[]} value={item=>item.visits} title="من أين يبدأ الزوار زياراتهم" label={item=>item.path==='/'?'الرئيسية':item.path} empty="لا توجد زيارات في هذه الفترة."/>
+   </div>
+
    <h2 className={styles.sectionTitle}>الأعضاء</h2>
    <div className={styles.cards} aria-label="الأعضاء">
     <Card icon={UsersRound} label="إجمالي الحسابات" value={number(accounts.total)}/>
@@ -178,7 +202,7 @@ export default function AnalyticsDashboard(){
      <p className={styles.help}>لا تُحفظ كلمات البحث نفسها.</p>
     </section>
     <section className={styles.panel}><h2><MonitorSmartphone size={19} aria-hidden="true"/> قادم في المراحل التالية</h2>
-     <p className={styles.empty}>الصفحات الأكثر زيارة ومدة القراءة، ثم مصادر الزيارة والأجهزة وأرقام السوق. البيانات تُجمع منذ تشغيل هذه الصفحة.</p></section>
+     <p className={styles.empty}>مصادر الزيارة والأجهزة وأرقام السوق. البيانات تُجمع منذ تشغيل هذه الصفحة.</p></section>
    </div>
 
    <div className={styles.schoolHeading}><span><BookOpenCheck size={21}/> مدرسة 967</span><h2>أين يتقدم الطلاب، وأين يواجهون صعوبة؟</h2><p>تُحسب نسب إكمال المحطات من الطلاب الذين حاولوا اجتيازها، من آخر 3000 محاولة. لا تظهر المجموعات الأصغر من 5 طلاب.</p></div>
