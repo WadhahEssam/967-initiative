@@ -20,7 +20,7 @@ import {createRefreshThrottle} from '@/lib/authEvents';
 export default function Header({actionLabel = 'ساهم معنا', contentLinks = []}) {
   const {visibility, isVisible} = usePageVisibility();
   const {db, ready: sessionReady} = useSessionDb();
-  const sections = useMemo(() => resolveNavSections({contentLinks, visibility}).map(section => ({...section, links: section.links.filter(([href]) => isVisible(href))})).filter(section => section.links.length), [contentLinks, visibility, isVisible]);
+  const sections = useMemo(() => resolveNavSections({contentLinks, visibility}).filter(section => !section.footerOnly).map(section => ({...section, links: section.links.filter(([href]) => isVisible(href))})).filter(section => section.links.length), [contentLinks, visibility, isVisible]);
   const path = usePathname();
   const [open, setOpen] = useState(false);
   const [signedIn, setSignedIn] = useState(null);

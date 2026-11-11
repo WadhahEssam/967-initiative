@@ -31,8 +31,9 @@ export default function Footer({settings = defaultSiteSettings, memberCount = nu
   const socials = [{key: 'instagram', label: 'إنستغرام'}, {key: 'youtube', label: 'يوتيوب'}, {key: 'facebook', label: 'فيسبوك'}, {key: 'tiktok', label: 'تيك توك'}].filter(entry => settings[entry.key]);
   const groupLinks = section => {
     if (section.id !== 'initiative') return [...section.links, ...(extras[section.id] || [])];
-    const managed = pages.filter(page => !['privacy', 'terms'].includes(page.slug)).map(page => [contentPagePath(page), page.title]);
-    return [...managed, ['/#projects', 'مشاريعنا'], ['/contribute', 'ساهم معنا'], ...extras.initiative];
+    // No «من نحن» (about) or «مشاريعنا» here (owner, 2026-11-11).
+    const managed = pages.filter(page => !['privacy', 'terms', 'about'].includes(page.slug)).map(page => [contentPagePath(page), page.title]);
+    return [...managed, ...section.links, ...extras.initiative];
   };
   const groups = navSections.map(section => ({...section, links: groupLinks(section).filter(([href]) => visible(href))})).filter(section => section.links.length);
   return <footer className="ed-footer"><div className="ed-footer-inner">
