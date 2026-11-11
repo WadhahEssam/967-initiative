@@ -1,0 +1,11 @@
+/* «المتابعة بحساب Google» (2026-11-12). Google's button style: white, dark text, grey border. */
+.google{display:grid;gap:10px;margin-block:18px 6px}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:48px;font:inherit;font-weight:700;font-size:15px;background:#fff;color:#1f1f1f;border:1px solid #747775;border-radius:10px;cursor:pointer;padding:8px 16px}
+.button:hover:not(:disabled){background:#f8f9fa}
+.button:disabled{opacity:.6;cursor:not-allowed}
+.button:focus-visible{outline:3px solid var(--color-cobalt,#2a5bd7);outline-offset:3px}
+.note{margin:0;font-size:12px;line-height:1.9;color:var(--muted)}
+.divider{display:flex;align-items:center;gap:12px;margin:6px 0 0;font-size:12px;color:var(--muted)}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+:global(:root[data-ed-theme="dark"]) .note,:global(:root[data-ed-theme="dark"]) .divider{color:var(--c-ink-2)}
+:global(:root[data-ed-theme="dark"]) .divider::before,:global(:root[data-ed-theme="dark"]) .divider::after{background:var(--c-line-2)}
