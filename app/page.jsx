@@ -125,7 +125,7 @@ export default async function Home() {
     {/* سوق 967: the four newest listings (only while the market is open) */}
     {listings.length > 0 && <section id="home-market" className={home.block} aria-labelledby="home-market-title"><div className="ed-wrap">
       <BlockHead id="home-market-title" icon={Store} title="جديد سوق 967" href="/market" linkLabel="كل الإعلانات" hue="var(--c-ember)" Link={Link}/>
-      <div className={`${market.grid} ${home.marketGrid}`}>{listings.map((item, index) => <ListingCard key={item.id} listing={item} index={index}/>)}</div>
+      <div className={`${market.grid} ${home.marketGrid}`}>{listings.map(item => <ListingCard key={item.id} listing={item}/>)}</div>
       {/* Hides the listings of sellers the visitor blocked (or who blocked them), as on the market pages. */}
       <MarketBlockFilter/>
     </div></section>}

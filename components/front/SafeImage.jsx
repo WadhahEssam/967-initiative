@@ -20,5 +20,6 @@ export default function SafeImage({src, alt = '', sizes, priority = false, class
     img.addEventListener('error', fail, {once: true});
   }, [safe]);
   if (!safe || failed === safe) return placeholder;
-  return <Image ref={watch} src={safe} alt={alt} fill sizes={sizes} priority={priority} quality={quality} className={className} unoptimized={!canOptimizeImage(safe)}/>;
+  // A priority image is the page's largest one: ask the browser to fetch it first.
+  return <Image ref={watch} src={safe} alt={alt} fill sizes={sizes} priority={priority} fetchPriority={priority ? 'high' : undefined} quality={quality} className={className} unoptimized={!canOptimizeImage(safe)}/>;
 }
