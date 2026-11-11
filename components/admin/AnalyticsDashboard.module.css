@@ -10,3 +10,39 @@
 :global(:root[data-ed-theme="dark"]) .page .table thead{background:var(--c-surface-2);color:var(--c-ink)}
 :global(:root[data-ed-theme="dark"]) .page .privacy{background:var(--c-accent-soft);border-color:var(--c-line-2);color:var(--c-ink)}
 :global(:root[data-ed-theme="dark"]) .page .privacy p{color:var(--c-ink-2)}
+
+/* «إحصاءات الموقع» (2026-11-11) */
+.sectionTitle{font-size:clamp(20px,2.4vw,26px);margin:14px 0 -6px;line-height:1.4}
+.change{font-size:11px;font-weight:700;color:var(--color-muted)}
+.change[data-trend="up"]{color:#176456}.change[data-trend="down"]{color:#9a3b25}
+.ranges{display:flex;flex-wrap:wrap;gap:6px}
+.ranges button{font:inherit;font-size:13px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--color-ink);min-height:40px;padding:6px 14px;cursor:pointer}
+.ranges button[aria-pressed="true"]{background:#176456;border-color:#176456;color:#fff;font-weight:700}
+.period{font-size:12px;color:var(--color-muted);align-self:center}
+.live{display:grid;grid-template-columns:minmax(200px,280px) 1fr;gap:12px 24px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px}
+.liveCount{display:flex;gap:14px;align-items:flex-start}
+.liveCount h2{font-size:15px;margin:0}.liveCount strong{display:block;font-size:44px;line-height:1.2}.liveCount small{font-size:12px;color:var(--color-muted)}
+.pulse{width:12px;height:12px;border-radius:50%;background:#1f8a5b;margin-top:7px;flex-shrink:0;box-shadow:0 0 0 0 rgba(31,138,91,.5);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(31,138,91,0)}100%{box-shadow:0 0 0 0 rgba(31,138,91,0)}}
+.livePages ol{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.livePages li,.plainList li{display:flex;justify-content:space-between;gap:12px;font-size:13px;border-bottom:1px solid var(--line);padding:6px 0;min-width:0}
+.livePages li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.live .help{grid-column:1/-1;margin:0}
+.plainList{margin:0;padding:0;list-style:none}
+.accountsRow{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--color-muted);margin-top:-8px}
+.accountsRow strong{color:var(--color-ink)}
+.legacy{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px 20px}
+.legacy summary{cursor:pointer;font-weight:700;font-size:14px;min-height:44px;display:flex;align-items:center}
+.legacy .panel{border:0;padding:0}
+.team{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;margin:8px 0 0}
+.team button{font:inherit;font-size:12px;border:1px solid currentColor;border-radius:8px;background:transparent;color:inherit;min-height:36px;padding:4px 10px;cursor:pointer}
+.panel h2{display:flex;align-items:center;gap:8px}
+@media(max-width:800px){.live{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.pulse{animation:none}}
+:global(:root[data-ed-theme="dark"]) .page :is(.live,.legacy,.ranges button){background:var(--c-surface);color:var(--c-ink);border-color:var(--c-line-2)}
+:global(:root[data-ed-theme="dark"]) .page .ranges button[aria-pressed="true"]{background:#2c8f7c;border-color:#2c8f7c;color:#fff}
+:global(:root[data-ed-theme="dark"]) .page :is(.change,.period,.liveCount small,.accountsRow){color:var(--c-ink-2)}
+:global(:root[data-ed-theme="dark"]) .page .change[data-trend="up"]{color:#6fd1b4}
+:global(:root[data-ed-theme="dark"]) .page .change[data-trend="down"]{color:#f0a48c}
+:global(:root[data-ed-theme="dark"]) .page .accountsRow strong{color:var(--c-ink)}
+:global(:root[data-ed-theme="dark"]) .page .columnTrack>span,:global(:root[data-ed-theme="dark"]) .page .bar span{background:#3fa58e}
