@@ -59,15 +59,20 @@ test('school completion counts distinct people but exports no identifying data',
 });
 
 test('tracking requires privacy controls and does not collect identifiers',()=>{
- const tracker=read('components/analytics/SiteUsageTracker.jsx');
+ const counters=read('components/analytics/SiteUsageTracker.jsx');
+ const tracker=read('components/analytics/SiteStatsTracker.jsx');
  const privacy=read('components/analytics/AnalyticsPrivacyControls.jsx');
  const endpoint=read('app/api/analytics/event/route.js');
  const sql=read('supabase/migrations/20261031202332_site_usage_aggregate_analytics.sql');
- for(const token of ["doNotTrack","globalPrivacyControl","967-analytics-opt-out","credentials:'omit'","isVisible(pathname)"])assert.ok(tracker.includes(token),token);
- assert.ok(privacy.includes('تعطيل العدّ المجمّع'));
+ for(const token of ["doNotTrack","globalPrivacyControl","967-analytics-opt-out","credentials:'omit'"])assert.ok(counters.includes(token),token);
+ for(const token of ["navigator.webdriver","doNotTrack","globalPrivacyControl","OPT_OUT_KEY","isTeamDevice()","credentials:'omit'"])assert.ok(tracker.includes(token),token);
+ // Section page views now come from «إحصاءات الموقع»; the old counter keeps funnel and search misses.
+ assert.ok(!counters.includes("'page_view'"));
+ assert.ok(privacy.includes('إيقاف العدّ على هذا الجهاز'));
+ assert.ok(privacy.includes('لا نحفظ عنوان IP'));
+ assert.ok(privacy.includes("localStorage.removeItem('967-visitor')"));
  assert.ok(endpoint.includes("db.rpc('record_site_usage'"));
  assert.ok(endpoint.includes('analyticsOriginAllowed(request,isSameOrigin)'));
- assert.ok(endpoint.includes("db.rpc('record_site_usage'"));
  assert.ok(endpoint.includes('usageEvent(body)'));
  for(const string of ['user_id uuid','ip_address','referrer','query_text','search_phrase'])
   assert.ok(!sql.includes(string),string);
@@ -77,37 +82,40 @@ test('tracking requires privacy controls and does not collect identifiers',()=>{
  assert.ok(sql.includes('grant execute on function public.record_site_usage(text,text) to service_role'));
 });
 
-test('private dashboard authenticates server side, filters small groups and no raw student records returned',()=>{
+test('private dashboard: management only, server side, small groups filtered and no raw student records returned',()=>{
  const api=read('app/api/admin/analytics/route.js');
  const ui=read('components/admin/AnalyticsDashboard.jsx');
  const nav=read('components/admin/AdminNavigation.jsx');
  const search=read('app/search/page.jsx');
  const layout=read('app/layout.jsx');
  assert.ok(api.indexOf('await authorizeEditorRequest')<api.indexOf("db.from('site_usage_daily')"));
+ assert.ok(api.indexOf("actor.role!=='management'")<api.indexOf("rpc(db,'analytics_live')"));
  assert.ok(api.includes('schoolStudioAnalytics(rows,3000,5)'));
  assert.ok(read('lib/schoolStudioAnalytics.js').includes('.filter(x=>x.asked>=minAsked)'));
  assert.ok(api.includes('schoolLearningOverview(rows)'));
- assert.ok(api.includes('schoolStudioAnalytics(rows,3000,5)'));
  assert.ok(api.includes("Cache-Control':'private, no-store'"));
  assert.ok(ui.includes('الأسئلة الأكثر خطأً'));
  assert.ok(ui.includes('إكمال المحطات'));
- assert.ok(ui.includes('searches'));
- assert.ok(nav.includes('href="/admin/analytics"'));
- assert.ok(layout.includes('<SiteUsageTracker/>'));
+ assert.ok(ui.includes('counters.searches'));
+ // The link is in the management-only part of the admin menu.
+ assert.ok(nav.indexOf('{canManageUsers&&<><a href="/admin/analytics">')>0);
+ assert.ok(!nav.includes('تحليلات الاستخدام'));
+ assert.ok(layout.includes('<SiteStatsTracker/>'));
  assert.ok(search.includes('unavailable.length===0'));
  assert.ok(search.includes("<SearchMissTracker key={query"));
  assert.ok(!api.includes('return respond({records:'));
 });
 
-test('presentation is mobile responsive, keyboard navigable and distinguishes views from unique people',()=>{
+test('presentation is mobile responsive, keyboard navigable and explains what is counted',()=>{
  const css=read('components/admin/AnalyticsDashboard.module.css');
  const ui=read('components/admin/AnalyticsDashboard.jsx');
  assert.ok(css.includes('@media(max-width:650px)'));
  assert.ok(css.includes(':focus-visible'));
- assert.ok(ui.includes('ليست عدد أشخاص فريدين')||ui.includes('وليس زوارًا فريدين'));
+ assert.ok(ui.includes('فالزائر الواحد على جوال وكمبيوتر يُحسب زائرَين'));
  assert.ok(ui.includes('role="img"'));
  assert.ok(ui.includes('role="alert"'));
- assert.ok(ui.includes('aria-label'));
+ assert.ok(ui.includes('aria-pressed={range===id}'));
+ assert.ok(ui.includes('عرض الأرقام في جدول'));
 });
 
 
@@ -140,7 +148,9 @@ test('conversion steps are anonymous counters accepted by both the API and the d
  for(const section of ['page_view','home','lesson_start',''])assert.equal(usageEvent({event:'funnel',section}),null,section);
  const sql=read('supabase/migrations/20261110060000_site_usage_funnel.sql');
  assert.ok(sql.includes("'page_view','search_miss','funnel'"));
- for(const step of Object.keys(FUNNEL_STEPS))assert.ok(sql.includes("'"+step+"'"),step);
+ // The latest record_site_usage (with the market contact steps) is in the site statistics migration.
+ const latest=read('supabase/migrations/20261111200000_site_stats.sql');
+ for(const step of Object.keys(FUNNEL_STEPS))assert.ok(latest.includes("'"+step+"'"),step);
  const overview=funnelOverview(new Map([['lesson_start_guest',10],['lesson_done_guest',4],['signup_prompt_shown',20]]));
  assert.equal(overview.rates.find(rate=>rate.id==='lesson_guest').value,40);
  assert.equal(overview.rates.find(rate=>rate.id==='prompt_click').value,0);

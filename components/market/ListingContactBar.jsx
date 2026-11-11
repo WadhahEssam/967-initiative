@@ -3,6 +3,7 @@ import {useEffect,useState} from 'react';
 import Link from 'next/link';
 import {HandCoins,MessageCircle,Settings2} from 'lucide-react';
 import {whatsappLink} from '@/lib/market/format';
+import {trackFunnel} from '@/components/analytics/funnel';
 import {loginHref,marketApi,marketSession} from '@/lib/market/clientApi';
 import OfferForm from './OfferForm';
 import Sheet from './Sheet';
@@ -22,7 +23,8 @@ export default function ListingContactBar({listingId,sellerId,title,amount,curre
  const [error,setError]=useState('');
  useEffect(()=>{marketSession().then(session=>setOwn(Boolean(session&&session.user.id===sellerId))).catch(()=>{});},[sellerId]);
  const chatHref='/messages?tab=market&listing='+listingId;
- const message=async()=>{location.href=await marketSession()?chatHref:'/login?next='+encodeURIComponent(chatHref);};
+ // «إحصاءات الموقع»: contact clicks are counted (once per listing and tab), nothing else.
+ const message=async()=>{trackFunnel('market_message',String(listingId));location.href=await marketSession()?chatHref:'/login?next='+encodeURIComponent(chatHref);};
  const openOffer=async()=>{if(!await marketSession()){location.href=loginHref();return;}setError('');setOffering(true);};
  const sendOffer=async(value,text)=>{
   setBusy(true);setError('');
@@ -35,7 +37,7 @@ export default function ListingContactBar({listingId,sellerId,title,amount,curre
    :closed?<span className={styles.contactClosed}>تم بيع هذا الإعلان</span>:<>
     <button type="button" className={`${ui.button} ${ui.primary} ${ui.large} ${styles.contactMain}`} onClick={message}><MessageCircle size={19} aria-hidden="true"/> مراسلة</button>
     {negotiable&&<button type="button" className={`${ui.button} ${ui.secondary} ${ui.large} ${styles.contactOffer}`} onClick={openOffer}><HandCoins size={19} aria-hidden="true"/> عرض سعر</button>}
-    {whatsapp&&<a className={`${ui.button} ${ui.whatsapp} ${ui.large} ${styles.contactWhatsapp}`} href={whatsappLink(whatsapp,'مرحبًا، بخصوص إعلانك في سوق 967: '+title+' '+url)} target="_blank" rel="noopener noreferrer" aria-label="واتساب" title="واتساب"><WhatsAppMark/></a>}
+    {whatsapp&&<a onClick={()=>trackFunnel('market_whatsapp',String(listingId))} className={`${ui.button} ${ui.whatsapp} ${ui.large} ${styles.contactWhatsapp}`} href={whatsappLink(whatsapp,'مرحبًا، بخصوص إعلانك في سوق 967: '+title+' '+url)} target="_blank" rel="noopener noreferrer" aria-label="واتساب" title="واتساب"><WhatsAppMark/></a>}
    </>}
   </div>
   <Sheet open={offering} title="عرض سعر" onClose={()=>setOffering(false)}>

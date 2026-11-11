@@ -19,7 +19,7 @@ test('editorial A has full home and correct route-scoped CSS',()=>{
  assert.ok(existsSync(new URL('../public/fonts/markazi-arabic-web.woff2',import.meta.url)));
 });
 
-test('light is default and the explicit dark theme covers every route',()=>{
+test('the explicit dark theme covers every route',()=>{
  const tokens=read('app/foundation/tokens.css');
  const shell=read('app/foundation/shell.css');
  const unified=read('app/foundation/unified.css');
@@ -37,10 +37,14 @@ test('saved choice applies before paint, persists and survives browser storage r
  const layout=read('app/layout.jsx');
  const button=read('components/ThemeToggle.jsx');
  const header=read('components/Header.jsx');
- assert.ok(layout.includes('data-ed-theme="light" suppressHydrationWarning'));
+ // Dark is the default (owner, 2026-11-11): the page is rendered dark; only a saved «light» changes it.
+ assert.ok(layout.includes('data-ed-theme="dark" suppressHydrationWarning'));
+ assert.ok(!layout.includes('prefers-color-scheme'));
+ assert.ok(!button.includes('prefers-color-scheme'));
+ assert.ok(button.includes("useState('dark')"));
  assert.ok(layout.includes('<script dangerouslySetInnerHTML='));
  assert.ok(layout.includes("967-editorial-theme"));
- assert.ok(layout.includes("document.documentElement.dataset.edTheme='dark'"));
+ assert.ok(layout.includes("if(localStorage.getItem('967-editorial-theme')==='light')document.documentElement.dataset.edTheme='light'"));
  assert.ok(button.includes("const KEY='967-editorial-theme';"));
  assert.ok(button.includes('window.localStorage.setItem(KEY,next)'));
  assert.ok(button.includes("window.addEventListener('storage',onStorage)"));

@@ -19,7 +19,7 @@ test('all historical topics receive context-labeled referenced photographs, acro
    assert.ok(photo.caption.length>=20,entry.slug);
    assert.ok(photo.credit.length>=3,entry.slug);
    assert.ok(photo.license,entry.slug);
-   assert.ok(historyPhotoSource(photo).startsWith('https://commons.wikimedia.org/wiki/Special:FilePath/'),entry.slug);
+   assert.ok(/^https:\/\/commons\.wikimedia\.org\/(wiki\/Special:FilePath\/|w\/index\.php\?title=Special:Redirect\/file\/)/.test(historyPhotoSource(photo)),entry.slug);
    assert.ok(historyPhotoPage(photo).startsWith('https://commons.wikimedia.org/wiki/File:'),entry.slug);
   }
   coverage.set(entry.era,(coverage.get(entry.era)||0)+1);
