@@ -1,6 +1,13 @@
 import NextLink from 'next/link';
 import OpenFoldOnHash from '@/components/OpenFoldOnHash';
-import {Banknote, BarChart3, ChevronDown, Compass, Flame, GraduationCap, Handshake, LayoutGrid, MapPin, MapPinned, MessagesSquare, Newspaper, Sparkles, UsersRound} from 'lucide-react';
+import {Banknote, BarChart3, ChevronDown, Compass, Flame, GraduationCap, Handshake, LayoutGrid, ListChecks, MapPin, MapPinned, MessagesSquare, Newspaper, ShoppingBasket, Sparkles, Store, UsersRound} from 'lucide-react';
+import ListingCard from '@/components/market/ListingCard';
+import {getPublicFoodPrices} from '@/lib/foodPricesServer';
+import {FOOD_REGIONS, foodFreshness} from '@/lib/foodPrices';
+import {getMarketPlaces} from '@/lib/market/places';
+import {ALL_YEMEN} from '@/lib/market/search';
+import {searchListings} from '@/lib/market/searchServer';
+import market from '@/components/market/Market.module.css';
 import SearchForm from '@/components/SearchForm';
 import HomeSmartStart from '@/components/home/HomeSmartStart';
 import Resilient from '@/components/front/Resilient';
@@ -35,16 +42,24 @@ const settle = promise => promise.then(data => ({data, failed:false}), () => ({d
 export default async function Home() {
   const settings = await getSiteSettings();
   const visibleHistory = sectionIsVisible('history', settings.pageVisibility);
-  const [works, issues, indicators, debates, companies, professionals, historyDay, exchange] = await Promise.all([
+  const visibleSection = id => sectionIsVisible(id, settings.pageVisibility);
+  const [works, issues, indicators, debates, companies, professionals, historyDay, exchange, missedDay, food, listings] = await Promise.all([
     settle(getLatestWorks(homeProjections.works, 8)),
     settle(getLatestIssues(homeProjections.issues, 2)),
     settle(getRecentIndicators(4)),
     getDebateCatalog().then(result => ({data:result.debates, failed:!result.available}), () => ({data:null, failed:true})),
     settle(getRecentCompanies(homeProjections.companies, 6)),
     settle(getRecentProfessionals(homeProjections.professionals, 6)),
-    visibleHistory ? onThisDay().catch(() => null) : null,
+    visibleHistory ? onThisDay(new Date(), {pastOnly:true}).catch(() => null) : null,
     sectionIsVisible('services', settings.pageVisibility) ? getPublicRates(serverDb()).catch(() => null) : null,
+    // Yesterday's exact event, for whoever missed it (never tomorrow's).
+    visibleHistory ? onThisDay(new Date(Date.now() - 864e5), {window:0}).catch(() => null) : null,
+    visibleSection('foodPrices') ? getPublicFoodPrices(serverDb()).catch(() => null) : null,
+    // «سوق 967»: the newest listings across Yemen, while the market is open.
+    visibleSection('market') ? getMarketPlaces().then(places => searchListings(serverDb(), places, {gov:ALL_YEMEN}, {limit:4})).then(result => result.cards, () => []) : [],
   ]);
+  // A 50 kg bag of flour in each city, while the price is recent: the staple people ask about first.
+  const flour = food ? FOOD_REGIONS.map(region => ({region, row: food.prices?.[region.id + ':wheat_flour']?.latest})).filter(item => item.row && foodFreshness(item.row.recorded_at) !== 'expired') : [];
   // Today's dollar in both cities, only while the rates are recent.
   const dollarRates = exchange ? RATE_REGIONS.map(region => ({region, row: usableRates(exchange.latest)[region.id + ':USD']})).filter(item => item.row) : [];
   const content = selectHomeContent({works:works.data||[], issues:issues.data||[], indicators:indicators.data||[], debates:debates.data||[], companies:companies.data||[], professionals:professionals.data||[]});
@@ -66,6 +81,9 @@ export default async function Home() {
   const shortcuts = [
     visible('games') && {href: dailyGameUrl(today), label: 'تحدي اليوم', sub: DAILY_GAME_TITLES[dailyGame], icon: Flame, hue: 'var(--c-violet)'},
     dollarRates.length > 0 && {href: '/services/exchange-rates', label: 'سعر الصرف اليوم', sub: 'الدولار: ' + dollarRates.map(({region, row}) => region.name + ' ' + formatNumber(row.sell)).join(' · '), icon: Banknote, hue: 'var(--c-indigo)'},
+    flour.length > 0 && {href: '/services/food-prices', label: 'أسعار المواد', sub: 'كيس الدقيق: ' + flour.map(({region, row}) => region.name + ' ' + formatNumber(row.price)).join(' · '), icon: ShoppingBasket, hue: 'var(--c-amber)'},
+    visible('transactions') && {href: '/transactions', label: 'دليل المعاملات', sub: 'الجواز والبطاقة وغيرها خطوة بخطوة', icon: ListChecks, hue: 'var(--c-teal)'},
+    visible('market') && {href: '/market', label: 'سوق 967', sub: listings.length ? 'إعلانات جديدة اليوم' : 'بِع واشترِ مجانًا', icon: Store, hue: 'var(--c-ember)'},
     visible('school') && {href: '/school', label: 'تعلّم اليوم', sub: '15 مسارًا تفاعليًا', icon: GraduationCap, hue: 'var(--c-leaf)'},
     visible('debates') && debate && {href: '/debates/' + encodeURIComponent(debate.slug), label: debate.stage === 'live' ? 'مناظرة مباشرة' : 'مناظرة', sub: debate.title, icon: MessagesSquare, hue: 'var(--c-plum)', live: debate.stage === 'live'},
     leadNumber && {href: '/yemen-in-numbers/indicator/' + encodeURIComponent(leadNumber.slug), label: 'رقم اليوم', sub: leadNumber.name + ': ' + formatCompact(leadNumber.latestValue.value) + (leadNumber.unit ? ' ' + leadNumber.unit : '') + (leadNumber.latestValue.year ? ' (' + leadNumber.latestValue.year + ')' : ''), icon: BarChart3, hue: 'var(--c-indigo)'},
@@ -83,7 +101,7 @@ export default async function Home() {
     </div></section>
 
     {/* «في مثل هذا اليوم»: a dated event from the history texts */}
-    {historyDay && <div className={`ed-wrap ${home.block}`}><Resilient name="home-on-this-day" label="تعذّر عرض حدث اليوم." quiet><OnThisDay result={historyDay}/></Resilient></div>}
+    {(historyDay || missedDay) && <div className={`ed-wrap ${home.block}`}><Resilient name="home-on-this-day" label="تعذّر عرض حدث اليوم." quiet><OnThisDay result={historyDay} yesterday={missedDay}/></Resilient></div>}
 
     {/* 2 · الآن: one-tap shortcuts */}
     <div className={`ed-wrap ${home.block}`}><Shortcuts items={shortcuts}/></div>
@@ -102,6 +120,12 @@ export default async function Home() {
       <BlockHead id="explore-title" icon={LayoutGrid} title="أقسام 967" href="/explore" linkLabel="استكشف"/>
       <SectionLauncher isVisible={href => pageIsVisible(href, settings.pageVisibility, settings.contentPages||[])}/>
     </div></section>
+
+    {/* سوق 967: the four newest listings (only while the market is open) */}
+    {listings.length > 0 && <section id="home-market" className={home.block} aria-labelledby="home-market-title"><div className="ed-wrap">
+      <BlockHead id="home-market-title" icon={Store} title="جديد سوق 967" href="/market" linkLabel="كل الإعلانات" hue="var(--c-ember)" Link={Link}/>
+      <div className={`${market.grid} ${home.marketGrid}`}>{listings.map((item, index) => <ListingCard key={item.id} listing={item} index={index}/>)}</div>
+    </div></section>}
 
     {/* 6 · ألعاب 967 */}
     {visible('games')&&<section id="home-games" className={home.block} aria-labelledby="home-games-title"><div className="ed-wrap">

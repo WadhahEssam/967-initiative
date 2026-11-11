@@ -33,14 +33,13 @@ test('mobile menu is before the logo and accessible without a tabbar',()=>{
  assert.doesNotMatch(css,/\.ed-header\[data-tabbar\] \.ed-menu-toggle \{ display: none; \}/);
 });
 
-test('mobile top displays messaging beside theme, search stays available below',()=>{
+test('mobile top shows one icon for messages and notifications, search stays available below',()=>{
  const header=read('components/Header.jsx'),css=read('app/foundation/shell.css');
  const tools=header.slice(header.indexOf('<div className="ed-tools">'),header.indexOf('</div>\n    </div>\n    {/* Phones:'));
- assert.ok(tools.indexOf('<ThemeToggle/>')<tools.indexOf('href="/messages"'));
- assert.ok(tools.indexOf('href="/messages"')<tools.indexOf('href="/search"'));
- assert.match(tools,/className="ed-tool ed-tool-icon ed-message-link"/);
+ assert.ok(!tools.includes('<ThemeToggle'),'the theme switch moved to the menu and footer');
+ assert.ok(!tools.includes('href="/messages"'),'messages open from the notifications icon');
+ assert.ok(tools.indexOf('<NotificationBell')>=0&&tools.indexOf('<NotificationBell')<tools.indexOf('href="/search"'));
  assert.match(tools,/className="ed-tool ed-tool-icon ed-top-search"/);
- assert.match(tools,/newMessageCount>0&&<span className="ed-message-count"/);
  // The 360px rule only hid the brand name, which the header no longer renders
  // (see header-brand-logo-only.test.mjs).
  assert.match(header,/!immersive && <nav className="ed-tabbar"/);

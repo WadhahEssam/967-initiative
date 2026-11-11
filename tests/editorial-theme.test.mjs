@@ -45,11 +45,14 @@ test('saved choice applies before paint, persists and survives browser storage r
  assert.ok(button.includes('window.localStorage.setItem(KEY,next)'));
  assert.ok(button.includes("window.addEventListener('storage',onStorage)"));
  assert.ok(button.includes('document.documentElement.dataset.edTheme=next'));
- assert.ok(button.includes("aria-label={dark?'تفعيل الوضع الفاتح':'تفعيل الوضع الداكن'}"));
+ assert.ok(button.includes("aria-label={labelled?undefined:(dark?'تفعيل الوضع الفاتح':'تفعيل الوضع الداكن')}"));
+ // The switch lives in the menu sheet and the footer, with its label, not in the header bar.
+ assert.ok(header.includes('<ThemeToggle labelled/>'));
+ assert.ok(read('components/Footer.jsx').includes('<ThemeToggle labelled className="ed-footer-theme"/>'));
  assert.ok(button.includes('aria-pressed={dark}'));
  assert.ok(button.includes('try{window.localStorage.setItem'));
  assert.ok(header.includes("import ThemeToggle from './ThemeToggle';"));
- assert.ok(header.includes('<ThemeToggle/>'));
+ assert.ok(!header.includes('<ThemeToggle/>'),'no theme icon in the header bar');
  assert.ok(!header.includes("path==='/yemen-in-numbers' ||"));
  assert.ok(layout.includes("import './foundation/unified.css'"));
  assert.ok(layout.includes('className="visual-foundation site-experience"'));

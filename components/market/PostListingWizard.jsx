@@ -5,7 +5,7 @@ import {Car,Check,ChevronLeft,ChevronRight,Dumbbell,House,ImagePlus,Package,PawP
 import {browserDb} from '@/lib/supabase';
 import {CATEGORIES,CONDITIONS,CURRENCIES,OTHER,conditionRequired,findSubcategory} from '@/lib/market/catalog';
 import {listingCompleteness,listingHighlights,suggestTitle} from '@/lib/market/listing';
-import {formatPrice,listingPath} from '@/lib/market/format';
+import {PHONE_COUNTRIES,formatPrice,listingPath} from '@/lib/market/format';
 import {compressForUpload} from '@/lib/market/clientImage';
 import {marketApi} from '@/lib/market/clientApi';
 import ui from './ui.module.css';
@@ -53,6 +53,9 @@ export default function PostListingWizard({places}){
  const [photos,setPhotos]=useState([]);
  const [form,setForm]=useState({category:'',subcategory:'',attributes:{},price:'',currency:'',negotiable:true,condition:'',governorate_id:'',district_id:'',title:'',titleEdited:false,description:'',show_whatsapp:false});
  const [phone,setPhone]=useState('');
+ const [phoneCountry,setPhoneCountry]=useState('967');
+ // The number with its country code; a number typed with + or 00 keeps its own.
+ const phoneValue=phone.trim()?(/^\s*(\+|00|٠٠)/.test(phone)?phone.trim():'+'+phoneCountry+' '+phone.trim().replace(/^[0٠]+/,'')):null;
  const [acceptTerms,setAcceptTerms]=useState(false);
  const [confirmGenuine,setConfirmGenuine]=useState(false);
  const [needs,setNeeds]=useState({});
@@ -145,8 +148,8 @@ export default function PostListingWizard({places}){
  async function publish(){
   setBusy(true);setError('');
   try{
-   const body=editing?{action:'update',id:editing.id,data:payload,images:uploaded.map(p=>p.id),phone:phone||null}
-    :{action:'publish',id:draftId,data:payload,images:uploaded.map(p=>p.id),acceptTerms,confirmGenuine,phone:phone||null};
+   const body=editing?{action:'update',id:editing.id,data:payload,images:uploaded.map(p=>p.id),phone:phoneValue}
+    :{action:'publish',id:draftId,data:payload,images:uploaded.map(p=>p.id),acceptTerms,confirmGenuine,phone:phoneValue};
    const result=await api('/api/market/listings',{method:'POST',body});
    if(!editing)try{localStorage.removeItem(LOCAL_KEY);}catch{/* ignore */}
    setDone({...result.listing,edited:Boolean(editing)});window.scrollTo(0,0);
@@ -247,7 +250,13 @@ export default function PostListingWizard({places}){
    <label className={styles.field}><span className={styles.fieldLabel}>العنوان<b aria-hidden="true"> *</b></span><input className={styles.input} value={form.title} maxLength={120} onChange={e=>set({title:e.target.value,titleEdited:true})}/></label>
    <label className={styles.field}><span className={styles.fieldLabel}>الوصف <small>(اختياري)</small></span><textarea className={styles.textarea} rows={4} maxLength={4000} value={form.description} placeholder="مثل: سبب البيع، الملحقات، أي عيوب" onChange={e=>set({description:e.target.value})}/></label>
    <label className={styles.check}><input type="checkbox" checked={form.show_whatsapp} onChange={e=>set({show_whatsapp:e.target.checked})}/><span>أظهر زر واتساب في الإعلان</span></label>
-   {form.show_whatsapp&&(needs.phone||!defaults?.hasPhone)&&<label className={styles.field}><span className={styles.fieldLabel}>رقم جوالك (يظهر عبر زر واتساب فقط)</span><input className={styles.input} inputMode="tel" dir="ltr" placeholder="77xxxxxxx" value={phone} onChange={e=>setPhone(e.target.value)}/></label>}
+   {form.show_whatsapp&&(needs.phone||!defaults?.hasPhone)&&<div className={styles.field}><span className={styles.fieldLabel} id="market-phone-label">رقم واتساب (يظهر عبر زر واتساب فقط)</span>
+    <div className={styles.phoneRow} dir="ltr" role="group" aria-labelledby="market-phone-label">
+     <select className={styles.input} value={phoneCountry} onChange={e=>setPhoneCountry(e.target.value)} aria-label="مفتاح الدولة">{PHONE_COUNTRIES.map(([code,name])=><option key={code} value={code}>+{code} {name}</option>)}</select>
+     <input className={styles.input} type="tel" inputMode="tel" autoComplete="tel-national" dir="ltr" placeholder={phoneCountry==='967'?'77xxxxxxx':'رقم الجوال'} value={phone} onChange={e=>setPhone(e.target.value)} aria-label="رقم الجوال"/>
+    </div>
+    <small className={styles.phoneHint}>داخل اليمن أو خارجه: اختر مفتاح الدولة ثم اكتب الرقم، أو اكتبه كاملًا مبدوءًا بـ +.</small>
+   </div>}
    {!editing&&(needs.terms||defaults&&!defaults.termsAccepted)&&<label className={styles.check}><input type="checkbox" checked={acceptTerms} onChange={e=>setAcceptTerms(e.target.checked)}/><span>قرأت <Link href="/market/terms" target="_blank">شروط استخدام سوق 967</Link> وأوافق عليها</span></label>}
    {needs.genuine&&<label className={styles.check}><input type="checkbox" checked={confirmGenuine} onChange={e=>setConfirmGenuine(e.target.checked)}/><span>أؤكد أن إعلاناتي حقيقية</span></label>}
    <p className={styles.safety}>البيع والشراء بين الأطراف مباشرة. لا تحوّل أي مبلغ قبل المعاينة.</p>

@@ -16,3 +16,7 @@
 .search :global(.global-search input) { min-height: 42px !important; font-size: 15px !important; }
 .search :global(.global-search button) { min-height: 40px !important; padding: 0 16px !important; border-radius: 10px !important; font-size: 14px !important; }
 @media (min-width: 900px) { .lead { -webkit-line-clamp: 3; } .search { max-width: 560px; } }
+
+/* «جديد سوق 967» on the home page: one row of four on wide screens, two per row on phones. */
+div.marketGrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:760px){div.marketGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}

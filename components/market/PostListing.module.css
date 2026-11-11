@@ -84,3 +84,8 @@
 @media(min-width:620px){.doneActions{grid-template-columns:repeat(3,auto);justify-content:center}}
 /* Older browsers without :has keep the tab bar: lift the buttons above it. */
 @supports not selector(:has(*)){@media(max-width:760px){.bar{bottom:calc(var(--tabbar-h) + env(safe-area-inset-bottom))}}}
+
+/* WhatsApp number: country code + number (any country). */
+.phoneRow{display:grid;grid-template-columns:minmax(0,9.5rem) minmax(0,1fr);gap:8px}
+.phoneRow select{padding-inline:10px;font-size:14px}
+.phoneHint{color:var(--c-ink-3);font-size:12px;line-height:1.5}

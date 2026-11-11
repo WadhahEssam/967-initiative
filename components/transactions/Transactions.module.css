@@ -225,3 +225,7 @@
   .main { grid-column: 1; grid-row: 1; }
   .glance { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
+
+/* A guide published from cited sources before a person checked it at the office. */
+.preliminary { margin-top: var(--s-2); padding: 12px 14px; border-radius: var(--r-2, 12px); background: var(--c-amber-soft); border: 1px dashed var(--c-amber); color: var(--c-ink); font-size: var(--t-size-ui) !important; line-height: var(--t-lh-ui) !important; }
+.preliminary a { color: inherit; text-decoration: underline; }

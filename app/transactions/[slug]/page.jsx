@@ -45,6 +45,7 @@ export default async function TransactionGuidePage({params}){
    <div className={styles.headRow}><CategoryArt category={guide.category}/><h1>{guide.title}</h1></div>
    {guide.summary&&<p>{guide.summary}</p>}
    {guide.audience&&<p className={styles.audience}><strong>لمن هذه المعاملة: </strong>{guide.audience}</p>}
+   {!guide.verifiedAt&&<p className={styles.preliminary} role="note"><strong>معلومات أولية:</strong> جمعناها من مصادر منشورة ولم يتحقق منها فريق 967 لدى الجهة بعد، والرسوم والمواعيد قد تختلف. تأكد قبل الذهاب، و<Link href={'/contribute?type='+encodeURIComponent('تصحيح معلومة')}>صحّحها لنا</Link> إن وجدت فرقًا.</p>}
   </header>
   {guide.faqs?.length>0&&<JsonLd data={{'@context':'https://schema.org','@type':'FAQPage',mainEntity:guide.faqs.map(item=>({'@type':'Question',name:item.q,acceptedAnswer:{'@type':'Answer',text:item.a}}))}}/>}
   <GuideView guide={guide} shareUrl={url} related={related}/>

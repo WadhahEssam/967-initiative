@@ -163,7 +163,7 @@ export default function GuidesEditor(){
    </fieldset>
    <fieldset className={styles.panel}>
     <legend>التحقق والنشر</legend>
-    <p className={styles.help}>لا يُنشر الدليل قبل أن يتحقق منه شخص يعرف الإجراءات في المدينة، ويُكتب تاريخ التحقق. الزائر يرى التاريخ، ولا يرى اسم من تحقق ولا ملاحظة المحررين.</p>
+    <p className={styles.help}>الأفضل أن يتحقق من الدليل شخص يعرف الإجراءات في المدينة ويكتب تاريخ التحقق. يمكن نشره قبل ذلك إن ذُكرت مصادره، ويظهر للزائر حينها أنه «معلومات أولية». الزائر يرى التاريخ والمصادر، ولا يرى اسم من تحقق ولا ملاحظة المحررين.</p>
     <div className={styles.grid2}>
      <div className={styles.field}>تاريخ التحقق<div className={styles.inline}><input type="date" value={guide.verifiedAt} max={today()} onChange={event=>set({verifiedAt:event.target.value})} aria-label="تاريخ التحقق"/><button type="button" className={styles.secondary} onClick={()=>set({verifiedAt:today()})}><CalendarCheck size={16} aria-hidden="true"/> تحققت اليوم</button></div></div>
      <Field label="من تحقق (لا يظهر للزوار)" value={guide.verifiedBy} onChange={event=>set({verifiedBy:event.target.value})}/>

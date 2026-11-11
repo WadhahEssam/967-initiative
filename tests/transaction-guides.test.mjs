@@ -19,8 +19,15 @@ test('a guide is cleaned: lists from lines, unknown cities filled empty, bullets
   assert.deepEqual(guideRegions(guide).map(region => region.id), ['sanaa']);
 });
 
-test('nothing unchecked is published: a date of verification and steps are required', () => {
+test('nothing unchecked is published: a date of verification or cited sources, and steps, are required', () => {
   assert.throws(() => validateGuide(base({status: 'published'})), /قبل التحقق/);
+  // Preliminary: published from cited sources before a person checked it (the page says so).
+  const preliminary = validateGuide(base({status: 'published', sources: 'https://example.org/fees'}));
+  assert.equal(preliminary.status, 'published');
+  assert.equal(preliminary.verifiedAt, null);
+  const page = readFileSync(new URL('../app/transactions/[slug]/page.jsx', import.meta.url), 'utf8');
+  assert.match(page, /!guide\.verifiedAt&&<p className=\{styles\.preliminary\}/);
+  assert.match(readFileSync(new URL('../supabase/migrations/20261111120000_transaction_guides_preliminary.sql', import.meta.url), 'utf8'), /verified_at is not null or cardinality\(sources\)>0/);
   assert.throws(() => validateGuide(base({status: 'published', verifiedAt: '2026-11-01', variants: {}})), /خطوات/);
   assert.equal(validateGuide(base({status: 'published', verifiedAt: '2026-11-01'})).status, 'published');
   assert.throws(() => validateGuide(base({verifiedAt: '2999-01-01'})), /المستقبل/);

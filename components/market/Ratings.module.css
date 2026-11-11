@@ -71,3 +71,4 @@
 .inlineForm{display:grid;gap:8px}
 .inlineForm textarea{padding:8px 12px;border:1px solid var(--c-control);border-radius:10px;background:var(--c-bg);color:var(--c-ink);font:inherit;font-size:16px}
 .inlineForm div{display:flex;gap:8px}
+.memberLink{composes:button ghost from './ui.module.css';min-height:38px;margin-top:10px;padding:0 14px;font-size:13px}

@@ -3,6 +3,7 @@ import {pageIsVisible} from '@/lib/pageVisibility';
 import {memberCountLabel} from '@/lib/memberCountLabel';
 import {ArrowUpLeft, ChevronDown} from 'lucide-react';
 import BrandLogo from './BrandLogo';
+import ThemeToggle from './ThemeToggle';
 import {defaultSiteSettings} from '@/lib/siteSettings';
 import {contentPagePath} from '@/lib/contentPages';
 import {navSections} from '@/lib/navigation';
@@ -46,6 +47,7 @@ export default function Footer({settings = defaultSiteSettings, memberCount = nu
     <div className="ed-footer-bottom">
       <span>© {new Date().getFullYear()} مبادرة 967</span>
       <span className="ed-footer-motto">المعرفة تجمعنا، والمشاركة تقرّبنا.</span>
+      <ThemeToggle labelled className="ed-footer-theme"/>
       <nav className="ed-footer-policy" aria-label="الخصوصية والشروط">{pages.filter(page => ['privacy', 'terms'].includes(page.slug)).map(page => visible(contentPagePath(page)) ? <NextLink key={page.id} href={contentPagePath(page)}>{page.title}</NextLink> : null)}{visible('/search') && <NextLink href="/search">ابحث في المنصة</NextLink>}</nav>
     </div>
   </div></footer>;

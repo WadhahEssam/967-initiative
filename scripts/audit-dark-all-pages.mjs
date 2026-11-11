@@ -96,7 +96,7 @@ async function check(page,route,width){
     }
     return {mode:root.dataset.edTheme,colorScheme:cs.colorScheme,bg:cs.getPropertyValue('--c-bg').trim(),
       overflow:root.scrollWidth-innerWidth,contrast:issues,contrastChecked:evaluated,skipped,
-      toggle:!!document.querySelector('.ed-theme-toggle'),title:document.title};
+      toggle:!!document.querySelector('.ed-theme-toggle,.ed-theme-switch'),title:document.title};
    });
    item.modes.push(details);
    if(details.mode!==mode)item.errors.push('Wrong theme '+mode);

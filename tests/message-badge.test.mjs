@@ -36,7 +36,9 @@ test('header badge is restricted to signed-in users, refreshes on focus, and sto
  assert.match(header,/window\.addEventListener\('967:messages-changed',refresh\)/);
  assert.match(header,/window\.removeEventListener\('967:messages-changed',refresh\)/);
  assert.match(header,/active=false;/);
- assert.match(header,/newMessageCount>0&&<span className="ed-message-count"/);
+ // Messages share the notifications icon: its badge adds them, and the latest conversation sits on top.
+ assert.ok(header.includes('<NotificationBell userId={sessionUserId} onNavigate={close} messages={{count:newMessageCount,latest:latestConversation}}/>'));
+ assert.ok(read('components/notifications/NotificationBell.jsx').includes('const total=otherCount+(Number(messages.count)||0);'));
  assert.match(header,/newMessageCount>0&&<span className="ed-message-menu-count"/);
  assert.match(header,/signedIn && <Link href="\/messages"/);
  assert.match(header,/aria-label=\{messageLinkLabel\}/);

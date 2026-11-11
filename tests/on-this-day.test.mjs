@@ -49,10 +49,22 @@ test('the day is taken in Yemen time and printed in Arabic',()=>{
  assert.equal(formatDayMonth({day:22,month:5}),'22 مايو');
 });
 
+test('the fallback for a day without an event never looks ahead when asked, and window 0 is exact only',()=>{
+ const list=[{slug:'a',title:'a',year:1990,month:5,day:12,sentence:'',score:1},{slug:'b',title:'b',year:1991,month:5,day:9,sentence:'',score:1}];
+ assert.equal(factsForDay(list,{month:5,day:10}).items[0].slug,'b');
+ assert.equal(factsForDay(list,{month:5,day:11}).items[0].slug,'a','default: a tie goes to the day ahead');
+ assert.equal(factsForDay(list,{month:5,day:11},{pastOnly:true}).items[0].slug,'b');
+ assert.equal(factsForDay(list,{month:5,day:8},{pastOnly:true}).items.length,0);
+ assert.equal(factsForDay(list,{month:5,day:11},{window:0}).items.length,0);
+ assert.equal(factsForDay(list,{month:5,day:12},{window:0}).items[0].slug,'a');
+});
+
 test('the home page shows the band only when the history section is visible',()=>{
  const page=read('app/page.jsx');
  assert.ok(page.includes("const visibleHistory = sectionIsVisible('history', settings.pageVisibility);"));
- assert.ok(page.includes('visibleHistory ? onThisDay().catch(() => null) : null'));
- assert.ok(page.includes('<OnThisDay result={historyDay}/>'));
+ assert.ok(page.includes('visibleHistory ? onThisDay(new Date(), {pastOnly:true}).catch(() => null) : null'));
+ // Yesterday too (exact day only), never tomorrow.
+ assert.ok(page.includes('visibleHistory ? onThisDay(new Date(Date.now() - 864e5), {window:0}).catch(() => null) : null'));
+ assert.ok(page.includes('<OnThisDay result={historyDay} yesterday={missedDay}/>'));
  assert.ok(read('lib/onThisDayServer.js').includes('readPublicHistoryCatalog(serverDb())'));
 });
