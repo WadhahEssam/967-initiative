@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import {servedImageUrl} from '@/lib/media';
 import {ExternalLink} from 'lucide-react';
 import {SCHOOL_HISTORICAL_SAMPLES,SCHOOL_SCRIPT_OPTIONS,validSchoolScript} from '@/lib/schoolCalligraphySamples';
 import styles from '@/app/school/studio/studio.module.css';
@@ -14,7 +15,7 @@ export default function CalligraphyExample({text,script='naskh',label='مثال 
   <figcaption className={styles.scriptHeading}>{label} {!hideName&&<span>· {scriptName}</span>}</figcaption>
   {reference&&<div className={styles.scriptHistorical}>
    <div className={styles.scriptHistoricalImage}>
-    <Image src={reference.image} alt={hideName?'نموذج خطي تاريخي حقيقي':reference.description} width={reference.width} height={reference.height}
+    <Image src={servedImageUrl(reference.image,828)} alt={hideName?'نموذج خطي تاريخي حقيقي':reference.description} width={reference.width} height={reference.height}
      unoptimized loading="lazy" className={styles.scriptArchiveImage}/>
    </div>
    <p className={styles.scriptArchiveCaption}>{hideName?'نموذج خطي حقيقي من عمل موثق.':reference.scriptLabel+' — '+reference.description+'.'}</p>

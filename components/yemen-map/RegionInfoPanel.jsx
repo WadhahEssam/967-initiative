@@ -4,7 +4,7 @@ import {ArrowUpLeft,ChevronDown,ChevronRight,MapPinned,X} from 'lucide-react';
 import {formatNumber} from './mapGeometry';
 import InlineTarget from '../inline/InlineTarget';
 import Image from 'next/image';
-import {safeImageUrl,safeExternalUrl} from '@/lib/media';
+import {safeImageUrl,safeExternalUrl,servedImageUrl} from '@/lib/media';
 
 const missing = 'البيانات غير متوفرة حاليًا';
 
@@ -80,7 +80,7 @@ export default function RegionInfoPanel({
         <Field label="السكان" value={profile.population!==null&&profile.population!==undefined ? `${formatNumber(profile.population)}${profile.population_year ? ` · ${profile.population_year}` : ''}` : missing}/>
         {isGovernorate && <Field label="عدد المديريات" value={formatNumber(region.districtCount)}/>}
       </div>
-      {safeImageUrl(profile.image_url)&&profile.image_credit&&safeExternalUrl(profile.image_source_url)&&<figure className="ymap-region-photo"><Image unoptimized width={480} height={280} src={safeImageUrl(profile.image_url)} alt={'منظر من '+title} loading="lazy"/><figcaption>{profile.image_credit} <a href={safeExternalUrl(profile.image_source_url)} target="_blank" rel="noopener noreferrer">مصدر الصورة</a></figcaption></figure>}
+      {safeImageUrl(profile.image_url)&&profile.image_credit&&safeExternalUrl(profile.image_source_url)&&<figure className="ymap-region-photo"><Image unoptimized width={480} height={280} src={servedImageUrl(profile.image_url,480)} alt={'منظر من '+title} loading="lazy"/><figcaption>{profile.image_credit} <a href={safeExternalUrl(profile.image_source_url)} target="_blank" rel="noopener noreferrer">مصدر الصورة</a></figcaption></figure>}
 
       {isDistrict&&<a className="text-link" href={"/yemen-map/districts/"+encodeURIComponent(region.id)}>اقرأ الصفحة الكاملة لمديرية {title}<ArrowUpLeft size={16} aria-hidden="true"/></a>}
       {isGovernorate&&<a className="text-link" href={"/yemen-map/governorates/"+encodeURIComponent(region.id)}>اقرأ الملف المعرفي الكامل لمحافظة {title}<ArrowUpLeft size={16} aria-hidden="true"/></a>}

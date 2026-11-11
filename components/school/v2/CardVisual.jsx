@@ -2,6 +2,7 @@
 // العنصر المرئي للبطاقة (المرحلة 3): مكتبة SVG/CSS بألوان الموقع. الوصف النصي (alt) لقارئ الشاشة، والتعليق المرئي اختياري.
 import {ArrowLeft} from 'lucide-react';
 import {MUSNAD_ALPHABET} from '@/lib/schoolMusnad';
+import {servedImageUrl} from '@/lib/media';
 import {LineChart, BarChart, SupplyDemand, Legend} from './visuals/Charts';
 import {bindShift} from '@/lib/schoolCardVisuals';
 import YemenMapVisual from './visuals/YemenMapVisual';
@@ -64,8 +65,8 @@ function Body({visual, task, value}) {
     // لوح التدريب للكتابة الحرة: لا يُصحَّح ولا يُحفظ، ولا يقلب البطاقة عند السحب عليه.
     case 'pad': return <div className={styles.scriptBox + ' ' + studio.cardScript} data-noswipe><CalligraphyPracticePad practice={{model: visual.model, focus: visual.focus, instructions: visual.instructions, script: visual.script}} script={visual.script} stageKey={'card-' + visual.script}/></div>;
     case 'trace': return <TracePad letter={visual.letter}/>;
-    // eslint-disable-next-line @next/next/no-img-element -- صور كومنز خارجية بحجمها الأصلي؛ لا حاجة لمحسّن الصور هنا.
-    case 'image': return <img className={styles.image} src={visual.src} alt="" loading="lazy" decoding="async" width={visual.width} height={visual.height}/>;
+    // eslint-disable-next-line @next/next/no-img-element -- صور كومنز تمر عبر خادمنا (ويكيميديا محجوبة في اليمن).
+    case 'image': return <img className={styles.image} src={servedImageUrl(visual.src,828)} alt="" loading="lazy" decoding="async" width={visual.width} height={visual.height}/>;
     default: return null;
   }
 }
