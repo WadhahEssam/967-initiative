@@ -19,6 +19,16 @@ function duration(ms){
 }
 const TYPE_NAMES={all:'جميع الأقسام',works:'الأعمال الإعلامية',debates:'المناظرات',issues:'المجلة',indicators:'المؤشرات',figures:'الشخصيات',history:'التاريخ',companies:'الشركات',professionals:'المهنيون',places:'الأماكن',domains:'مجالات الإحصاء'};
 const DEVICES={phone:'جوال',tablet:'جهاز لوحي',desktop:'كمبيوتر'};
+const SOURCES={direct:'دخول مباشر أو تطبيق لا يرسل المصدر',google:'بحث Google',bing:'بحث Bing',search:'محركات بحث أخرى',whatsapp:'واتساب',facebook:'فيسبوك',instagram:'إنستغرام',x:'X (تويتر)',telegram:'تيليجرام',youtube:'يوتيوب',tiktok:'تيك توك',linkedin:'لينكدإن',share:'روابط مشاركة النتائج',other:'مواقع أخرى'};
+const SYSTEMS={android:'Android',ios:'iPhone وiPad',windows:'Windows',macos:'Mac',linux:'Linux',other:'أخرى'};
+const THEMES={dark:'الوضع الداكن',light:'الوضع الفاتح'};
+// A share of the whole («62%»), next to the count.
+const shareOf=(items,key)=>{const total=items.reduce((sum,item)=>sum+(item[key]||0),0);return item=>percent(item[key]||0,total);};
+function ShareList({items=[],names,keyName='visits'}){
+ if(!items.length)return <p className={styles.empty}>لا توجد زيارات في هذه الفترة.</p>;
+ const share=shareOf(items,keyName);
+ return <ul className={styles.plainList}>{items.map(item=><li key={item.id}><span>{names[item.id]||item.id}</span><strong>{share(item)} <small dir="ltr">({number(item[keyName])})</small></strong></li>)}</ul>;
+}
 const MONTHS=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
 
 async function authorized(path,signal){
@@ -85,8 +95,8 @@ function PagesTable({pages}){
  return <section className={styles.panel} aria-labelledby="pages-title">
   <div className={styles.panelHeading}><h2 id="pages-title">الصفحات الأكثر زيارة</h2><p>«غادر الموقع منها»: من دخل الموقع من هذه الصفحة وخرج دون أن يفتح غيرها.</p></div>
   {pages.length?<div className={styles.tableWrap}><table className={styles.table+' '+styles.pagesTable}>
-   <thead><tr><th>الصفحة</th><th>المشاهدات</th><th>الزوار</th><th>متوسط القراءة</th><th>دخلوا منها</th><th>غادروا الموقع منها</th></tr></thead>
-   <tbody>{shown.map(page=><tr key={page.path}><th scope="row"><PageTitle page={page}/></th><td>{number(page.views)}</td><td>{number(page.visitors)}</td><td>{duration(page.avgMs)}</td><td>{number(page.entries)}</td><td>{page.entries?percent(page.bounces,page.entries):'—'}</td></tr>)}</tbody>
+   <thead><tr><th>الصفحة</th><th>المشاهدات</th><th>متوسط القراءة</th><th>دخلوا منها</th><th>غادروا الموقع منها</th></tr></thead>
+   <tbody>{shown.map(page=><tr key={page.path}><th scope="row"><PageTitle page={page}/></th><td>{number(page.views)}</td><td>{duration(page.avgMs)}</td><td>{number(page.entries)}</td><td>{page.entries?percent(page.bounces,page.entries):'—'}</td></tr>)}</tbody>
   </table></div>:<p className={styles.empty}>لا توجد مشاهدات في هذه الفترة.</p>}
   {pages.length>15&&<button type="button" className={styles.more} onClick={()=>setAll(!all)} aria-expanded={all}>{all?'عرض أقل':'عرض كل الصفحات ('+number(pages.length)+')'}</button>}
  </section>;
@@ -176,6 +186,20 @@ export default function AnalyticsDashboard(){
     <RowBars items={stats.entries||[]} value={item=>item.visits} title="من أين يبدأ الزوار زياراتهم" label={item=>item.path==='/'?'الرئيسية':item.path} empty="لا توجد زيارات في هذه الفترة."/>
    </div>
 
+   <h2 className={styles.sectionTitle}>المصادر والأجهزة</h2>
+   <div className={styles.two}>
+    <RowBars items={stats.sources||[]} value={item=>item.visits} title="من أين جاءت الزيارات" label={item=>(SOURCES[item.id]||item.id)+' · '+shareOf(stats.sources||[],'visits')(item)} empty="لا توجد زيارات في هذه الفترة."/>
+    <section className={styles.panel}><h2><MonitorSmartphone size={19} aria-hidden="true"/> الأجهزة</h2>
+     <p className={styles.help}>نسبةً إلى الزيارات.</p>
+     <ShareList items={stats.devices} names={DEVICES}/>
+     <h3 className={styles.subTitle}>النظام</h3>
+     <ShareList items={stats.os} names={SYSTEMS}/>
+     <h3 className={styles.subTitle}>الوضع</h3>
+     <ShareList items={stats.themes} names={THEMES}/>
+    </section>
+   </div>
+   <p className={styles.help}>«دخول مباشر» يشمل من كتب العنوان بنفسه، ومن فتح رابطًا من تطبيق لا يرسل مصدره، وهذا حال كثير من روابط واتساب على الجوال. لدقة أكبر أضيفوا ?utm_source=whatsapp إلى الروابط التي تنشرونها في واتساب.</p>
+
    <h2 className={styles.sectionTitle}>الأعضاء</h2>
    <div className={styles.cards} aria-label="الأعضاء">
     <Card icon={UsersRound} label="إجمالي الحسابات" value={number(accounts.total)}/>
@@ -194,15 +218,27 @@ export default function AnalyticsDashboard(){
      </div>)}</div>
      <p className={styles.help}>كل خطوة تُحسب مرة لكل جلسة تصفح. «زائر» و«عضو» تقديريان. هذه العدادات بتوقيت UTC.</p>
     </section>
-    <RowBars items={counters.funnel.steps.filter(step=>step.count>0)} title="خطوات التحويل" label={item=>item.title} empty="لم تُسجل خطوات في هذه الفترة."/>
+    <RowBars items={counters.funnel.steps.filter(step=>step.count>0&&!step.id.startsWith('market_'))} title="خطوات التحويل" label={item=>item.title} empty="لم تُسجل خطوات في هذه الفترة."/>
    </div>
    <div className={styles.two}>
     <section className={styles.panel}><h2><SearchX size={19} aria-hidden="true"/> بحث بلا نتائج: {number(counters.searchMisses)}</h2>
      {counters.searches.length?<ul className={styles.plainList}>{counters.searches.map(item=><li key={item.id}><span>{TYPE_NAMES[item.id]||item.title}</span><strong dir="ltr">{number(item.count)}</strong></li>)}</ul>:<p className={styles.empty}>لا توجد عمليات بحث بلا نتائج في هذه الفترة.</p>}
      <p className={styles.help}>لا تُحفظ كلمات البحث نفسها.</p>
     </section>
-    <section className={styles.panel}><h2><MonitorSmartphone size={19} aria-hidden="true"/> قادم في المراحل التالية</h2>
-     <p className={styles.empty}>مصادر الزيارة والأجهزة وأرقام السوق. البيانات تُجمع منذ تشغيل هذه الصفحة.</p></section>
+    <section className={styles.panel}><h2>سوق 967</h2>
+     <ul className={styles.plainList}>
+      <li><span>إعلانات نُشرت</span><strong dir="ltr">{number(data.market?.published)}</strong></li>
+      <li><span>إعلانات بيعت</span><strong dir="ltr">{number(data.market?.sold)}</strong></li>
+      <li><span>مشاهدات صفحات السوق</span><strong dir="ltr">{number(data.market?.views)}</strong></li>
+      <li><span>مشاهدات صفحات الإعلانات</span><strong dir="ltr">{number(data.market?.listingViews)}</strong></li>
+      <li><span>ضغطات واتساب</span><strong dir="ltr">{number(counters.funnel.steps.find(step=>step.id==='market_whatsapp')?.count)}</strong></li>
+      <li><span>ضغطات «مراسلة»</span><strong dir="ltr">{number(counters.funnel.steps.find(step=>step.id==='market_message')?.count)}</strong></li>
+      <li><span>محادثات بدأت</span><strong dir="ltr">{number(data.market?.chats)}</strong></li>
+      <li><span>عروض أسعار</span><strong dir="ltr">{number(data.market?.offers)}</strong></li>
+      <li><span>إضافات إلى المفضلة</span><strong dir="ltr">{number(data.market?.favourites)}</strong></li>
+     </ul>
+     <p className={styles.help}>الآن: {number(data.market?.active)} إعلانًا نشطًا، و{number(data.market?.pending)} بانتظار المراجعة.</p>
+    </section>
    </div>
 
    <div className={styles.schoolHeading}><span><BookOpenCheck size={21}/> مدرسة 967</span><h2>أين يتقدم الطلاب، وأين يواجهون صعوبة؟</h2><p>تُحسب نسب إكمال المحطات من الطلاب الذين حاولوا اجتيازها، من آخر 3000 محاولة. لا تظهر المجموعات الأصغر من 5 طلاب.</p></div>

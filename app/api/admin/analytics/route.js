@@ -22,11 +22,14 @@ export async function GET(request){
   if(params.get('live')==='1')return respond({live:await rpc(db,'analytics_live')});
   const range=statsRange(params.get('range')||'7d');
   if(!range)throw new RequestValidationError('اختر فترة عرض صالحة.');
-  const [stats,previous,live,accounts,traffic,attempts,catalog]=await Promise.all([
+  // Sum the detailed rows into daily totals (and drop details older than two days) first.
+  await rpc(db,'analytics_refresh');
+  const [stats,previous,live,accounts,market,traffic,attempts,catalog]=await Promise.all([
    rpc(db,'analytics_report',{p_from:range.from,p_to:range.to}),
    rpc(db,'analytics_report',{p_from:range.previous.from,p_to:range.previous.to}),
    rpc(db,'analytics_live'),
    rpc(db,'analytics_accounts',{p_from:range.from,p_to:range.to}),
+   rpc(db,'analytics_market',{p_from:range.from,p_to:range.to}),
    db.from('site_usage_daily').select('day,metric,section,total').order('day',{ascending:true}).limit(5000),
    db.from('school_stage_attempts')
     .select('user_id,course_slug,stage_index,status,score,questions,submission')
@@ -47,7 +50,7 @@ export async function GET(request){
     course,stage,prompt:String(prompt||'').slice(0,160),asked,wrong,wrongRate
    }));
   return respond({
-   range,stats,previous:previous.totals,live,accounts,
+   range,stats,previous:previous.totals,live,accounts,market,
    // site_usage_daily counts UTC days; close enough for these daily counters.
    counters:countersBetween(traffic.data||[],range.from,range.to),
    school:{...learning,courseNames,questions:q},

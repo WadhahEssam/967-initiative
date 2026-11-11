@@ -95,7 +95,29 @@ test('stage 2: pages, read time, sections and entry pages',async()=>{
  const {sectionName}=await import('../lib/siteStats.js');
  assert.equal(sectionName('yemen-history'),'تاريخ اليمن');assert.equal(sectionName('home'),'الرئيسية');assert.equal(sectionName('unknown'),'/unknown');
  const sql=read('supabase/migrations/20261111200000_site_stats.sql');
- for(const key of ["'pages'","'sections'","'entries'","\"avgMs\"",'as exits'])assert.ok(sql.includes(key),key);
+ for(const key of ["'pages'","'sections'","'entries'","\"avgMs\"",'sum(exits)'])assert.ok(sql.includes(key),key);
  const ui=read('components/admin/AnalyticsDashboard.jsx');
  for(const text of ['الصفحات الأكثر زيارة','متوسط القراءة','غادروا الموقع منها','من أين يبدأ الزوار زياراتهم'])assert.ok(ui.includes(text),text);
+});
+
+test('stage 3: sources, devices, market; details summed daily and deleted after two days',async()=>{
+ const {usageEvent}=await import('../lib/siteAnalytics.js');
+ assert.deepEqual(usageEvent({event:'funnel',section:'market_whatsapp'}),{event:'funnel',section:'market_whatsapp'});
+ assert.deepEqual(usageEvent({event:'funnel',section:'market_message'}),{event:'funnel',section:'market_message'});
+ const sql=read('supabase/migrations/20261111200000_site_stats.sql');
+ assert.ok(sql.includes('delete from public.analytics_views where day < v_today - 2;'));
+ assert.ok(sql.includes('delete from public.analytics_visitor_days where day < v_today - 400;'));
+ assert.ok(sql.includes("'market_whatsapp','market_message'"));
+ // The report reads the daily totals, never the detailed rows.
+ const report=sql.slice(sql.indexOf('create or replace function public.analytics_report'),sql.indexOf('create or replace function public.analytics_accounts'));
+ assert.ok(!report.includes('analytics_views'));
+ assert.ok(sql.includes('grant execute on function public.analytics_refresh() to service_role;'));
+ assert.ok(sql.includes('grant execute on function public.analytics_market(date,date) to service_role;'));
+ const api=read('app/api/admin/analytics/route.js');
+ assert.ok(api.indexOf("rpc(db,'analytics_refresh')")<api.indexOf("rpc(db,'analytics_report'"));
+ const bar=read('components/market/ListingContactBar.jsx');
+ assert.ok(bar.includes("trackFunnel('market_whatsapp',String(listingId))"));
+ assert.ok(bar.includes("trackFunnel('market_message',String(listingId))"));
+ const ui=read('components/admin/AnalyticsDashboard.jsx');
+ for(const text of ['من أين جاءت الزيارات','الأجهزة','سوق 967','ضغطات واتساب'])assert.ok(ui.includes(text),text);
 });

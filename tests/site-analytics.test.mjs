@@ -148,7 +148,9 @@ test('conversion steps are anonymous counters accepted by both the API and the d
  for(const section of ['page_view','home','lesson_start',''])assert.equal(usageEvent({event:'funnel',section}),null,section);
  const sql=read('supabase/migrations/20261110060000_site_usage_funnel.sql');
  assert.ok(sql.includes("'page_view','search_miss','funnel'"));
- for(const step of Object.keys(FUNNEL_STEPS))assert.ok(sql.includes("'"+step+"'"),step);
+ // The latest record_site_usage (with the market contact steps) is in the site statistics migration.
+ const latest=read('supabase/migrations/20261111200000_site_stats.sql');
+ for(const step of Object.keys(FUNNEL_STEPS))assert.ok(latest.includes("'"+step+"'"),step);
  const overview=funnelOverview(new Map([['lesson_start_guest',10],['lesson_done_guest',4],['signup_prompt_shown',20]]));
  assert.equal(overview.rates.find(rate=>rate.id==='lesson_guest').value,40);
  assert.equal(overview.rates.find(rate=>rate.id==='prompt_click').value,0);

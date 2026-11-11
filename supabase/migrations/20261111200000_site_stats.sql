@@ -96,48 +96,114 @@ language sql stable security invoker set search_path = pg_catalog, public as $$
   );
 $$;
 
--- Everything the dashboard shows for a range of Yemen days.
+-- Daily totals. The detailed rows (which random id opened which page) are summed here and then
+-- deleted after two days (analytics_refresh); the dashboard reads only these totals.
+create table if not exists public.analytics_day_totals (
+  day date primary key,
+  views integer not null default 0,
+  visits integer not null default 0,
+  bounces integer not null default 0,
+  visit_ms bigint not null default 0,
+  new_visitors integer not null default 0
+);
+create table if not exists public.analytics_day_pages (
+  day date not null,
+  path text not null,
+  title text,
+  views integer not null default 0,
+  dur_sum bigint not null default 0,
+  dur_n integer not null default 0,
+  entries integer not null default 0,
+  exits integer not null default 0,
+  bounces integer not null default 0,
+  primary key (day, path)
+);
+-- Visits by source (of the first page), device, system and theme.
+create table if not exists public.analytics_day_dims (
+  day date not null,
+  dim text not null check (dim in ('source','device','os','theme')),
+  key text not null,
+  visits integer not null default 0,
+  primary key (day, dim, key)
+);
+alter table public.analytics_day_totals enable row level security;
+alter table public.analytics_day_pages enable row level security;
+alter table public.analytics_day_dims enable row level security;
+revoke all on public.analytics_day_totals, public.analytics_day_pages, public.analytics_day_dims from public, anon, authenticated;
+grant select, insert, update, delete on public.analytics_day_totals, public.analytics_day_pages, public.analytics_day_dims to service_role;
+
+-- Sums every day that still has detailed rows, then removes details older than two days, open-visit
+-- rows older than 15 minutes, and visitor-day ids older than 400 days. Called before each report.
+create or replace function public.analytics_refresh() returns void
+language plpgsql security invoker set search_path = pg_catalog, public as $$
+declare d date; v_today date := public.analytics_today();
+begin
+  perform pg_advisory_xact_lock(967011);
+  for d in select distinct day from public.analytics_views order by 1 loop
+    delete from public.analytics_day_totals where day = d;
+    delete from public.analytics_day_pages where day = d;
+    delete from public.analytics_day_dims where day = d;
+    with v as (select * from public.analytics_views where day = d),
+    s as (select session, count(*) as views, sum(duration_ms) as dur from v group by session),
+    last_view as (select distinct on (session) session, path from v order by session, at desc, seq desc),
+    entry as (select v.session, v.path, v.source, v.device, v.os, v.theme, s.views from v join s using (session) where v.seq = 1),
+    totals as (insert into public.analytics_day_totals (day, views, visits, bounces, visit_ms, new_visitors)
+      select d, (select count(*) from v), (select count(*) from s), (select count(*) from s where views = 1),
+             (select coalesce(sum(dur), 0) from s), (select count(distinct visitor) from v where new_visitor) returning 1),
+    pages as (insert into public.analytics_day_pages (day, path, title, views, dur_sum, dur_n, entries, exits, bounces)
+      select d, v.path, max(v.title), count(*), coalesce(sum(v.duration_ms) filter (where v.duration_ms > 0), 0), count(*) filter (where v.duration_ms > 0),
+             (select count(*) from entry e where e.path = v.path),
+             (select count(*) from last_view l where l.path = v.path),
+             (select count(*) from entry e where e.path = v.path and e.views = 1)
+        from v group by v.path returning 1)
+    insert into public.analytics_day_dims (day, dim, key, visits)
+      select d, 'source', source, count(*) from entry group by source
+      union all select d, 'device', device, count(*) from entry group by device
+      union all select d, 'os', os, count(*) from entry group by os
+      union all select d, 'theme', theme, count(*) from entry where theme is not null group by theme;
+  end loop;
+  delete from public.analytics_views where day < v_today - 2;
+  delete from public.analytics_presence where seen_at < now() - interval '15 minutes';
+  delete from public.analytics_visitor_days where day < v_today - 400;
+end $$;
+
+-- Everything the dashboard shows for a range of Yemen days, from the daily totals.
 create or replace function public.analytics_report(p_from date, p_to date) returns jsonb
 language sql stable security invoker set search_path = pg_catalog, public as $$
-  with v as (select * from public.analytics_views where day between p_from and p_to),
-  s as (select session, min(day) as day, count(*) as views, sum(duration_ms) as dur from v group by session),
-  last_view as (select distinct on (session) session, path from v order by session, at desc, seq desc),
-  entry as (select session, path, source from v where seq = 1),
-  days as (select generate_series(p_from, p_to, interval '1 day')::date as day)
+  with t as (select * from public.analytics_day_totals where day between p_from and p_to),
+  p as (select path, max(title) as title, sum(views)::int as views, sum(dur_sum) as dur_sum, sum(dur_n) as dur_n,
+               sum(entries)::int as entries, sum(exits)::int as exits, sum(bounces)::int as bounces
+          from public.analytics_day_pages where day between p_from and p_to group by path),
+  dims as (select dim, key, sum(visits)::int as visits from public.analytics_day_dims where day between p_from and p_to group by dim, key),
+  days as (select generate_series(p_from, p_to, interval '1 day')::date as day),
+  sums as (select coalesce(sum(views), 0) as views, coalesce(sum(visits), 0) as visits, coalesce(sum(bounces), 0) as bounces,
+                  coalesce(sum(visit_ms), 0) as visit_ms, coalesce(sum(new_visitors), 0) as new_visitors from t)
   select jsonb_build_object(
-    'totals', jsonb_build_object(
-      'views', (select count(*) from v),
+    'totals', (select jsonb_build_object(
+      'views', views, 'visits', visits, 'bounces', bounces, 'newVisitors', new_visitors,
       'visitors', (select count(distinct visitor) from public.analytics_visitor_days where day between p_from and p_to),
-      'newVisitors', (select count(distinct visitor) from v where new_visitor),
       'memberVisitors', (select count(distinct visitor) from public.analytics_visitor_days where day between p_from and p_to and member),
-      'visits', (select count(*) from s),
-      'bounces', (select count(*) from s where views = 1),
-      'visitMs', (select coalesce(round(avg(dur)), 0) from s),
-      'viewsPerVisit', (select coalesce(round(avg(views)::numeric, 2), 0) from s)
-    ),
+      'visitMs', case when visits > 0 then round(visit_ms::numeric / visits) else 0 end,
+      'viewsPerVisit', case when visits > 0 then round(views::numeric / visits, 2) else 0 end) from sums),
     'daily', (select jsonb_agg(jsonb_build_object(
         'day', d.day,
         'visitors', (select count(*) from public.analytics_visitor_days a where a.day = d.day),
-        'visits', (select count(*) from s where s.day = d.day),
-        'views', (select count(*) from v where v.day = d.day)) order by d.day) from days d),
-    'pages', coalesce((select jsonb_agg(p order by p.views desc, p.path) from (
-        select v.path, max(v.title) as title, count(*) as views, count(distinct v.visitor) as visitors,
-               coalesce(round(avg(nullif(v.duration_ms, 0))), 0) as "avgMs",
-               (select count(*) from entry e where e.path = v.path) as entries,
-               (select count(*) from last_view l where l.path = v.path) as exits,
-               (select count(*) from entry e join s on s.session = e.session and s.views = 1 where e.path = v.path) as bounces
-          from v group by v.path order by count(*) desc, v.path limit 60) p), '[]'::jsonb),
+        'visits', coalesce((select visits from t where t.day = d.day), 0),
+        'views', coalesce((select views from t where t.day = d.day), 0)) order by d.day) from days d),
+    'pages', coalesce((select jsonb_agg(x order by x.views desc, x.path) from (
+        select path, title, views, entries, exits, bounces,
+               case when dur_n > 0 then round(dur_sum::numeric / dur_n) else 0 end as "avgMs"
+          from p order by views desc, path limit 60) x), '[]'::jsonb),
     'sections', coalesce((select jsonb_agg(x order by x.views desc, x.id) from (
-        select case when path = '/' then 'home' else split_part(path, '/', 2) end as id, count(*) as views,
-               count(distinct visitor) as visitors, coalesce(round(avg(nullif(duration_ms, 0))), 0) as "avgMs"
-          from v group by 1) x), '[]'::jsonb),
+        select case when path = '/' then 'home' else split_part(path, '/', 2) end as id, sum(views)::int as views,
+               case when sum(dur_n) > 0 then round(sum(dur_sum)::numeric / sum(dur_n)) else 0 end as "avgMs"
+          from p group by 1) x), '[]'::jsonb),
     'entries', coalesce((select jsonb_agg(x order by x.visits desc, x.path) from (
-        select e.path, count(*) as visits, count(*) filter (where s.views = 1) as bounces
-          from entry e join s on s.session = e.session group by e.path order by 2 desc, 1 limit 20) x), '[]'::jsonb),
-    'sources', coalesce((select jsonb_agg(x order by x.visits desc) from (select source as id, count(*) as visits from entry group by source) x), '[]'::jsonb),
-    'devices', coalesce((select jsonb_agg(x order by x.visitors desc) from (select device as id, count(distinct visitor) as visitors from v group by device) x), '[]'::jsonb),
-    'os', coalesce((select jsonb_agg(x order by x.visitors desc) from (select os as id, count(distinct visitor) as visitors from v group by os) x), '[]'::jsonb),
-    'themes', coalesce((select jsonb_agg(x order by x.visitors desc) from (select theme as id, count(distinct visitor) as visitors from v where theme is not null group by theme) x), '[]'::jsonb)
+        select path, entries as visits, bounces from p where entries > 0 order by entries desc, path limit 20) x), '[]'::jsonb),
+    'sources', coalesce((select jsonb_agg(jsonb_build_object('id', key, 'visits', visits) order by visits desc, key) from dims where dim = 'source'), '[]'::jsonb),
+    'devices', coalesce((select jsonb_agg(jsonb_build_object('id', key, 'visits', visits) order by visits desc, key) from dims where dim = 'device'), '[]'::jsonb),
+    'os', coalesce((select jsonb_agg(jsonb_build_object('id', key, 'visits', visits) order by visits desc, key) from dims where dim = 'os'), '[]'::jsonb),
+    'themes', coalesce((select jsonb_agg(jsonb_build_object('id', key, 'visits', visits) order by visits desc, key) from dims where dim = 'theme'), '[]'::jsonb)
   );
 $$;
 
@@ -157,6 +223,67 @@ language sql stable security definer set search_path = pg_catalog, public as $$
                 from (select generate_series(p_from, p_to, interval '1 day')::date as day) d)
   );
 $$;
+
+-- «سوق 967» in the same range: listings and conversations from the market tables, listing-page
+-- views from the statistics above. Counts only.
+create or replace function public.analytics_market(p_from date, p_to date) returns jsonb
+language sql stable security invoker set search_path = pg_catalog, public as $$
+  with r as (select (p_from::timestamp at time zone 'Asia/Aden') as start_at, ((p_to + 1)::timestamp at time zone 'Asia/Aden') as end_at),
+  v as (select path, views from public.analytics_day_pages where day between p_from and p_to and path like '/market%')
+  select jsonb_build_object(
+    'published', (select count(*) from public.market_listings, r where published_at >= r.start_at and published_at < r.end_at),
+    'active', (select count(*) from public.market_listings where status = 'active'),
+    'pending', (select count(*) from public.market_listings where status = 'pending_review'),
+    'sold', (select count(*) from public.market_listings, r where sold_at >= r.start_at and sold_at < r.end_at),
+    'chats', (select count(*) from public.market_chats, r where created_at >= r.start_at and created_at < r.end_at),
+    'offers', (select count(*) from public.market_offers, r where created_at >= r.start_at and created_at < r.end_at),
+    'favourites', (select count(*) from public.market_favourites, r where created_at >= r.start_at and created_at < r.end_at),
+    'views', (select coalesce(sum(views), 0) from v),
+    'listingViews', (select coalesce(sum(views), 0) from v where path ~ '^/market/[0-9]+$'),
+    'searchViews', (select coalesce(sum(views), 0) from v where path = '/market/search')
+  );
+$$;
+
+-- Daily counters: two market contact steps (WhatsApp, message) join the conversion steps.
+-- Same lists as 20261110200000_transaction_guides.sql otherwise.
+create or replace function public.record_site_usage(p_metric text,p_section text)
+returns void
+language plpgsql
+security invoker
+set search_path = pg_catalog,public
+as $$
+begin
+ if not (
+  (p_metric='page_view' and p_section in (
+   'home','school','games','history','figures','atlas','statistics','rankings',
+   'debates','works','magazine','universities','medical','products',
+   'professionals','services','transactions','search','contribute','other'
+  ))
+  or
+  (p_metric='search_miss' and p_section in (
+   'all','works','debates','issues','indicators','figures','history',
+   'companies','professionals','places','domains'
+  ))
+  or
+  (p_metric='funnel' and p_section in (
+   'lesson_start_guest','lesson_start_member','lesson_done_guest','lesson_done_member','game_start_guest','game_start_member','game_done_guest','game_done_member','signup_prompt_shown','signup_prompt_click','signup_done','share_click','share_arrival',
+   'market_whatsapp','market_message'
+  ))
+ ) then
+  raise exception 'invalid analytics category' using errcode='22023';
+ end if;
+ insert into public.site_usage_daily as counters (day,metric,section,total)
+ values ((current_timestamp at time zone 'UTC')::date,p_metric,p_section,1)
+ on conflict (day,metric,section)
+ do update set total=counters.total+1;
+end;
+$$;
+revoke all on function public.record_site_usage(text,text) from public,anon,authenticated;
+grant execute on function public.record_site_usage(text,text) to service_role;
+revoke all on function public.analytics_market(date,date) from public, anon, authenticated;
+grant execute on function public.analytics_market(date,date) to service_role;
+revoke all on function public.analytics_refresh() from public, anon, authenticated;
+grant execute on function public.analytics_refresh() to service_role;
 
 revoke all on function public.analytics_today() from public, anon, authenticated;
 revoke all on function public.analytics_record_view(uuid,text,text,text,text,integer,boolean,boolean,text,text,text,text) from public, anon, authenticated;
