@@ -97,17 +97,19 @@ export default async function ListingPage({params}){
      </span>
      <ChevronLeft size={18} aria-hidden="true" className={styles.sellerGo}/>
     </Link>
+    {/* Phones: fixed above the tab bar. Wide screens: in this column, under the seller. */}
+    <ListingContactBar listingId={listing.id} sellerId={listing.seller.id} title={listing.title} amount={listing.price} currency={listing.currency} closed={listing.status==='sold'}
+     whatsapp={listing.status==='sold'?null:listing.whatsapp} negotiable={listing.negotiable&&Number(listing.price)>0&&['active','reserved'].includes(listing.status)} url={siteUrl(listingPath(listing.number))}/>
    </div>
+   {/* Wide screens: under the photos, while the summary column stays in view. */}
+   <section className={styles.block}>
+    {listing.description&&<><h2>الوصف{edited('description')}</h2><p className={styles.description}>{listing.description}</p></>}
+    <h2>المواصفات{(listing.edited_fields||[]).some(part=>['details','condition'].includes(part))&&edited('details',true)}</h2>
+    <dl className={styles.specs}>{specs.map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
+    <p className={styles.safety}><ShieldCheck size={16} aria-hidden="true"/> قابل البائع في مكان عام، ولا تحوّل أي مبلغ قبل المعاينة.</p>
+    <div className={styles.facts}><span>رقم الإعلان {listing.number}</span><span><Eye size={13} aria-hidden="true"/> {listing.views} مشاهدة</span>{listing.saves>0&&<span>حفظه {listing.saves}</span>}<ReportButton target="listing" ids={{listingId:listing.id}} ownerId={listing.seller.id} label="إبلاغ عن الإعلان"/></div>
+    {similar.length>0&&<><h2>إعلانات مشابهة</h2><div className={styles.grid}>{similar.map(item=><ListingCard key={item.id} listing={item}/>)}</div></>}
+   </section>
   </div>
-  <section className={styles.block}>
-   {listing.description&&<><h2>الوصف{edited('description')}</h2><p className={styles.description}>{listing.description}</p></>}
-   <h2>المواصفات{(listing.edited_fields||[]).some(part=>['details','condition'].includes(part))&&edited('details',true)}</h2>
-   <dl className={styles.specs}>{specs.map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl>
-   <p className={styles.safety}><ShieldCheck size={16} aria-hidden="true"/> قابل البائع في مكان عام، ولا تحوّل أي مبلغ قبل المعاينة.</p>
-   <div className={styles.facts}><span>رقم الإعلان {listing.number}</span><span><Eye size={13} aria-hidden="true"/> {listing.views} مشاهدة</span>{listing.saves>0&&<span>حفظه {listing.saves}</span>}<ReportButton target="listing" ids={{listingId:listing.id}} ownerId={listing.seller.id} label="إبلاغ عن الإعلان"/></div>
-   {similar.length>0&&<><h2>إعلانات مشابهة</h2><div className={styles.grid}>{similar.map(item=><ListingCard key={item.id} listing={item}/>)}</div></>}
-  </section>
-  <ListingContactBar listingId={listing.id} sellerId={listing.seller.id} title={listing.title} amount={listing.price} currency={listing.currency} closed={listing.status==='sold'}
-   whatsapp={listing.status==='sold'?null:listing.whatsapp} negotiable={listing.negotiable&&Number(listing.price)>0&&['active','reserved'].includes(listing.status)} url={siteUrl(listingPath(listing.number))}/>
  </div>;
 }

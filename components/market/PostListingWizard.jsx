@@ -3,7 +3,7 @@ import {useCallback,useEffect,useId,useMemo,useRef,useState} from 'react';
 import Link from 'next/link';
 import {Car,Check,ChevronLeft,ChevronRight,Dumbbell,House,ImagePlus,Package,PawPrint,Shirt,Smartphone,Sofa,Star,Sun,Trash2,Wrench,X} from 'lucide-react';
 import {browserDb} from '@/lib/supabase';
-import {CATEGORIES,CONDITIONS,CURRENCIES,OTHER,conditionRequired,findSubcategory} from '@/lib/market/catalog';
+import {CATEGORIES,CONDITIONS,CURRENCIES,OTHER,categoriesInOrder,conditionRequired,findSubcategory} from '@/lib/market/catalog';
 import {listingCompleteness,listingHighlights,suggestTitle} from '@/lib/market/listing';
 import {PHONE_COUNTRIES,formatPrice,listingPath} from '@/lib/market/format';
 import {compressForUpload} from '@/lib/market/clientImage';
@@ -211,7 +211,7 @@ export default function PostListingWizard({places}){
    <p className={styles.hint}>لا يمكن تغيير فئة الإعلان بعد نشره. إن كانت خاطئة، احذفه وانشره من جديد.</p>
   </section>}
   {step===1&&!editing&&<section>
-   <div className={styles.categories}>{CATEGORIES.map(category=>{const Icon=ICONS[category.icon]||Package;return <button type="button" key={category.key} aria-pressed={form.category===category.key} className={form.category===category.key?styles.categoryOn:styles.category} onClick={()=>set({category:category.key,subcategory:category.subcategories.length===1?category.subcategories[0].key:'',attributes:{},titleEdited:false})}><Icon size={28} aria-hidden="true"/><span>{category.label}</span></button>;})}</div>
+   <div className={styles.categories}>{categoriesInOrder(defaults?.categoryOrder).map(category=>{const Icon=ICONS[category.icon]||Package;return <button type="button" key={category.key} aria-pressed={form.category===category.key} className={form.category===category.key?styles.categoryOn:styles.category} onClick={()=>set({category:category.key,subcategory:category.subcategories.length===1?category.subcategories[0].key:'',attributes:{},titleEdited:false})}><Icon size={28} aria-hidden="true"/><span>{category.label}</span></button>;})}</div>
    {form.category&&CATEGORIES.find(c=>c.key===form.category).subcategories.length>1&&<><h2 className={styles.subhead}>القسم</h2>
     <Chips label="القسم" options={CATEGORIES.find(c=>c.key===form.category).subcategories.map(s=>({value:s.key,label:s.label}))} value={form.subcategory} onChange={v=>set({subcategory:v,attributes:{},titleEdited:false})}/></>}
   </section>}

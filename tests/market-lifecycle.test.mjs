@@ -78,7 +78,7 @@ test('the scheduled job and market notifications are private to the server',()=>
 test('editing keeps the category, re-checks the text, and answers mark the questions read',()=>{
  const server=read('lib/market/listingsServer.js');
  assert.match(server,/data\.category!==current\.category\|\|data\.subcategory!==current\.subcategory\)throw new ListingError\('لا يمكن تغيير فئة الإعلان بعد نشره\.'/);
- assert.match(server,/const status=matches\.length\?'pending_review':current\.status;/);
+ assert.ok(server.includes("const status=matches.length||copies.length?'pending_review':current.status;"));
  const chats=read('lib/market/chatServer.js');
  assert.match(chats,/\.in\('kind',\['ask_sold','ask_deal','expired'\]\)\.is\('read_at',null\)/);
  assert.match(chats,/keep:\['active'\]/);
