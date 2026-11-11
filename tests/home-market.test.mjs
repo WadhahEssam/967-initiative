@@ -20,3 +20,10 @@ test('the home lead photo loads first and light, the market row waits for the sc
  assert.ok(read('components/front/SafeImage.jsx').includes("fetchPriority={priority ? 'high' : undefined}"));
  assert.ok(read('app/page.jsx').includes('{listings.map(item => <ListingCard key={item.id} listing={item}/>)}'),'home cards use the default lazy index');
 });
+
+// /yemen-history: 332 timeline stops (about 3,000 elements) in one rail with two or three on screen.
+test('off-screen timeline stops are skipped by layout and paint',()=>{
+ const css=read('components/history/HistoryTimeline.module.css');
+ assert.match(css,/\.stop\{content-visibility:auto;contain-intrinsic-size:176px 184px\}/);
+ assert.match(css,/@media\(max-width:600px\)\{\.stop\{contain-intrinsic-size:160px 184px\}\}/);
+});
