@@ -24,7 +24,8 @@ const nextConfig = {
   // Optimised images are kept for 7 days (default 60 s, then the source's own max-age, 1 h on
   // Supabase Storage). Uploads never overwrite a path, so a stored image does not change; this
   // stops refetching every image from Supabase hourly and lets phones keep them a week.
-  images: {remotePatterns, qualities: [60, 75], minimumCacheTTL: 7 * 24 * 60 * 60},
+  // AVIF first (about a third lighter than WebP for photos), WebP for browsers without it.
+  images: {remotePatterns, formats: ['image/avif', 'image/webp'], qualities: [60, 75], minimumCacheTTL: 7 * 24 * 60 * 60},
   // Keep route CSS in per-route files (in import order) instead of merging CSS
   // modules from many routes into shared chunks that every page then downloads.
   experimental: {cssChunking: 'strict'},

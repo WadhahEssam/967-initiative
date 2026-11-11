@@ -141,3 +141,8 @@
 }
 .spotlight figure{flex:0 0 auto}
 @media(max-width:950px){.spotlight figure{width:100%}}
+
+/* About 140 stops (some 3,000 elements) sit in one horizontal rail, two or three on screen: the
+   browser lays out and paints only the visible ones. Stops have a fixed size, so nothing moves. */
+.stop{content-visibility:auto;contain-intrinsic-size:176px 184px}
+@media(max-width:600px){.stop{contain-intrinsic-size:160px 184px}}
