@@ -22,7 +22,7 @@ function Lead({item}) {
   const Icon = ICONS[item.kind] || PlayCircle;
   return <Link href={item.href} className={styles.lead} style={{'--hue': HUES[item.kind]}}>
     {item.image
-      ? <span className={styles.leadMedia}><SafeImage src={item.image} sizes="(max-width: 900px) 100vw, 680px" priority quality={60} placeholder={<span className={styles.fallback} aria-hidden="true"/>}/></span>
+      ? <span className={styles.leadMedia}><SafeImage src={item.image} sizes="(max-width: 900px) calc(100vw - 32px), 680px" priority quality={60} placeholder={<span className={styles.fallback} aria-hidden="true"/>}/></span>
       : <span className={styles.leadMedia} data-empty><Icon size={40} aria-hidden="true"/></span>}
     <span className={styles.leadBody}>
       <span className={styles.kicker}><Icon size={15} aria-hidden="true"/>{item.label}{item.live && <b className={styles.live}>مباشر</b>}{item.meta && !item.live && <span className={styles.meta}>· {item.meta}</span>}</span>

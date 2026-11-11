@@ -11,7 +11,7 @@ const LINKS=[
 ];
 
 // The market's own bar, under the site header on every browsing screen: search first (what most
-// people came for), then the member's places one tap away. `sell` adds the floating «بِع» button
+// people came for), then the member's places one tap away. `sell` adds the floating «بيع» button
 // within thumb reach, above the phone tab bar.
 export default function MarketTopBar({query='',keep,current=null,sell=true}){
  return <>
@@ -25,6 +25,6 @@ export default function MarketTopBar({query='',keep,current=null,sell=true}){
     </nav>
    </div>
   </div>
-  {sell&&<Link href="/market/new" className={styles.sell} prefetch={false}><Plus size={20} aria-hidden="true"/> بِع</Link>}
+  {sell&&<Link href="/market/new" className={styles.sell} prefetch={false}><Plus size={20} aria-hidden="true"/> بيع</Link>}
  </>;
 }

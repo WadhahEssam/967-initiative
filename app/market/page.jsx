@@ -4,10 +4,10 @@ import {Car,Dumbbell,House,Package,PawPrint,Shirt,Smartphone,Sofa,Sun,Wrench} fr
 import ListingCard from '@/components/market/ListingCard';
 import MarketTopBar from '@/components/market/MarketTopBar';
 import PlaceChooser from '@/components/market/PlaceChooser';
-import {CATEGORIES} from '@/lib/market/catalog';
+import {orderCategories} from '@/lib/market/catalog';
 import {getMarketPlaces} from '@/lib/market/places';
 import {ALL_YEMEN,PLACE_COOKIE} from '@/lib/market/search';
-import {searchListings} from '@/lib/market/searchServer';
+import {marketCategoryCounts,searchListings} from '@/lib/market/searchServer';
 import {serverDb} from '@/lib/supabase-server';
 import {pageMetadata} from '@/lib/seo';
 import styles from '@/components/market/Market.module.css';
@@ -22,7 +22,7 @@ const FEW=8;
 
 // Market home, phone first: the market bar (search, then the member's places), the ten categories
 // at a glance, and listings from the first screen. The visitor's governorate comes first; others
-// follow when it has few listings. «بِع» floats within thumb reach.
+// follow when it has few listings. «بيع» floats within thumb reach.
 export default async function MarketHome(){
  const places=await getMarketPlaces();
  const saved=(await cookies()).get(PLACE_COOKIE)?.value;
@@ -30,13 +30,15 @@ export default async function MarketHome(){
  const homeName=places.governorates.find(item=>item.id===home)?.name;
  const db=serverDb();
  const empty={cards:[],more:false};
+ // Busiest categories first (cached for 5 minutes).
+ const counts=await marketCategoryCounts(db).catch(()=>({}));
  const local=db?await searchListings(db,places,{gov:home||ALL_YEMEN},{limit:24}).catch(()=>empty):empty;
  const others=db&&homeName&&local.cards.length<FEW?await searchListings(db,places,{gov:ALL_YEMEN},{limit:16,notGovernorate:home}).catch(()=>empty):empty;
  return <div className={styles.page}>
   <h1 className="sr-only">سوق 967: بيع واشترِ داخل اليمن</h1>
   <MarketTopBar/>
   <nav className={styles.categories} aria-label="الفئات">
-   {CATEGORIES.map(item=>{const Icon=ICONS[item.icon]||Package;return <Link key={item.key} href={'/market/search?category='+item.key} className={styles.category} aria-label={item.label} prefetch={false}>
+   {orderCategories(counts).map(item=>{const Icon=ICONS[item.icon]||Package;return <Link key={item.key} href={'/market/search?category='+item.key} className={styles.category} aria-label={item.label} prefetch={false}>
     <span className={styles.categoryIcon}><Icon size={22} aria-hidden="true"/></span><span aria-hidden="true">{SHORT[item.key]||item.label}</span>
    </Link>;})}
   </nav>

@@ -30,7 +30,10 @@ export async function POST(request){
   const image=await processListingImage(Buffer.from(await file.arrayBuffer()));
   const id=randomUUID();
   await Promise.all([putImage(imageKey(id,'full',{temporary:true}),image.full),putImage(imageKey(id,'medium',{temporary:true}),image.medium),putImage(imageKey(id,'thumb',{temporary:true}),image.thumb)]);
-  const {error}=await db.from('market_uploads').insert({id,owner_id:user.id,width:image.width,height:image.height,bytes:image.bytes});
+  const row={id,owner_id:user.id,width:image.width,height:image.height,bytes:image.bytes};
+  let {error}=await db.from('market_uploads').insert({...row,phash:image.phash});
+  // Before the photo-hash column exists the upload still works (the duplicate check then skips it).
+  if(error&&['42703','PGRST204'].includes(error.code))({error}=await db.from('market_uploads').insert(row));
   if(error)throw error;
   return json({id,width:image.width,height:image.height,thumb:'/api/market/img/'+id+'/thumb',full:'/api/market/img/'+id+'/full'},201);
  }catch(error){
