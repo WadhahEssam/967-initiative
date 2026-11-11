@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element -- remote, licence-credited or canvas-rendered images whose hosts are not all in next.config remotePatterns */
 
 import {useState} from 'react';
+import {servedImageUrl} from '@/lib/media';
 
 // Fallback identity is deliberately NOT stored in logo_url and is not an official logo.
 const ignoredWords=new Set(['هيئة','مستشفى','المستشفى','مستشفي','المستشفي','العام','العامة','الريفي','المركز','مركز','الصحي','الصحية','للأمومة','والطفولة','جامعي','التعليمي','التخصصي','م','محافظة','مديرية']);
@@ -30,9 +31,11 @@ function MedicalIdentity({name,maxSize}) {
 /** Broken external logo links safely fall back to a non-official identifier. */
 export default function InstitutionLogo({src,name,children,maxSize=64,kind='other'}) {
  const [failed,setFailed]=useState(false);
- if (!src||failed) return kind==='medical'?<MedicalIdentity name={name} maxSize={maxSize}/>:children;
+ // A Commons logo (Wikimedia is hard to reach from Yemen) is served from our own address.
+ const shown=servedImageUrl(src,192);
+ if (!shown||failed) return kind==='medical'?<MedicalIdentity name={name} maxSize={maxSize}/>:children;
  return <img
-  src={src}
+  src={shown}
   alt={'شعار منشور لـ '+name}
   loading="lazy"
   decoding="async"

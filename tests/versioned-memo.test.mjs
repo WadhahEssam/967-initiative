@@ -100,7 +100,7 @@ test('public readers use the caches and admin saves clear them', () => {
   for (const [name, table] of [['getYemeniCompanies', 'yemeni_companies'], ['getUniversities', 'universities'], ['getMedicalCenters', 'medical_centers'], ['getYemeniFigures', 'yemeni_figures']])
     assert.match(data, new RegExp('export const ' + name + ' = publicList\\(\'\\w+\',cachedDirectoryList\\(\'' + table + '\''));
   assert.match(data, /return structuredClone\(rows\);/);
-  assert.match(data, /profile:await readPublicFigureProfile\(db,data\)/);
+  assert.match(data, /const profile=await readPublicFigureProfile\(db,data\)\.catch\(/);
   assert.match(read('app/api/admin/pages/route.js'), /invalidateSiteSettings\(\);/);
   assert.match(read('app/api/admin/page-visibility/route.js'), /invalidateSiteSettings\(\);/);
   assert.match(read('app/api/admin/figures/route.js'), /invalidateDirectoryLists\(\);[^]*invalidateDirectoryLists\(\);/);
