@@ -44,7 +44,8 @@ test('admin: a scrollable section strip on phones and every section on desktop',
 
 test('CI smoke scripts follow the approved theme and header', () => {
   const theme = read('scripts/editorial-theme-smoke.mjs');
-  assert.ok(theme.includes("should follow a dark device"));
+  // Dark is the default on every device (owner, 2026-11-11).
+  assert.ok(theme.includes("should default to dark on a light device too"));
   assert.ok(theme.includes("'#f3efe8'"));
   const nav = read('scripts/phase5-browser-smoke.mjs');
   assert.ok(nav.includes("button.ed-menu-toggle:visible').count(),0"));

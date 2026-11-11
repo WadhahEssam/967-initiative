@@ -3,35 +3,25 @@ import {useEffect,useState} from 'react';
 import {Moon,Sun} from 'lucide-react';
 
 const KEY='967-editorial-theme';
-const current=()=>document.documentElement.dataset.edTheme==='dark'?'dark':'light';
+const current=()=>document.documentElement.dataset.edTheme==='light'?'light':'dark';
 
-// Follows the device setting until the visitor picks a mode. The saved choice
-// (or the system mode) is applied by a tiny script in <head> before paint.
+// Dark is the default for everyone (owner, 2026-11-11); a visitor who picks light keeps it.
+// The saved choice is applied by a tiny script in <head> before paint.
 // It lives in the menu and the footer (with its label), not in the crowded header bar.
 export default function ThemeToggle({labelled=false,className=''}){
- const [theme,setTheme]=useState('light');
+ const [theme,setTheme]=useState('dark');
 
  useEffect(()=>{
   const sync=()=>setTheme(current());
   sync();
   const onStorage=event=>{
    if(event.key!==KEY)return;
-   const next=event.newValue==='dark'?'dark':'light';
+   const next=event.newValue==='light'?'light':'dark';
    document.documentElement.dataset.edTheme=next;
    setTheme(next);
   };
   window.addEventListener('storage',onStorage);
-  // Without a saved choice, follow the device when it switches light/dark.
-  const media=window.matchMedia?.('(prefers-color-scheme: dark)');
-  const onSystem=event=>{
-   let saved=null;try{saved=window.localStorage.getItem(KEY);}catch{/* storage blocked */}
-   if(saved)return;
-   const next=event.matches?'dark':'light';
-   document.documentElement.dataset.edTheme=next;
-   setTheme(next);
-  };
-  media?.addEventListener?.('change',onSystem);
-  return()=>{window.removeEventListener('storage',onStorage);media?.removeEventListener?.('change',onSystem);};
+  return()=>window.removeEventListener('storage',onStorage);
  },[]);
 
  const toggle=()=>{

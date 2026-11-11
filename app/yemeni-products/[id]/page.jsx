@@ -27,7 +27,7 @@ import {
 import {getYemeniCompanies, getYemeniCompany} from '@/lib/data';
 import {relatedProjections} from '@/lib/relatedContent';
 import {formatNumber,formatArabicDate} from '@/lib/format';
-import {canOptimizeImage} from '@/lib/media';
+import {canOptimizeImage,imageSource} from '@/lib/media';
 import {detailPath, pageMetadata} from '@/lib/seo';
 import {breadcrumbSchema, JsonLd} from '@/lib/seo-schema';
 import InlineTarget from '@/components/inline/InlineTarget';
@@ -91,7 +91,7 @@ export default async function YemeniCompanyPage({params}) {
     <InlineTarget kind="company" id={company.databaseId} slug={company.id} title={company.name} href={detailPath('yemeni-products',company.id)} isDemo={company.isDemo}/>
     <JsonLd data={breadcrumbSchema([{name:'منتجات يمنية', path:'/yemeni-products'}, {name:company.name, path:detailPath('yemeni-products', company.id)}])}/>
     <section className="company-profile-hero">
-      {company.imageUrl && <div className="company-profile-image"><Image src={company.imageUrl} alt={company.imageUrl.includes('/wiki/Special:FilePath/') ? 'صورة توضيحية لفئة منتجات '+company.name : 'صورة '+company.name} fill priority unoptimized={!canOptimizeImage(company.imageUrl)} sizes="(max-width: 800px) 100vw, 52vw" style={{objectPosition: company.imagePosition}}/>{company.imageUrl.includes('/wiki/Special:FilePath/')&&<span style={{position:'absolute',top:14,right:14,zIndex:2,color:'#fff',background:'rgba(16,25,38,.86)',padding:'6px 12px',borderRadius:8,fontSize:12,fontWeight:600}}>صورة توضيحية — ليست صورة الشركة</span>}</div>}
+      {company.imageUrl && <div className="company-profile-image"><Image src={imageSource(company.imageUrl)} alt={company.imageUrl.includes('/wiki/Special:FilePath/') ? 'صورة توضيحية لفئة منتجات '+company.name : 'صورة '+company.name} fill priority unoptimized={!canOptimizeImage(imageSource(company.imageUrl))} sizes="(max-width: 800px) 100vw, 52vw" style={{objectPosition: company.imagePosition}}/>{company.imageUrl.includes('/wiki/Special:FilePath/')&&<span style={{position:'absolute',top:14,right:14,zIndex:2,color:'#fff',background:'rgba(16,25,38,.86)',padding:'6px 12px',borderRadius:8,fontSize:12,fontWeight:600}}>صورة توضيحية — ليست صورة الشركة</span>}</div>}
       <div className="company-profile-copy">
         <ContextBackLink fallback="/yemeni-products#directory" label="العودة إلى دليل المنتجات"/>
         <div className="company-profile-tags"><span>{company.category}</span>{company.scale&&<span>{company.scale}</span>}<span><MapPin size={13}/>{company.location}</span></div>
