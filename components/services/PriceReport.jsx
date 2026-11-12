@@ -96,26 +96,26 @@ function ReportForm({kind,region,item,onSent}){
   setError(json.error||'تعذر الإرسال الآن. حاول بعد قليل.');
  }
  return <form className={styles.reportForm} onSubmit={submit} noValidate>
-  <label className={styles.field}><span>المدينة</span>
+  <label className={styles.reportField}><span>المدينة</span>
    <select value={city} onChange={event=>setCity(event.target.value)}>{RATE_REGIONS.map(entry=><option key={entry.id} value={entry.id}>{entry.name}</option>)}</select>
   </label>
   {kind==='rate'?<>
-   <fieldset className={styles.field}><legend>العملة</legend>
+   <fieldset className={styles.reportField}><legend>العملة</legend>
     <div className={styles.choice}>{RATE_CURRENCIES.map(entry=><button key={entry.id} type="button" aria-pressed={thing===entry.id} onClick={()=>setThing(entry.id)}>{entry.short}</button>)}</div>
    </fieldset>
-   <fieldset className={styles.field}><legend>أي سعر؟</legend>
+   <fieldset className={styles.reportField}><legend>أي سعر؟</legend>
     <div className={styles.sideChoice}>
      <label><input type="radio" name={id+'side'} checked={side==='buy'} onChange={()=>setSide('buy')}/><span><b>شراء</b><small>ما يدفعه لك الصرّاف</small></span></label>
      <label><input type="radio" name={id+'side'} checked={side==='sell'} onChange={()=>setSide('sell')}/><span><b>بيع</b><small>ما تدفعه أنت للصرّاف</small></span></label>
     </div>
    </fieldset>
-  </>:<label className={styles.field}><span>المادة</span>
+  </>:<label className={styles.reportField}><span>المادة</span>
    <select value={thing} onChange={event=>setThing(event.target.value)}>{FOOD_GROUPS.map(group=><optgroup key={group.id} label={group.name}>{FOOD_ITEMS.filter(entry=>entry.group===group.id).map(entry=><option key={entry.id} value={entry.id}>{entry.name} ({entry.unit})</option>)}</optgroup>)}</select>
   </label>}
-  <label className={styles.field}><span>السعر بالريال{food?' · '+food.unit:''}</span>
+  <label className={styles.reportField}><span>السعر بالريال{food?' · '+food.unit:''}</span>
    <input inputMode="decimal" autoComplete="off" dir="ltr" required value={value} onChange={event=>setValue(event.target.value)} placeholder={kind==='rate'?'مثل 535':'مثل 9500'}/>
   </label>
-  <label className={styles.field}><span>المصدر <small>(اختياري)</small></span>
+  <label className={styles.reportField}><span>المصدر <small>(اختياري)</small></span>
    <input maxLength={120} value={source} onChange={event=>setSource(event.target.value)} placeholder={kind==='rate'?'اسم الصرّاف أو الحي':'اسم السوق أو المحل'}/>
   </label>
   <label className={styles.trap} aria-hidden="true">موقعك<input tabIndex={-1} autoComplete="off" value={website} onChange={event=>setWebsite(event.target.value)}/></label>

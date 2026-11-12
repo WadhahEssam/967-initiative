@@ -106,7 +106,7 @@ test('over several days, repeat manipulators lose weight: 20% stays within 2% th
 
 test('grading runs on the server after each recomputation; scores, grades and bans never reach members', () => {
   const server = read('lib/priceConsensusServer.js');
-  assert.ok(server.includes('await settleReports(db,kind,prices,now)'));
+  assert.ok(server.includes('await settleReports(db,kind,prices,now,alerts)'));
   const sql = read('supabase/migrations/20261112140000_price_reputation.sql');
   assert.match(sql, /add column if not exists scored_at timestamptz/);
   assert.match(sql, /ban_reason text check \(ban_reason is null or ban_reason in \('auto','editor'\)\)/);

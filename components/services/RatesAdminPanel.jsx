@@ -3,6 +3,7 @@ import {useCallback,useEffect,useState} from 'react';
 import Link from 'next/link';
 import RatesEntry from './RatesEntry';
 import FoodEntry from './FoodEntry';
+import PriceModeration from './PriceModeration';
 import {inlineContentRequest} from '@/lib/inlineContentClient';
 import styles from './Services.module.css';
 
@@ -36,8 +37,12 @@ export default function RatesAdminPanel({db}){
   <div className={styles.tabs} role="group" aria-label="نوع الأسعار">
    <button type="button" aria-pressed={form==='rates'} onClick={()=>setForm('rates')}>أسعار الصرف</button>
    <button type="button" aria-pressed={form==='food'} onClick={()=>setForm('food')}>المواد الأساسية</button>
+   <button type="button" aria-pressed={form==='reports'} onClick={()=>setForm('reports')}>بلاغات الأعضاء</button>
   </div>
-  {form==='rates'?<RatesEntry/>:<FoodEntry/>}
+  {form==='reports'?<PriceModeration db={db}/>:<>
+   <p className={styles.modMeta}>ما يُدخل هنا «سعر مرساة»: يُعتمد فورًا، ثم تُكمله بلاغات الأعضاء المتقاربة. البلاغات والتنبيهات في «بلاغات الأعضاء».</p>
+   {form==='rates'?<RatesEntry/>:<FoodEntry/>}
+  </>}
   <section className={styles.entryCity} aria-labelledby="rate-reporters">
    <h2 id="rate-reporters">مُدخلو الأسعار</h2>
    <p>حسابات تستطيع إدخال أسعار الصرف وأسعار المواد فقط، دون أي صلاحية أخرى في لوحة التحرير.</p>
