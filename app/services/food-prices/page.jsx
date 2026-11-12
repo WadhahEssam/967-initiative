@@ -8,7 +8,7 @@ import SectionPreviewNote from '@/components/SectionPreviewNote';
 import {serverDb} from '@/lib/supabase-server';
 import {getPublicFoodPrices} from '@/lib/foodPricesServer';
 import {getPublicRates} from '@/lib/exchangeRatesServer';
-import {getPriceBoard} from '@/lib/priceConsensusServer';
+import {getPriceBoard,getPriceWeek} from '@/lib/priceConsensusServer';
 import {CONFIDENCE,basisText,mergeFood,mergeRates,rangeText} from '@/lib/priceReports';
 import {FOOD_BASKET,FOOD_GROUPS,FOOD_ITEMS,FOOD_REGIONS,basketCost,daysOld,foodFreshness,foodItem,foodKey,foodRegionName,inDollars,priceChange,topMoves,unitPrice} from '@/lib/foodPrices';
 import {formatRateTime,usableRates} from '@/lib/exchangeRates';
@@ -27,7 +27,7 @@ export default async function FoodPricesPage(){
  const access=await sectionAccess('foodPrices',settings);
  if(!access)notFound();
  const db=serverDb();
- const [data,rateData,board]=await Promise.all([getPublicFoodPrices(db).catch(()=>null),getPublicRates(db).catch(()=>null),getPriceBoard(db).catch(()=>null)]);
+ const [data,rateData,board,week]=await Promise.all([getPublicFoodPrices(db).catch(()=>null),getPublicRates(db).catch(()=>null),getPriceBoard(db).catch(()=>null),getPriceWeek(db).catch(()=>null)]);
  const now=Date.now(),rates=usableRates(mergeRates(rateData?.latest||{},board),now);
  // The price members' reports settled on where there is one, the team's entry otherwise.
  // Only prices still within three weeks are shown, compared or added up.
@@ -43,7 +43,8 @@ export default async function FoodPricesPage(){
   const {price,recorded_at}=pair.latest,isStale=foodFreshness(recorded_at,now)==='stale';
   const info=pair.community;
   return [region.id,{price,per:unitPrice(item.id,price),usd:inDollars(region.id,price,rates),change:priceChange(pair),stale:isStale,ago:isStale?ago(daysOld(recorded_at,now)):'',
-   ...(info?{basis:basisText(info,now),range:rangeText(info,formatNumber),confidence:info.confidence,confidenceLabel:CONFIDENCE[info.confidence]?.label||''}:{})}];
+   ...(info?{basis:basisText(info,now),range:rangeText(info,formatNumber),confidence:info.confidence,confidenceLabel:CONFIDENCE[info.confidence]?.label||''}:{}),
+   ...(week?.['food:'+region.id+':'+item.id+':price']?.length>=2?{week:week['food:'+region.id+':'+item.id+':price']}:{})}];
  }))}));
  const baskets=FOOD_REGIONS.map(region=>({region,cost:basketCost(latest,region.id,rates)})).filter(item=>item.cost);
  const maxBasket=Math.max(...baskets.map(item=>item.cost.dollars||0));
@@ -88,7 +89,7 @@ export default async function FoodPricesPage(){
     <li>يجمعها فريق 967 من أسواق صنعاء وعدن، وهي أسعار استرشادية وليست نشرة رسمية؛ قد يختلف السعر بين محل وآخر.</li>
     <li>السهم بجانب السعر يقارنه بالقراءة السابقة. ما يعادله بالدولار محسوب بسعر صرف اليوم في المدينة نفسها، وسعر الكيلو أو اللتر محسوب من سعر الكيس أو الدبة.</li>
     <li>يظهر تنبيه إذا مضى على السعر أكثر من أسبوعين، ويُخفى بعد ثلاثة أسابيع.</li>
-    {board&&<li>يُكمل الأعضاء هذه الأسعار ببلاغاتهم. السعر المعروض هو وسيط البلاغات المتقاربة، ولا يتغير ببلاغ واحد مهما كان رقمه. اضغط على أي سعر لتأكيده أو للإبلاغ عن سعر مختلف.</li>}
+    {board&&<li>يُكمل الأعضاء هذه الأسعار ببلاغاتهم. السعر المعروض هو وسيط البلاغات المتقاربة، ولا يتغير ببلاغ واحد مهما كان رقمه. اضغط على أي سعر لتأكيده أو للإبلاغ عن سعر مختلف. وتعرّف على <Link href="/services/reporters">أفضل المبلّغين هذا الأسبوع</Link>.</li>}
    </ul>
    <p>رأيت سعرًا مختلفًا؟ <Link href={'/contribute?type='+encodeURIComponent('تصحيح معلومة')}>أخبرنا</Link>. وتجد <Link href="/services/exchange-rates">أسعار الصرف اليومية</Link> في الخدمات.</p>
   </aside>

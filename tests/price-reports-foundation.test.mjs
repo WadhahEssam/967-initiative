@@ -54,7 +54,7 @@ test('pages never read the price tables directly: only the public board (getPric
   for (const file of files) {
     const source = read(file);
     assert.doesNotMatch(source, /price_consensus|price_reports|price_reporters|recomputePrices|from '@\/lib\/priceConsensus'/, file);
-    for (const [, names] of source.matchAll(/import \{([^}]*)\} from '@\/lib\/priceConsensusServer'/g)) assert.equal(names.trim(), 'getPriceBoard', file);
+    for (const [, names] of source.matchAll(/import \{([^}]*)\} from '@\/lib\/priceConsensusServer'/g)) for (const name of names.split(',')) assert.ok(['getPriceBoard', 'getPriceWeek'].includes(name.trim()), file + ': ' + name);
   }
 });
 
