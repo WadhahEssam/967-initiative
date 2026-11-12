@@ -41,7 +41,7 @@ test('saving an editor entry recomputes the prices; hiding one starts again from
   assert.ok(server.includes('if(error instanceof MissingTables)return {changed:0,missing:true};'));
 });
 
-test('phase 1 changes nothing for readers: no page or component reads the new tables', () => {
+test('pages never read the price tables directly: only the public board (getPriceBoard)', () => {
   const files = [];
   const walk = dir => {
     for (const entry of readdirSync(new URL('../' + dir, import.meta.url), {withFileTypes: true})) {
@@ -51,7 +51,11 @@ test('phase 1 changes nothing for readers: no page or component reads the new ta
     }
   };
   walk('app'); walk('components');
-  for (const file of files) assert.doesNotMatch(read(file), /price_consensus|price_reports|priceConsensus/, file);
+  for (const file of files) {
+    const source = read(file);
+    assert.doesNotMatch(source, /price_consensus|price_reports|price_reporters|recomputePrices|from '@\/lib\/priceConsensus'/, file);
+    for (const [, names] of source.matchAll(/import \{([^}]*)\} from '@\/lib\/priceConsensusServer'/g)) assert.equal(names.trim(), 'getPriceBoard', file);
+  }
 });
 
 test('every city and item has an instrument', async () => {

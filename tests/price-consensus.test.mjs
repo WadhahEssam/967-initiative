@@ -126,7 +126,7 @@ test('the range and count describe the reports behind the price', () => {
   const result = computeConsensus({kind: 'rate', current: sanaaUsd, official, reports, now: NOW});
   assert.equal(result.low, 530);
   assert.equal(result.high, 536);
-  assert.equal(result.count, 5); // four members and the editor entry; the 2000 report is held
+  assert.equal(result.count, 4); // four members (the editor entry is not a report); the 2000 report is held
 });
 
 test('reports older than 6 hours count only while fewer than three people reported recently', () => {

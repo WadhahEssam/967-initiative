@@ -62,9 +62,10 @@ test('the latest price of each item is paired with the one from the entry before
   assert.equal(priceChange(pairs['aden:sugar']), null);
 });
 
-test('weekly prices warn after 8 days and disappear after 21; per-kilo and dollar figures', () => {
+test('prices are «قديم» after 15 days (owner, 2026-11-12) and disappear after 21; per-kilo and dollar figures', () => {
   assert.equal(foodFreshness(new Date(now - 3 * DAY).toISOString(), now), 'fresh');
-  assert.equal(foodFreshness(new Date(now - 9 * DAY).toISOString(), now), 'stale');
+  assert.equal(foodFreshness(new Date(now - 14 * DAY).toISOString(), now), 'fresh');
+  assert.equal(foodFreshness(new Date(now - 16 * DAY).toISOString(), now), 'stale');
   assert.equal(foodFreshness(new Date(now - 22 * DAY).toISOString(), now), 'expired');
   assert.deepEqual(unitPrice('wheat_flour', 50000), {value: 1000, unit: 'الكيلو'});
   assert.deepEqual(unitPrice('cooking_oil', 30000), {value: 1500, unit: 'اللتر'});
