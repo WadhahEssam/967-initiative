@@ -4,11 +4,14 @@ import {AlertTriangle,ArrowDown,ArrowUp,Clock3,Minus} from 'lucide-react';
 import RateConverter from '@/components/services/RateConverter';
 import RateTrend from '@/components/services/RateTrend';
 import Sparkline from '@/components/services/Sparkline';
+import {PriceActions} from '@/components/services/PriceReport';
 import {getSiteSettings} from '@/lib/data';
 import {sectionAccess} from '@/lib/sectionPreview';
 import SectionPreviewNote from '@/components/SectionPreviewNote';
 import {serverDb} from '@/lib/supabase-server';
 import {getPublicRates} from '@/lib/exchangeRatesServer';
+import {getPriceBoard} from '@/lib/priceConsensusServer';
+import {CONFIDENCE,basisText,mergeRates,rangeText} from '@/lib/priceReports';
 import {RATE_CURRENCIES,RATE_REGIONS,adenDay,formatRateDay,formatRateTime,rateFreshness,usableRates} from '@/lib/exchangeRates';
 import {formatNumber} from '@/lib/format';
 import {pageMetadata} from '@/lib/seo';
@@ -34,12 +37,25 @@ function Change({series,row}){
  return <small className={diff>0?styles.up:styles.down}><Icon size={12} aria-hidden="true"/> {diff>0?'ارتفع':'انخفض'} {formatNumber(Math.abs(diff))} {since}</small>;
 }
 
+// Members' reports behind the price: confidence, «بناءً على… · آخر تحديث…», and the range.
+function Community({info,now}){
+ if(!info)return null;
+ const level=CONFIDENCE[info.confidence],range=rangeText(info,formatNumber);
+ return <p className={styles.community}>
+  {level&&<span className={styles.confidence} data-level={info.confidence} title={level.hint}>{level.label}</span>}
+  <span>{basisText(info,now)}</span>
+  {range&&<span>{range}</span>}
+ </p>;
+}
+
 export default async function ExchangeRatesPage(){
  const settings=await getSiteSettings();
  const access=await sectionAccess('services',settings);
  if(!access)notFound();
- const data=await getPublicRates(serverDb()).catch(()=>null);
- const now=Date.now(),rates=usableRates(data?.latest||{},now);
+ const db=serverDb();
+ const [data,board]=await Promise.all([getPublicRates(db).catch(()=>null),getPriceBoard(db).catch(()=>null)]);
+ // The price members' reports settled on where there is one, the team's entry otherwise.
+ const now=Date.now(),rates=usableRates(mergeRates(data?.latest||{},board),now);
  const times=Object.values(rates).map(row=>Date.parse(row.recorded_at));
  const newest=times.length?new Date(Math.max(...times)).toISOString():null;
  const stale=Object.values(rates).some(row=>rateFreshness(row.recorded_at,now)==='stale');
@@ -70,6 +86,8 @@ export default async function ExchangeRatesPage(){
        </div>
        <Sparkline className={styles.spark} points={series} label={'اتجاه سعر الدولار في '+region.name+' خلال 30 يومًا'}/>
       </div>:null}
+      {dollar&&<Community info={dollar.community} now={now}/>}
+      {board&&<PriceActions kind="rate" region={region.id} item="USD" regionName={region.name}/>}
       {rows.length?<table className={styles.rates}>
        <thead><tr><th scope="col">العملة</th><th scope="col">شراء<small>يدفعه لك الصرّاف</small></th><th scope="col">بيع<small>تدفعه أنت</small></th></tr></thead>
        <tbody>{rows.map(({currency,row})=><tr key={currency.id}>
@@ -96,11 +114,11 @@ export default async function ExchangeRatesPage(){
   <aside className={styles.about} aria-labelledby="rates-about">
    <h2 id="rates-about">عن هذه الأسعار</h2>
    <ul>
-    <li>يجمعها فريق 967 يوميًا من صرّافين في صنعاء وعدن، وهي أسعار استرشادية وليست نشرة رسمية.</li>
+    <li>يجمعها فريق 967 يوميًا من صرّافين في صنعاء وعدن، ويُكملها بلاغات الأعضاء. السعر المعروض هو وسيط البلاغات المتقاربة، ولا يتغير ببلاغ واحد مهما كان رقمه. وهي أسعار استرشادية وليست نشرة رسمية.</li>
     <li>قد يختلف السعر الفعلي قليلًا بين محل وآخر وخلال اليوم نفسه.</li>
     <li>يظهر تحذير إذا مضى على السعر أكثر من يوم، ويُخفى بعد يومين.</li>
    </ul>
-   <p>رأيت سعرًا مختلفًا؟ <Link href={'/contribute?type='+encodeURIComponent('تصحيح معلومة')}>أخبرنا</Link>.</p>
+   {board?<p>رأيت سعرًا مختلفًا؟ اضغط «السعر مختلف» تحت سعر مدينتك.</p>:<p>رأيت سعرًا مختلفًا؟ <Link href={'/contribute?type='+encodeURIComponent('تصحيح معلومة')}>أخبرنا</Link>.</p>}
   </aside>
  </div>;
 }

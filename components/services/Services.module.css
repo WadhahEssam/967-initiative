@@ -223,3 +223,50 @@
 .batchDetails { flex-basis: 100%; }
 .batchDetails summary { cursor: pointer; min-height: 32px; display: flex; align-items: center; color: var(--c-accent); font-weight: 600; }
 .batchDetails ul { margin: 4px 0 0; padding-inline-start: 1.2em; display: grid; gap: 2px; }
+
+/* «المُبلّغ المحلي»: what the price rests on, its confidence and range, and the two actions. */
+.community { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 0 0 var(--s-2); font-size: var(--t-size-meta); color: var(--c-ink-3); line-height: var(--t-lh-ui); }
+.confidence { display: inline-flex; align-items: center; gap: 5px; padding: 2px 9px; border-radius: var(--r-pill, 999px); font-weight: 700; background: var(--c-surface-3); color: var(--c-ink-2); }
+.confidence::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+.confidence[data-level="trusted"] { background: var(--c-success-soft); color: var(--c-success); }
+.confidence[data-level="estimated"] { background: var(--c-caution-soft); color: var(--c-caution); }
+.priceActions { display: flex; flex-wrap: wrap; gap: 8px; margin: var(--s-2) 0 var(--s-3, 12px); }
+.priceActions button { flex: 1 1 140px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: var(--target, 44px); padding: 0 14px; border-radius: var(--r-pill, 999px); border: 1px solid var(--c-line-2); background: var(--c-surface); color: var(--c-ink); font: 600 var(--t-size-ui)/1 var(--t-text); cursor: pointer; }
+.priceActions button:first-child { border-color: color-mix(in srgb, var(--city, var(--c-accent)) 45%, var(--c-line-2)); }
+.priceActions button:focus-visible, .cellButton:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 2px; }
+.reportButtons { display: flex; flex-wrap: wrap; gap: 8px; }
+.primaryButton, .secondaryButton { flex: 1 1 140px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: var(--target, 44px); padding: 0 16px; border-radius: var(--r-pill, 999px); font: 600 var(--t-size-ui)/1 var(--t-text); text-decoration: none; cursor: pointer; }
+.primaryButton { border: 0; background: var(--c-accent); color: var(--c-bg); }
+.primaryButton:disabled { opacity: .6; cursor: progress; }
+.secondaryButton { border: 1px solid var(--c-line-2); background: var(--c-surface); color: var(--c-ink); }
+.primaryButton:focus-visible, .secondaryButton:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 2px; }
+.reportForm { display: grid; gap: var(--s-3, 12px); }
+.field { display: grid; gap: 6px; margin: 0; padding: 0; border: 0; min-width: 0; }
+.field > span, .field > legend { padding: 0; font-size: var(--t-size-ui); font-weight: 600; color: var(--c-ink); }
+.field small { font-weight: 400; color: var(--c-ink-3); }
+.field select, .field input:not([type="radio"]) { min-height: var(--target, 44px); padding: 0 12px; border-radius: 12px; border: 1px solid var(--c-line-2); background: var(--c-surface); color: var(--c-ink); font: 400 1rem/1.4 var(--t-text); }
+.field input[dir="ltr"] { text-align: end; font-variant-numeric: tabular-nums; font-weight: 700; font-size: 1.15rem; }
+.field select:focus-visible, .field input:not([type="radio"]):focus-visible { outline: 2px solid var(--c-focus); outline-offset: 1px; }
+.sideChoice { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.sideChoice label { display: flex; gap: 8px; align-items: flex-start; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--c-line-2); cursor: pointer; }
+.sideChoice label:has(input:checked) { border-color: var(--c-accent); background: var(--c-accent-soft); }
+.sideChoice input { flex: none; inline-size: 18px; block-size: 18px; min-height: 0; margin: 3px 0 0; padding: 0; accent-color: var(--c-accent); }
+.sideChoice span { display: grid; gap: 2px; }
+.sideChoice b { font-size: var(--t-size-ui); color: var(--c-ink); }
+.sideChoice small { font-size: var(--t-size-meta); color: var(--c-ink-3); }
+.trap { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.formError { margin: 0; padding: 10px 12px; border-radius: 12px; background: var(--c-danger-soft); color: var(--c-danger); font-size: var(--t-size-ui); }
+.signupPrompt, .reportDone { display: grid; justify-items: center; gap: var(--s-2); padding: var(--s-2) 0; text-align: center; color: var(--c-ink-2); }
+.signupPrompt svg { color: var(--c-accent); }
+.reportDone svg { color: var(--c-success); }
+.signupPrompt p, .reportDone p { margin: 0; max-width: 32ch; font-size: var(--t-size-ui); line-height: var(--t-lh-body); color: var(--c-ink); }
+.signupPrompt .reportButtons, .reportDone button { inline-size: 100%; }
+.reportChoose { display: grid; gap: var(--s-2); }
+.reportBusy { margin: 0; padding: var(--s-3, 12px) 0; text-align: center; color: var(--c-ink-3); }
+.human { min-height: 65px; }
+.sheetPrice { display: grid; gap: 4px; margin-bottom: var(--s-3, 12px); padding: var(--s-3, 12px); border-radius: 16px; background: var(--c-surface-2); }
+.sheetPrice p { margin: 0; }
+.sheetPrice .bigFigure { margin: 0; }
+.cellButton { display: block; inline-size: 100%; margin: -6px; padding: 6px; border: 0; border-radius: 10px; background: transparent; color: inherit; font: inherit; text-align: start; cursor: pointer; }
+@media (hover: hover) { .cellButton:hover { background: var(--c-surface-2); } }
+.tapHint { margin: 0; font-size: var(--t-size-meta); color: var(--c-ink-3); }
