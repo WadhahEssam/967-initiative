@@ -10,6 +10,21 @@ import {claimSessionDebateDraft,safeTabStorage} from '@/lib/debateDraft';
 import {completeAuthSession} from '@/lib/authCallback';
 import AuthPasswordField from './AuthPasswordField';
 import {usePageVisibility} from '@/components/PageVisibilityProvider';
+import GoogleSignIn from './GoogleSignIn';
+import {audienceRequest} from './useAudience';
+import {takeGoogleTerms,termsProfileUpdate} from '@/lib/googleAuth';
+
+// Back from Google: record the terms agreed before leaving (new accounts only), then continue.
+async function finishGoogleSignIn(){
+ if(!takeGoogleTerms())return;
+ try{
+  const account=await audienceRequest('/api/account');
+  const update=termsProfileUpdate(account?.profile);
+  if(!update)return;
+  await audienceRequest('/api/account',update);
+  trackFunnel('signup_done');
+ }catch{/* The account page asks for the agreement again if this did not go through. */}
+}
 
 const labels={login:'تسجيل الدخول',register:'إنشاء حساب',forgot:'استعادة كلمة المرور',update:'تحديث كلمة المرور',callback:'تأكيد الحساب'};
 export default function AudienceAuth({mode='login'}){
@@ -23,8 +38,9 @@ export default function AudienceAuth({mode='login'}){
   let live=true;
   const params=new URLSearchParams(location.search);
   if(!callbackJob.current)callbackJob.current=completeAuthSession(db.auth,location.href,()=>location.href);
-  callbackJob.current.then(session=>{
+  callbackJob.current.then(async session=>{
    if(!live)return;
+   if(mode==='callback'&&params.get('provider')==='google')await finishGoogleSignIn();
    if(mode==='update'){setRecoveryReady(true);history.replaceState({},'',location.pathname+(params.has('next')?'?next='+encodeURIComponent(safeAccountReturn(params.get('next'))):''));return;}
    const target=params.get('recovery')==='1'?'/update-password?next='+encodeURIComponent(safeAccountReturn(params.get('next'))):safeAccountReturn(params.get('next'));
    claimSessionDebateDraft(safeTabStorage(),target,session);location.replace(target);
@@ -60,6 +76,7 @@ export default function AudienceAuth({mode='login'}){
  return <div className="container debate-auth"><Link href="/" className="eyebrow">مبادرة 967 · حساب المستخدم</Link><h1>{labels[mode]}</h1><p>يمكنك تصفح 967 دون حساب. أنشئ حساباً للمشاركة في المناظرات، والتصويت، وطرح الأسئلة، ومتابعة مشاركاتك.</p>{!db&&<p className="feedback error" role="alert">خدمة الحسابات غير مفعّلة بعد.</p>}
   {next.includes('draft=')&&<p className="small-muted">للحفاظ على مسودة مشاركتك، أكمل الدخول في علامة التبويب هذه خلال 30 دقيقة. إذا فتحت رسالة التأكيد في علامة تبويب أخرى، عُد إلى هذه العلامة وسجل الدخول.</p>}
   {mode==='register'&&!termsAvailable&&<p className="feedback" role="status">إنشاء الحسابات غير متاح مؤقتًا. شروط الاستخدام وسياسة الخصوصية قيد التحديث.</p>}
+  {['login','register'].includes(mode)&&<GoogleSignIn db={db} next={next} termsAvailable={termsAvailable} onError={message=>{setFailed(true);setNotice(message);}}/>}
   {mode!=='callback'&&<ValidatedForm className="debate-form" onSubmit={submit} key={formVersion}><fieldset disabled={busy||!db||mode==='update'&&!recoveryReady||mode==='register'&&!termsAvailable}>
    {mode==='register'&&<FormLabel>اسم العرض<FormInput name="display_name" required minLength={2} maxLength={60} autoComplete="nickname"/><small>هذا الاسم سيظهر في ملفك الشخصي وبحث الأعضاء. يمكنك استخدام اسم مستعار وإيقاف ظهوره في البحث من إعدادات الرسائل.</small></FormLabel>}
    {mode!=='update'&&<FormLabel>البريد الإلكتروني<FormInput name="email" type="email" dir="ltr" required maxLength={254} autoComplete="email"/></FormLabel>}
