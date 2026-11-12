@@ -290,3 +290,35 @@
 .modIcon { margin-inline-start: auto; display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--c-line-2); background: var(--c-surface); color: var(--c-ink-2); cursor: pointer; }
 .modCheck { display: inline-flex; align-items: center; gap: 8px; margin-bottom: var(--s-2); font-size: var(--t-size-ui); color: var(--c-ink-2); }
 .modButton:focus-visible, .modLink:focus-visible, .modIcon:focus-visible, .modInput:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 2px; }
+
+/* «المُبلّغ المحلي», phase 5: the weekly board, badges and a member's own record. */
+.reporterBoard { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.reporterBoard li { display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: var(--c-surface-2); }
+.reporterBoard li[data-rank="1"] { background: color-mix(in srgb, var(--c-star, var(--c-amber)) 16%, var(--c-surface)); }
+.reporterRank { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--c-surface); color: var(--c-ink-2); font: 700 var(--t-size-ui)/1 var(--t-text); font-variant-numeric: tabular-nums; }
+.reporterBoard li[data-rank="1"] .reporterRank { color: var(--c-amber); }
+.reporterBoard li[data-rank="2"] .reporterRank { color: var(--c-ink-3); }
+.reporterBoard li[data-rank="3"] .reporterRank { color: var(--c-clay); }
+.reporterName { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; min-width: 0; font-weight: 600; color: var(--c-ink); overflow-wrap: anywhere; }
+.reporterCount { font-size: var(--t-size-meta); color: var(--c-ink-3); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.badgeIcons { display: inline-flex; gap: 3px; }
+.badgeIcon { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--c-surface-3); color: var(--c-ink-2); }
+.badgeIcon[data-tier="silver"] { color: var(--c-indigo); background: var(--c-indigo-soft); }
+.badgeIcon[data-tier="gold"] { color: var(--c-amber); background: var(--c-amber-soft); }
+.badgeCards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: var(--s-3, 12px); margin: 0; padding: 0; list-style: none; }
+.badgeCards li { display: grid; gap: 4px; align-content: start; padding: var(--s-3, 12px); border-radius: 16px; border: 1px solid var(--c-line); background: var(--c-surface); opacity: .62; }
+.badgeCards li[data-earned] { opacity: 1; box-shadow: var(--e-1); }
+.badgeCards strong { color: var(--c-ink); font-size: var(--t-size-ui); }
+.badgeCards small { color: var(--c-ink-3); font-size: var(--t-size-meta); line-height: var(--t-lh-ui); }
+.badgeSymbol { display: inline-grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--c-surface-3); color: var(--c-ink-2); margin-bottom: 4px; }
+.badgeCards li[data-earned][data-tier="bronze"] .badgeSymbol { background: var(--c-clay-soft); color: var(--c-clay); }
+.badgeCards li[data-earned][data-tier="silver"] .badgeSymbol { background: var(--c-indigo-soft); color: var(--c-indigo); }
+.badgeCards li[data-earned][data-tier="gold"] .badgeSymbol { background: var(--c-amber-soft); color: var(--c-amber); }
+.badgeState { display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; font-size: var(--t-size-meta); font-weight: 700; color: var(--c-ink-3); }
+.badgeCards li[data-earned] .badgeState { color: var(--c-success); }
+.myStats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr)); gap: var(--s-3, 12px); }
+.myStats > div { display: grid; gap: 4px; padding: var(--s-3, 12px) var(--s-4, 16px); border-radius: 18px; background: var(--c-surface); border: 1px solid var(--c-line); box-shadow: var(--e-1); }
+.myStats strong { font: 700 clamp(1.5rem, 1.3rem + .8vw, 2rem)/1.15 var(--t-text); color: var(--c-ink); font-variant-numeric: tabular-nums; }
+.myStats span { font-size: var(--t-size-meta); color: var(--c-ink-3); }
+.myLevel { display: inline-flex; align-items: center; gap: 6px; font-size: 1.25rem !important; color: var(--c-accent-strong) !important; }
+.boardLink { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--c-accent); }

@@ -10,7 +10,7 @@ import {sectionAccess} from '@/lib/sectionPreview';
 import SectionPreviewNote from '@/components/SectionPreviewNote';
 import {serverDb} from '@/lib/supabase-server';
 import {getPublicRates} from '@/lib/exchangeRatesServer';
-import {getPriceBoard} from '@/lib/priceConsensusServer';
+import {getPriceBoard,getPriceWeek} from '@/lib/priceConsensusServer';
 import {CONFIDENCE,basisText,mergeRates,rangeText} from '@/lib/priceReports';
 import {RATE_CURRENCIES,RATE_REGIONS,adenDay,formatRateDay,formatRateTime,rateFreshness,usableRates} from '@/lib/exchangeRates';
 import {formatNumber} from '@/lib/format';
@@ -53,7 +53,7 @@ export default async function ExchangeRatesPage(){
  const access=await sectionAccess('services',settings);
  if(!access)notFound();
  const db=serverDb();
- const [data,board]=await Promise.all([getPublicRates(db).catch(()=>null),getPriceBoard(db).catch(()=>null)]);
+ const [data,board,week]=await Promise.all([getPublicRates(db).catch(()=>null),getPriceBoard(db).catch(()=>null),getPriceWeek(db).catch(()=>null)]);
  // The price members' reports settled on where there is one, the team's entry otherwise.
  const now=Date.now(),rates=usableRates(mergeRates(data?.latest||{},board),now);
  const times=Object.values(rates).map(row=>Date.parse(row.recorded_at));
@@ -75,6 +75,8 @@ export default async function ExchangeRatesPage(){
     {RATE_REGIONS.map(region=>{
      const rows=RATE_CURRENCIES.map(currency=>({currency,row:rates[region.id+':'+currency.id]})).filter(item=>item.row);
      const dollar=rates[region.id+':USD'],series=data.series[region.id+':USD']||[];
+     // The small chart: the last 7 days of the price shown, once members' reports are on.
+     const recent=week?.['rate:'+region.id+':USD:sell'],spark=recent?.length>=2?{points:recent,days:7}:{points:series,days:30};
      return <section key={region.id} className={styles.cityCard} style={{'--city':CITY_HUE[region.id]}} aria-labelledby={'rates-'+region.id}>
       <div className={styles.cityHead}><h2 id={'rates-'+region.id}>{region.name}</h2>{rows[0]&&<Freshness at={rows[0].row.recorded_at} now={now}/>}</div>
       <p className={styles.boardHint}>{region.hint}</p>
@@ -84,7 +86,7 @@ export default async function ExchangeRatesPage(){
         <p className={styles.bigFigure}><strong>{formatNumber(dollar.sell)}</strong> <span>ريال</span></p>
         <Change series={series} row={dollar}/>
        </div>
-       <Sparkline className={styles.spark} points={series} label={'اتجاه سعر الدولار في '+region.name+' خلال 30 يومًا'}/>
+       <Sparkline className={styles.spark} points={spark.points} label={'اتجاه سعر الدولار في '+region.name+' خلال '+(spark.days===7?'7 أيام':'30 يومًا')}/>
       </div>:null}
       {dollar&&<Community info={dollar.community} now={now}/>}
       {board&&<PriceActions kind="rate" region={region.id} item="USD" regionName={region.name}/>}
@@ -118,7 +120,7 @@ export default async function ExchangeRatesPage(){
     <li>قد يختلف السعر الفعلي قليلًا بين محل وآخر وخلال اليوم نفسه.</li>
     <li>يظهر تحذير إذا مضى على السعر أكثر من يوم، ويُخفى بعد يومين.</li>
    </ul>
-   {board?<p>رأيت سعرًا مختلفًا؟ اضغط «السعر مختلف» تحت سعر مدينتك.</p>:<p>رأيت سعرًا مختلفًا؟ <Link href={'/contribute?type='+encodeURIComponent('تصحيح معلومة')}>أخبرنا</Link>.</p>}
+   {board?<p>رأيت سعرًا مختلفًا؟ اضغط «السعر مختلف» تحت سعر مدينتك. وتعرّف على <Link href="/services/reporters">أفضل المبلّغين هذا الأسبوع</Link>.</p>:<p>رأيت سعرًا مختلفًا؟ <Link href={'/contribute?type='+encodeURIComponent('تصحيح معلومة')}>أخبرنا</Link>.</p>}
   </aside>
  </div>;
 }

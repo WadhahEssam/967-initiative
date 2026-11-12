@@ -3,6 +3,7 @@ import {useMemo,useRef,useState} from 'react';
 import {ArrowDown,ArrowUp,Beef,Flame,Search,ShoppingBasket,Soup,Wheat,Carrot,Droplets} from 'lucide-react';
 import {formatNumber} from '@/lib/format';
 import {PriceSheet} from './PriceReport';
+import Sparkline from './Sparkline';
 import styles from './Services.module.css';
 
 const GROUP_ICONS={grains:Wheat,legumes:Soup,pantry:Droplets,produce:Carrot,protein:Beef,energy:Flame};
@@ -33,6 +34,7 @@ function ItemSheet({pick,onClose}){
  const details=pick&&<div className={styles.sheetPrice}>
   <span className={styles.headlineLabel}>{pick.name} · {pick.unit}</span>
   {cell?<p className={styles.bigFigure}><strong>{money(cell.price)}</strong> <span>ريال</span></p>:<p>لا يوجد سعر حديث في {pick.regionName}.</p>}
+  {cell?.week&&<Sparkline className={styles.spark} points={cell.week} label={'اتجاه سعر '+pick.name+' في '+pick.regionName+' خلال 7 أيام'}/>}
   {cell?.basis&&<p className={styles.community}>{cell.confidenceLabel&&<span className={styles.confidence} data-level={cell.confidence}>{cell.confidenceLabel}</span>}<span>{cell.basis}</span>{cell.range&&<span>{cell.range}</span>}</p>}
  </div>;
  return <PriceSheet open={Boolean(pick)} onClose={onClose} kind="food" region={pick?.region} item={pick?.item} title={pick?pick.name+' في '+pick.regionName:''} details={details} start={cell?'choose':'report'}/>;

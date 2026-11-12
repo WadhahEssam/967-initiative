@@ -12,6 +12,7 @@ import {COMMENT_STATUSES,QUESTION_STATUSES,SUGGESTION_STATUSES} from '@/lib/deba
 import {formatArabicDate} from '@/lib/format';
 import LoadingState from '@/components/LoadingState';
 import styles from './AccountWorkspace.module.css';
+import {usePageVisibility} from '@/components/PageVisibilityProvider';
 import {READING_KINDS} from '@/lib/readingList';
 
 const views=[
@@ -28,6 +29,8 @@ const emptyWorkspace={preferences:{bio:'',governorate:'',website:'',social_url:'
 const tabName=(id)=>views.find(x=>x.id===id)?.label||views[0].label;
 
 export default function AccountWorkspace({initialTab='overview'}){
+ // «مساهماتي في الأسعار» shows only once «الخدمات» is open to visitors.
+ const servicesVisible=usePageVisibility().isVisible('/services/exchange-rates');
  const auth=useAudience(),user=auth.user;
  const local=useReadingList();
  const [tab,setTab]=useState(views.some(x=>x.id===initialTab)?initialTab:'overview');
@@ -116,7 +119,7 @@ export default function AccountWorkspace({initialTab='overview'}){
    <nav className={styles.sidebar} aria-label="أقسام الحساب">
     {views.map(({id,label,icon:Icon})=><button key={id} type="button" aria-current={tab===id?'page':undefined} className={tab===id?styles.activeNav:styles.navItem} onClick={()=>go(id)}><span className={styles.navIcon} aria-hidden="true"><Icon size={18}/></span><span>{label}</span>{id==='notifications'&&workspace.unread>0&&<b>{workspace.unread}</b>}<ChevronLeft size={16} className={styles.navArrow} aria-hidden="true"/></button>)}
     <Link href="/messages" className={styles.navItem}><span className={styles.navIcon} aria-hidden="true"><MessageSquare size={18}/></span><span>رسائلي الخاصة</span><ChevronLeft size={16} className={styles.navArrow} aria-hidden="true"/></Link>
-    <div className={styles.sidebarFooter}><Link href="/games/leaderboard"><Trophy size={16}/> ترتيبي في ألعاب 967</Link><Link href="/debates"><ArrowUpLeft size={16}/> تصفّح المناظرات</Link><Link href="/help"><ArrowUpLeft size={16}/> مركز المساعدة</Link></div>
+    <div className={styles.sidebarFooter}>{servicesVisible&&<Link href="/account/prices"><Trophy size={16}/> مساهماتي في الأسعار</Link>}<Link href="/games/leaderboard"><Trophy size={16}/> ترتيبي في ألعاب 967</Link><Link href="/debates"><ArrowUpLeft size={16}/> تصفّح المناظرات</Link><Link href="/help"><ArrowUpLeft size={16}/> مركز المساعدة</Link></div>
    </nav>
    <div className={styles.main}>
     {tab!=='overview'&&<button type="button" className={styles.backButton} onClick={()=>go('overview')}><ChevronRight size={18} aria-hidden="true"/> حسابي</button>}

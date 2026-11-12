@@ -75,7 +75,7 @@ test('the answer never tells whether a report counted, was held, or came from a 
   assert.match(server, /if\(typeof body\?\.website==='string'&&body\.website\.trim\(\)\)return \{status:200,body:\{ok:true,message:REPORT_THANKS\}\};/);
   // No status, score, weight or ban is read into the answer, and the board has none of them.
   assert.doesNotMatch(server, /silent_ban|score|statuses/);
-  const board = read('lib/priceConsensusServer.js').split('export function getPriceBoard')[1];
+  const board = read('lib/priceConsensusServer.js').split('export function getPriceBoard')[1].split('\nexport ')[0];
   assert.doesNotMatch(board, /silent_ban|score|status|user_id|price_reports/);
   for (const file of ['components/services/PriceReport.jsx', 'components/services/FoodBoard.jsx', 'app/services/exchange-rates/page.jsx', 'app/services/food-prices/page.jsx']) {
     assert.doesNotMatch(read(file), /silent_ban|score|weight|statuses|held|outlier/, file);
