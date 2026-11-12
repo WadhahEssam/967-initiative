@@ -241,12 +241,12 @@
 .secondaryButton { border: 1px solid var(--c-line-2); background: var(--c-surface); color: var(--c-ink); }
 .primaryButton:focus-visible, .secondaryButton:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 2px; }
 .reportForm { display: grid; gap: var(--s-3, 12px); }
-.field { display: grid; gap: 6px; margin: 0; padding: 0; border: 0; min-width: 0; }
-.field > span, .field > legend { padding: 0; font-size: var(--t-size-ui); font-weight: 600; color: var(--c-ink); }
-.field small { font-weight: 400; color: var(--c-ink-3); }
-.field select, .field input:not([type="radio"]) { min-height: var(--target, 44px); padding: 0 12px; border-radius: 12px; border: 1px solid var(--c-line-2); background: var(--c-surface); color: var(--c-ink); font: 400 1rem/1.4 var(--t-text); }
-.field input[dir="ltr"] { text-align: end; font-variant-numeric: tabular-nums; font-weight: 700; font-size: 1.15rem; }
-.field select:focus-visible, .field input:not([type="radio"]):focus-visible { outline: 2px solid var(--c-focus); outline-offset: 1px; }
+.reportField { display: grid; gap: 6px; margin: 0; padding: 0; border: 0; min-width: 0; }
+.reportField > span, .reportField > legend { padding: 0; font-size: var(--t-size-ui); font-weight: 600; color: var(--c-ink); }
+.reportField small { font-weight: 400; color: var(--c-ink-3); }
+.reportField select, .reportField input:not([type="radio"]) { min-height: var(--target, 44px); padding: 0 12px; border-radius: 12px; border: 1px solid var(--c-line-2); background: var(--c-surface); color: var(--c-ink); font: 400 1rem/1.4 var(--t-text); }
+.reportField input[dir="ltr"] { text-align: end; font-variant-numeric: tabular-nums; font-weight: 700; font-size: 1.15rem; }
+.reportField select:focus-visible, .reportField input:not([type="radio"]):focus-visible { outline: 2px solid var(--c-focus); outline-offset: 1px; }
 .sideChoice { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .sideChoice label { display: flex; gap: 8px; align-items: flex-start; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--c-line-2); cursor: pointer; }
 .sideChoice label:has(input:checked) { border-color: var(--c-accent); background: var(--c-accent-soft); }
@@ -270,3 +270,23 @@
 .cellButton { display: block; inline-size: 100%; margin: -6px; padding: 6px; border: 0; border-radius: 10px; background: transparent; color: inherit; font: inherit; text-align: start; cursor: pointer; }
 @media (hover: hover) { .cellButton:hover { background: var(--c-surface-2); } }
 .tapHint { margin: 0; font-size: var(--t-size-meta); color: var(--c-ink-3); }
+
+/* «المُبلّغ المحلي», the editors' panel. */
+.entryCity h2 svg { vertical-align: -3px; margin-inline-end: 4px; color: var(--c-caution); }
+.modMeta { margin: 0 0 var(--s-2); font-size: var(--t-size-meta); color: var(--c-ink-3); line-height: var(--t-lh-ui); }
+.modSub { margin: var(--s-4, 16px) 0 var(--s-2); font: 700 var(--t-size-ui)/1.4 var(--t-text); color: var(--c-ink); }
+.modTag { display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: var(--r-pill, 999px); font-size: var(--t-size-meta); font-weight: 700; background: var(--c-surface-3); color: var(--c-ink-2); }
+.modTag[data-tone="ok"] { background: var(--c-success-soft); color: var(--c-success); }
+.modTag[data-tone="danger"] { background: var(--c-danger-soft); color: var(--c-danger); }
+.modLink { padding: 0; border: 0; background: none; color: var(--c-accent); font: 600 var(--t-size-meta)/1.4 var(--t-text); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.modButtons { display: inline-flex; gap: 6px; margin-inline-start: auto; }
+.history .modButtons button { margin: 0; display: inline-flex; align-items: center; gap: 4px; }
+.modButton { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border-radius: var(--r-pill, 999px); border: 1px solid var(--c-line-2); background: var(--c-surface); color: var(--c-ink); font: 600 var(--t-size-meta)/1 var(--t-text); cursor: pointer; }
+.modButton[data-tone="danger"] { border-color: color-mix(in srgb, var(--c-danger) 45%, var(--c-line-2)); color: var(--c-danger); }
+.modButton:disabled { opacity: .6; cursor: progress; }
+.modInput { min-height: 40px; padding: 0 12px; border-radius: var(--r-1); border: 1px solid var(--c-line-2); background: var(--c-surface); color: var(--c-ink); font: 400 var(--t-size-ui)/1.4 var(--t-text); min-width: 0; }
+.modReporter { display: grid; gap: var(--s-2); margin: var(--s-3, 12px) 0; padding: var(--s-3, 12px); border-radius: 16px; background: var(--c-surface-2); border: 1px solid var(--c-line); }
+.modRowHead { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.modIcon { margin-inline-start: auto; display: inline-grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--c-line-2); background: var(--c-surface); color: var(--c-ink-2); cursor: pointer; }
+.modCheck { display: inline-flex; align-items: center; gap: 8px; margin-bottom: var(--s-2); font-size: var(--t-size-ui); color: var(--c-ink-2); }
+.modButton:focus-visible, .modLink:focus-visible, .modIcon:focus-visible, .modInput:focus-visible { outline: 2px solid var(--c-focus); outline-offset: 2px; }

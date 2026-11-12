@@ -175,3 +175,13 @@ for (const [name, attack] of [
     }
   });
 }
+
+test('editor review: an accepted report is never held, a rejected one carries no weight', () => {
+  const far = report('a', 600);
+  assert.equal(computeConsensus({kind: 'rate', current: sanaaUsd, official, reports: [far], now: NOW}).statuses[far.id], 'held');
+  assert.equal(computeConsensus({kind: 'rate', current: sanaaUsd, official, reports: [{...far, review: 'accepted'}], now: NOW}).statuses[far.id], 'counted');
+  const three = ['b', 'c', 'd'].map(user => report(user, 540));
+  assert.equal(computeConsensus({kind: 'rate', current: sanaaUsd, official, reports: three, now: NOW}).value, 540);
+  const rejected = three.map((item, index) => index === 0 ? {...item, review: 'rejected'} : item);
+  assert.equal(computeConsensus({kind: 'rate', current: sanaaUsd, official, reports: rejected, now: NOW}).value, 533);
+});
